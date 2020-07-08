@@ -1,6 +1,6 @@
-import { Month } from './month';
+import {Month} from './month';
 
-export const months: Month[] = [
+export const MONTHS: Month[] = [
   {
     id: 1,
     name: 'January'
