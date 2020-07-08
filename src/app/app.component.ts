@@ -11,18 +11,12 @@ import {MONTHS} from './mock-months';
 export class AppComponent implements OnInit {
   title = 'select months';
   search = ''
-  months = MONTHS
+  months = []
 
   constructor() {
   }
 
   ngOnInit() {
-  }
-
-  clear(): void {
-    this.search = ''
-    this.months = MONTHS
-    this.title = 'select months';
   }
 
   onSearch(search: string): void {

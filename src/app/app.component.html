@@ -3,8 +3,8 @@
 <div class="content-body">
   <h1>{{title}}</h1>
   <div class="input-form">
-    <input [(ngModel)]="search" (input)="onSearch(search)" type="text"/>
-    <button class="button" (click)="clear()">clear</button>
+    <input [(ngModel)]="search" type="text"/>
+    <button class="button" (click)="onSearch(search)">search</button>
   </div>
   <table>
     <thead>
