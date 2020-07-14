@@ -686,12 +686,12 @@ module.exports = exported;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vlad/project/primeng-tablecolresize-demo-mxdvsa/src/styles.css */"./src/styles.css");
-__webpack_require__(/*! /home/vlad/project/primeng-tablecolresize-demo-mxdvsa/node_modules/primeng/resources/themes/nova-light/theme.css */"./node_modules/primeng/resources/themes/nova-light/theme.css");
-__webpack_require__(/*! /home/vlad/project/primeng-tablecolresize-demo-mxdvsa/node_modules/primeng/resources/primeng.min.css */"./node_modules/primeng/resources/primeng.min.css");
-__webpack_require__(/*! /home/vlad/project/primeng-tablecolresize-demo-mxdvsa/node_modules/primeflex/primeflex.css */"./node_modules/primeflex/primeflex.css");
-__webpack_require__(/*! /home/vlad/project/primeng-tablecolresize-demo-mxdvsa/node_modules/primeicons/primeicons.css */"./node_modules/primeicons/primeicons.css");
-module.exports = __webpack_require__(/*! /home/vlad/project/primeng-tablecolresize-demo-mxdvsa/node_modules/quill/dist/quill.snow.css */"./node_modules/quill/dist/quill.snow.css");
+__webpack_require__(/*! /home/vlad/project/ng-task/src/styles.css */"./src/styles.css");
+__webpack_require__(/*! /home/vlad/project/ng-task/node_modules/primeng/resources/themes/nova-light/theme.css */"./node_modules/primeng/resources/themes/nova-light/theme.css");
+__webpack_require__(/*! /home/vlad/project/ng-task/node_modules/primeng/resources/primeng.min.css */"./node_modules/primeng/resources/primeng.min.css");
+__webpack_require__(/*! /home/vlad/project/ng-task/node_modules/primeflex/primeflex.css */"./node_modules/primeflex/primeflex.css");
+__webpack_require__(/*! /home/vlad/project/ng-task/node_modules/primeicons/primeicons.css */"./node_modules/primeicons/primeicons.css");
+module.exports = __webpack_require__(/*! /home/vlad/project/ng-task/node_modules/quill/dist/quill.snow.css */"./node_modules/quill/dist/quill.snow.css");
 
 
 /***/ })
