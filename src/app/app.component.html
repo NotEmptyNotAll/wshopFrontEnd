@@ -1,23 +1,25 @@
 
-
 <div class="content-body">
-  <h1>{{title}}</h1>
-  <div class="input-form">
-    <input [(ngModel)]="search" (keydown.enter)="onSearch(search)" type="text"/>
-    <button class="button"   (click)="onSearch(search)">search</button>
-  </div>
-  <table>
-    <thead>
-    <th>#</th>
-    <th>month</th>
-    </thead>
-    <tbody>
-    <tr *ngFor="let month of months">
-      <td>{{month.id}}</td>
-      <td>{{month.name}}</td>
-    </tr>
-    </tbody>
-  </table>
+    <h1>{{title}}</h1>
+    <div class="input-form">
+        <input [(ngModel)]="search" (keydown.enter)="onSearch(search)" type="text"/>
+        <button class="button"   (click)="onSearch(search)">search</button>
+    </div>
+    <p-table [columns]="cols" [value]="months" [resizableColumns]="true">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns" pResizableColumn>
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+                <td *ngFor="let col of columns" class="ui-resizable-column">
+                    {{rowData[col.field]}}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+
 </div>
-
-
