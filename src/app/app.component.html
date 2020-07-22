@@ -6,7 +6,7 @@
         <input type="text" class="input-text" [(ngModel)]="search" (keydown.enter)="onSearch(search)"/>
         <button class="button" (click)="onSearch(search)">search</button>
     </div>
-    <p-table [columns]="cols" [value]="months" [scrollable]="true" [resizableColumns]="true">
+    <p-table [columns]="cols" [value]="months" [scrollable]="true" [resizableColumns]="true" >
         <ng-template pTemplate="colgroup" let-columns>
             <colgroup>
                 <col *ngFor="let col of columns" [style.width]="col.width">
