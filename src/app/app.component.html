@@ -1,11 +1,19 @@
-
 <div class="content-body">
     <h1>{{title}}</h1>
     <div class="input-form">
-        <input [(ngModel)]="search" (keydown.enter)="onSearch(search)" type="text"/>
-        <button class="button"   (click)="onSearch(search)">search</button>
+        <input placeholder="input columns size" type="text" [ngClass]="{'err-input':inputErr,'input-text':!inputErr}"
+               [(ngModel)]="text" (input)="setColumn()"/>
+        <input type="text" class="input-text" [(ngModel)]="search" (keydown.enter)="onSearch(search)"/>
+        <button class="button" (click)="onSearch(search)">search</button>
     </div>
-    <p-table [columns]="cols" [value]="months" [resizableColumns]="true">
+    {{cols.length}}
+    {{text.split(',').length}}
+    <p-table [columns]="cols" [value]="months" [scrollable]="true" [resizableColumns]="true">
+        <ng-template pTemplate="colgroup" let-columns>
+            <colgroup>
+                <col *ngFor="let col of columns" [style.width]="col.width">
+            </colgroup>
+        </ng-template>
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th *ngFor="let col of columns" pResizableColumn>
@@ -15,7 +23,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
             <tr>
-                <td *ngFor="let col of columns" class="ui-resizable-column">
+                <td *ngFor="let col of columns" class="ui-resizable-column" pResizableColumn>
                     {{rowData[col.field]}}
                 </td>
             </tr>
