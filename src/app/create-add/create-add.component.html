@@ -1,0 +1,12 @@
+<div class="content-body">
+    <h1> Details</h1>
+    <div class="input-form">
+        <input type="text"  [(ngModel)]="inputValue" class="input-text" />
+    </div>
+    <div class="button-panel">
+        <button type="button"  routerLink="" pButton class="ui-button-danger"
+                icon="pi pi-times"  label="cancel"></button>
+        <button type="button"  routerLink="" pButton class="ui-button-success"
+                icon="pi pi-check" [disabled]="inputValue===''" (click)="addMonth()" label="confirm"></button>
+    </div>
+</div>

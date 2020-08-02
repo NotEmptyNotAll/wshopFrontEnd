@@ -1,0 +1,43 @@
+<div class="content-body">
+    <h1>{{title}}</h1>
+
+    <div class="input-form">
+        <input placeholder="input columns size" type="text" [ngClass]="{'err-input':inputErr,'input-text':!inputErr}"
+               [(ngModel)]="text" (input)="setColumn()"/>
+        <input type="text" class="input-text" [(ngModel)]="monthService.search" (keydown.enter)="onSearch()"/>
+        <button class="button button-search" (click)="onSearch()">search</button>
+    </div>
+    <p-table [columns]="cols" [value]="months" [scrollable]="true"
+             [resizableColumns]="true" selectionMode="single" [(selection)]="selectRow" dataKey="id"
+             (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)">
+        <ng-template pTemplate="colgroup" let-columns>
+            <colgroup>
+                <col *ngFor="let col of columns" [style.width]="col.width">
+            </colgroup>
+        </ng-template>
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns" pResizableColumn>
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+                <td *ngFor="let col of columns" class="ui-resizable-column" pResizableColumn>
+                    {{rowData[col.field]}}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+    <div class="button-panel">
+        <button type="button" (click)="deleteMonth()" pButton class="ui-button-danger"
+                icon="pi pi-trash" [disabled]="selectRow.id<=12" label="delete"></button>
+        <button routerLink="/createAddDelete" type="button" pButton icon="pi pi-plus"
+                label="create"></button>
+        <button type="button" [disabled]="selectRow.id<=12" pButton icon="pi pi-pencil"
+                class="ui-button-success" (click)="changeMonth()"  label="change"></button>
+    </div>
+
+</div>

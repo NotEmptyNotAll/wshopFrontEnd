@@ -21,32 +21,25 @@ import {ButtonModule} from 'primeng/button';
 import {DropdownModule} from 'primeng/dropdown';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {InputTextModule} from 'primeng/inputtext';
+import { CreateAddComponent } from './create-add/create-add.component';
+import { AppRoutingModule } from './app-routing.module';
+import { TablePageComponent } from './table-page/table-page.component';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { MessagesModule } from 'primeng/messages';
 
 @NgModule({
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         TableModule,
-        CalendarModule,
-        SliderModule,
-        DialogModule,
-        InputMaskModule,
-        MultiSelectModule,
-        ReactiveFormsModule,
-        ContextMenuModule,
-        DropdownModule,
+        ConfirmDialogModule,
         ButtonModule,
-        ToastModule,
-        InputTextModule,
-        ProgressBarModule,
-        HttpClientModule,
-        FormsModule,
-        RouterModule.forRoot([
-            {path: '', component: AppComponent}
-
-        ])
+        MessagesModule,
+        RouterModule,
+        AppRoutingModule,
+        FormsModule
     ],
-    declarations: [AppComponent],
+    declarations: [AppComponent, CreateAddComponent, TablePageComponent],
     bootstrap: [AppComponent],
     providers: []
 })
