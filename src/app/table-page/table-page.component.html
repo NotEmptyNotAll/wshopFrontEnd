@@ -3,7 +3,7 @@
 
     <div class="input-form">
         <input placeholder="input columns size" type="text" [ngClass]="{'err-input':inputErr,'input-text':!inputErr}"
-               [(ngModel)]="text" (input)="setColumn()"/>
+               [(ngModel)]="monthService.addColumnText" (input)="setColumn()"/>
         <input type="text" class="input-text" [(ngModel)]="monthService.search" (keydown.enter)="onSearch()"/>
         <button class="button button-search" (click)="onSearch()">search</button>
     </div>
@@ -30,7 +30,7 @@
             </tr>
         </ng-template>
     </p-table>
-    <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+    <p-confirmDialog [style]="{width: '30vw'}" [baseZIndex]="10000"></p-confirmDialog>
     <div class="button-panel">
         <button type="button" (click)="deleteMonth()" pButton class="ui-button-danger"
                 icon="pi pi-trash" [disabled]="selectRow.id<=12" label="delete"></button>

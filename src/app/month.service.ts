@@ -12,6 +12,7 @@ export class MonthService {
     changeMonth: Month = null
     search: string = ''
     tempMonths: Month[]
+    addColumnText:string=''
 
     constructor() {
     }
@@ -37,6 +38,8 @@ export class MonthService {
                 || item.id.toString().indexOf(this.search) > -1
         })
     }
+
+
 
     setTempMonth(months: Month[]) {
         this.tempMonths = months

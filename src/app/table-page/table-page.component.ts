@@ -39,7 +39,7 @@ export class TablePageComponent implements OnInit {
 
     deleteMonth(): void {
         this.confirmationService.confirm({
-            message: 'Are you sure that you want delete: '+this.selectRow.name,
+            message: 'Are you sure that you want delete: ' + this.selectRow.name,
             header: 'Confirmation',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
@@ -61,8 +61,9 @@ export class TablePageComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.months=this.monthService.getTempMonth()
+        this.months = this.monthService.getTempMonth()
         this.cols = this.mainColumn.slice()
+        this.setColumn()
     }
 
     onRowSelect(event): void {
@@ -73,8 +74,8 @@ export class TablePageComponent implements OnInit {
     }
 
     setColumn(): void {
-        if (this.text.match(/[^0-9,]/) === null) {
-            let sizeArr = this.text.split(',');
+        if (this.monthService.addColumnText.match(/[^0-9,]/) === null) {
+            let sizeArr = this.monthService.addColumnText.split(',');
             if (sizeArr.length < this.cols.length - 2 || (sizeArr.length === 1 && this.cols.length > 2 && sizeArr[0] === '')) {
                 this.cols.pop()
             } else {
@@ -91,7 +92,7 @@ export class TablePageComponent implements OnInit {
                     }
                 })
             }
-            this.oldText = this.text
+            this.oldText = this.monthService.addColumnText
             this.inputErr = false
         } else {
             this.inputErr = true
