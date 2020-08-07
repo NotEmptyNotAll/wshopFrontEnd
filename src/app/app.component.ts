@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {MenuItem} from "primeng/api";
 
 @Component({
     selector: 'app-root',
@@ -8,10 +9,20 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
+    items: MenuItem[];
+
     constructor() {
     }
 
+    activeItem: MenuItem;
+
     ngOnInit() {
+        this.items = [
+            {label: 'moths', url: '/'},
+            {label: 'region', url: '/region'}
+        ];
+
+        this.activeItem = this.items[0];
     }
 
 }

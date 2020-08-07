@@ -1,4 +1,4 @@
-export interface Month {
+export interface TableData {
   id: number;
   name: string;
 }

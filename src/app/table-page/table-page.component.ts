@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {Month} from './month';
-import {MonthService} from "../month.service";
+import {Component, Input, OnInit} from '@angular/core';
+import {TableData} from './tableData';
+import {TableDataService} from "./tableData.service";
 import {ConfirmationService} from 'primeng/api';
 import {Router} from "@angular/router";
-import {CreateAddComponent} from "../create-add/create-add.component";
+import {CreateAddComponent} from "./create-add/create-add.component";
 
 @Component({
     selector: 'app-table-page',
@@ -13,37 +13,32 @@ import {CreateAddComponent} from "../create-add/create-add.component";
 
 })
 export class TablePageComponent implements OnInit {
+    @Input() startData: TableData[]
+    @Input() mainColumn: any[]
+    @Input() title: string
+    @Input() dynamicColumns : string=''
     cols: any[];
-    title = 'select months';
-    months: Month[]
-    oldText = ''
-    selectRow: Month = {
+    selectRow: TableData = {
         id: -1,
         name: ''
     }
     inputErr = false
-    text = ''
-    mainColumn = [
-        {field: 'id', header: '#', width: '10%'},
-        {field: 'name', header: 'month', width: '40%'},
-    ];
 
 
-    constructor(private monthService: MonthService,
+    constructor(public tableDataService: TableDataService,
                 private confirmationService: ConfirmationService,
-                private _router: Router,
-                private createAddComponent: CreateAddComponent) {
+                private _router: Router) {
 
     }
 
 
-    deleteMonth(): void {
+    deleteData(): void {
         this.confirmationService.confirm({
             message: 'Are you sure that you want delete: ' + this.selectRow.name,
             header: 'Confirmation',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
-                this.monthService.deleteMonth(this.selectRow.id)
+                this.tableDataService.deleteData(this.selectRow.id)
                 this.onSearch()
                 this.selectRow = {
                     id: -1,
@@ -55,27 +50,24 @@ export class TablePageComponent implements OnInit {
         });
     }
 
-    changeMonth(): void {
-        this.monthService.setChangeRow(this.selectRow)
-        this._router.navigate(['/createAddDelete'])
+    changeData(): void {
+        this.tableDataService.setChangeRow(this.selectRow)
+        this.tableDataService.showUpdatePage = true
     }
 
     ngOnInit() {
-        this.months = this.monthService.getTempMonth()
+        this.tableDataService.setStartData(this.startData)
         this.cols = this.mainColumn.slice()
-        this.setColumn()
-    }
-
-    onRowSelect(event): void {
-    }
-
-    onRowUnselect(event): void {
+        if (this.dynamicColumns !== '') {
+            this.tableDataService.addColumnText=this.dynamicColumns
+            this.setColumn()
+        }
 
     }
 
     setColumn(): void {
-        if (this.monthService.addColumnText.match(/[^0-9,]/) === null) {
-            let sizeArr = this.monthService.addColumnText.split(',');
+        if (this.tableDataService.addColumnText.match(/[^0-9,]/) === null) {
+            let sizeArr = this.tableDataService.addColumnText.split(',');
             if (sizeArr.length < this.cols.length - 2 || (sizeArr.length === 1 && this.cols.length > 2 && sizeArr[0] === '')) {
                 this.cols.pop()
             } else {
@@ -92,7 +84,6 @@ export class TablePageComponent implements OnInit {
                     }
                 })
             }
-            this.oldText = this.monthService.addColumnText
             this.inputErr = false
         } else {
             this.inputErr = true
@@ -100,12 +91,7 @@ export class TablePageComponent implements OnInit {
     }
 
     onSearch(): void {
-        this.months = this.monthService.searchMonth()
-        if (this.months.length === 1)
-            this.title = 'nice choice';
-        else
-            this.title = 'select months';
-        this.monthService.setTempMonth(this.months)
+        this.tableDataService.searchData()
     }
 
 
