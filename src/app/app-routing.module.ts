@@ -7,6 +7,9 @@ import {AppComponent} from "./app.component";
 
 const routes: Routes = [
   { path: 'region', component: MonthsPageComponent },
+  { path: 'test', component: MonthsPageComponent },
+  { path: 'ssss', component: MonthsPageComponent },
+  { path: 'rrrr', component: MonthsPageComponent },
   { path: '', component: RegionPageComponent }
 ];
 
