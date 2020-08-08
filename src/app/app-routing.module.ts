@@ -6,8 +6,8 @@ import {RegionPageComponent} from "./region-page/region-page.component";
 import {AppComponent} from "./app.component";
 
 const routes: Routes = [
-  { path: '', component: MonthsPageComponent },
-  { path: 'region', component: RegionPageComponent }
+  { path: 'region', component: MonthsPageComponent },
+  { path: '', component: RegionPageComponent }
 ];
 
 @NgModule({
