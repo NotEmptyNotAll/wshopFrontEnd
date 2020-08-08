@@ -5,7 +5,6 @@ import {RegionPageComponent} from "./region-page/region-page.component";
 
 const routes: Routes = [
   { path: 'month', component: MonthsPageComponent },
-  { path: '',  redirectTo: '/month' },
   { path: 'region', component: RegionPageComponent }
 ];
 
