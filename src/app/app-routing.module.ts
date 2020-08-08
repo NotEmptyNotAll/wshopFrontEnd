@@ -4,7 +4,7 @@ import {MonthsPageComponent} from "./months-page/months-page.component";
 import {RegionPageComponent} from "./region-page/region-page.component";
 
 const routes: Routes = [
-  { path: 'month', component: MonthsPageComponent },
+  { path: '', component: MonthsPageComponent },
   { path: 'region', component: RegionPageComponent }
 ];
 
