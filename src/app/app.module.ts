@@ -29,6 +29,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
         ButtonModule,
         MessagesModule,
         RouterModule,
+
         AppRoutingModule,
         FormsModule,
         TabMenuModule
