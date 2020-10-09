@@ -8,7 +8,7 @@ import {Order} from "../orders-page/orders";
 })
 export class ApiDataServiceService {
 
-  mainURL:string= 'http://localhost:5051/'
+  mainURL:string= 'http://10.102.200.11:5051/'
   private axiosClient: AxiosInstance;
   private errorHandler: ErrorHandler;
   private ordersResp:Order[];
