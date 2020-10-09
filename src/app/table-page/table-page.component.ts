@@ -4,6 +4,7 @@ import {TableDataService} from "./tableData.service";
 import {ConfirmationService} from 'primeng/api';
 import {Router} from "@angular/router";
 import {CreateAddComponent} from "./create-add/create-add.component";
+import {Order} from "../orders-page/orders";
 
 @Component({
     selector: 'app-table-page',
@@ -18,9 +19,13 @@ export class TablePageComponent implements OnInit {
     @Input() title: string
     @Input() dynamicColumns : string=''
     cols: any[];
-    selectRow: TableData = {
-        id: -1,
-        name: ''
+    selectRow: Order = {
+        id:  -1 ,
+        orderName: '',
+        customerId:  null,
+        date:  '',
+        jobsSum: '',
+        componentsSum:  ''
     }
     inputErr = false
 
@@ -29,20 +34,25 @@ export class TablePageComponent implements OnInit {
                 private confirmationService: ConfirmationService,
                 private _router: Router) {
 
+
     }
 
 
     deleteData(): void {
         this.confirmationService.confirm({
-            message: 'Are you sure that you want delete: ' + this.selectRow.name,
+            message: 'Are you sure that you want delete: ' + this.selectRow.orderName,
             header: 'Confirmation',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
                 this.tableDataService.deleteData(this.selectRow.id)
                 this.onSearch()
                 this.selectRow = {
-                    id: -1,
-                    name: ''
+                    id:  -1 ,
+                    orderName: '',
+                    customerId:  null,
+                    date:  '',
+                    jobsSum: '',
+                    componentsSum:  ''
                 }
             },
             reject: () => {

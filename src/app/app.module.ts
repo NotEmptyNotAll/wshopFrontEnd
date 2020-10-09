@@ -15,6 +15,7 @@ import {TabMenuModule} from "primeng";
 import {MenubarModule} from 'primeng/menubar';
 import { MonthsPageComponent } from './months-page/months-page.component';
 import { RegionPageComponent } from './region-page/region-page.component';
+import { OrdersComponent } from './orders-page/orders.component';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { RegionPageComponent } from './region-page/region-page.component';
         FormsModule,
         TabMenuModule
     ],
-    declarations: [AppComponent, CreateAddComponent, TablePageComponent, MonthsPageComponent, RegionPageComponent],
+    declarations: [AppComponent, CreateAddComponent, TablePageComponent, MonthsPageComponent, RegionPageComponent, OrdersComponent],
     bootstrap: [AppComponent],
     providers: []
 })

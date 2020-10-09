@@ -1,17 +1,18 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {TableData} from "./tableData";
+import {Order} from "../orders-page/orders";
 
 @Injectable({
     providedIn: 'root'
 })
 export class TableDataService {
-    tempData: TableData[] = []
+    tempData: Order[] = []
     startSize: number = 0
-    selectData: TableData = null
+    selectData: Order = null
     search: string = ''
-    mainData: TableData[]
-    startData: TableData[]
+    mainData: Order[]
+    startData: Order[]
     addColumnText: string = ''
     showUpdatePage = false
 
@@ -26,14 +27,18 @@ export class TableDataService {
 
     addData(name: string) {
         if (this.selectData === null) {
-            let data: TableData = {
+            let data: Order = {
                 id: this.getDataSize() + 1,
-                name: name
+                orderName: name,
+                customerId: null,
+                date: null,
+                jobsSum: null,
+                componentsSum: null
             }
             this.tempData.push(data)
         } else {
             this.tempData.find(elem =>
-                elem.id === this.selectData.id).name = name
+                elem.id === this.selectData.id).orderName = name
         }
         this.searchData()
         this.selectData = null
@@ -41,13 +46,13 @@ export class TableDataService {
 
     searchData():void {
         this.mainData= this.startData.concat(this.tempData).filter(item => {
-            return item.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+            return item.orderName.toLowerCase().indexOf(this.search.toLowerCase()) > -1
                 || item.id.toString().indexOf(this.search) > -1
         })
     }
 
 
-    setMainData(data: TableData[]) {
+    setMainData(data: Order[]) {
         this.mainData = data
     }
 
@@ -64,11 +69,11 @@ export class TableDataService {
         }
     }
 
-    setChangeRow(selectData: TableData): void {
+    setChangeRow(selectData: Order): void {
         this.selectData = selectData
     }
 
-    getChangeRow(): Observable<TableData> {
+    getChangeRow(): Observable<Order> {
         return of(this.selectData)
     }
     

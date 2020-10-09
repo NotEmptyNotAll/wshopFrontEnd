@@ -8,7 +8,7 @@ import {REGION} from "./mock-region";
 })
 export class RegionPageComponent implements OnInit {
 
-    data: any[]
+    data: any[]=null
     mainColumn: any[]
 
     constructor() {

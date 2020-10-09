@@ -21,7 +21,7 @@ export class CreateAddComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.tableDataService.getChangeRow().subscribe(month => this.inputValue = month.name)
+        this.tableDataService.getChangeRow().subscribe(month => this.inputValue = month.orderName)
     }
 
 }
