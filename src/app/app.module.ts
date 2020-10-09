@@ -16,6 +16,7 @@ import {MenubarModule} from 'primeng/menubar';
 import { MonthsPageComponent } from './months-page/months-page.component';
 import { RegionPageComponent } from './region-page/region-page.component';
 import { OrdersComponent } from './orders-page/orders.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { OrdersComponent } from './orders-page/orders.component';
     ],
     declarations: [AppComponent, CreateAddComponent, TablePageComponent, MonthsPageComponent, RegionPageComponent, OrdersComponent],
     bootstrap: [AppComponent],
-    providers: []
+    providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
 })
 
 export class AppModule {
