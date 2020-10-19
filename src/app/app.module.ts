@@ -17,11 +17,17 @@ import { MonthsPageComponent } from './months-page/months-page.component';
 import { RegionPageComponent } from './region-page/region-page.component';
 import { OrdersComponent } from './orders-page/orders.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-
+import { LoginComponent } from './login/login.component';
+import {DropdownModule} from 'primeng/dropdown';
+import {PasswordModule} from 'primeng/password';
+import {MultiSelectModule} from 'primeng/multiselect';
 
 @NgModule({
     imports: [
         BrowserModule,
+        MultiSelectModule,
+        PasswordModule,
+        DropdownModule,
         BrowserAnimationsModule,
         MenubarModule,
         TableModule,
@@ -29,12 +35,11 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
         ButtonModule,
         MessagesModule,
         RouterModule,
-
         AppRoutingModule,
         FormsModule,
         TabMenuModule
     ],
-    declarations: [AppComponent, CreateAddComponent, TablePageComponent, MonthsPageComponent, RegionPageComponent, OrdersComponent],
+    declarations: [AppComponent, CreateAddComponent, TablePageComponent, MonthsPageComponent, RegionPageComponent, OrdersComponent, LoginComponent],
     bootstrap: [AppComponent],
     providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
 })

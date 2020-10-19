@@ -1,0 +1,23 @@
+<div class="login-page">
+        <div class="login-form shadow  ">
+            <img src="assets/image/login-images.png" />
+            <hr width="100%"/>
+            <div class="login-row">
+                <div class="p-text-light"><h4>select name</h4></div>
+                <p-dropdown
+                        [showClear]="true" placeholder="Select a Name"
+                        [options]="users" [(ngModel)]="selectedUser"
+                            [filter]="true" optionLabel="name"></p-dropdown>
+            </div>
+            <div class="login-row">
+                <div class="p-text-light"><h4>password</h4></div>
+                <input type="password" [(ngModel)]="password"
+                       [feedback]="false" pPassword/>
+            </div>
+            <div class="login-row">
+
+            <button pButton type="button" (click)="login()"
+                    label="login"  icon="pi pi-user" ></button>
+            </div>
+        </div>
+</div>

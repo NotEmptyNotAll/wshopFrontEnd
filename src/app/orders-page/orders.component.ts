@@ -3,6 +3,8 @@ import {REGION} from "../region-page/mock-region";
 import {Order} from "./orders";
 import {ApiDataServiceService} from "../Service/api-data-service.service";
 import {TableDataService} from "../table-page/tableData.service";
+import {OrderService} from "./order.service";
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-orders',
@@ -14,13 +16,19 @@ export class OrdersComponent implements OnInit {
     mainColumn: any[]
 
     constructor(public apiService: ApiDataServiceService,
-                public tableService:TableDataService) {
-      this.getOrd()
+                public tableService:TableDataService,
+                public orderService:OrderService,
+                private router: Router) {
+        if(orderService.getUserValidate()){
+            this.getOrd()
+        }else {
+            this.router.navigate(['/'])
+        }
     }
 
     async getOrd() {
-      this.data = await this.apiService.get<Order[]>('getCroppedOrders')
-
+     // this.data = await this.apiService.get<Order[]>('getCroppedOrders')
+        this.data=this.orderService.getOrders()
       this.mainColumn = [
         {field:  'id', header:'Order id ', width: '30%'},
         {field: 'orderName', header: 'Order no', width: '30%'},

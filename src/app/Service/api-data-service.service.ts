@@ -1,58 +1,101 @@
 import {ErrorHandler, Injectable} from '@angular/core';
 import axios from "axios";
-import { AxiosInstance } from "axios";
+import {AxiosInstance} from "axios";
 import {Order} from "../orders-page/orders";
+import {User} from "./User";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ApiDataServiceService {
 
-  mainURL:string= 'http://10.102.200.11:5051/'
-  private axiosClient: AxiosInstance;
-  private errorHandler: ErrorHandler;
-  private ordersResp:Order[];
+    mainURL: string = 'http://10.102.200.11:5051/'
+    private axiosClient: AxiosInstance;
+    private errorHandler: ErrorHandler;
+    private ordersResp: Order[];
+    private users: User[];
 
-  constructor() {
-    this.axiosClient = axios.create({
-      timeout: 3000,
-      headers: {
-        "X-Initialized-At": Date.now().toString()
-      }
-    });
-  }
+    constructor() {
+        this.axiosClient = axios.create({
+            timeout: 3000,
+            headers: {
+                "X-Initialized-At": Date.now().toString()
+            }
+        });
+    }
 
-  public async get<T>( url:string ) : Promise<T> {
+    public async getUser<T>(url: string): Promise<T> {
+
+        try {
+
+            var axiosResponse = await this.axiosClient.request<T>({
+                method: "get",
+                url: this.mainURL + url,
+            });
+
+            return (axiosResponse.data);
+
+        } catch (error) {
+
+            return (Promise.reject(this.normalizeError(error)));
+
+        }
+
+    }
+
+  public async post<T>(url: string,data:any): Promise<T> {
 
     try {
 
       var axiosResponse = await this.axiosClient.request<T>({
-        method: "get",
+        method: "post",
+        data:data,
         url: this.mainURL + url,
       });
 
-      return( axiosResponse.data );
+      return (axiosResponse.data);
 
-    } catch ( error ) {
+    } catch (error) {
 
-      return( Promise.reject( this.normalizeError( error ) ) );
+      return (Promise.reject(this.normalizeError(error)));
 
     }
 
-  }
-
-  private normalizeError( error: any )  {
-
-    this.errorHandler.handleError( error );
-
-    // NOTE: Since I'm not really dealing with a production API, this doesn't really
-    // normalize anything (ie, this is not the focus of this demo).
-    return({
-      id: "-1",
-      code: "UnknownError",
-      message: "An unexpected error occurred."
-    });
 
   }
+
+    public async get<T>(url: string): Promise<T> {
+
+        try {
+
+            var axiosResponse = await this.axiosClient.request<T>({
+                method: "get",
+                url: this.mainURL + url,
+            });
+
+            return (axiosResponse.data);
+
+        } catch (error) {
+
+            return (Promise.reject(this.normalizeError(error)));
+
+        }
+
+
+    }
+
+    private normalizeError(error: any) {
+
+        this.errorHandler.handleError(error);
+
+        // NOTE: Since I'm not really dealing with a production API, this doesn't really
+        // normalize anything (ie, this is not the focus of this demo).
+        return ({
+            id: "-1",
+            code: "UnknownError",
+            message: "An unexpected error occurred."
+        });
+
+    }
 
 }
