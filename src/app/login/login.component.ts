@@ -1,55 +1,60 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SelectItem} from 'primeng/api';
 import {ApiDataServiceService} from "../Service/api-data-service.service";
 import {Order} from "../orders-page/orders";
 import {User} from "../Service/User";
 import {OrderService} from "../orders-page/order.service";
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
+import {TableOrderResponse} from "../Service/table-order-response";
 
 interface City {
-  name: string,
-  code: string
+    name: string,
+    code: string
 }
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
 
+    selectedUser: User;
 
-  selectedUser: User;
+    users: User[];
 
-  users:User[];
+    orders: Order[];
+    ordersResponse: TableOrderResponse;
 
-  orders:Order[];
+    password: string;
 
-  password:string;
+    async getUsers() {
+        this.users = await this.apiService.get<User[]>('getListUser')
+    }
 
-  async getUsers(){
-    this.users = await this.apiService.get<User[]>('getListUser')
-  }
+    constructor(public apiService: ApiDataServiceService,
+                public orderService: OrderService,
+                private router: Router) {
+        this.getUsers()
 
-  constructor( public apiService: ApiDataServiceService,
-               public orderService:OrderService,
-               private router: Router) {
-    this.getUsers()
+    }
 
-  }
+    async login() {
+        this.selectedUser.password = this.password;
+        this.apiService.setUserData(this.selectedUser)
+        this.ordersResponse = await this.apiService.post<TableOrderResponse>(
+            'getCroppedOrders', {user: this.selectedUser}
+        );
+        this.orderService.setOrderResponse(this.ordersResponse)
+        if (this.ordersResponse.ordersTableBody.length != 0) {
+            this.orderService.setUserValidate(true)
+            this.router.navigate(['/order'])
+            ;
+        }
+    }
 
-  async login(){
-    this.selectedUser.password=this.password;
-    this.orders= await this.apiService.post<Order[]>('getCroppedOrders',this.selectedUser);
-    this.orderService.setOrders(this.orders)
-    if(this.orders.length!=0){
-      this.orderService.setUserValidate(true)
-    this.router.navigate(['/order'])
-    ;}
-  }
-
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
 }

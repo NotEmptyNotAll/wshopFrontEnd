@@ -1,0 +1,23 @@
+<div class="box ">
+
+    <div class="shadow box-item">
+            <input placeholder="employee"
+                   type="username"
+                   aria-describedby="username1-help"
+                   pInputText [(ngModel)]="employeeName"/>
+
+    </div>
+
+    <div class="shadow box-item">
+            <p-calendar placeholder="date"
+                        [(ngModel)]="date"></p-calendar>
+
+    </div>
+    <div class="shadow box-item">
+
+            <p-dropdown id="dropdown" [autoDisplayFirst]="false"
+                        placeholder="status"
+                        [options]="statusList" [(ngModel)]="status"
+                        optionLabel="name"></p-dropdown>
+    </div>
+</div>

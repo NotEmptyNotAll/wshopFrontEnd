@@ -14,6 +14,16 @@ export class ApiDataServiceService {
     private errorHandler: ErrorHandler;
     private ordersResp: Order[];
     private users: User[];
+    private userData: User;
+
+
+    public getUserData() {
+        return this.userData
+    }
+
+    public setUserData(user: User) {
+        this.userData = user
+    }
 
     constructor() {
         this.axiosClient = axios.create({
@@ -43,26 +53,26 @@ export class ApiDataServiceService {
 
     }
 
-  public async post<T>(url: string,data:any): Promise<T> {
+    public async post<T>(url: string, data: any): Promise<T> {
 
-    try {
+        try {
 
-      var axiosResponse = await this.axiosClient.request<T>({
-        method: "post",
-        data:data,
-        url: this.mainURL + url,
-      });
+            var axiosResponse = await this.axiosClient.request<T>({
+                method: "post",
+                data: data,
+                url: this.mainURL + url,
+            });
 
-      return (axiosResponse.data);
+            return (axiosResponse.data);
 
-    } catch (error) {
+        } catch (error) {
 
-      return (Promise.reject(this.normalizeError(error)));
+            return (Promise.reject(this.normalizeError(error)));
+
+        }
+
 
     }
-
-
-  }
 
     public async get<T>(url: string): Promise<T> {
 

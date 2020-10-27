@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { TablePageComponent } from './table-page/table-page.component';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { MessagesModule } from 'primeng/messages';
-import {TabMenuModule} from "primeng";
+import {CalendarModule, TabMenuModule} from "primeng";
 import {MenubarModule} from 'primeng/menubar';
 import { MonthsPageComponent } from './months-page/months-page.component';
 import { RegionPageComponent } from './region-page/region-page.component';
@@ -21,12 +21,15 @@ import { LoginComponent } from './login/login.component';
 import {DropdownModule} from 'primeng/dropdown';
 import {PasswordModule} from 'primeng/password';
 import {MultiSelectModule} from 'primeng/multiselect';
+import {InputTextModule} from 'primeng/inputtext';
+import { FilterBoxComponent } from './filter-box/filter-box.component';
 
 @NgModule({
     imports: [
         BrowserModule,
         MultiSelectModule,
         PasswordModule,
+        InputTextModule,
         DropdownModule,
         BrowserAnimationsModule,
         MenubarModule,
@@ -37,9 +40,10 @@ import {MultiSelectModule} from 'primeng/multiselect';
         RouterModule,
         AppRoutingModule,
         FormsModule,
-        TabMenuModule
+        TabMenuModule,
+        CalendarModule
     ],
-    declarations: [AppComponent, CreateAddComponent, TablePageComponent, MonthsPageComponent, RegionPageComponent, OrdersComponent, LoginComponent],
+    declarations: [AppComponent, CreateAddComponent, TablePageComponent, MonthsPageComponent, RegionPageComponent, OrdersComponent, LoginComponent, FilterBoxComponent],
     bootstrap: [AppComponent],
     providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
 })

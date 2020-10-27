@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Order} from "./orders";
+import {TableOrderResponse} from "../Service/table-order-response";
 
 @Injectable({
     providedIn: 'root'
@@ -7,7 +8,8 @@ import {Order} from "./orders";
 export class OrderService {
 
     private orders: Order[]
-    private userValidate:boolean=false
+    private ordersTableResponse: TableOrderResponse
+    private userValidate: boolean = false
 
     constructor() {
     }
@@ -20,11 +22,20 @@ export class OrderService {
         this.orders = ordrs
     }
 
-  getUserValidate(): boolean {
-    return this.userValidate
+
+    getOrderResponse(): TableOrderResponse {
+        return this.ordersTableResponse
     }
 
-  setUserValidate(validate:boolean) {
-    this.userValidate = validate
-  }
+    setOrderResponse(resp: TableOrderResponse) {
+        this.ordersTableResponse = resp
+    }
+
+    getUserValidate(): boolean {
+        return this.userValidate
+    }
+
+    setUserValidate(validate: boolean) {
+        this.userValidate = validate
+    }
 }

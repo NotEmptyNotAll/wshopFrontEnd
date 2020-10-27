@@ -7,19 +7,25 @@ import {Order} from "../orders-page/orders";
     providedIn: 'root'
 })
 export class TableDataService {
-    tempData: Order[] = []
+    tempData: any[] = []
     startSize: number = 0
-    selectData: Order = null
+    selectData: any = null
     search: string = ''
-    mainData: Order[]
-    startData: Order[]
+    mainData: any[]
+    startData: any[]
     addColumnText: string = ''
     showUpdatePage = false
-
+    patternTableRow:any={}
     constructor() {
 
     }
 
+    setTablePatternRow(mock:any){
+        this.patternTableRow=mock
+    }
+    getTablePatternRow(){
+        return this.patternTableRow
+    }
     setStartData(data) {
         this.startData = data
         this.startSize = data.length
@@ -52,7 +58,7 @@ export class TableDataService {
     }
 
 
-    setMainData(data: Order[]) {
+    setMainData(data: any[]) {
         this.mainData = data
     }
 
@@ -69,11 +75,11 @@ export class TableDataService {
         }
     }
 
-    setChangeRow(selectData: Order): void {
+    setChangeRow(selectData: any): void {
         this.selectData = selectData
     }
 
-    getChangeRow(): Observable<Order> {
+    getChangeRow(): Observable<any> {
         return of(this.selectData)
     }
     

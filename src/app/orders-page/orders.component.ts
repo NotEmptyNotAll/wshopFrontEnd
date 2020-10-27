@@ -5,6 +5,7 @@ import {ApiDataServiceService} from "../Service/api-data-service.service";
 import {TableDataService} from "../table-page/tableData.service";
 import {OrderService} from "./order.service";
 import {Router} from '@angular/router';
+import {TableOrderResponse} from "../Service/table-order-response";
 
 @Component({
     selector: 'app-orders',
@@ -12,14 +13,14 @@ import {Router} from '@angular/router';
     styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-    data: Order[]
+    data: TableOrderResponse
     mainColumn: any[]
     listener1;
     listener2;
     listener3;
-    sec:number
+    sec: number
     secIncr: number = 1
-   temp:any;
+    temp: any;
 
     constructor(public apiService: ApiDataServiceService,
                 public tableService: TableDataService,
@@ -29,16 +30,16 @@ export class OrdersComponent implements OnInit {
         this.start()
 
         this.listener1 = this.renderer2.listen('window', 'scroll', (e) => {
-            this.sec=0
+            this.sec = 0
         });
 
         this.listener2 = this.renderer2.listen('window', 'click', (e) => {
-            this.sec=0
+            this.sec = 0
         });
 
 
         this.listener3 = this.renderer2.listen('window', 'mousemove', (e) => {
-            this.sec=0
+            this.sec = 0
         });
         if (orderService.getUserValidate()) {
             this.getOrd()
@@ -50,39 +51,58 @@ export class OrdersComponent implements OnInit {
     start() {
 
 
-        this.sec=0
-        setInterval(()=>{
+        this.sec = 0
+        setInterval(() => {
             this.sec++
-            if(this.sec==300){
+            if (this.sec == 300) {
                 this.router.navigate(['/'])
             }
             console.log(this.sec)
         }, 1000);
     }
 
-    tick(sec:number) {
+    tick(sec: number) {
         console.log(sec)
 
         sec++;
-        if(sec==10){
+        if (sec == 10) {
             this.router.navigate(['/'])
         }
         console.log(sec)
     }
 
     async getOrd() {
-        // this.data = await this.apiService.get<Order[]>('getCroppedOrders')
-        this.data = this.orderService.getOrders()
-        this.mainColumn = [
-            {field: 'id', header: 'Order id ', width: '30%'},
-            {field: 'orderName', header: 'Order no', width: '30%'},
-            {field: 'customerId', header: 'Customer id ', width: '30%'},
-            {field: 'date', header: 'Date', width: '30%'},
-            {field: 'jobsSum', header: 'Jobs sum', width: '30%'},
-            {field: 'componentsSum', header: 'Components sum', width: '30%'}
-        ];
-        this.tableService.setMainData(this.data)
 
+        // this.data = await this.apiService.get<Order[]>('getCroppedOrders')
+        this.data = this.orderService.getOrderResponse()
+        this.mainColumn=[]
+        this.data.columnTables.map(elem => {
+            this.mainColumn.push(
+                {
+                    field: elem.nameColumn,
+                    header: elem.nameColumn,
+                    width: elem.width+'%'
+                }
+            )
+        })
+        let tableBody=[]
+        this.data.ordersTableBody.map(row=>{
+            let tableRow:any={}
+            row.rowData.map(cell=>{
+                tableRow[cell.cellName]=cell.cellData
+            })
+            tableBody.push(tableRow)
+        })
+        let tableRowPattern:any={}
+        this.data.ordersTableBody[0].rowData.map(
+            cell=>{
+                tableRowPattern[cell.cellName]=cell.cellData
+            }
+        )
+
+
+        this.tableService.setMainData(tableBody)
+        this.tableService.setTablePatternRow(tableRowPattern)
     }
 
     ngOnInit() {

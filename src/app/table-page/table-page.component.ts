@@ -1,9 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {TableData} from './tableData';
 import {TableDataService} from "./tableData.service";
 import {ConfirmationService} from 'primeng/api';
 import {Router} from "@angular/router";
 import {CreateAddComponent} from "./create-add/create-add.component";
+import { Table } from 'primeng/table';
 import {Order} from "../orders-page/orders";
 
 @Component({
@@ -19,21 +20,27 @@ export class TablePageComponent implements OnInit {
     @Input() title: string
     @Input() dynamicColumns : string=''
     cols: any[];
-    selectRow: Order = {
-        id:  -1 ,
-        orderName: '',
-        customerId:  null,
-        date:  '',
-        jobsSum: '',
-        componentsSum:  ''
-    }
+    selectRow: any={}
     inputErr = false
+    columns: any[];
+    loading: boolean = false;
+    _selectedColumns: any[];
 
+
+
+    @Input() get selectedColumns(): any[] {
+        return this._selectedColumns;
+    }
+
+    set selectedColumns(val: any[]) {
+        //restore original order
+        this._selectedColumns = this.cols.filter(col => val.includes(col));
+    }
 
     constructor(public tableDataService: TableDataService,
                 private confirmationService: ConfirmationService,
                 private _router: Router) {
-
+        this.selectRow=this.tableDataService.getTablePatternRow()
 
     }
 
@@ -59,7 +66,9 @@ export class TablePageComponent implements OnInit {
             }
         });
     }
-
+    onRowSelect(event) {
+        this.selectRow=event.data
+    }
     changeData(): void {
         this.tableDataService.setChangeRow(this.selectRow)
         this.tableDataService.showUpdatePage = true
@@ -68,6 +77,9 @@ export class TablePageComponent implements OnInit {
     ngOnInit() {
         this.tableDataService.setStartData(this.startData)
         this.cols = this.mainColumn.slice()
+        this.columns=this.cols
+        this._selectedColumns = this.cols;
+
         if (this.dynamicColumns !== '') {
             this.tableDataService.addColumnText=this.dynamicColumns
             this.setColumn()
@@ -103,6 +115,8 @@ export class TablePageComponent implements OnInit {
     onSearch(): void {
         this.tableDataService.searchData()
     }
+
+
 
 
 }

@@ -1,0 +1,16 @@
+.shadow {
+    box-shadow: 0 0 5px rgba(0,0,0,0.5); /* Параметры тени */
+}
+.shadow:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+}
+.box-item{
+    border-radius: 1px;
+    padding: 20px;
+    margin: 0px 50px 20px 50px;
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
