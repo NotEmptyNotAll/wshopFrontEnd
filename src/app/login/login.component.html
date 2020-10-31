@@ -1,23 +1,39 @@
 <div class="login-page">
-        <div class="login-form shadow  ">
-            <img src="assets/image/login-images.png" />
-            <hr width="100%"/>
-            <div class="login-row">
-                <div class="p-text-light"><h4>select name</h4></div>
-                <p-dropdown
-                        [showClear]="true" placeholder="Select a Name"
-                        [options]="users" [(ngModel)]="selectedUser"
-                            [filter]="true" optionLabel="name"></p-dropdown>
-            </div>
-            <div class="login-row">
-                <div class="p-text-light"><h4>password</h4></div>
-                <input type="password" [(ngModel)]="password"
-                       [feedback]="false" pPassword/>
-            </div>
-            <div class="login-row">
+    <div class="login-form shadow  ">
+        <img src="assets/image/login-images.png"/>
+        <hr width="100%"/>
+
+        <div class="login-row">
+            <span style="width: 90%">
+            <p-dropdown
+                    autoWidth="false" [style]="{'minWidth':'100%'}"
+                    [showClear]="true" placeholder="Select a Name"
+                    [options]="users" [(ngModel)]="selectedUser"
+                    [filter]="true" optionLabel="name"></p-dropdown>
+            </span>
+        </div>
+
+        <div class="login-row">
+            <span style="width: 90%">
+            <input type="password" [(ngModel)]="password"
+                   [disabled]="selectedUser===null || selectedUser===undefined"
+                   [style]="{'minWidth':'100%'}"
+                   placeholder="password"
+                   [feedback]="false" pPassword/>
+            </span>
+        </div>
+        <div class="login-row">
+
+            <button pButton type="button" (click)="cancel()"
+                    style="background: #DC143C;border: #DC143C"
+                    class="p-button-raised p-button-danger"
+                    label="cancel" icon="pi pi-times"></button>
 
             <button pButton type="button" (click)="login()"
-                    label="login"  icon="pi pi-user" ></button>
-            </div>
+                    class="p-button-raised p-button-success"
+                    [disabled]="selectedUser===null || selectedUser===undefined"
+                    label="login" icon="pi pi-check"></button>
+
         </div>
+    </div>
 </div>

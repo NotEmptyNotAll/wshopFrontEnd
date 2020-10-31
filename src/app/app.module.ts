@@ -23,12 +23,18 @@ import {PasswordModule} from 'primeng/password';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {InputTextModule} from 'primeng/inputtext';
 import { FilterBoxComponent } from './filter-box/filter-box.component';
+import { MenuBarComponent } from './menu-bar/menu-bar.component';
+import {SidebarModule} from 'primeng/sidebar';
+import {ListboxModule} from 'primeng/listbox';
+
 
 @NgModule({
     imports: [
         BrowserModule,
+        ListboxModule,
         MultiSelectModule,
         PasswordModule,
+        SidebarModule,
         InputTextModule,
         DropdownModule,
         BrowserAnimationsModule,
@@ -43,7 +49,7 @@ import { FilterBoxComponent } from './filter-box/filter-box.component';
         TabMenuModule,
         CalendarModule
     ],
-    declarations: [AppComponent, CreateAddComponent, TablePageComponent, MonthsPageComponent, RegionPageComponent, OrdersComponent, LoginComponent, FilterBoxComponent],
+    declarations: [AppComponent, CreateAddComponent, TablePageComponent, MonthsPageComponent, RegionPageComponent, OrdersComponent, LoginComponent, FilterBoxComponent, MenuBarComponent],
     bootstrap: [AppComponent],
     providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
 })

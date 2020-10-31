@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
 
 
     selectedUser: User;
+    userIsSelected:boolean=false
 
     users: User[];
 
@@ -38,6 +39,11 @@ export class LoginComponent implements OnInit {
                 private router: Router) {
         this.getUsers()
 
+    }
+
+    cancel(){
+        this.selectedUser=null;
+        this.password="";
     }
 
     async login() {

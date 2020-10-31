@@ -1,0 +1,10 @@
+.shadow {
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+}
+
+.hr-style{
+    border: none; /* Убираем границу для браузера Firefox */
+    color: lightgray; /* Цвет линии для остальных браузеров */
+    background-color: lightgray; /* Цвет линии для браузера Firefox и Opera */
+    height: 2px; /* Толщина линии */
+}

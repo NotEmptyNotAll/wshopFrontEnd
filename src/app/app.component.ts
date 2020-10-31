@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MenuItem} from "primeng/api";
 import {webSocket} from 'rxjs/webSocket';
 import {Order} from "./orders-page/orders";
+import { SortEvent } from 'primeng/api';
 
 const subject = webSocket("ws://10.102.200.11:4447");
 
@@ -18,7 +19,7 @@ export class AppComponent implements OnInit {
     orders: Order[];
 
 
-    constructor(  ) {
+    constructor( ) {
     }
 
 
@@ -31,5 +32,8 @@ export class AppComponent implements OnInit {
 
         this.activeItem = this.items[0];
     }
+
+
+
 
 }

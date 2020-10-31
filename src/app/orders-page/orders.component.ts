@@ -75,28 +75,41 @@ export class OrdersComponent implements OnInit {
 
         // this.data = await this.apiService.get<Order[]>('getCroppedOrders')
         this.data = this.orderService.getOrderResponse()
-        this.mainColumn=[]
+        this.mainColumn = []
         this.data.columnTables.map(elem => {
             this.mainColumn.push(
                 {
                     field: elem.nameColumn,
                     header: elem.nameColumn,
-                    width: elem.width+'%'
+                    width: elem.width + '%'
                 }
             )
         })
-        let tableBody=[]
-        this.data.ordersTableBody.map(row=>{
-            let tableRow:any={}
-            row.rowData.map(cell=>{
-                tableRow[cell.cellName]=cell.cellData
+        let regexp = new RegExp('^[1-9]\d{0,2}$');
+        let tableBody = []
+        this.data.ordersTableBody.map(row => {
+            let tableRow: any = {}
+            row.rowData.map(cell => {
+
+                if (cell.cellName === 'Close') {
+                    tableRow[cell.cellName] = cell.cellData.substr(22, 3)
+                } else if (cell.cellName === 'Code' || cell.cellName === 'S/p' || cell.cellName === 'Debt'
+                    || cell.cellName==='Total' || cell.cellName === 'Job') {
+                    tableRow[cell.cellName] = Number(cell.cellData)
+                } else {
+                    tableRow[cell.cellName] = cell.cellData
+                }
             })
             tableBody.push(tableRow)
         })
-        let tableRowPattern:any={}
+        let tableRowPattern: any = {}
         this.data.ordersTableBody[0].rowData.map(
-            cell=>{
-                tableRowPattern[cell.cellName]=cell.cellData
+            cell => {
+                if (cell.cellName === 'Close') {
+                    tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3)
+                } else {
+                    tableRowPattern[cell.cellName] = cell.cellData
+                }
             }
         )
 

@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {TableData} from './tableData';
 import {TableDataService} from "./tableData.service";
-import {ConfirmationService} from 'primeng/api';
+import {ConfirmationService, SortEvent} from 'primeng/api';
 import {Router} from "@angular/router";
 import {CreateAddComponent} from "./create-add/create-add.component";
 import { Table } from 'primeng/table';
@@ -117,7 +117,30 @@ export class TablePageComponent implements OnInit {
     }
 
 
+    customSort(event: SortEvent) {
+        event.data.sort((data1, data2) => {
+            let value1 = data1[event.field];
+            let value2 = data2[event.field];
+            let result = null;
 
+            if (value1 == null && value2 != null)
+                result = -1;
+            else if (value1 != null && value2 == null)
+                result = 1;
+            else if (value1 == null && value2 == null)
+                result = 0;
+            else if (value1.length>3)
+                result=value1.localeCompare(value2)
+            else if (value1.length>2 && value2.length<3)
+                result = 1;
+            else if (value2.length>2 && value1.length<3)
+                result = -1
+            else if (value2.length>3 && value1.length>3)
+                result=value1.localeCompare(value2)
+
+            return  result;
+        });
+    }
 
 }
 
