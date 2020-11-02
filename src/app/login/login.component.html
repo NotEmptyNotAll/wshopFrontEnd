@@ -7,7 +7,7 @@
             <span style="width: 90%">
             <p-dropdown
                     autoWidth="false" [style]="{'minWidth':'100%'}"
-                    [showClear]="true" placeholder="Select a Name"
+                    [showClear]="true" [placeholder]="'loginPage.SelectName' | translate"
                     [options]="users" [(ngModel)]="selectedUser"
                     [filter]="true" optionLabel="name"></p-dropdown>
             </span>
@@ -18,7 +18,7 @@
             <input type="password" [(ngModel)]="password"
                    [disabled]="selectedUser===null || selectedUser===undefined"
                    [style]="{'minWidth':'100%'}"
-                   placeholder="password"
+                   [placeholder]="'loginPage.password' | translate"
                    [feedback]="false" pPassword/>
             </span>
         </div>
@@ -27,12 +27,12 @@
             <button pButton type="button" (click)="cancel()"
                     style="background: #DC143C;border: #DC143C"
                     class="p-button-raised p-button-danger"
-                    label="cancel" icon="pi pi-times"></button>
+                    [label]="'loginPage.cancel' | translate" icon="pi pi-times"></button>
 
             <button pButton type="button" (click)="login()"
                     class="p-button-raised p-button-success"
                     [disabled]="selectedUser===null || selectedUser===undefined"
-                    label="login" icon="pi pi-check"></button>
+                    [label]="'loginPage.login' | translate" icon="pi pi-check"></button>
 
         </div>
     </div>

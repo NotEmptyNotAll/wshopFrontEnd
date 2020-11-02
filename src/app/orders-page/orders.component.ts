@@ -1,4 +1,5 @@
-import {Component, OnInit, Renderer2} from '@angular/core';
+import { WINDOW } from '@ng-toolkit/universal';
+import {Component, OnInit, Renderer2, Inject} from '@angular/core';
 import {REGION} from "../region-page/mock-region";
 import {Order} from "./orders";
 import {ApiDataServiceService} from "../Service/api-data-service.service";
@@ -22,7 +23,7 @@ export class OrdersComponent implements OnInit {
     secIncr: number = 1
     temp: any;
 
-    constructor(public apiService: ApiDataServiceService,
+    constructor(@Inject(WINDOW) private window: Window, public apiService: ApiDataServiceService,
                 public tableService: TableDataService,
                 public orderService: OrderService,
                 public renderer2: Renderer2,

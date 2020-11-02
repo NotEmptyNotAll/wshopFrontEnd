@@ -1,0 +1,8 @@
+{
+  "universal": {
+    "project": "primeng-issue-template",
+    "skipInstall": false,
+    "directory": ".",
+    "http": true
+  }
+}

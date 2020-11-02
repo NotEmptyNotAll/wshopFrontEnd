@@ -1,0 +1,16 @@
+{
+  "language": "język",
+  "loginPage": {
+    "language": "język",
+    "cancel": "anuluj",
+    "SelectName": "wybierz nazwę",
+    "login": "login",
+    "listOrders": "Zaloguj sie",
+    "ChooseColumns": "Wybierz kolumny",
+    "quit": "wyjście",
+    "menu": "menu",
+    "columnsSelected": "{0} wybrane kolumny",
+    "TableNumLabel": "Wyświetlam wpisy od {first} do {last} z {totalRecords}",
+    "password": "hasło"
+  }
+}

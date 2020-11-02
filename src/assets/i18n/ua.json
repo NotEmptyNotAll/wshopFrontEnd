@@ -1,0 +1,16 @@
+{
+  "language": "мова",
+  "loginPage": {
+    "language": "мова",
+    "cancel": "скасувати",
+    "SelectName": "виберіть ім'я",
+    "listOrders": "список замовлень",
+    "login": "логін",
+    "quit": "вийти",
+    "ChooseColumns": "Виберіть Стовпці",
+    "password": "пароль",
+    "columnsSelected": "{0} вибрані стовпці",
+    "TableNumLabel": "Показ записів від {first} до {last} з {totalRecords}",
+    "menu": "меню"
+  }
+}

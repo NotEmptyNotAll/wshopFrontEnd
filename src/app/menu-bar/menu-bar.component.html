@@ -1,26 +1,27 @@
-<p-menubar [model]="items"  [style]="{
+<p-menubar [model]="items" [style]="{
 minWidth:'100%', position:'absolute',left:'0px',top:'0px'}"
 
 >
-        <p-button *ngIf="apiService.getUserData()!==null && apiService.getUserData()!==undefined"
-                  type="text"  [style]="{minWidth:'80px',minHeight:'40px',
+    <p-button *ngIf="apiService.getUserData()!==null && apiService.getUserData()!==undefined"
+              type="text" [style]="{minWidth:'80px',minHeight:'40px',
                   background:'#DC143C', borderColor:'#DC143C'}"
-                  (click)="quit()" icon="pi pi-fw  pi-power-off"
-                  class="p-button-success p-button-text"
-                  label="Quit"></p-button>
+              (click)="quit()" icon="pi pi-fw  pi-power-off"
+              class="p-button-success p-button-text"
+              [label]="'loginPage.quit' | translate"></p-button>
     <p-button *ngIf="apiService.getUserData()===null || apiService.getUserData()===undefined"
-              type="text"  [style]="{minWidth:'80px',minHeight:'40px'}"
+              type="text" [style]="{minWidth:'80px',minHeight:'40px'}"
               (click)="quit()" icon="pi pi-fw pi-user"
               class="p-button-success p-button-text"
-              label="Login"></p-button>
+              [label]=" 'loginPage.login' | translate"></p-button>
 </p-menubar>
 <p-sidebar [(visible)]="display">
-    <h3>Menu</h3>
+    <h3>{{'loginPage.menu' | translate}}</h3>
     <hr class="hr-style"/>
     <p-listbox
             [style]="{minWidth:'100%',borderColor:'white',
             position:'absolute',left:'0px',fontSize:'1.5em'}"
-            [options]="cities2" [(ngModel)]="cities1" optionLabel="name"></p-listbox>
+            [options]=" [ {name:  'loginPage.listOrders' | translate, code: 'NY'}]" [(ngModel)]="cities1"
+            optionLabel="name"></p-listbox>
 
 </p-sidebar>
 <br/>

@@ -21,7 +21,7 @@
     -->
 
 
-    <p-table [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    <p-table [paginator]="true" currentPageReportTemplate="{{'loginPage.TableNumLabel' | translate}}"
              style="min-height: 680px;background: lightgray"
              [rows]="100" [showCurrentPageReport]="true" [rowsPerPageOptions]="[20,30,50,100]" [loading]="loading"
              [columns]="_selectedColumns" [value]="tableDataService.mainData" [scrollable]="true"
@@ -32,11 +32,11 @@
         <ng-template pTemplate="caption">
             <div class="table-header" style="height: 35px">
                 <span style="position: absolute;left: 10px;">
-                    <h3>List of Orders</h3></span>
+                    <h3>{{'loginPage.listOrders' | translate}}</h3></span>
                 <p-multiSelect [options]="columns" [(ngModel)]="_selectedColumns" optionLabel="header"
-                               selectedItemsLabel=" {0} columns selected"
+                               selectedItemsLabel=" {{'loginPage.columnsSelected' | translate }}"
                                [style]="{minWidth:'400px', position:'absolute', right:'10px',top:'10px'}"
-                               placeholder="Choose Columns"></p-multiSelect>
+                               placeholder="{{'loginPage.ChooseColumns' | translate}}"></p-multiSelect>
             </div>
         </ng-template>
         <ng-template pTemplate="colgroup" let-columns>

@@ -34,7 +34,7 @@ export class TablePageComponent implements OnInit {
 
     set selectedColumns(val: any[]) {
         //restore original order
-        this._selectedColumns = this.cols.filter(col => val.includes(col));
+       // this._selectedColumns = this.cols.filter(col => val.includes(col));
     }
 
     constructor(public tableDataService: TableDataService,
