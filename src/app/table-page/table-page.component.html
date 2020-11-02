@@ -22,22 +22,27 @@
 
 
     <p-table [paginator]="true" currentPageReportTemplate="{{'loginPage.TableNumLabel' | translate}}"
-             style="min-height: 680px;background: lightgray"
+             class="table-style"
              [rows]="100" [showCurrentPageReport]="true" [rowsPerPageOptions]="[20,30,50,100]" [loading]="loading"
              [columns]="_selectedColumns" [value]="tableDataService.mainData" [scrollable]="true"
-             scrollHeight="710px"
+             scrollHeight="680px"
+             [style]="{borderColor:'#f4f4f4'}"
              [resizableColumns]="true" selectionMode="single"
              dataKey="id">
 
-        <ng-template pTemplate="caption">
-            <div class="table-header" style="height: 35px">
+        <ng-template pTemplate="caption" style="border-color: #f4f4f4">
+            <tr style="border-color: #f4f4f4" [style]="{borderColor:'#f4f4f4'}">
+                <div class="table-header" style="height: 35px">
                 <span style="position: absolute;left: 10px;">
                     <h3>{{'loginPage.listOrders' | translate}}</h3></span>
-                <p-multiSelect [options]="columns" [(ngModel)]="_selectedColumns" optionLabel="header"
-                               selectedItemsLabel=" {{'loginPage.columnsSelected' | translate }}"
-                               [style]="{minWidth:'400px', position:'absolute', right:'10px',top:'10px'}"
-                               placeholder="{{'loginPage.ChooseColumns' | translate}}"></p-multiSelect>
-            </div>
+                    <p-multiSelect [options]="columns" [(ngModel)]="_selectedColumns" optionLabel="header"
+                                   [showHeader]="false"
+                                   id="multisect"
+                                   selectedItemsLabel=" {{'loginPage.columnsSelected' | translate }}"
+                                   [style]="{minWidth:'200px', position:'absolute', right:'10px',top:'10px'}"
+                                   placeholder="{{'loginPage.ChooseColumns' | translate}}"></p-multiSelect>
+                </div>
+            </tr>
         </ng-template>
         <ng-template pTemplate="colgroup" let-columns>
             <colgroup>
@@ -45,8 +50,9 @@
             </colgroup>
         </ng-template>
         <ng-template pTemplate="header" let-columns>
-            <tr>
-                <th *ngFor="let col of columns" pResizableColumn [pSortableColumn]="col.header">
+            <tr style="border-color: #f4f4f4" [style]="{borderColor:'#f4f4f4'}">
+                <th *ngFor="let col of columns" pResizableColumn [pSortableColumn]="col.header"
+                    style="border-color: #f4f4f4" [style]="{borderColor:'#f4f4f4', fontSize:'12px'}">
                     {{col.header}}
                     <p-sortIcon [field]="col.header"></p-sortIcon>
                 </th>
@@ -54,8 +60,17 @@
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-columns="columns">
             <tr>
-                <td *ngFor="let col of columns" class="ui-resizable-column" pResizableColumn>
-                    {{rowData[col.field]}}
+                <td *ngFor="let col of columns" class="ui-resizable-column" pResizableColumn
+                    [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
+                    <span *ngIf="rowData[col.field]==='yes' || rowData[col.field]==='1'">
+                        <i class="pi pi-check"></i>
+                        </span>
+                    <span *ngIf="rowData[col.field]==='no' || rowData[col.field]==='0'"></span>
+                    <span *ngIf="!(rowData[col.field]==='yes' || rowData[col.field]==='1') && !(rowData[col.field]==='no' || rowData[col.field]==='0')">
+                                            {{rowData[col.field]}}
+
+                    </span>
+
                 </td>
             </tr>
         </ng-template>

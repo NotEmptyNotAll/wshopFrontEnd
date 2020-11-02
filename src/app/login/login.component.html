@@ -4,6 +4,7 @@
         <hr width="100%"/>
 
         <div class="login-row">
+
             <span style="width: 90%">
             <p-dropdown
                     autoWidth="false" [style]="{'minWidth':'100%'}"
@@ -16,6 +17,7 @@
         <div class="login-row">
             <span style="width: 90%">
             <input type="password" [(ngModel)]="password"
+                   (keydown.enter)="login()"
                    [disabled]="selectedUser===null || selectedUser===undefined"
                    [style]="{'minWidth':'100%'}"
                    [placeholder]="'loginPage.password' | translate"

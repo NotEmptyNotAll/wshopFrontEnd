@@ -1,6 +1,12 @@
 thead tr th {
     position: relative;
 }
+.table-style {
+    min-height: 680px  !important;
+    background: #f4f4f4 !important;
+    border-color: #f4f4f4  !important;
+    font-size: 3px !important;
+}
 
 span.ui-column-resizer {
     display: block;

@@ -7,6 +7,7 @@ import {TableDataService} from "../table-page/tableData.service";
 import {OrderService} from "./order.service";
 import {Router} from '@angular/router';
 import {TableOrderResponse} from "../Service/table-order-response";
+import {User} from "../Service/User";
 
 @Component({
     selector: 'app-orders',
@@ -22,6 +23,7 @@ export class OrdersComponent implements OnInit {
     sec: number
     secIncr: number = 1
     temp: any;
+    private user: User;
 
     constructor(@Inject(WINDOW) private window: Window, public apiService: ApiDataServiceService,
                 public tableService: TableDataService,
@@ -67,6 +69,10 @@ export class OrdersComponent implements OnInit {
 
         sec++;
         if (sec == 10) {
+            this.user = null
+            this.apiService.setUserData(this.user)
+            this.orderService.setUserValidate(false)
+            this.router.navigate(['/'])
             this.router.navigate(['/'])
         }
         console.log(sec)

@@ -22,6 +22,27 @@ export class MenuBarComponent implements OnInit {
 
    }
 
+     open() {
+         document.getElementById("mySidebar").style.transition = "0.5s";
+         document.getElementById("main").style.left = "15%";
+         document.getElementById("main").style.transition = "0.5s";
+         document.getElementById("main").style.position = "absolute";
+         document.getElementById("main").style.right = "0px";
+         document.getElementById("main").style.transform = 'scale(0.85,1)';
+        document.getElementById("mySidebar").style.width = "15%";
+       document.getElementById("mySidebar").style.display = "block";
+       // document.getElementById("openNav").style.display = 'none';
+    }
+     close() {
+         document.getElementById("main").style.transform = 'scale(1)';
+         document.getElementById("main").style.position = "relative";
+         document.getElementById("main").style.left = "0%";
+         document.getElementById("mySidebar").style.transition = "0.5s";
+         document.getElementById("mySidebar").style.width = "0%";
+
+         document.getElementById("openNav").style.display = "inline-block";
+    }
+
     display: boolean = false
     items: MenuItem[];
     private user: User;
@@ -38,20 +59,26 @@ export class MenuBarComponent implements OnInit {
             {
 
                 icon: 'pi pi-fw pi-bars',
-                style: {fontSize: '1.3em'},
+                style: {fontSize: '1.2em'},
                 command: (event: Event) => {
-                    this.display = !this.display
+                    this.display=!this.display;
+                    if(this.display){
+                        this.open()
+                    }else {
+                        this.close()
+                    }
+                    //this.display = !this.display
                 }
             },
             {
                 icon: 'pi pi-fw pi-globe',
                 label:'Lang',
-                style: {fontSize: '1.3em'},
+                style: {fontSize: '1.2em'},
                 items: [
                     {
                         icon: 'pi pi-fw pi-chevron-right',
                         label: 'русский',
-                        style: {fontSize: '1.3em'},
+                        style: {fontSize: '1.2em'},
                         command: (event: Event) => {
                             this.switchLanguage('ru')
                         }
