@@ -1,7 +1,16 @@
 {
-  "Common": {
-    "Yes": "да"
-  },
-  "Welcome to": "Bienvenido a2"
-
+  "language": "язык",
+  "loginPage": {
+    "language": "язык",
+    "cancel": "отменить",
+    "SelectName": "выберите имя",
+    "listOrders": "список заказов",
+    "login": "авторизоваться",
+    "quit": "выйти",
+    "ChooseColumns": "Выбрать столбцы",
+    "password": "пароль",
+    "columnsSelected": "{0} столбцы выбраны",
+    "TableNumLabel": "Показаны записи с {first} по {last} из {totalRecords}",
+    "menu": "меню"
+  }
 }

@@ -1,4 +1,4 @@
-import { WINDOW } from '@ng-toolkit/universal';
+import {WINDOW} from '@ng-toolkit/universal';
 import {Component, OnInit, Renderer2, Inject} from '@angular/core';
 import {REGION} from "../region-page/mock-region";
 import {Order} from "./orders";
@@ -97,12 +97,14 @@ export class OrdersComponent implements OnInit {
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
             row.rowData.map(cell => {
-
                 if (cell.cellName === 'Close') {
                     tableRow[cell.cellName] = cell.cellData.substr(22, 3)
                 } else if (cell.cellName === 'Code' || cell.cellName === 'S/p' || cell.cellName === 'Debt'
-                    || cell.cellName==='Total' || cell.cellName === 'Job') {
+                    || cell.cellName === 'Total' || cell.cellName === 'Job') {
                     tableRow[cell.cellName] = Number(cell.cellData)
+                } else if ((cell.cellName.toLowerCase().indexOf('date') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
+                    let data = new Date(cell.cellData)
+                    tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth() + '.' + data.getFullYear();
                 } else {
                     tableRow[cell.cellName] = cell.cellData
                 }
@@ -110,12 +112,14 @@ export class OrdersComponent implements OnInit {
             tableBody.push(tableRow)
         })
         let tableRowPattern: any = {}
+
         this.data.ordersTableBody[0].rowData.map(
             cell => {
                 if (cell.cellName === 'Close') {
                     tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3)
+
                 } else {
-                    tableRowPattern[cell.cellName] = cell.cellData
+                    tableRowPattern[cell.cellName] = cell.cellData;
                 }
             }
         )

@@ -8,3 +8,15 @@
     background-color: lightgray; /* Цвет линии для браузера Firefox и Opera */
     height: 2px; /* Толщина линии */
 }
+
+.side-menu{
+    position: fixed;
+    box-shadow:4px 0px 7px 0px rgba(0,0,0,0.21);
+    -webkit-box-shadow:4px 0px 7px 0px rgba(0,0,0,0.21);
+    -moz-box-shadow:4px 0px 7px 0px rgba(0,0,0,0.21);
+    left: 0px;
+    width: 15%;
+    height: 100%;
+    z-index: 1;
+    top:53px
+}

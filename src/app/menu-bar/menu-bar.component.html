@@ -1,5 +1,5 @@
-<p-menubar id="openNav" [model]="items" [style]="{
-minWidth:'100%', height:'53px',position:'absolute',left:'0px',top:'0px'}"
+<p-menubar id="openNav" [model]="items" [style]="{zIndex:'999',
+minWidth:'100%', height:'53px',position:'fixed',left:'0px',top:'0px'}"
 
 >
     <p-button *ngIf="apiService.getUserData()!==null && apiService.getUserData()!==undefined"
@@ -26,22 +26,17 @@ minWidth:'100%', height:'53px',position:'absolute',left:'0px',top:'0px'}"
 
 </p-sidebar>-->
 
-<div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none;
-position:absolute;
-left: 0px;
-width: 15%;
-top:53px" id="mySidebar">
+<div class="side-menu" style="display:none;" id="mySidebar">
 
-    <h3 style="position:relative; left: 10px">{{'loginPage.menu' | translate}}</h3>
-    <hr class="hr-style"/>
+    <h3 style="position: relative; left: 10px">{{'loginPage.menu' | translate}}</h3>
+    <hr class="hr-style" style="    z-index: 2;"/>
     <p-listbox
-
-            [style]="{minWidth:'100%',borderColor:'white',
+            id="mySidebarList"
+            [style]="{minWidth:'100%',borderColor:'white',zIndex:'2',
             position:'absolute',left:'0px',fontSize:'1.5em'}"
             [options]=" [ {name:  'loginPage.listOrders' | translate, code: 'NY'}]" [(ngModel)]="cities1"
             optionLabel="name"></p-listbox>
 </div>
 
-<br/>
 <br/>
 <br/>

@@ -1,7 +1,16 @@
 {
-  "Common": {
-    "Yes": "Yes"
-  },
-  "Welcome to": "Bienvenido a1"
-
+  "log.language": "language1",
+  "loginPage": {
+    "language": "language",
+    "cancel": "cancel",
+    "SelectName": "select a name",
+    "listOrders": "list of orders",
+    "login": "login",
+    "ChooseColumns": "Choose Columns",
+    "quit": "quit",
+    "menu": "menu",
+    "columnsSelected": "{0} columns selected",
+    "password": "password",
+    "TableNumLabel": "Showing {first} to {last} of {totalRecords} entries"
+  }
 }

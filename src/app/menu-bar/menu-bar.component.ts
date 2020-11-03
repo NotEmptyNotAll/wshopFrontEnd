@@ -23,23 +23,24 @@ export class MenuBarComponent implements OnInit {
    }
 
      open() {
-         document.getElementById("mySidebar").style.transition = "0.5s";
-         document.getElementById("main").style.left = "15%";
-         document.getElementById("main").style.transition = "0.5s";
+         document.getElementById("main").style.left = "13%";
          document.getElementById("main").style.position = "absolute";
          document.getElementById("main").style.right = "0px";
-         document.getElementById("main").style.transform = 'scale(0.85,1)';
-        document.getElementById("mySidebar").style.width = "15%";
+         document.getElementById("main").style.transform = 'scale(0.88,1)';
+        document.getElementById("mySidebar").style.width = "13%";
+        document.getElementById("mySidebarList").style.width = "13%";
        document.getElementById("mySidebar").style.display = "block";
+       document.getElementById("mySidebarList").style.display = "block";
        // document.getElementById("openNav").style.display = 'none';
     }
      close() {
          document.getElementById("main").style.transform = 'scale(1)';
          document.getElementById("main").style.position = "relative";
          document.getElementById("main").style.left = "0%";
-         document.getElementById("mySidebar").style.transition = "0.5s";
+         document.getElementById("mySidebarList").style.transition = "0.6s";
          document.getElementById("mySidebar").style.width = "0%";
-
+         document.getElementById("mySidebarList").style.width = "0%";
+         document.getElementById("mySidebar").style.display = "none";
          document.getElementById("openNav").style.display = "inline-block";
     }
 

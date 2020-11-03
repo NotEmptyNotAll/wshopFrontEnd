@@ -25,14 +25,14 @@
              class="table-style"
              [rows]="100" [showCurrentPageReport]="true" [rowsPerPageOptions]="[20,30,50,100]" [loading]="loading"
              [columns]="_selectedColumns" [value]="tableDataService.mainData" [scrollable]="true"
-             scrollHeight="680px"
+             scrollHeight="705px"
+             style="border-color: #f4f4f4"
              [style]="{borderColor:'#f4f4f4'}"
              [resizableColumns]="true" selectionMode="single"
              dataKey="id">
 
-        <ng-template pTemplate="caption" style="border-color: #f4f4f4">
-            <tr style="border-color: #f4f4f4" [style]="{borderColor:'#f4f4f4'}">
-                <div class="table-header" style="height: 35px">
+        <ng-template pTemplate="caption" style="border-color: #f4f4f4" >
+                <div class="table-header" style="height: 35px"  [style]="{borderColor:'#f4f4f4'}">
                 <span style="position: absolute;left: 10px;">
                     <h3>{{'loginPage.listOrders' | translate}}</h3></span>
                     <p-multiSelect [options]="columns" [(ngModel)]="_selectedColumns" optionLabel="header"
@@ -42,7 +42,6 @@
                                    [style]="{minWidth:'200px', position:'absolute', right:'10px',top:'10px'}"
                                    placeholder="{{'loginPage.ChooseColumns' | translate}}"></p-multiSelect>
                 </div>
-            </tr>
         </ng-template>
         <ng-template pTemplate="colgroup" let-columns>
             <colgroup>
