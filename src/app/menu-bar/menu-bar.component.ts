@@ -6,6 +6,8 @@ import {ApiDataServiceService} from "../Service/api-data-service.service";
 import {User} from "../Service/User";
 import {SelectItem} from 'primeng/api';
 import {TranslateService} from "@ngx-translate/core";
+import {TableOrderResponse} from "../Service/table-order-response";
+import {OrdersComponent} from "../orders-page/orders.component";
 
 
 @Component({
@@ -14,47 +16,49 @@ import {TranslateService} from "@ngx-translate/core";
     styleUrls: ['./menu-bar.component.css']
 })
 export class MenuBarComponent implements OnInit {
+    ordersResponse: TableOrderResponse
 
     constructor(public apiService: ApiDataServiceService,
                 public orderService: OrderService,
                 private router: Router,
+             //   private ordersComponent:OrdersComponent,
                 private translate: TranslateService) {
 
-   }
-
-     open() {
-         document.getElementById("main").style.left = "13%";
-         document.getElementById("main").style.position = "absolute";
-         document.getElementById("main").style.right = "0px";
-         document.getElementById("main").style.transform = 'scale(0.88,1)';
-        document.getElementById("mySidebar").style.width = "13%";
-        document.getElementById("mySidebarList").style.width = "13%";
-       document.getElementById("mySidebar").style.display = "block";
-       document.getElementById("mySidebarList").style.display = "block";
-       // document.getElementById("openNav").style.display = 'none';
     }
-     close() {
-         document.getElementById("main").style.transform = 'scale(1)';
-         document.getElementById("main").style.position = "relative";
-         document.getElementById("main").style.left = "0%";
-         document.getElementById("mySidebarList").style.transition = "0.6s";
-         document.getElementById("mySidebar").style.width = "0%";
-         document.getElementById("mySidebarList").style.width = "0%";
-         document.getElementById("mySidebar").style.display = "none";
-         document.getElementById("openNav").style.display = "inline-block";
+
+    open() {
+        document.getElementById("main").style.left = "10%";
+        document.getElementById("main").style.position = "absolute";
+        document.getElementById("main").style.right = "0px";
+        document.getElementById("main").style.transform = 'scale(0.91,1)';
+        document.getElementById("mySidebar").style.width = "10%";
+        document.getElementById("mySidebarList").style.width = "10%";
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("mySidebarList").style.display = "block";
+        // document.getElementById("openNav").style.display = 'none';
+    }
+
+    close() {
+        document.getElementById("main").style.transform = 'scale(1)';
+        document.getElementById("main").style.position = "relative";
+        document.getElementById("main").style.left = "0%";
+        document.getElementById("mySidebar").style.width = "0%";
+        document.getElementById("mySidebarList").style.width = "0%";
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("openNav").style.display = "inline-block";
     }
 
     display: boolean = false
     items: MenuItem[];
     private user: User;
-    langLabel:string="";
+    langLabel: string = "";
     cities2: any[];
     cities1: SelectItem[];
 
     ngOnInit() {
         this.setDefaultTranslation();
         this.cities2 = [
-            {name:  'List of orders', code: 'NY'}
+            {name: 'List of orders', code: 'NY'}
         ];
         this.items = [
             {
@@ -62,10 +66,10 @@ export class MenuBarComponent implements OnInit {
                 icon: 'pi pi-fw pi-bars',
                 style: {fontSize: '1.2em'},
                 command: (event: Event) => {
-                    this.display=!this.display;
-                    if(this.display){
+                    this.display = !this.display;
+                    if (this.display) {
                         this.open()
-                    }else {
+                    } else {
                         this.close()
                     }
                     //this.display = !this.display
@@ -73,7 +77,7 @@ export class MenuBarComponent implements OnInit {
             },
             {
                 icon: 'pi pi-fw pi-globe',
-                label:'Lang',
+                label: 'Lang',
                 style: {fontSize: '1.2em'},
                 items: [
                     {
@@ -82,6 +86,8 @@ export class MenuBarComponent implements OnInit {
                         style: {fontSize: '1.2em'},
                         command: (event: Event) => {
                             this.switchLanguage('ru')
+                            this.apiService.setLang('ru')
+                            this.changeLangPost()
                         }
                     }, {
                         icon: 'pi pi-fw pi-chevron-right',
@@ -89,6 +95,9 @@ export class MenuBarComponent implements OnInit {
                         style: {fontSize: '1.3em'},
                         command: (event: Event) => {
                             this.switchLanguage('ua')
+                            this.apiService.setLang('ua')
+                            this.changeLangPost()
+
                         }
                     }, {
                         icon: 'pi pi-fw pi-chevron-right',
@@ -96,6 +105,8 @@ export class MenuBarComponent implements OnInit {
                         style: {fontSize: '1.3em'},
                         command: (event: Event) => {
                             this.switchLanguage('pl')
+                            this.apiService.setLang('pl')
+                            this.changeLangPost()
                         }
                     }, {
                         icon: 'pi pi-fw pi-chevron-right',
@@ -103,6 +114,8 @@ export class MenuBarComponent implements OnInit {
                         style: {fontSize: '1.3em'},
                         command: (event: Event) => {
                             this.switchLanguage('en')
+                            this.apiService.setLang('en')
+                            this.changeLangPost()
                         }
                     }
                 ]
@@ -121,6 +134,21 @@ export class MenuBarComponent implements OnInit {
     public switchLanguage(lang: string): void {
         this.translate.use(lang);
         //this.translate.setDefaultLang(lang);
+    }
+
+    async changeLangPost() {
+        if (this.apiService.getUserData() !== undefined) {
+            this.ordersResponse = await this.apiService.post<TableOrderResponse>(
+                'getCroppedOrders', {
+                    user: this.apiService.getUserData(),
+                    lang: this.apiService.getLang()
+                }
+            )
+            this.orderService.setOrderResponse(this.ordersResponse)
+                //this.router.navigate(['/'])
+            //this.router.navigate(['/order'])
+            //this.ordersComponent.getOrd()
+        }
     }
 
     quit() {

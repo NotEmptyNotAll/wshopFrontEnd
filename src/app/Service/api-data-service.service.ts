@@ -15,6 +15,16 @@ export class ApiDataServiceService {
     private ordersResp: Order[];
     private users: User[];
     private userData: User;
+    private lang:string='en'
+
+
+    public getLang() {
+        return this.lang
+    }
+
+    public setLang(lang: string) {
+        this.lang = lang
+    }
 
 
     public getUserData() {

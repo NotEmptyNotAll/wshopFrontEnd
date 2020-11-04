@@ -97,7 +97,7 @@ export class OrdersComponent implements OnInit {
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
             row.rowData.map(cell => {
-                if (cell.cellName === 'Close') {
+                if (cell.cellData.indexOf('thWOrders.orderClosed')!==-1) {
                     tableRow[cell.cellName] = cell.cellData.substr(22, 3)
                 } else if (cell.cellName === 'Code' || cell.cellName === 'S/p' || cell.cellName === 'Debt'
                     || cell.cellName === 'Total' || cell.cellName === 'Job') {

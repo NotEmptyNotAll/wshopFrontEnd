@@ -50,9 +50,10 @@ export class LoginComponent implements OnInit {
         this.selectedUser.password = this.password;
         this.apiService.setUserData(this.selectedUser)
         this.ordersResponse = await this.apiService.post<TableOrderResponse>(
-            'getCroppedOrders', {user: this.selectedUser}
+            'getCroppedOrders', {user: this.selectedUser,lang:this.apiService.getLang()}
         );
         this.orderService.setOrderResponse(this.ordersResponse)
+
         if (this.ordersResponse.ordersTableBody.length != 0) {
             this.orderService.setUserValidate(true)
             this.router.navigate(['/order'])

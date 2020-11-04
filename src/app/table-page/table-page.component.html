@@ -38,8 +38,11 @@
                     <p-multiSelect [options]="columns" [(ngModel)]="_selectedColumns" optionLabel="header"
                                    [showHeader]="false"
                                    id="multisect"
-                                   selectedItemsLabel=" {{'loginPage.columnsSelected' | translate }}"
-                                   [style]="{minWidth:'200px', position:'absolute', right:'10px',top:'10px'}"
+                                   selectedItemsLabel=""
+                                   dropdownIcon="pi pi-microsoft"
+                                   scrollHeight="700px"
+
+                                   [style]="{width:'0px',height:'0px',fontSize:'1.7rem', position:'absolute', left:'250px',top:'35px'}"
                                    placeholder="{{'loginPage.ChooseColumns' | translate}}"></p-multiSelect>
                 </div>
         </ng-template>
