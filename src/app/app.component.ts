@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
 
 
     constructor( protected translateService: TranslateService) {
-        this.translateService.instant('ru')
+        this.translateService.instant('ua')
     }
 
 

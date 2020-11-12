@@ -99,10 +99,10 @@ export class OrdersComponent implements OnInit {
             row.rowData.map(cell => {
                 if (cell.cellData.indexOf('thWOrders.orderClosed')!==-1) {
                     tableRow[cell.cellName] = cell.cellData.substr(22, 3)
-                } else if (cell.cellName === 'Code' || cell.cellName === 'S/p' || cell.cellName === 'Debt'
-                    || cell.cellName === 'Total' || cell.cellName === 'Job') {
+                } else if (cell.cellName === 'Код' || cell.cellName === 'Борг' || cell.cellName === 'Разом'
+                    || cell.cellName === 'З/ч' || cell.cellName === 'Роб.') {
                     tableRow[cell.cellName] = Number(cell.cellData)
-                } else if ((cell.cellName.toLowerCase().indexOf('date') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
+                } else if ((cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
                     let data = new Date(cell.cellData)
                     tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth() + '.' + data.getFullYear();
                 } else {

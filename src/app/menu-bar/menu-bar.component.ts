@@ -50,6 +50,7 @@ export class MenuBarComponent implements OnInit {
 
     display: boolean = false
     items: MenuItem[];
+    itemsNoLogin: MenuItem[];
     private user: User;
     langLabel: string = "";
     cities2: any[];
@@ -60,6 +61,55 @@ export class MenuBarComponent implements OnInit {
         this.cities2 = [
             {name: 'List of orders', code: 'NY'}
         ];
+        this.itemsNoLogin = [
+            {
+                icon: 'pi pi-fw pi-globe',
+                label: 'Lang',
+                style: {fontSize: '1.2em'},
+                items: [
+                    {
+                        icon: 'pi pi-fw pi-chevron-right',
+                        label: 'русский',
+                        style: {fontSize: '1.2em'},
+                        styleClass:'myClass',
+                        command: (event: Event) => {
+                            this.switchLanguage('ru')
+                            this.apiService.setLang('ru')
+                            this.changeLangPost()
+                        }
+                    }, {
+                        icon: 'pi pi-fw pi-chevron-right',
+                        label: 'українська',
+                        style: {fontSize: '1.3em'},
+                        command: (event: Event) => {
+                            this.switchLanguage('ua')
+                            this.apiService.setLang('ua')
+                            this.changeLangPost()
+
+                        }
+                    }, {
+                        icon: 'pi pi-fw pi-chevron-right',
+                        label: 'poland',
+                        style: {fontSize: '1.3em'},
+                        command: (event: Event) => {
+                            this.switchLanguage('pl')
+                            this.apiService.setLang('pl')
+                            this.changeLangPost()
+                        }
+                    }, {
+                        icon: 'pi pi-fw pi-chevron-right',
+                        label: 'english',
+                        style: {fontSize: '1.3em'},
+                        command: (event: Event) => {
+                            this.switchLanguage('en')
+                            this.apiService.setLang('en')
+                            this.changeLangPost()
+                        }
+                    }
+                ]
+            }
+        ];
+
         this.items = [
             {
 
@@ -124,11 +174,12 @@ export class MenuBarComponent implements OnInit {
     }
 
     private setDefaultTranslation(): void {
-        if (['en', 'pl', 'ua', 'ru'].indexOf(this.translate.getBrowserLang()) > -1) {
-            this.translate.setDefaultLang(this.translate.getBrowserLang());
+        /*if (['en', 'pl', 'ua', 'ru'].indexOf(this.translate.getBrowserLang()) > -1) {
+            this.translate.use(this.translate.getBrowserLang());
         } else {
-            this.translate.setDefaultLang('ru');
-        }
+            this.translate.use('ua');
+        }*/
+        this.translate.use('ua');
     }
 
     public switchLanguage(lang: string): void {
