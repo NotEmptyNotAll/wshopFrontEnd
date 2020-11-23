@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FilterService} from "../filter.service";
 import {OrderRequest} from "../order.request";
 import * as moment from "moment";
@@ -9,7 +9,9 @@ import * as moment from "moment";
     styleUrls: ['./period-date-filter.component.css']
 })
 export class PeriodDateFilterComponent implements OnInit {
-    private period = {name: 'Усе', code: 0}
+    @Output() onSuggest: EventEmitter<any> = new EventEmitter();
+
+    private period = null
     private orderRequest: OrderRequest
     private isCloseDate: boolean = false
     private periods: any[] = [
@@ -101,6 +103,7 @@ export class PeriodDateFilterComponent implements OnInit {
         this.orderRequest.dateFrom = dateFrom;
         this.orderRequest.dateTo = dateTo;
         this.filterService.setOrderRequest(this.orderRequest)
+        this.onSuggest.emit();
     }
 
 

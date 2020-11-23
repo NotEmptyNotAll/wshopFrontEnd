@@ -1,8 +1,11 @@
-<div class="filter-component">
-    <h3 class="title" >{{'loginPage.datePeriod' | translate}}</h3>
-    <p-dropdown  style="margin: 5px 5px 10px;position: relative;bottom: 20px"
-            (onChange)="changeState()"  [options]="states" [(ngModel)]="state" optionLabel="name"></p-dropdown>
+<!--<div class="filter-component">-->
+<!--    <h3 class="title" >{{'loginPage.datePeriod' | translate}}</h3>-->
+<!--    <p-dropdown  style="margin: 5px 5px 10px;position: relative;bottom: 20px"-->
+<!--            (onChange)="changeState()"  [options]="states" [(ngModel)]="state" optionLabel="name"></p-dropdown>-->
 
 
 
-</div>
+<!--</div>-->
+<p-dropdown
+             (onChange)="changeState()"   [showClear]="true" placeholder="стан"
+             [options]="states" [(ngModel)]="state" optionLabel="name"></p-dropdown>

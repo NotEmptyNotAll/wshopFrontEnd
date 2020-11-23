@@ -1,7 +1,12 @@
-<div class="filter-component">
-    <h3 class="title">{{'loginPage.datePeriod' | translate}}</h3>
+<!--<div class="filter-component">-->
+<!--    <h3 class="title">{{'loginPage.datePeriod' | translate}}</h3>-->
 
-    <input type="text"  style="margin: 5px 5px 10px;
-    position: relative;bottom: 20px"
-           (ngModelChange)="onChang()"  [(ngModel)]=" sunString" pInputText/>
-</div>
+<!--    <input type="text"  style="margin: 5px 5px 10px;-->
+<!--    position: relative;bottom: 20px"-->
+<!--           (ngModelChange)="onChang()"  [(ngModel)]=" sunString" pInputText/>-->
+<!--</div>-->
+<span class="p-input-icon-left">
+
+<input type="text"
+      (change)="onChang()"  placeholder="пошук"   [(ngModel)]=" sunString" pInputText/>
+    </span>

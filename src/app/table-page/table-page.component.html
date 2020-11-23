@@ -22,9 +22,10 @@
     <p-dialog header="{{'loginPage.filters' | translate}}" [style]="{minWidth:'270px',minHeight:'300px'}"
               [(visible)]="display" [resizable]="true"  responsive="false">
             <div class="filter-panel">
-                <app-period-date-filter class="filter"></app-period-date-filter>
-                <app-state-filter class="filter"></app-state-filter>
-                <app-substring-filter class="filter"></app-substring-filter>
+                <app-date-filter class="filter"></app-date-filter>
+                <app-payed-filter class="filter"></app-payed-filter>
+
+
             </div>
 
 
@@ -52,15 +53,17 @@
 
         <ng-template pTemplate="caption" style="border-color: #f4f4f4">
             <div class="table-header" style="height: 35px" [style]="{borderColor:'#f4f4f4'}">
-
-                <button type="button" (click)="downloadExel()"
-                        class="button button-search"
-                        style="position: absolute; right: 250px;height: 35px;font-size: 12px;margin: 10px;top: 0px"
-                >exel</button>
                 <button type="button" (click)="showDialog()"
                         class="button button-search"
-                        style="position: absolute; right: 100px;height: 35px;font-size: 12px;margin: 10px;top: 0px"
-                >{{'loginPage.FastFilterModal' | translate}}</button>
+                        style="position: absolute; right: 850px;height: 35px;font-size: 12px;margin: 10px;top: 0px"
+                >{{'loginPage.filters' | translate}}</button>
+                <app-period-date-filter (onSuggest)="updateData()" style="right: 420px" class="fast-filter"></app-period-date-filter>
+                <app-state-filter style="right: 620px" (onSuggest)="updateData()" class="fast-filter"></app-state-filter>
+                <app-substring-filter style="right: 200px"  (onSuggest)="updateData()" class="fast-filter"></app-substring-filter>
+                <button type="button" (click)="downloadExel()"
+                        class="button button-search"
+                        style="position: absolute; right: 85px;height: 35px;font-size: 12px;margin: 10px;top: 0px"
+                >exel</button>
 
                 <span style="position: absolute;left: 10px;">
                     <h3>{{'loginPage.listOrders' | translate}}</h3></span>
@@ -71,7 +74,7 @@
                                dropdownIcon="pi pi-microsoft"
                                scrollHeight="700px"
 
-                               [style]="{width:'0px',height:'0px',fontSize:'1.8rem', position:'absolute', right:'20px',top:'25px'}"
+                               [style]="{width:'0px',height:'0px',fontSize:'2rem', position:'absolute', right:'20px',top:'27px'}"
                                placeholder="{{'loginPage.ChooseColumns' | translate}}"></p-multiSelect>
             </div>
         </ng-template>

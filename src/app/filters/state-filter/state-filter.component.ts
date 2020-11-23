@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FilterService} from "../filter.service";
 import {OrderRequest} from "../order.request";
 
@@ -8,7 +8,8 @@ import {OrderRequest} from "../order.request";
     styleUrls: ['./state-filter.component.css']
 })
 export class StateFilterComponent implements OnInit {
-    private state = null
+    private state = {name: '', code: ''}
+    @Output() onSuggest: EventEmitter<any> = new EventEmitter();
     private orderRequest: OrderRequest
     private states: any[] = [
         {name: 'Усе', code: null},
@@ -27,6 +28,8 @@ export class StateFilterComponent implements OnInit {
         this.orderRequest = this.filterService.getOrderRequest()
         this.orderRequest.state = this.state.code
         this.filterService.setOrderRequest(this.orderRequest)
+        this.onSuggest.emit();
+
     }
 
 }

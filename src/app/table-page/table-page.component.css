@@ -157,7 +157,12 @@ p-table {
     cursor: pointer;
     border-radius: 3px;
 }
-
+.fast-filter{
+    position: absolute;
+    height: 35px;
+    margin: 10px;
+    top: 0px
+}
 .footer-dialog{
     display: flex;
     flex-direction: row;

@@ -1,7 +1,17 @@
 .filter-component {
-    width: auto;
-    height: auto;
+    width: 500px;
+    height: 160px;
     background: #f4f4f4;
     display: flex;
     flex-direction: column;
+}
+
+.title{
+    background: white;
+    position: relative;
+    top:-30px;
+    font-size: 1.5rem;
+    paddng:10px;
+    width:100px;
+
 }

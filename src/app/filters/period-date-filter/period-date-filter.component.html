@@ -1,17 +1,21 @@
-<div class="filter-component">
-    <h3 class="title">{{'loginPage.datePeriod' | translate}}</h3>
-    <p-dropdown (onClick)="changePeriod()" style="margin: 5px 5px 10px;position: relative;bottom: 20px"
-                [options]="periods" [(ngModel)]="period" optionLabel="name">
+<!--<div class="filter-component">-->
+<!--    <h3 class="title">{{'loginPage.datePeriod' | translate}}</h3>-->
+<!--    <p-dropdown (onClick)="changePeriod()" style="margin: 5px 5px 10px;position: relative;bottom: 20px"-->
+<!--                [options]="periods" [(ngModel)]="period" optionLabel="name">-->
 
 
-    </p-dropdown>
-    <div  style="position: relative;top:-10px; display: flex;flex-direction: row;justify-content: center;align-content: center">
-        <p-radioButton name="groupname" inputId="val1"  [value]="false"
-                       [(ngModel)]="isCloseDate" style="margin-right: 5%"></p-radioButton>
-        <label for="val1">відкр.</label>
-        <p-radioButton name="groupname" [value]="true" inputId="val2"
-                       [(ngModel)]="isCloseDate" style="margin-right: 5%;margin-left: 5%"></p-radioButton>
-        <label for="val2">закр.</label>
+<!--    </p-dropdown>-->
+<!--    <div  style="position: relative;top:-10px; display: flex;flex-direction: row;justify-content: center;align-content: center">-->
+<!--        <p-radioButton name="groupname" inputId="val1"  [value]="false"-->
+<!--                       [(ngModel)]="isCloseDate" style="margin-right: 5%"></p-radioButton>-->
+<!--        <label for="val1">відкр.</label>-->
+<!--        <p-radioButton name="groupname" [value]="true" inputId="val2"-->
+<!--                       [(ngModel)]="isCloseDate" style="margin-right: 5%;margin-left: 5%"></p-radioButton>-->
+<!--        <label for="val2">закр.</label>-->
 
-    </div>
-</div>
+<!--    </div>-->
+<!--</div>-->
+<p-dropdown (onClick)="changePeriod()"
+            [options]="periods" [(ngModel)]="period" placeholder="{{'loginPage.datePeriod' | translate}}" optionLabel="name"  [showClear]="true">
+
+</p-dropdown>

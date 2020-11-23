@@ -39,6 +39,8 @@ import {BlockUIModule} from 'primeng/blockui';
 import { PeriodDateFilterComponent } from './filters/period-date-filter/period-date-filter.component';
 import * as alasql from 'alasql';
 import {RadioButtonModule} from 'primeng/radiobutton';
+import { CustomerFilterComponent } from './filters/customer-filter/customer-filter.component';
+import { EmployeeFilterComponent } from './filters/employee-filter/employee-filter.component';
 
 
 // @ts-ignore
@@ -85,7 +87,9 @@ import {RadioButtonModule} from 'primeng/radiobutton';
         StateFilterComponent,
         PayedFilterComponent,
         SubstringFilterComponent,
-        PeriodDateFilterComponent],
+        PeriodDateFilterComponent,
+        CustomerFilterComponent,
+        EmployeeFilterComponent],
     providers: []
 })
 

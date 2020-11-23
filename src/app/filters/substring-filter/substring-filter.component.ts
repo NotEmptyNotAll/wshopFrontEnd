@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FilterService} from "../filter.service";
 import {OrderRequest} from "../order.request";
 
@@ -8,7 +8,7 @@ import {OrderRequest} from "../order.request";
   styleUrls: ['./substring-filter.component.css']
 })
 export class SubstringFilterComponent implements OnInit {
-
+  @Output() onSuggest: EventEmitter<any> = new EventEmitter();
   private orderRequest: OrderRequest
 
   private sunString:string=''
@@ -19,6 +19,7 @@ export class SubstringFilterComponent implements OnInit {
     this.orderRequest = this.filterService.getOrderRequest()
     this.orderRequest.searchString =this.sunString ;
     this.filterService.setOrderRequest(this.orderRequest)
+    this.onSuggest.emit();
 
   }
 
