@@ -26,7 +26,6 @@ export class DateFilterComponent implements OnInit {
     this.orderRequest.closeDate = this.isCloseDate
     this.orderRequest.dateFrom = this.dateFrom;
     this.orderRequest.dateTo = this.dateTo;
-alert(this.dateFrom+' '+this.dateTo)
     //  moment().utc().format("YYYY-MM-DD")
     this.filterService.setOrderRequest(this.orderRequest)
   }
