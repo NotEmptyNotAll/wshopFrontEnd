@@ -19,32 +19,61 @@
 
     </div>
     -->
+    <p-dialog header="{{'loginPage.filters' | translate}}" [style]="{minWidth:'270px',minHeight:'300px'}"
+              [(visible)]="display" [resizable]="true"  responsive="false">
+            <div class="filter-panel">
+                <app-period-date-filter class="filter"></app-period-date-filter>
+                <app-state-filter class="filter"></app-state-filter>
+                <app-substring-filter class="filter"></app-substring-filter>
+            </div>
 
 
-    <p-table [paginator]="true" currentPageReportTemplate="{{'loginPage.TableNumLabel' | translate}}"
-             class="table-style"
-             [rows]="100" [showCurrentPageReport]="true" [rowsPerPageOptions]="[20,30,50,100]" [loading]="loading"
+        <p-footer class="footer-dialog" >
+            <button type="button"  (click)="display=false" style="margin-right: 15%;margin-left:10%" pButton class="ui-button-danger"
+                                                 [label]="'loginPage.cancel' | translate"  icon="pi pi-times" label="delete"></button>
+        <button (click)="updateData()" type="button" style="margin-left:15%;margin-right:10% " pButton icon="pi pi-check"
+                [label]="'loginPage.confirm' | translate"></button>
+
+    </p-footer>
+    </p-dialog>
+    <!--  currentPageReportTemplate="{{'loginPage.TableNumLabel' | translate}}"
+               [rows]="100" [showCurrentPageReport]="true" [rowsPerPageOptions]="[20,30,50,100]"
+              [paginator]="true" -->
+    <div style="height: 85vh;background: #f4f4f4;width: 100%">
+    <p-table
+            class="table-style"
+             [loading]="loading"
              [columns]="_selectedColumns" [value]="tableDataService.mainData" [scrollable]="true"
-             scrollHeight="705px"
+             scrollHeight="flex"
              style="border-color: #f4f4f4"
              [style]="{borderColor:'#f4f4f4'}"
              [resizableColumns]="true" selectionMode="single"
              dataKey="id">
 
-        <ng-template pTemplate="caption" style="border-color: #f4f4f4" >
-                <div class="table-header" style="height: 35px"  [style]="{borderColor:'#f4f4f4'}">
+        <ng-template pTemplate="caption" style="border-color: #f4f4f4">
+            <div class="table-header" style="height: 35px" [style]="{borderColor:'#f4f4f4'}">
+
+                <button type="button" (click)="downloadExel()"
+                        class="button button-search"
+                        style="position: absolute; right: 250px;height: 35px;font-size: 12px;margin: 10px;top: 0px"
+                >exel</button>
+                <button type="button" (click)="showDialog()"
+                        class="button button-search"
+                        style="position: absolute; right: 100px;height: 35px;font-size: 12px;margin: 10px;top: 0px"
+                >{{'loginPage.FastFilterModal' | translate}}</button>
+
                 <span style="position: absolute;left: 10px;">
                     <h3>{{'loginPage.listOrders' | translate}}</h3></span>
-                    <p-multiSelect [options]="columns" [(ngModel)]="_selectedColumns" optionLabel="header"
-                                   [showHeader]="false"
-                                   id="multisect"
-                                   selectedItemsLabel=""
-                                   dropdownIcon="pi pi-microsoft"
-                                   scrollHeight="700px"
+                <p-multiSelect [options]="columns" [(ngModel)]="_selectedColumns" optionLabel="header"
+                               [showHeader]="false"
+                               id="multisect"
+                               selectedItemsLabel=""
+                               dropdownIcon="pi pi-microsoft"
+                               scrollHeight="700px"
 
-                                   [style]="{width:'0px',height:'0px',fontSize:'1.7rem', position:'absolute', right:'20px',top:'25px'}"
-                                   placeholder="{{'loginPage.ChooseColumns' | translate}}"></p-multiSelect>
-                </div>
+                               [style]="{width:'0px',height:'0px',fontSize:'1.8rem', position:'absolute', right:'20px',top:'25px'}"
+                               placeholder="{{'loginPage.ChooseColumns' | translate}}"></p-multiSelect>
+            </div>
         </ng-template>
         <ng-template pTemplate="colgroup" let-columns>
             <colgroup>
@@ -76,12 +105,12 @@
                 </td>
             </tr>
         </ng-template>
-        <ng-template pTemplate="emptymessage">
-            <tr>
-                <td colspan="6">No customers found.</td>
+        <ng-template pTemplate="emptymessage"  >
+            <tr  >
+                <td [colSpan]="_selectedColumns.length" >No customers found.</td>
             </tr>
         </ng-template>
-    </p-table>
+    </p-table></div>
     <!--
     <p-confirmDialog [style]="{width: '30vw'}" [baseZIndex]="10000"></p-confirmDialog>
     <div class="button-panel">

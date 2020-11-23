@@ -4,8 +4,17 @@ import {TableDataService} from "./tableData.service";
 import {ConfirmationService, SortEvent} from 'primeng/api';
 import {Router} from "@angular/router";
 import {CreateAddComponent} from "./create-add/create-add.component";
-import { Table } from 'primeng/table';
+import {Table} from 'primeng/table';
 import {Order} from "../orders-page/orders";
+import {TableOrderResponse} from "../Service/table-order-response";
+import {OrderService} from "../orders-page/order.service";
+import {FilterService} from "../filters/filter.service";
+import {ApiDataServiceService} from "../Service/api-data-service.service";
+import * as FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
+
+const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+const EXCEL_EXTENSION = '.xlsx';
 
 @Component({
     selector: 'app-table-page',
@@ -18,14 +27,30 @@ export class TablePageComponent implements OnInit {
     @Input() startData: TableData[]
     @Input() mainColumn: any[]
     @Input() title: string
-    @Input() dynamicColumns : string=''
+    @Input() dynamicColumns: string = ''
     cols: any[];
-    selectRow: any={}
+    selectRow: any = {}
     inputErr = false
+    data: TableOrderResponse
     columns: any[];
     loading: boolean = false;
     _selectedColumns: any[];
+    ordersResponse = null
 
+    display: boolean = false;
+
+    showDialog() {
+        this.display = true;
+    }
+
+    downloadExel() {
+        console.log(this.tableDataService.mainData)
+        const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.tableDataService.mainData);
+        let wb = XLSX.utils.book_new()
+        XLSX.utils.book_append_sheet(wb, worksheet, 'blank')
+        XLSX.writeFile(wb, 'exmp' + '.xlsx') // name of the file is 'book.xlsx'
+
+    }
 
 
     @Input() get selectedColumns(): any[] {
@@ -34,13 +59,81 @@ export class TablePageComponent implements OnInit {
 
     set selectedColumns(val: any[]) {
         //restore original order
-       // this._selectedColumns = this.cols.filter(col => val.includes(col));
+        // this._selectedColumns = this.cols.filter(col => val.includes(col));
+    }
+
+    async updateData() {
+        this.data = await this.apiService.post<TableOrderResponse>(
+            'getCroppedOrders', this.filterService.getOrderRequest()
+        );
+
+        let mainColumn = []
+        this.data.columnTables.map(elem => {
+            mainColumn.push(
+                {
+                    field: elem.nameColumn,
+                    header: elem.nameColumn,
+                    width: elem.width + '%'
+                }
+            )
+        })
+        let regexp = new RegExp('^[1-9]\d{0,2}$');
+        let tableBody = []
+        this.data.ordersTableBody.map(row => {
+            let tableRow: any = {}
+            row.rowData.map(cell => {
+                if (cell.cellData.indexOf('thWOrders.orderClosed') !== -1) {
+                    tableRow[cell.cellName] = cell.cellData.substr(22, 3)
+                } else if (cell.cellName === 'Код' || cell.cellName === 'Борг' || cell.cellName === 'Разом'
+                    || cell.cellName === 'З/ч' || cell.cellName === 'Роб.') {
+                    tableRow[cell.cellName] = Number(cell.cellData)
+                } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
+                    let data = new Date(cell.cellData)
+                    tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth() + '.' + data.getFullYear();
+                } else {
+                    tableRow[cell.cellName] = cell.cellData
+                }
+            })
+            tableBody.push(tableRow)
+        })
+        let tableRowPattern: any = {}
+
+        console.log(this.data)
+        if (this.data.ordersTableBody.length !== 0) {
+            this.data.ordersTableBody[0].rowData.map(
+                cell => {
+                    if (cell.cellName === 'Close') {
+                        tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3)
+
+                    } else {
+                        tableRowPattern[cell.cellName] = cell.cellData;
+                    }
+                }
+            )
+        }
+
+
+        this.tableDataService.setMainData(tableBody)
+        this.tableDataService.setTablePatternRow(tableRowPattern)
+
+        this.tableDataService.setStartData(this.startData)
+        this.cols = this.mainColumn.slice()
+        this.columns = this.cols
+        this._selectedColumns = this.cols;
+
+        if (this.dynamicColumns !== '') {
+            this.tableDataService.addColumnText = this.dynamicColumns
+            this.setColumn()
+        }
     }
 
     constructor(public tableDataService: TableDataService,
+                public orderService: OrderService,
+                public filterService: FilterService,
+                public apiService: ApiDataServiceService,
                 private confirmationService: ConfirmationService,
                 private _router: Router) {
-        this.selectRow=this.tableDataService.getTablePatternRow()
+        this.selectRow = this.tableDataService.getTablePatternRow()
 
     }
 
@@ -54,21 +147,23 @@ export class TablePageComponent implements OnInit {
                 this.tableDataService.deleteData(this.selectRow.id)
                 this.onSearch()
                 this.selectRow = {
-                    id:  -1 ,
+                    id: -1,
                     orderName: '',
-                    customerId:  null,
-                    date:  '',
+                    customerId: null,
+                    date: '',
                     jobsSum: '',
-                    componentsSum:  ''
+                    componentsSum: ''
                 }
             },
             reject: () => {
             }
         });
     }
+
     onRowSelect(event) {
-        this.selectRow=event.data
+        this.selectRow = event.data
     }
+
     changeData(): void {
         this.tableDataService.setChangeRow(this.selectRow)
         this.tableDataService.showUpdatePage = true
@@ -77,11 +172,11 @@ export class TablePageComponent implements OnInit {
     ngOnInit() {
         this.tableDataService.setStartData(this.startData)
         this.cols = this.mainColumn.slice()
-        this.columns=this.cols
+        this.columns = this.cols
         this._selectedColumns = this.cols;
 
         if (this.dynamicColumns !== '') {
-            this.tableDataService.addColumnText=this.dynamicColumns
+            this.tableDataService.addColumnText = this.dynamicColumns
             this.setColumn()
         }
 
@@ -129,16 +224,16 @@ export class TablePageComponent implements OnInit {
                 result = 1;
             else if (value1 == null && value2 == null)
                 result = 0;
-            else if (value1.length>3)
-                result=value1.localeCompare(value2)
-            else if (value1.length>2 && value2.length<3)
+            else if (value1.length > 3)
+                result = value1.localeCompare(value2)
+            else if (value1.length > 2 && value2.length < 3)
                 result = 1;
-            else if (value2.length>2 && value1.length<3)
+            else if (value2.length > 2 && value1.length < 3)
                 result = -1
-            else if (value2.length>3 && value1.length>3)
-                result=value1.localeCompare(value2)
+            else if (value2.length > 3 && value1.length > 3)
+                result = value1.localeCompare(value2)
 
-            return  result;
+            return result;
         });
     }
 

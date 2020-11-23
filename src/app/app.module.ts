@@ -30,6 +30,15 @@ import {
     TranslateModule
 } from "@ngx-translate/core";
 import {NgtUniversalModule} from '@ng-toolkit/universal';
+import { DateFilterComponent } from './filters/date-filter/date-filter.component';
+import { StateFilterComponent } from './filters/state-filter/state-filter.component';
+import { PayedFilterComponent } from './filters/payed-filter/payed-filter.component';
+import { SubstringFilterComponent } from './filters/substring-filter/substring-filter.component';
+import {DialogModule} from 'primeng/dialog';
+import {BlockUIModule} from 'primeng/blockui';
+import { PeriodDateFilterComponent } from './filters/period-date-filter/period-date-filter.component';
+import * as alasql from 'alasql';
+import {RadioButtonModule} from 'primeng/radiobutton';
 
 
 // @ts-ignore
@@ -38,6 +47,7 @@ import {NgtUniversalModule} from '@ng-toolkit/universal';
     imports: [
         CommonModule,
         NgtUniversalModule,
+        DialogModule,
         TranslateModule.forChild(),
         TransferHttpCacheModule,
         ListboxModule,
@@ -45,6 +55,7 @@ import {NgtUniversalModule} from '@ng-toolkit/universal';
         PasswordModule,
         SidebarModule,
         InputTextModule,
+        RadioButtonModule,
         DropdownModule,
         BrowserAnimationsModule,
         MenubarModule,
@@ -57,8 +68,7 @@ import {NgtUniversalModule} from '@ng-toolkit/universal';
         FormsModule,
         TabMenuModule,
         CalendarModule,
-
-
+        BlockUIModule
 
     ],
 
@@ -70,7 +80,12 @@ import {NgtUniversalModule} from '@ng-toolkit/universal';
         OrdersComponent,
         LoginComponent,
         FilterBoxComponent,
-        MenuBarComponent],
+        MenuBarComponent,
+        DateFilterComponent,
+        StateFilterComponent,
+        PayedFilterComponent,
+        SubstringFilterComponent,
+        PeriodDateFilterComponent],
     providers: []
 })
 

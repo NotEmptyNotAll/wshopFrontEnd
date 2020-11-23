@@ -1,10 +1,11 @@
 thead tr th {
     position: relative;
 }
+
 .table-style {
-    min-height: 680px  !important;
+    min-height: 680px !important;
     background: #f4f4f4 !important;
-    border-color: #f4f4f4  !important;
+    border-color: #f4f4f4 !important;
     font-size: 3px !important;
 }
 
@@ -50,22 +51,27 @@ p-table {
     text-align: left;
     width: 98vw;
 }
+
 .shadow {
-    box-shadow: 0 0 5px rgba(0,0,0,0.5); /* Параметры тени */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Параметры тени */
 }
+
 .shadow:hover {
-    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Параметры тени */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Параметры тени */
 }
-.box-item{
+
+.box-item {
     border-radius: 1px;
     padding: 20px;
     margin: 0px 50px 20px 50px;
 }
-.box{
+
+.box {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .err-input {
     font: 1.2em "Fira Sans", sans-serif;
     color: white;
@@ -82,7 +88,6 @@ p-table {
 }
 
 
-
 .button-search {
     background-color: grey;
 
@@ -95,29 +100,49 @@ p-table {
     align-items: center;
 }
 
-.button-panel button{
+.button-panel button {
     font-size: 1em;
     padding: 5px;
-    margin: 15px;}
-
-.button-create{
-    width: 100px;
-    background:#409EFF;
-}
-.button-delete{
-    width: 100px;
-    background:#F56C6C;
+    margin: 15px;
 }
 
-.button-add{
+.button-create {
     width: 100px;
-    background:#67C23A;
+    background: #409EFF;
 }
+
+.button-delete {
+    width: 100px;
+    background: #F56C6C;
+}
+
+.button-add {
+    width: 100px;
+    background: #67C23A;
+}
+
 .button:hover {
     opacity: 1
 }
+.content-dialog{
+    display: flex;
+    flex-direction: column;
+}
+.filter-panel {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
 
-
+    flex-direction: row;
+    width: auto;
+    min-height: 300px;
+    height: auto;
+}
+.filter{
+    display: inline-flex;
+    margin: 20px;
+}
 .button {
     border: none;
     color: white;
@@ -133,4 +158,13 @@ p-table {
     border-radius: 3px;
 }
 
+.footer-dialog{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-self: flex-end;
 
+    width: 100%;
+    height: 40px;
+}

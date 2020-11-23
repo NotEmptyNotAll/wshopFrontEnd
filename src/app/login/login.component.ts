@@ -6,6 +6,9 @@ import {User} from "../Service/User";
 import {OrderService} from "../orders-page/order.service";
 import {Router} from '@angular/router';
 import {TableOrderResponse} from "../Service/table-order-response";
+import {FilterService} from "../filters/filter.service";
+import {OrderRequest} from "../filters/order.request";
+import * as moment from 'moment';
 
 interface City {
     name: string,
@@ -22,6 +25,7 @@ export class LoginComponent implements OnInit {
 
     selectedUser: User;
     userIsSelected:boolean=false
+    orderRequest:OrderRequest;
 
     users: User[];
 
@@ -36,9 +40,10 @@ export class LoginComponent implements OnInit {
 
     constructor(public apiService: ApiDataServiceService,
                 public orderService: OrderService,
+                public filterService: FilterService,
                 private router: Router) {
         this.getUsers()
-
+        this.orderRequest= this.filterService.getOrderRequest()
     }
 
     cancel(){
@@ -49,10 +54,15 @@ export class LoginComponent implements OnInit {
     async login() {
         this.selectedUser.password = this.password;
         this.apiService.setUserData(this.selectedUser)
-        this.ordersResponse = await this.apiService.post<TableOrderResponse>(
-            'getCroppedOrders', {user: this.selectedUser,lang:this.apiService.getLang()}
+        console.log(this.orderRequest)
+        this.orderRequest.lang=this.apiService.getLang();
+        this.orderRequest.user=this.selectedUser
+        this.filterService.setOrderRequest(this.orderRequest)
+              this.ordersResponse = await this.apiService.post<TableOrderResponse>(
+            'getCroppedOrders', this.filterService.getOrderRequest()
         );
         this.orderService.setOrderResponse(this.ordersResponse)
+
 
         if (this.ordersResponse.ordersTableBody.length != 0) {
             this.orderService.setUserValidate(true)

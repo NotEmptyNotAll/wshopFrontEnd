@@ -1,0 +1,7 @@
+.filter-component {
+    width: auto;
+    height: auto;
+    background: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+}
