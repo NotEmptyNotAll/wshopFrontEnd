@@ -37,7 +37,6 @@ export class CustomerFilterComponent implements OnInit {
         } else {
             this.customer.id = null
         }
-        alert(this.customer.id)
         this.filterService.setOrderRequest(this.orderRequest)
 
         //this.onSuggest.emit();

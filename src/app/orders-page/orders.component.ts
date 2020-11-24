@@ -88,7 +88,7 @@ export class OrdersComponent implements OnInit {
                 {
                     field: elem.nameColumn,
                     header: elem.nameColumn,
-                    width: elem.width + '%'
+                    width: elem.width<100?elem.width+elem.nameColumn.length*8:elem.width+elem.nameColumn.length*5
                 }
             )
         })

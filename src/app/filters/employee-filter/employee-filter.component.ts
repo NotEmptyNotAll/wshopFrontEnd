@@ -36,7 +36,7 @@ export class EmployeeFilterComponent implements OnInit {
       this.orderRequest.employeeId = this.employee.id
     } else {
       this.orderRequest.employeeId = null
-    }        alert(this.employee.id)
+    }
 
     this.filterService.setOrderRequest(this.orderRequest)
 

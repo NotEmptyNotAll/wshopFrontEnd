@@ -85,9 +85,10 @@
                                    placeholder="{{'loginPage.ChooseColumns' | translate}}"></p-multiSelect>
                 </div>
             </ng-template>
-            <ng-template pTemplate="colgroup" let-columns>
+            <ng-template pTemplate="colgroup">
                 <colgroup>
-                    <col *ngFor="let col of columns" [style.width]="col.width">
+                    <col style="width:30px">
+                    <col *ngFor="let col of columns" style="{{'width:'+col.width+'px'}}">
                 </colgroup>
             </ng-template>
             <ng-template pTemplate="header" let-columns>

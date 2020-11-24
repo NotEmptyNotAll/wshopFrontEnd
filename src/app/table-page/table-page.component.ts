@@ -73,7 +73,7 @@ export class TablePageComponent implements OnInit {
                 {
                     field: elem.nameColumn,
                     header: elem.nameColumn,
-                    width: elem.width + '%'
+                    width: elem.width<100?elem.width+elem.nameColumn.length*8:elem.width+elem.nameColumn.length*5
                 }
             )
         })
@@ -175,6 +175,7 @@ export class TablePageComponent implements OnInit {
         this.columns = this.cols
         this._selectedColumns = this.cols;
 
+        console.log(this.columns)
         if (this.dynamicColumns !== '') {
             this.tableDataService.addColumnText = this.dynamicColumns
             this.setColumn()
@@ -192,10 +193,10 @@ export class TablePageComponent implements OnInit {
                     if (item !== '') {
                         if (index >= this.cols.length - 2) {
                             this.cols.push(
-                                {field: 'temp' + item, header: item, width: item + '%'},
+                                {field: 'temp' + item, header: item, width: item },
                             )
-                        } else if (this.cols[index + 2].width !== item + '%') {
-                            this.cols[index + 2].width = item + '%'
+                        } else if (this.cols[index + 2].width !== item ) {
+                            this.cols[index + 2].width = item
                             this.cols[index + 2].header = item
                         }
                     }
