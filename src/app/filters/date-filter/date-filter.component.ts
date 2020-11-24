@@ -13,20 +13,22 @@ export class DateFilterComponent implements OnInit {
   private dateFrom = null;
   private orderRequest: OrderRequest
   private isCloseDate: boolean = false
-  private menuChange: number = 1
+  menuChange: number = 1
   constructor(public filterService: FilterService) { }
 
   ngOnInit(): void {
+    this.orderRequest = this.filterService.getOrderRequest()
+
   }
 
   changePeriod() {
-
-    this.orderRequest = this.filterService.getOrderRequest()
-
     this.orderRequest.closeDate = this.isCloseDate
-    this.orderRequest.dateFrom = this.dateFrom;
-    this.orderRequest.dateTo = this.dateTo;
-    //  moment().utc().format("YYYY-MM-DD")
+    if(this.dateFrom!=null){
+      this.orderRequest.dateFrom = moment(this.dateFrom).utc().format("YYYY-MM-DD")
+    }
+    if(this.dateTo!=null){
+      this.orderRequest.dateTo = moment(this.dateTo).utc().format("YYYY-MM-DD")
+    }
     this.filterService.setOrderRequest(this.orderRequest)
   }
 

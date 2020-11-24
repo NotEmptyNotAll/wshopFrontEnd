@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
 
 
     selectedUser: User;
-    userIsSelected:boolean=false
-    orderRequest:OrderRequest;
+    userIsSelected: boolean = false
+    orderRequest: OrderRequest;
 
     users: User[];
 
@@ -43,22 +43,25 @@ export class LoginComponent implements OnInit {
                 public filterService: FilterService,
                 private router: Router) {
         this.getUsers()
-        this.orderRequest= this.filterService.getOrderRequest()
+        this.orderRequest = this.filterService.getOrderRequest()
     }
 
-    cancel(){
-        this.selectedUser=null;
-        this.password="";
+    cancel() {
+        this.selectedUser = null;
+        this.password = "";
+
     }
+
+
 
     async login() {
         this.selectedUser.password = this.password;
         this.apiService.setUserData(this.selectedUser)
         console.log(this.orderRequest)
-        this.orderRequest.lang=this.apiService.getLang();
-        this.orderRequest.user=this.selectedUser
+        this.orderRequest.lang = this.apiService.getLang();
+        this.orderRequest.user = this.selectedUser
         this.filterService.setOrderRequest(this.orderRequest)
-              this.ordersResponse = await this.apiService.post<TableOrderResponse>(
+        this.ordersResponse = await this.apiService.post<TableOrderResponse>(
             'getCroppedOrders', this.filterService.getOrderRequest()
         );
         this.orderService.setOrderResponse(this.ordersResponse)

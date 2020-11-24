@@ -8,7 +8,7 @@ import {User} from "../Service/User";
 export class FilterService {
 
 
-   private orderRequest: OrderRequest={
+    orderRequest: OrderRequest={
        dateFrom: null,
        dateTo: null,
        searchString: null,

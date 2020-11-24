@@ -1,1 +1,11 @@
-<p>employee-filter works!</p>
+<div class="filter-component">
+    <h3 class="title" >{{'loginPage.datePeriod' | translate}}</h3>
+    <p-dropdown  style="margin: 5px 5px 10px;position: relative;bottom: 20px"
+                 (onChange)="changeState()"  [showClear]="true"  [filter]="true"
+                 [placeholder]="'loginPage.SelectName' | translate"
+
+                 [options]="employees" [(ngModel)]="employee" optionLabel="name"></p-dropdown>
+
+
+
+</div>

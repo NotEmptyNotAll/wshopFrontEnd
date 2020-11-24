@@ -3,7 +3,8 @@ thead tr th {
 }
 
 .table-style {
-    min-height: 680px !important;
+    width: 100%!important;
+    height: 100%!important;
     background: #f4f4f4 !important;
     border-color: #f4f4f4 !important;
     font-size: 3px !important;
@@ -131,12 +132,12 @@ p-table {
 .filter-panel {
     display: inline-flex;
     flex-wrap: wrap;
-    align-content: center;
     justify-content: center;
 
     flex-direction: row;
     width: auto;
-    min-height: 300px;
+    min-height: 600px;
+    min-width: 200px;
     height: auto;
 }
 .filter{

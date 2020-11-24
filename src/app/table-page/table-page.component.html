@@ -19,101 +19,115 @@
 
     </div>
     -->
-    <p-dialog header="{{'loginPage.filters' | translate}}" [style]="{minWidth:'270px',minHeight:'300px'}"
-              [(visible)]="display" [resizable]="true"  responsive="false">
-            <div class="filter-panel">
-                <app-date-filter class="filter"></app-date-filter>
-                <app-payed-filter class="filter"></app-payed-filter>
+    <p-dialog header="{{'loginPage.filters' | translate}}" [style]="{minWidth:'400px',minHeight:'600px'}"
+              [(visible)]="display" [resizable]="true" responsive="false">
+        <div class="filter-panel">
+            <app-date-filter class="filter"></app-date-filter>
+            <app-payed-filter class="filter"></app-payed-filter>
+            <app-customer-filter class="filter"></app-customer-filter>
+            <app-employee-filter class="filter"></app-employee-filter>
+        </div>
 
 
-            </div>
+        <p-footer class="footer-dialog">
+            <button type="button" (click)="display=false" style="margin-right: 15%;margin-left:10%" pButton
+                    class="ui-button-danger"
+                    [label]="'loginPage.cancel' | translate" icon="pi pi-times" label="delete"></button>
+            <button (click)="updateData()" type="button" style="margin-left:15%;margin-right:10% " pButton
+                    icon="pi pi-check"
+                    [label]="'loginPage.confirm' | translate"></button>
 
-
-        <p-footer class="footer-dialog" >
-            <button type="button"  (click)="display=false" style="margin-right: 15%;margin-left:10%" pButton class="ui-button-danger"
-                                                 [label]="'loginPage.cancel' | translate"  icon="pi pi-times" label="delete"></button>
-        <button (click)="updateData()" type="button" style="margin-left:15%;margin-right:10% " pButton icon="pi pi-check"
-                [label]="'loginPage.confirm' | translate"></button>
-
-    </p-footer>
+        </p-footer>
     </p-dialog>
     <!--  currentPageReportTemplate="{{'loginPage.TableNumLabel' | translate}}"
                [rows]="100" [showCurrentPageReport]="true" [rowsPerPageOptions]="[20,30,50,100]"
               [paginator]="true" -->
     <div style="height: 85vh;background: #f4f4f4;width: 100%">
-    <p-table
-            class="table-style"
-             [loading]="loading"
-             [columns]="_selectedColumns" [value]="tableDataService.mainData" [scrollable]="true"
-             scrollHeight="flex"
-             style="border-color: #f4f4f4"
-             [style]="{borderColor:'#f4f4f4'}"
-             [resizableColumns]="true" selectionMode="single"
-             dataKey="id">
+        <p-table
+                [reorderableColumns]="true"
+                class="table-style"
+                [loading]="loading"
+                [columns]="_selectedColumns" [value]="tableDataService.mainData" [scrollable]="true"
+                scrollHeight="flex"
+                style="border-color: #f4f4f4"
+                [style]="{borderColor:'#f4f4f4'}"
+                [resizableColumns]="true" selectionMode="single"
+                dataKey="id">
 
-        <ng-template pTemplate="caption" style="border-color: #f4f4f4">
-            <div class="table-header" style="height: 35px" [style]="{borderColor:'#f4f4f4'}">
-                <button type="button" (click)="showDialog()"
-                        class="button button-search"
-                        style="position: absolute; right: 850px;height: 35px;font-size: 12px;margin: 10px;top: 0px"
-                >{{'loginPage.filters' | translate}}</button>
-                <app-period-date-filter (onSuggest)="updateData()" style="right: 420px" class="fast-filter"></app-period-date-filter>
-                <app-state-filter style="right: 620px" (onSuggest)="updateData()" class="fast-filter"></app-state-filter>
-                <app-substring-filter style="right: 200px"  (onSuggest)="updateData()" class="fast-filter"></app-substring-filter>
-                <button type="button" (click)="downloadExel()"
-                        class="button button-search"
-                        style="position: absolute; right: 85px;height: 35px;font-size: 12px;margin: 10px;top: 0px"
-                >exel</button>
+            <ng-template pTemplate="caption" style="border-color: #f4f4f4">
+                <div class="table-header" style="height: 35px" [style]="{borderColor:'#f4f4f4'}">
+                    <button type="button" (click)="showDialog()"
+                            class="button button-search"
+                            style="position: absolute; right: 850px;height: 35px;font-size: 12px;margin: 10px;top: 0px"
+                    >{{'loginPage.filters' | translate}}</button>
+                    <app-period-date-filter (onSuggest)="updateData()" style="right: 420px"
+                                            class="fast-filter"></app-period-date-filter>
+                    <app-state-filter style="right: 620px" (onSuggest)="updateData()"
+                                      class="fast-filter"></app-state-filter>
+                    <app-substring-filter style="right: 200px" (onSuggest)="updateData()"
+                                          class="fast-filter"></app-substring-filter>
+                    <button type="button" (click)="downloadExel()"
+                            class="button button-search"
+                            style="position: absolute; right: 85px;height: 35px;font-size: 12px;margin: 10px;top: 0px"
+                    >exel
+                    </button>
 
-                <span style="position: absolute;left: 10px;">
+                    <span style="position: absolute;left: 10px;">
                     <h3>{{'loginPage.listOrders' | translate}}</h3></span>
-                <p-multiSelect [options]="columns" [(ngModel)]="_selectedColumns" optionLabel="header"
-                               [showHeader]="false"
-                               id="multisect"
-                               selectedItemsLabel=""
-                               dropdownIcon="pi pi-microsoft"
-                               scrollHeight="700px"
+                    <p-multiSelect [options]="columns" [(ngModel)]="_selectedColumns" optionLabel="header"
+                                   [showHeader]="false"
+                                   id="multisect"
+                                   selectedItemsLabel=""
+                                   dropdownIcon="pi pi-microsoft"
+                                   scrollHeight="700px"
 
-                               [style]="{width:'0px',height:'0px',fontSize:'2rem', position:'absolute', right:'20px',top:'27px'}"
-                               placeholder="{{'loginPage.ChooseColumns' | translate}}"></p-multiSelect>
-            </div>
-        </ng-template>
-        <ng-template pTemplate="colgroup" let-columns>
-            <colgroup>
-                <col *ngFor="let col of columns" [style.width]="col.width">
-            </colgroup>
-        </ng-template>
-        <ng-template pTemplate="header" let-columns>
-            <tr style="border-color: #f4f4f4" [style]="{borderColor:'#f4f4f4'}">
-                <th *ngFor="let col of columns" pResizableColumn [pSortableColumn]="col.header"
-                    style="border-color: #f4f4f4" [style]="{borderColor:'#f4f4f4', fontSize:'12px'}">
-                    {{col.header}}
-                    <p-sortIcon [field]="col.header"></p-sortIcon>
-                </th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rowData let-columns="columns">
-            <tr>
-                <td *ngFor="let col of columns" class="ui-resizable-column" pResizableColumn
-                    [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
+                                   [style]="{width:'0px',height:'0px',fontSize:'2rem', position:'absolute', right:'20px',top:'27px'}"
+                                   placeholder="{{'loginPage.ChooseColumns' | translate}}"></p-multiSelect>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="colgroup" let-columns>
+                <colgroup>
+                    <col *ngFor="let col of columns" [style.width]="col.width">
+                </colgroup>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr style="border-color: #f4f4f4" [style]="{borderColor:'#f4f4f4'}">
+                    <th style="width:2rem;border-color: #f4f4f4"
+                        [style]="{borderColor:'#f4f4f4', fontSize:'12px'}"></th>
+
+                    <th *ngFor="let col of columns" pResizableColumn [pSortableColumn]="col.header"
+                        style="border-color: #f4f4f4" [style]="{borderColor:'#f4f4f4', fontSize:'12px'}">
+                        {{col.header}}
+                        <p-sortIcon [field]="col.header"></p-sortIcon>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
+                <tr [pReorderableRow]="index">
+                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
+                        <span class="pi pi-bars" pReorderableRowHandle></span>
+                    </td>
+                    <td *ngFor="let col of columns" class="ui-resizable-column" pResizableColumn
+                        [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
                     <span *ngIf="rowData[col.field]==='yes' || rowData[col.field]==='1'">
                         <i class="pi pi-check"></i>
                         </span>
-                    <span *ngIf="rowData[col.field]==='no' || rowData[col.field]==='0'"></span>
-                    <span *ngIf="!(rowData[col.field]==='yes' || rowData[col.field]==='1') && !(rowData[col.field]==='no' || rowData[col.field]==='0')">
+                        <span *ngIf="rowData[col.field]==='no' || rowData[col.field]==='0'"></span>
+                        <span *ngIf="!(rowData[col.field]==='yes' || rowData[col.field]==='1') && !(rowData[col.field]==='no' || rowData[col.field]==='0')">
                                             {{rowData[col.field]}}
 
                     </span>
 
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="emptymessage"  >
-            <tr  >
-                <td [colSpan]="_selectedColumns.length" >No customers found.</td>
-            </tr>
-        </ng-template>
-    </p-table></div>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td [colSpan]="_selectedColumns.length">No customers found.</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
     <!--
     <p-confirmDialog [style]="{width: '30vw'}" [baseZIndex]="10000"></p-confirmDialog>
     <div class="button-panel">
