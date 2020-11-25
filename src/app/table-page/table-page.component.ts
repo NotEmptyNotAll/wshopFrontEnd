@@ -10,6 +10,7 @@ import {TableOrderResponse} from "../Service/table-order-response";
 import {OrderService} from "../orders-page/order.service";
 import {FilterService} from "../filters/filter.service";
 import {ApiDataServiceService} from "../Service/api-data-service.service";
+
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 
@@ -52,7 +53,21 @@ export class TablePageComponent implements OnInit {
 
     }
 
-
+    confirm(event,rowData) {
+        console.log(rowData)
+        this.confirmationService.confirm({
+            target: event.target,
+            message: rowData.Comment,
+            icon: 'pi pi-exclamation-triangle',
+            rejectVisible:false,
+            accept: () => {
+                //confirm action
+            },
+            reject: () => {
+                //reject action
+            }
+        });
+    }
     @Input() get selectedColumns(): any[] {
         return this._selectedColumns;
     }

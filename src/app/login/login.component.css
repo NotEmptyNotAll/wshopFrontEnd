@@ -43,3 +43,23 @@ button{
 .login-form >div{
    padding: 20px;
 }
+
+.content-dialog{
+    display: flex;
+    flex-direction: column;
+}
+.filter-panel {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    flex-direction: row;
+    width: auto;
+    min-height: 600px;
+    min-width: 200px;
+    height: auto;
+}
+.filter{
+    display: inline-flex;
+    margin: 20px;
+}

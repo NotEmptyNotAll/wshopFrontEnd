@@ -22,7 +22,7 @@ interface City {
 })
 export class LoginComponent implements OnInit {
 
-
+    display:boolean=false
     selectedUser: User;
     userIsSelected: boolean = false
     orderRequest: OrderRequest;
@@ -75,6 +75,10 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit(): void {
+    }
+
+    showDialog() {
+        this.display = true;
     }
 
 }

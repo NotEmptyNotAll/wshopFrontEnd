@@ -15,7 +15,12 @@
 
 <!--    </div>-->
 <!--</div>-->
-<p-dropdown (onClick)="changePeriod()"
-            [options]="periods" [(ngModel)]="period" placeholder="{{'loginPage.datePeriod' | translate}}" optionLabel="name"  [showClear]="true">
+<div class="p-fluid  p-grid p-formgrid">
+    <div class="p-field p-col-36 p-md-12">
+        <p-dropdown (onClick)="changePeriod()"
+                                                      [options]="periods" [(ngModel)]="period" placeholder="{{'loginPage.datePeriod' | translate}}" optionLabel="name"  [showClear]="true">
 
-</p-dropdown>
+    </p-dropdown>
+    </div>
+</div>
+

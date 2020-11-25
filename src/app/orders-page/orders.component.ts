@@ -82,6 +82,8 @@ export class OrdersComponent implements OnInit {
 
         // this.data = await this.apiService.get<Order[]>('getCroppedOrders')
         this.data = this.orderService.getOrderResponse()
+        console.log('///////////////////////////')
+        console.log(this.data)
         this.mainColumn = []
         this.data.columnTables.map(elem => {
             this.mainColumn.push(

@@ -1,32 +1,38 @@
 <div class="filter-component">
-    <h3 class="title">{{'loginPage.datePeriod' | translate}}</h3>
+    <h3 class="title">дата</h3>
+    <div style="position: relative; top:-20px">
 
-    <div style="height:30px;position: relative;top:-30px; display: flex;flex-direction: row;justify-content: center;align-content: center">
+    <div style="margin-bottom:3%; display: flex;flex-direction: column;justify-content: center;align-content: center">
 
 
+        <div style="display: flex;flex-direction: row;justify-content: center;align-content: center" >
             <p-radioButton name="groupname1" inputId="val4" [value]="1"
-                           [(ngModel)]="menuChange" style="margin-right: 5%;margin-left: 5%"></p-radioButton>
+                           [(ngModel)]="menuChange" style="margin-right:5%;margin-left:5%;"></p-radioButton>
             <label for="val4">днi</label>
-            <p-radioButton name="groupname1" [value]="2" inputId="val5"
-                           [(ngModel)]="menuChange" style="margin-right: 5%;margin-left: 5%"></p-radioButton>
+            <p-radioButton  name="groupname1" [value]="2" inputId="val5"
+                           [(ngModel)]="menuChange" style="margin-right:5%;margin-left:5%;"></p-radioButton>
             <label for="val5">мiсяцi</label>
-            <div style="position: relative;height:auto;width: 1px;   border-left: thick solid lightgray; margin-right: 5%;margin-left: 5%">  </div>
-        <p-radioButton name="groupname" inputId="val1" [value]="false"
-                       [(ngModel)]="isCloseDate" style="margin-right: 5%"></p-radioButton>
-        <label for="val1">відкр.</label>
-        <p-radioButton name="groupname" [value]="true" inputId="val2"
-                       [(ngModel)]="isCloseDate" style="margin-right: 5%;margin-left: 5%"></p-radioButton>
-        <label for="val2">закр.</label>
+        </div>
     </div>
 
-    <div style="position: relative;top:-30px;display: flex;flex-direction: row;justify-content: center;width: auto">
-        <p-calendar (click)="changePeriod()" [(ngModel)]="dateFrom" *ngIf="menuChange===1" dateFormat="yy-mm-dd"
-                    style="margin:5% "></p-calendar>
-        <p-calendar (click)="changePeriod()" [(ngModel)]="dateTo" *ngIf="menuChange===1" dateFormat="yy-mm-dd"
-                    style="margin:5% "></p-calendar>
-        <p-calendar (click)="changePeriod()" [(ngModel)]="dateFrom" *ngIf="menuChange===2" view="month"
-                    dateFormat="yy-mm-dd" style="margin:5% "></p-calendar>
-        <p-calendar (click)="changePeriod()" [(ngModel)]="dateTo" *ngIf="menuChange===2" view="month"
-                     dateFormat="yy-mm-dd" style="margin:5% "></p-calendar>
+    <div style="position:relative;left:12px;display: flex; flex-direction: column;justify-content: center;width: 100%;align-content: center">
+        <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder="дата від" (click)="changePeriod()" [(ngModel)]="dateFrom" *ngIf="menuChange===1" dateFormat="yy-mm-dd"
+                  ></p-calendar>
+        <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder="дата до" (click)="changePeriod()" [(ngModel)]="dateTo" *ngIf="menuChange===1" dateFormat="yy-mm-dd"
+                    ></p-calendar>
+        <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder="дата від"  (click)="changePeriod()" [(ngModel)]="dateFrom" *ngIf="menuChange===2" view="month"
+                    dateFormat="yy-mm-dd" ></p-calendar>
+        <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder="дата до" (click)="changePeriod()" [(ngModel)]="dateTo" *ngIf="menuChange===2" view="month"
+                     dateFormat="yy-mm-dd" ></p-calendar>
+    </div>
+    <div style="margin-bottom:3%;display: flex;flex-direction: row;justify-content: center;align-content: center">
+
+        <p-radioButton name="groupname" inputId="val1" [value]="false"
+                       [(ngModel)]="isCloseDate" style="margin-right:5%;margin-left:5%"></p-radioButton>
+        <label for="val1">відкр.</label>
+        <p-radioButton name="groupname" [value]="true" inputId="val2"
+                       [(ngModel)]="isCloseDate" style="margin-right:5%;margin-left:5%"></p-radioButton>
+        <label for="val2">закр.</label>
+    </div>
     </div>
 </div>

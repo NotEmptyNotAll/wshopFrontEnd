@@ -11,7 +11,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {TablePageComponent} from './table-page/table-page.component';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {MessagesModule} from 'primeng/messages';
-import {CalendarModule, TabMenuModule} from "primeng";
+import {TabMenuModule} from 'primeng/tabmenu';
+import {CalendarModule} from 'primeng/calendar';
 import {MenubarModule} from 'primeng/menubar';
 import {MonthsPageComponent} from './months-page/months-page.component';
 import {RegionPageComponent} from './region-page/region-page.component';
@@ -41,7 +42,8 @@ import * as alasql from 'alasql';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import { CustomerFilterComponent } from './filters/customer-filter/customer-filter.component';
 import { EmployeeFilterComponent } from './filters/employee-filter/employee-filter.component';
-
+import { ConfirmPopupModule } from "primeng/confirmpopup";
+import { ConfirmationService, MessageService } from "primeng/api";
 
 // @ts-ignore
 // @ts-ignore
@@ -61,6 +63,7 @@ import { EmployeeFilterComponent } from './filters/employee-filter/employee-filt
         DropdownModule,
         BrowserAnimationsModule,
         MenubarModule,
+        ConfirmPopupModule,
         TableModule,
         ConfirmDialogModule,
         ButtonModule,
@@ -90,7 +93,7 @@ import { EmployeeFilterComponent } from './filters/employee-filter/employee-filt
         PeriodDateFilterComponent,
         CustomerFilterComponent,
         EmployeeFilterComponent],
-    providers: []
+    providers: [ConfirmationService, MessageService]
 })
 
 export class AppModule {

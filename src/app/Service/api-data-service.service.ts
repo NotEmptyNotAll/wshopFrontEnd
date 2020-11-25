@@ -4,8 +4,10 @@ import {AxiosInstance} from "axios";
 import {Order} from "../orders-page/orders";
 import {User} from "./User";
 
+// @ts-ignore
 @Injectable({
     providedIn: 'root'
+
 })
 export class ApiDataServiceService {
 
@@ -105,9 +107,11 @@ export class ApiDataServiceService {
 
     }
 
+
+
     private normalizeError(error: any) {
 
-        this.errorHandler.handleError(error);
+       // this.errorHandler.handleError(error);
 
         // NOTE: Since I'm not really dealing with a production API, this doesn't really
         // normalize anything (ie, this is not the focus of this demo).

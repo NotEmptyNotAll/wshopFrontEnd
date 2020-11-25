@@ -6,6 +6,10 @@
 
 
 <!--</div>-->
+<div class="p-fluid  p-grid p-formgrid">
+    <div class="p-field p-col-36 p-md-12">
 <p-dropdown
-             (onChange)="changeState()"   [showClear]="true" placeholder="стан"
+             (onChange)="changeState()"  style="width: 300px" [showClear]="true" placeholder="стан"
              [options]="states" [(ngModel)]="state" optionLabel="name"></p-dropdown>
+    </div>
+</div>

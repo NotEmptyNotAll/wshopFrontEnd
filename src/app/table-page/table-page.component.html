@@ -19,7 +19,8 @@
 
     </div>
     -->
-    <p-dialog header="{{'loginPage.filters' | translate}}" [style]="{minWidth:'400px',minHeight:'600px'}"
+    <p-dialog header="{{'loginPage.filters' | translate}}"
+              [style]="{minWidth:'400px',minHeight:'500px',width:'600px'}"
               [(visible)]="display" [resizable]="true" responsive="false">
         <div class="filter-panel">
             <app-date-filter class="filter"></app-date-filter>
@@ -39,6 +40,8 @@
 
         </p-footer>
     </p-dialog>
+    <p-confirmPopup ></p-confirmPopup>
+
     <!--  currentPageReportTemplate="{{'loginPage.TableNumLabel' | translate}}"
                [rows]="100" [showCurrentPageReport]="true" [rowsPerPageOptions]="[20,30,50,100]"
               [paginator]="true" -->
@@ -56,43 +59,69 @@
 
             <ng-template pTemplate="caption" style="border-color: #f4f4f4">
                 <div class="table-header" style="height: 35px" [style]="{borderColor:'#f4f4f4'}">
-                    <button type="button" (click)="showDialog()"
-                            class="button button-search"
-                            style="position: absolute; right: 850px;height: 35px;font-size: 12px;margin: 10px;top: 0px"
-                    >{{'loginPage.filters' | translate}}</button>
-                    <app-period-date-filter (onSuggest)="updateData()" style="right: 420px"
-                                            class="fast-filter"></app-period-date-filter>
-                    <app-state-filter style="right: 620px" (onSuggest)="updateData()"
-                                      class="fast-filter"></app-state-filter>
-                    <app-substring-filter style="right: 200px" (onSuggest)="updateData()"
-                                          class="fast-filter"></app-substring-filter>
-                    <button type="button" (click)="downloadExel()"
-                            class="button button-search"
-                            style="position: absolute; right: 85px;height: 35px;font-size: 12px;margin: 10px;top: 0px"
-                    >exel
-                    </button>
+                    <div class="p-d-flex p-flex-column p-flex-md-row">
+                        <div class="p-mb-2 p-mr-2" >
+                    <h3>{{'loginPage.listOrders' | translate}}</h3>
+                        </div>
 
-                    <span style="position: absolute;left: 10px;">
-                    <h3>{{'loginPage.listOrders' | translate}}</h3></span>
-                    <p-multiSelect [options]="columns" [(ngModel)]="_selectedColumns" optionLabel="header"
-                                   [showHeader]="false"
-                                   id="multisect"
-                                   selectedItemsLabel=""
-                                   dropdownIcon="pi pi-microsoft"
-                                   scrollHeight="700px"
+                        <div class="p-mb-6 p-mr-6" style="width: 60%">
+                        </div>
+                        <div class="p-mb-2 p-mr-2"  style=" position: relative;top:-15px">
+                            <button type="button" (click)="showDialog()"
+                                    class="button button-search"
+                            >{{'loginPage.filters' | translate}}</button>
 
-                                   [style]="{width:'0px',height:'0px',fontSize:'2rem', position:'absolute', right:'20px',top:'27px'}"
-                                   placeholder="{{'loginPage.ChooseColumns' | translate}}"></p-multiSelect>
+                        </div>
+                        <div class="p-mb-2 p-mr-2"  style="width: 300px; position: relative;top:-10px">
+                            <app-period-date-filter (onSuggest)="updateData()"
+                                                   ></app-period-date-filter>
+                        </div>
+                        <div class="p-mb-2 p-mr-2"  style="width: 300px; position: relative;top:-10px">
+                            <app-state-filter (onSuggest)="updateData()"
+                                            ></app-state-filter>
+                        </div>
+                        <div class="p-mb-2 p-mr-2"  style="width: 300px; position: relative;top:-10px">
+
+                            <app-substring-filter (onSuggest)="updateData()"
+                                                  ></app-substring-filter>
+                        </div>
+                        <div class="p-mb-2 p-mr-2" style=" position: relative;top:-15px">
+                            <button type="button" (click)="downloadExel()"
+                                    class="button button-search"
+                            >exel
+                            </button>
+
+                        </div>
+                        <div class="p-mb-2 p-mr-2"  style=" position: relative;top:20px;left: -10px">
+                            <p-multiSelect [options]="columns" [(ngModel)]="_selectedColumns" optionLabel="header"
+                                           [showHeader]="false"
+                                           id="multisect"
+                                           selectedItemsLabel=""
+                                           dropdownIcon="pi pi-microsoft"
+                                           scrollHeight="700px"
+
+                                           [style]="{width:'0px',height:'0px',fontSize:'3rem'}"
+                                           placeholder="{{'loginPage.ChooseColumns' | translate}}"></p-multiSelect>
+                        </div>
+                    </div>
+
+
+
+
+
                 </div>
             </ng-template>
             <ng-template pTemplate="colgroup">
                 <colgroup>
+                    <col style="width:30px">
                     <col style="width:30px">
                     <col *ngFor="let col of columns" style="{{'width:'+col.width+'px'}}">
                 </colgroup>
             </ng-template>
             <ng-template pTemplate="header" let-columns>
                 <tr style="border-color: #f4f4f4" [style]="{borderColor:'#f4f4f4'}">
+                    <th style="width:2rem;border-color: #f4f4f4"
+                        [style]="{borderColor:'#f4f4f4', fontSize:'12px'}"></th>
                     <th style="width:2rem;border-color: #f4f4f4"
                         [style]="{borderColor:'#f4f4f4', fontSize:'12px'}"></th>
 
@@ -108,6 +137,10 @@
                     <td [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
                         <span class="pi pi-bars" pReorderableRowHandle></span>
                     </td>
+                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px'}">
+                        <span *ngIf="rowData.Comment!==''" class="pi pi-info-circle" pReorderableRowHandle (click)="confirm($event,rowData)"></span>
+                    </td>
+
                     <td *ngFor="let col of columns" class="ui-resizable-column" pResizableColumn
                         [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
                     <span *ngIf="rowData[col.field]==='yes' || rowData[col.field]==='1'">
