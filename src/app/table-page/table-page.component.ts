@@ -10,9 +10,16 @@ import {TableOrderResponse} from "../Service/table-order-response";
 import {OrderService} from "../orders-page/order.service";
 import {FilterService} from "../filters/filter.service";
 import {ApiDataServiceService} from "../Service/api-data-service.service";
+import { MenuItem, MessageService } from 'primeng/api';
 
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
+import {CustomerFilterComponent} from "../filters/customer-filter/customer-filter.component";
+import {EmployeeFilterComponent} from "../filters/employee-filter/employee-filter.component";
+import {PayedFilterComponent} from "../filters/payed-filter/payed-filter.component";
+import {StateFilterComponent} from "../filters/state-filter/state-filter.component";
+import {PeriodDateFilterComponent} from "../filters/period-date-filter/period-date-filter.component";
+import {DateFilterComponent} from "../filters/date-filter/date-filter.component";
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
@@ -25,6 +32,13 @@ const EXCEL_EXTENSION = '.xlsx';
 
 })
 export class TablePageComponent implements OnInit {
+    selectedProduct: any[];
+    @ViewChild(CustomerFilterComponent) childCustomerFilter:CustomerFilterComponent
+    @ViewChild(EmployeeFilterComponent) childEmployeeFilter:EmployeeFilterComponent
+    @ViewChild(PayedFilterComponent) childPayedFilter:PayedFilterComponent
+    @ViewChild(StateFilterComponent) childStateFilter:StateFilterComponent
+    @ViewChild(DateFilterComponent) childDateFilter:DateFilterComponent
+    @ViewChild(PeriodDateFilterComponent) childPeriodDateFilter:PeriodDateFilterComponent
     @Input() startData: TableData[]
     @Input() mainColumn: any[]
     @Input() title: string
@@ -37,7 +51,10 @@ export class TablePageComponent implements OnInit {
     loading: boolean = false;
     _selectedColumns: any[];
     ordersResponse = null
-
+    contextItems:MenuItem[]=[
+        {label: 'View', icon: 'pi pi-fw pi-search'},
+            {label: 'Delete', icon: 'pi pi-fw pi-times'}
+        ];
     display: boolean = false;
 
     showDialog() {
@@ -76,11 +93,20 @@ export class TablePageComponent implements OnInit {
         //restore original order
         // this._selectedColumns = this.cols.filter(col => val.includes(col));
     }
-
+    cancelFilter(){
+        this.filterService.clearFilter()
+        this.childCustomerFilter.clear()
+        this.childEmployeeFilter.clear()
+        this.childPayedFilter.clear()
+        this.childStateFilter.clear()
+        this.childDateFilter.clear()
+       // this.childPeriodDateFilter.clear()
+    }
     async updateData() {
         this.data = await this.apiService.post<TableOrderResponse>(
             'getCroppedOrders', this.filterService.getOrderRequest()
         );
+        this.display=false
 
         let mainColumn = []
         this.data.columnTables.map(elem => {

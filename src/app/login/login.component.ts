@@ -22,7 +22,8 @@ interface City {
 })
 export class LoginComponent implements OnInit {
 
-    display:boolean=false
+    display: boolean = false
+    masterWindowVisible: boolean = false
     selectedUser: User;
     userIsSelected: boolean = false
     orderRequest: OrderRequest;
@@ -46,13 +47,23 @@ export class LoginComponent implements OnInit {
         this.orderRequest = this.filterService.getOrderRequest()
     }
 
+    updateData() {
+
+    }
+
+    cancelFilter() {
+        this.filterService.clearFilter()
+    }
+
     cancel() {
         this.selectedUser = null;
         this.password = "";
 
     }
 
-
+    moveToMasterSelectWindows(){
+        this.router.navigate(['/selectWork'])
+    }
 
     async login() {
         this.selectedUser.password = this.password;
@@ -61,16 +72,21 @@ export class LoginComponent implements OnInit {
         this.orderRequest.lang = this.apiService.getLang();
         this.orderRequest.user = this.selectedUser
         this.filterService.setOrderRequest(this.orderRequest)
-        this.ordersResponse = await this.apiService.post<TableOrderResponse>(
-            'getCroppedOrders', this.filterService.getOrderRequest()
-        );
-        this.orderService.setOrderResponse(this.ordersResponse)
-
-
-        if (this.ordersResponse.ordersTableBody.length != 0) {
+        if (this.selectedUser.name !== 'Administrator (superuser) ') {
             this.orderService.setUserValidate(true)
-            this.router.navigate(['/order'])
-            ;
+            this.masterWindowVisible=true
+        } else {
+            this.ordersResponse = await this.apiService.post<TableOrderResponse>(
+                'getCroppedOrders', this.filterService.getOrderRequest()
+            );
+            this.orderService.setOrderResponse(this.ordersResponse)
+
+
+            if (this.ordersResponse.ordersTableBody.length != 0) {
+                this.orderService.setUserValidate(true)
+                this.router.navigate(['/'])
+                ;
+            }
         }
     }
 

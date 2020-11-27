@@ -12,6 +12,9 @@
             <p-radioButton  name="groupname1" [value]="2" inputId="val5"
                            [(ngModel)]="menuChange" style="margin-right:5%;margin-left:5%;"></p-radioButton>
             <label for="val5">мiсяцi</label>
+            <p-radioButton  name="groupname1" [value]="3" inputId="val6"
+                            [(ngModel)]="menuChange" style="margin-right:5%;margin-left:5%;"></p-radioButton>
+            <label for="val6">период</label>
         </div>
     </div>
 
@@ -24,6 +27,7 @@
                     dateFormat="yy-mm-dd" ></p-calendar>
         <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder="дата до" (click)="changePeriod()" [(ngModel)]="dateTo" *ngIf="menuChange===2" view="month"
                      dateFormat="yy-mm-dd" ></p-calendar>
+        <app-period-date-filter style="margin-bottom:3%;" [onlyField]="true"  *ngIf="menuChange===3" ></app-period-date-filter>
     </div>
     <div style="margin-bottom:3%;display: flex;flex-direction: row;justify-content: center;align-content: center">
 

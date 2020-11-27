@@ -1,12 +1,19 @@
 <div class="filter-component">
-    <h3 class="title" >замовник</h3>
+    <h3 class="title">замовник</h3>
 
     <div class="p-fluid  p-grid p-formgrid" style="width: 200px;margin: 5px 5px 10px;position: relative;bottom: 20px">
         <div class="p-field p-col-36 p-md-12">
-            <p-dropdown
-                         [placeholder]="'loginPage.SelectName' | translate"
-                         [showClear]="true"  [filter]="true"
-                         (onChange)="changeState()"  [options]="customers" [(ngModel)]="customer" optionLabel="name"></p-dropdown>
+            <p-autoComplete (onSelect)="changeState()" [(ngModel)]="selected" [suggestions]="filtered"
+                            (completeMethod)="filter($event)" panelStyle="panel-style"
+
+                            field="name"
+                            [dropdown]="true">
+                <ng-template let-country pTemplate="item">
+                    <div class="country-item">
+                        <div>{{country.name}}</div>
+                    </div>
+                </ng-template>
+            </p-autoComplete>
         </div>
     </div>
 

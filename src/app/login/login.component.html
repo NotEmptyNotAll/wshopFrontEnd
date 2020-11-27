@@ -2,6 +2,12 @@
     <div class="login-form shadow  ">
         <img src="assets/image/login-images.png"/>
         <hr width="100%"/>
+        <app-master-start-window
+                [display]="masterWindowVisible"
+                (onConfirm)="moveToMasterSelectWindows()"
+                title="НАЧАТЬ СМЕНУ" textOnConfirm="НАЧАТЬ" textOnCancel="ОТМЕНА"
+        ></app-master-start-window>
+
 
         <div class="login-row">
 
@@ -27,13 +33,12 @@
         </div>
         <div class="login-row">
 
-            <button pButton type="button" (click)="cancel()"
-                    style="background: #DC143C;border: #DC143C"
-                    class="p-button-raised p-button-danger"
+            <button pRipple pButton type="button" (click)="cancel()"
+                    class=" p-button-danger"
                     [label]="'loginPage.cancel' | translate" icon="pi pi-times"></button>
 
-            <button pButton type="button" (click)="login()"
-                    class="p-button-raised p-button-success"
+            <button pRipple pButton type="button" (click)="login()"
+                    class=" p-button-success"
                     [disabled]="selectedUser===null || selectedUser===undefined"
                     [label]="'loginPage.login' | translate" icon="pi pi-check"></button>
 

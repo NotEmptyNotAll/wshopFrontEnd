@@ -1,0 +1,20 @@
+<p-dialog [header]="title"
+          [style]="{minWidth:'400px',minHeight:'70px',width:'120px'}"
+          [(visible)]="display" [resizable]="false" responsive="false">
+    <div class="p-d-flex " style="margin-left:30px;margin-right: 30px">
+        <div class="p-mb-2">
+            <button pRipple type="button"  pButton
+                    class="p-button-danger"
+                    (click)="onCancel()"
+                    [label]="textOnCancel" icon="pi pi-times" ></button>
+        </div>
+        <div class="p-mb-4" style="width: 100px">
+        </div>
+        <div class="p-mb-2">
+            <button pRipple type="button"  pButton
+                    icon="pi pi-check"
+                    (click)="action()"
+                    [label]="textOnConfirm"></button>
+        </div>
+    </div>
+</p-dialog>

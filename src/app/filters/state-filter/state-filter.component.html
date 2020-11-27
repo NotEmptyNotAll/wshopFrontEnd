@@ -8,8 +8,25 @@
 <!--</div>-->
 <div class="p-fluid  p-grid p-formgrid">
     <div class="p-field p-col-36 p-md-12">
-<p-dropdown
-             (onChange)="changeState()"  style="width: 300px" [showClear]="true" placeholder="стан"
+<p-dropdown *ngIf="onlyField"
+             (onChange)="changeState()"  style="width: 300px" [showClear]="true" placeholder=""
              [options]="states" [(ngModel)]="state" optionLabel="name"></p-dropdown>
     </div>
+</div>
+
+
+<div *ngIf="!onlyField" class="filter-component">
+    <h3 class="title" >стан</h3>
+    <div class="p-fluid  p-grid p-formgrid" style="width: 200px;margin: 5px 5px 10px;position: relative;bottom: 20px">
+        <div class="p-field p-col-36 p-md-12">
+            <p-dropdown
+                        (onChange)="changeState()"  [showClear]="true" placeholder="стан"
+                        [options]="states" [(ngModel)]="state" optionLabel="name"></p-dropdown>
+
+        </div>
+    </div>
+
+
+
+
 </div>

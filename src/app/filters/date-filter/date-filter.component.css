@@ -1,5 +1,6 @@
 .filter-component {
-    width: 280px;
+    width:auto;
+    min-width: 280px;
     height: 180px;
     background: #f4f4f4;
     display: flex;

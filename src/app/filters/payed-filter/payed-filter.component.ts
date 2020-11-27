@@ -23,7 +23,9 @@ export class PayedFilterComponent implements OnInit {
 
     ngOnInit(): void {
     }
-
+    clear(){
+        this.payed= {name: '', code: ''}
+    }
     changeState() {
         this.orderRequest = this.filterService.getOrderRequest()
         if (this.payed.code !== null) {

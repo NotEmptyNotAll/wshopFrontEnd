@@ -5,6 +5,7 @@ import {Order} from "./orders-page/orders";
 import { SortEvent } from 'primeng/api';
 import {TranslateService} from "@ngx-translate/core";
 import {environment} from "../environments/environment";
+import { PrimeNGConfig } from 'primeng/api';
 
 const subject = webSocket("ws://10.102.200.11:4447");
 
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit {
     orders: Order[];
 
 
-    constructor( protected translateService: TranslateService) {
+    constructor(private primengConfig: PrimeNGConfig,
+                protected translateService: TranslateService) {
         this.translateService.instant('ua')
     }
 
@@ -33,6 +35,7 @@ export class AppComponent implements OnInit {
             {label: 'moths', url: '/'},
             {label: 'region', url: '/region'}
         ];
+        this.primengConfig.ripple = true;
 
         this.activeItem = this.items[0];
     }

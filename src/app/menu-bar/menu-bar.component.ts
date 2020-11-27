@@ -30,7 +30,7 @@ export class MenuBarComponent implements OnInit {
         document.getElementById("main").style.left = "10%";
         document.getElementById("main").style.position = "absolute";
         document.getElementById("main").style.right = "0px";
-        document.getElementById("main").style.transform = 'scale(0.91,1)';
+        document.getElementById("main").style.transform = 'scale(0.97,1)';
         document.getElementById("mySidebar").style.width = "10%";
         document.getElementById("mySidebarList").style.width = "10%";
         document.getElementById("mySidebar").style.display = "block";

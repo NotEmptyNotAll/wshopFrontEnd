@@ -1,35 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {OrderRequest} from "../order.request";
 import {FilterService} from "../filter.service";
 import * as moment from "moment";
+import {PeriodDateFilterComponent} from "../period-date-filter/period-date-filter.component";
 
 @Component({
-  selector: 'app-date-filter',
-  templateUrl: './date-filter.component.html',
-  styleUrls: ['./date-filter.component.css']
+    selector: 'app-date-filter',
+    templateUrl: './date-filter.component.html',
+    styleUrls: ['./date-filter.component.css']
 })
 export class DateFilterComponent implements OnInit {
-  private dateTo = null;
-  private dateFrom = null;
-  private orderRequest: OrderRequest
-  private isCloseDate: boolean = false
-  menuChange: number = 1
-  constructor(public filterService: FilterService) { }
+    private dateTo = null;
+    private dateFrom = null;
+    private orderRequest: OrderRequest
+    private isCloseDate: boolean = false
+    @ViewChild(PeriodDateFilterComponent) childPeriodDateFilter:PeriodDateFilterComponent
+    menuChange: number = 1
 
-  ngOnInit(): void {
-    this.orderRequest = this.filterService.getOrderRequest()
-
-  }
-
-  changePeriod() {
-    this.orderRequest.closeDate = this.isCloseDate
-    if(this.dateFrom!=null){
-      this.orderRequest.dateFrom = moment(this.dateFrom).utc().format("YYYY-MM-DD")
+    constructor(public filterService: FilterService) {
     }
-    if(this.dateTo!=null){
-      this.orderRequest.dateTo = moment(this.dateTo).utc().format("YYYY-MM-DD")
+
+    ngOnInit(): void {
+        this.orderRequest = this.filterService.getOrderRequest()
+
     }
-    this.filterService.setOrderRequest(this.orderRequest)
-  }
+
+    clear() {
+        this.dateTo = null;
+        this.dateFrom = null;
+        this.childPeriodDateFilter.clear()
+    }
+
+    changePeriod() {
+        this.orderRequest.closeDate = this.isCloseDate
+        if (this.dateFrom != null) {
+            this.orderRequest.dateFrom = moment(this.dateFrom).utc().format("YYYY-MM-DD")
+        }
+        if (this.dateTo != null) {
+            this.orderRequest.dateTo = moment(this.dateTo).utc().format("YYYY-MM-DD")
+        }
+        this.filterService.setOrderRequest(this.orderRequest)
+    }
 
 }

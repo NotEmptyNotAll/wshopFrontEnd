@@ -44,6 +44,10 @@ import { CustomerFilterComponent } from './filters/customer-filter/customer-filt
 import { EmployeeFilterComponent } from './filters/employee-filter/employee-filter.component';
 import { ConfirmPopupModule } from "primeng/confirmpopup";
 import { ConfirmationService, MessageService } from "primeng/api";
+import {RippleModule} from "primeng/ripple";
+import { MasterStartWindowComponent } from './master-start-window/master-start-window.component';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+import { MasterSelectWindowComponent } from './master-select-window/master-select-window.component';
 
 // @ts-ignore
 // @ts-ignore
@@ -63,6 +67,7 @@ import { ConfirmationService, MessageService } from "primeng/api";
         DropdownModule,
         BrowserAnimationsModule,
         MenubarModule,
+        AutoCompleteModule,
         ConfirmPopupModule,
         TableModule,
         ConfirmDialogModule,
@@ -73,7 +78,8 @@ import { ConfirmationService, MessageService } from "primeng/api";
         FormsModule,
         TabMenuModule,
         CalendarModule,
-        BlockUIModule
+        BlockUIModule,
+        RippleModule
 
     ],
 
@@ -92,7 +98,9 @@ import { ConfirmationService, MessageService } from "primeng/api";
         SubstringFilterComponent,
         PeriodDateFilterComponent,
         CustomerFilterComponent,
-        EmployeeFilterComponent],
+        EmployeeFilterComponent,
+        MasterStartWindowComponent,
+        MasterSelectWindowComponent],
     providers: [ConfirmationService, MessageService]
 })
 

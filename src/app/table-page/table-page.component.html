@@ -24,17 +24,18 @@
               [(visible)]="display" [resizable]="true" responsive="false">
         <div class="filter-panel">
             <app-date-filter class="filter"></app-date-filter>
-            <app-payed-filter class="filter"></app-payed-filter>
+            <app-payed-filter class="filter" ></app-payed-filter>
+            <app-state-filter class="filter" [onlyField]="false"></app-state-filter>
             <app-customer-filter class="filter"></app-customer-filter>
             <app-employee-filter class="filter"></app-employee-filter>
         </div>
 
 
         <p-footer class="footer-dialog">
-            <button type="button" (click)="display=false" style="margin-right: 15%;margin-left:10%" pButton
-                    class="ui-button-danger"
+            <button pRipple type="button" (click)="cancelFilter()" style="margin-right: 15%;margin-left:10%" pButton
+                    class="p-button-danger"
                     [label]="'loginPage.cancel' | translate" icon="pi pi-times" label="delete"></button>
-            <button (click)="updateData()" type="button" style="margin-left:15%;margin-right:10% " pButton
+            <button pRipple  type="button"   (click)="updateData()" style="margin-left:15%;margin-right:10% " pButton
                     icon="pi pi-check"
                     [label]="'loginPage.confirm' | translate"></button>
 
@@ -66,18 +67,20 @@
 
                         <div class="p-mb-6 p-mr-6" style="width: 60%">
                         </div>
-                        <div class="p-mb-2 p-mr-2"  style=" position: relative;top:-15px">
-                            <button type="button" (click)="showDialog()"
-                                    class="button button-search"
-                            >{{'loginPage.filters' | translate}}</button>
-
+                        <div class="p-mb-2 p-mr-2"  style=" position: relative;top:-2px">
+                            <button pButton type="button" (click)="showDialog()"
+                                    class="p-button-secondary"
+                                    style="width: 80px"
+                                    icon="pi pi-filter"
+                            >{{'loginPage.filters' | translate}}
+                            </button>
                         </div>
                         <div class="p-mb-2 p-mr-2"  style="width: 300px; position: relative;top:-10px">
-                            <app-period-date-filter (onSuggest)="updateData()"
+                            <app-period-date-filter [onlyField]="true" (onSuggest)="updateData()"
                                                    ></app-period-date-filter>
                         </div>
                         <div class="p-mb-2 p-mr-2"  style="width: 300px; position: relative;top:-10px">
-                            <app-state-filter (onSuggest)="updateData()"
+                            <app-state-filter [onlyField]="true" (onSuggest)="updateData()"
                                             ></app-state-filter>
                         </div>
                         <div class="p-mb-2 p-mr-2"  style="width: 300px; position: relative;top:-10px">
@@ -85,22 +88,23 @@
                             <app-substring-filter (onSuggest)="updateData()"
                                                   ></app-substring-filter>
                         </div>
-                        <div class="p-mb-2 p-mr-2" style=" position: relative;top:-15px">
-                            <button type="button" (click)="downloadExel()"
-                                    class="button button-search"
+                        <div class="p-mb-2 p-mr-2" style="width: 100px; position: relative;top:-2px" >
+                            <button pButton type="button" (click)="downloadExel()"
+                                    class="p-button-secondary"
+                                    style="width: 70px"
+                               icon="pi pi-file-excel"
                             >exel
                             </button>
 
                         </div>
-                        <div class="p-mb-2 p-mr-2"  style=" position: relative;top:20px;left: -10px">
+                        <div class="p-mb-2 p-mr-2"  style=" position: relative;top:20px;left: 5px;width: 40px;font-size: 20px">
                             <p-multiSelect [options]="columns" [(ngModel)]="_selectedColumns" optionLabel="header"
                                            [showHeader]="false"
                                            id="multisect"
                                            selectedItemsLabel=""
                                            dropdownIcon="pi pi-microsoft"
                                            scrollHeight="700px"
-
-                                           [style]="{width:'0px',height:'0px',fontSize:'3rem'}"
+                                           [style]="{width:'0px',height:'0px',fontSize:'3rem',position:'relative'}"
                                            placeholder="{{'loginPage.ChooseColumns' | translate}}"></p-multiSelect>
                         </div>
                     </div>
@@ -147,6 +151,7 @@
                         <i class="pi pi-check"></i>
                         </span>
                         <span *ngIf="rowData[col.field]==='no' || rowData[col.field]==='0'"></span>
+                        <span *ngIf="col.field==='Борг' || col.field==='Роб.' || col.field==='З/ч' || col.field==='Разом'" style="padding-left: 50%"> </span>
                         <span *ngIf="!(rowData[col.field]==='yes' || rowData[col.field]==='1') && !(rowData[col.field]==='no' || rowData[col.field]==='0')">
                                             {{rowData[col.field]}}
 

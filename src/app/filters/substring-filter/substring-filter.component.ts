@@ -14,7 +14,9 @@ export class SubstringFilterComponent implements OnInit {
   private sunString:string=''
 
   constructor(public filterService: FilterService) { }
-
+  clear(){
+    this.sunString= ''
+  }
   onChang(){
     this.orderRequest = this.filterService.getOrderRequest()
     this.orderRequest.searchString =this.sunString ;
