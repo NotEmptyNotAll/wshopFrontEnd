@@ -144,6 +144,9 @@ p-table {
     display: inline-flex;
     margin: 20px;
 }
+.panel-button-menu{
+    z-index:10000 !important
+}
 .button {
     border: none;
     color: white;

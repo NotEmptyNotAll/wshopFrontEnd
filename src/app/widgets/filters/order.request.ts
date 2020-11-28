@@ -1,4 +1,4 @@
-import {User} from "../Service/User";
+import {User} from "../../Service/User";
 
 export interface OrderRequest {
     dateFrom: string;

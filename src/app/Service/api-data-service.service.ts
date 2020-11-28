@@ -11,14 +11,14 @@ import {User} from "./User";
 })
 export class ApiDataServiceService {
 
-   mainURL: string = 'http://10.102.200.11:5051/'
+    mainURL: string = 'http://10.102.200.11:5051/'
     // mainURL: string = 'http://localhost:5051/'
     private axiosClient: AxiosInstance;
     private errorHandler: ErrorHandler;
     private ordersResp: Order[];
     private users: User[];
     private userData: User;
-    private lang:string='en'
+    private lang: string = 'en'
 
 
     public getLang() {
@@ -79,8 +79,9 @@ export class ApiDataServiceService {
             return (axiosResponse.data);
 
         } catch (error) {
-
-            return (Promise.reject(this.normalizeError(error)));
+            console.log(error)
+            return this.post(url, data);
+            // return (Promise.reject(this.normalizeError(error)));
 
         }
 
@@ -93,7 +94,7 @@ export class ApiDataServiceService {
 
             var axiosResponse = await this.axiosClient.request<T>({
                 method: "get",
-                url: this.mainURL+ url,
+                url: this.mainURL + url,
             });
 
             return (axiosResponse.data);
@@ -108,10 +109,9 @@ export class ApiDataServiceService {
     }
 
 
-
     private normalizeError(error: any) {
 
-       // this.errorHandler.handleError(error);
+        // this.errorHandler.handleError(error);
 
         // NOTE: Since I'm not really dealing with a production API, this doesn't really
         // normalize anything (ie, this is not the focus of this demo).

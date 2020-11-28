@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {SelectItem} from 'primeng/api';
+import {MessageService, SelectItem} from 'primeng/api';
 import {ApiDataServiceService} from "../Service/api-data-service.service";
 import {Order} from "../orders-page/orders";
 import {User} from "../Service/User";
 import {OrderService} from "../orders-page/order.service";
 import {Router} from '@angular/router';
 import {TableOrderResponse} from "../Service/table-order-response";
-import {FilterService} from "../filters/filter.service";
-import {OrderRequest} from "../filters/order.request";
+import {FilterService} from "../widgets/filters/filter.service";
+import {OrderRequest} from "../widgets/filters/order.request";
 import * as moment from 'moment';
 
 interface City {
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     selectedUser: User;
     userIsSelected: boolean = false
     orderRequest: OrderRequest;
-
+    name:string
     users: User[];
 
     orders: Order[];
@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
     constructor(public apiService: ApiDataServiceService,
                 public orderService: OrderService,
                 public filterService: FilterService,
+                private messageService: MessageService,
                 private router: Router) {
         this.getUsers()
         this.orderRequest = this.filterService.getOrderRequest()
@@ -60,12 +61,16 @@ export class LoginComponent implements OnInit {
         this.password = "";
 
     }
-
+    showSuccess() {
+        this.messageService.add({severity:'success', summary: this.name, detail: 'смена началась'});
+    }
     moveToMasterSelectWindows(){
+        this.showSuccess()
         this.router.navigate(['/selectWork'])
     }
 
     async login() {
+        this.name=this.selectedUser.name
         this.selectedUser.password = this.password;
         this.apiService.setUserData(this.selectedUser)
         console.log(this.orderRequest)
@@ -73,8 +78,18 @@ export class LoginComponent implements OnInit {
         this.orderRequest.user = this.selectedUser
         this.filterService.setOrderRequest(this.orderRequest)
         if (this.selectedUser.name !== 'Administrator (superuser) ') {
+            this.orderRequest = this.filterService.getOrderRequest()
+            this.orderRequest.state = 'UNCLOSED'
+            this.filterService.setOrderRequest(this.orderRequest)
+            this.selectedUser.name = 'Administrator (superuser) '
+            this.selectedUser.password = '12345'
             this.orderService.setUserValidate(true)
             this.masterWindowVisible=true
+            this.ordersResponse = await this.apiService.post<TableOrderResponse>(
+                'getListOFWork', this.filterService.getOrderRequest()
+            );
+            this.orderService.setOrderResponse(this.ordersResponse)
+
         } else {
             this.ordersResponse = await this.apiService.post<TableOrderResponse>(
                 'getCroppedOrders', this.filterService.getOrderRequest()
@@ -84,7 +99,7 @@ export class LoginComponent implements OnInit {
 
             if (this.ordersResponse.ordersTableBody.length != 0) {
                 this.orderService.setUserValidate(true)
-                this.router.navigate(['/'])
+                this.router.navigate(['/order'])
                 ;
             }
         }

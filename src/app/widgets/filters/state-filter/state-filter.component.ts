@@ -10,6 +10,7 @@ import {OrderRequest} from "../order.request";
 export class StateFilterComponent implements OnInit {
     private state = {name: '', code: ''}
     @Input() onlyField:boolean=false
+    @Input() disabled:boolean=false
     @Output() onSuggest: EventEmitter<any> = new EventEmitter();
     private orderRequest: OrderRequest
 

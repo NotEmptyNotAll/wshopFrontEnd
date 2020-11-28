@@ -8,18 +8,18 @@ import {Table} from 'primeng/table';
 import {Order} from "../orders-page/orders";
 import {TableOrderResponse} from "../Service/table-order-response";
 import {OrderService} from "../orders-page/order.service";
-import {FilterService} from "../filters/filter.service";
+import {FilterService} from "../widgets/filters/filter.service";
 import {ApiDataServiceService} from "../Service/api-data-service.service";
 import { MenuItem, MessageService } from 'primeng/api';
 
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
-import {CustomerFilterComponent} from "../filters/customer-filter/customer-filter.component";
-import {EmployeeFilterComponent} from "../filters/employee-filter/employee-filter.component";
-import {PayedFilterComponent} from "../filters/payed-filter/payed-filter.component";
-import {StateFilterComponent} from "../filters/state-filter/state-filter.component";
-import {PeriodDateFilterComponent} from "../filters/period-date-filter/period-date-filter.component";
-import {DateFilterComponent} from "../filters/date-filter/date-filter.component";
+import {CustomerFilterComponent} from "../widgets/filters/customer-filter/customer-filter.component";
+import {EmployeeFilterComponent} from "../widgets/filters/employee-filter/employee-filter.component";
+import {PayedFilterComponent} from "../widgets/filters/payed-filter/payed-filter.component";
+import {StateFilterComponent} from "../widgets/filters/state-filter/state-filter.component";
+import {PeriodDateFilterComponent} from "../widgets/filters/period-date-filter/period-date-filter.component";
+import {DateFilterComponent} from "../widgets/filters/date-filter/date-filter.component";
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
@@ -41,14 +41,23 @@ export class TablePageComponent implements OnInit {
     @ViewChild(PeriodDateFilterComponent) childPeriodDateFilter:PeriodDateFilterComponent
     @Input() startData: TableData[]
     @Input() mainColumn: any[]
+    @Input() stateFilterDisable:boolean=false
+    @Input() buttonActionDisable:boolean=false
+    @Input() standardFilterDisable:boolean=false
     @Input() title: string
     @Input() dynamicColumns: string = ''
+    @Input() buttonItems: MenuItem[]
     cols: any[];
     selectRow: any = {}
     inputErr = false
     data: TableOrderResponse
     columns: any[];
     loading: boolean = false;
+    items: MenuItem[]=[
+        {label: 'action', icon: 'pi pi-fw pi-search'},
+        {label: 'action', icon: 'pi pi-fw pi-times'}
+    ];
+
     _selectedColumns: any[];
     ordersResponse = null
     contextItems:MenuItem[]=[

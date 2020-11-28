@@ -1,12 +1,14 @@
-<div class="login-page">
+
+<app-master-start-window
+        [display]="masterWindowVisible"
+        (onConfirm)="moveToMasterSelectWindows()"
+        title="НАЧАТЬ СМЕНУ" textOnConfirm="НАЧАТЬ" textOnCancel="ОТМЕНА"
+></app-master-start-window>
+<div class="login-page" *ngIf="!masterWindowVisible">
     <div class="login-form shadow  ">
         <img src="assets/image/login-images.png"/>
         <hr width="100%"/>
-        <app-master-start-window
-                [display]="masterWindowVisible"
-                (onConfirm)="moveToMasterSelectWindows()"
-                title="НАЧАТЬ СМЕНУ" textOnConfirm="НАЧАТЬ" textOnCancel="ОТМЕНА"
-        ></app-master-start-window>
+
 
 
         <div class="login-row">

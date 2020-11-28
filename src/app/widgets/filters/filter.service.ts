@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {OrderRequest} from "./order.request";
-import {User} from "../Service/User";
+import {User} from "../../Service/User";
 
 @Injectable({
     providedIn: 'root'

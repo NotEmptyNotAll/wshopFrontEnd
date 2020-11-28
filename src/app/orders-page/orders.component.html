@@ -1,2 +1,5 @@
 <app-table-page [startData]="data" [title]=" 'loginPage.listOrders' | translate"
-                [mainColumn]="mainColumn"  *ngIf="data!=null"></app-table-page>
+                [mainColumn]="mainColumn"
+                [buttonActionDisable]="false"
+                [buttonItems]="[]"
+                [stateFilterDisable]="false"  *ngIf="data!=null"></app-table-page>

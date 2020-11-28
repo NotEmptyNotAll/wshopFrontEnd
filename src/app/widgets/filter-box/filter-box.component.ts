@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ApiDataServiceService} from "../Service/api-data-service.service";
+import {ApiDataServiceService} from "../../Service/api-data-service.service";
 
 @Component({
     selector: 'app-filter-box',

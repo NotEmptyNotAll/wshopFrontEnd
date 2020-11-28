@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {OrderRequest} from "../order.request";
 import {FilterService} from "../filter.service";
-import {User} from "../../Service/User";
-import {ApiDataServiceService} from "../../Service/api-data-service.service";
+import {User} from "../../../Service/User";
+import {ApiDataServiceService} from "../../../Service/api-data-service.service";
 import {AutoComplete} from "primeng/autocomplete";
 
 @Component({

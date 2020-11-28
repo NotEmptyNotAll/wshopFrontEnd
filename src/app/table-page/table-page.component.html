@@ -24,7 +24,7 @@
               [(visible)]="display" [resizable]="true" responsive="false">
         <div class="filter-panel">
             <app-date-filter class="filter"></app-date-filter>
-            <app-payed-filter class="filter" ></app-payed-filter>
+            <app-payed-filter class="filter"></app-payed-filter>
             <app-state-filter class="filter" [onlyField]="false"></app-state-filter>
             <app-customer-filter class="filter"></app-customer-filter>
             <app-employee-filter class="filter"></app-employee-filter>
@@ -35,13 +35,14 @@
             <button pRipple type="button" (click)="cancelFilter()" style="margin-right: 15%;margin-left:10%" pButton
                     class="p-button-danger"
                     [label]="'loginPage.cancel' | translate" icon="pi pi-times" label="delete"></button>
-            <button pRipple  type="button"   (click)="updateData()" style="margin-left:15%;margin-right:10% " pButton
+            <button pRipple type="button" (click)="updateData()" style="margin-left:15%;margin-right:10% " pButton
                     icon="pi pi-check"
                     [label]="'loginPage.confirm' | translate"></button>
 
         </p-footer>
     </p-dialog>
-    <p-confirmPopup ></p-confirmPopup>
+    <p-confirmPopup></p-confirmPopup>
+    <p-contextMenu #cm [model]="items"></p-contextMenu>
 
     <!--  currentPageReportTemplate="{{'loginPage.TableNumLabel' | translate}}"
                [rows]="100" [showCurrentPageReport]="true" [rowsPerPageOptions]="[20,30,50,100]"
@@ -53,21 +54,22 @@
                 [loading]="loading"
                 [columns]="_selectedColumns" [value]="tableDataService.mainData" [scrollable]="true"
                 scrollHeight="flex"
+                [contextMenu]="cm"
                 style="border-color: #f4f4f4"
-                [style]="{borderColor:'#f4f4f4'}"
+                [style]="{borderColor:'#f4f4f4',zIndex:'0'}"
                 [resizableColumns]="true" selectionMode="single"
                 dataKey="id">
 
             <ng-template pTemplate="caption" style="border-color: #f4f4f4">
                 <div class="table-header" style="height: 35px" [style]="{borderColor:'#f4f4f4'}">
                     <div class="p-d-flex p-flex-column p-flex-md-row">
-                        <div class="p-mb-2 p-mr-2" >
-                    <h3>{{'loginPage.listOrders' | translate}}</h3>
+                        <div class="p-mb-4 p-mr-4" style="width: 20%">
+                            <h3> {{ title }}</h3>
                         </div>
 
-                        <div class="p-mb-6 p-mr-6" style="width: 60%">
+                        <div class="p-mb-6 p-mr-6" style="width: 40%">
                         </div>
-                        <div class="p-mb-2 p-mr-2"  style=" position: relative;top:-2px">
+                        <div *ngIf="!standardFilterDisable" class="p-mb-2 p-mr-2" style=" position: relative;top:-2px">
                             <button pButton type="button" (click)="showDialog()"
                                     class="p-button-secondary"
                                     style="width: 80px"
@@ -75,29 +77,31 @@
                             >{{'loginPage.filters' | translate}}
                             </button>
                         </div>
-                        <div class="p-mb-2 p-mr-2"  style="width: 300px; position: relative;top:-10px">
+                        <div class="p-mb-2 p-mr-2" style="width: 300px; position: relative;top:-10px">
                             <app-period-date-filter [onlyField]="true" (onSuggest)="updateData()"
-                                                   ></app-period-date-filter>
+                            ></app-period-date-filter>
                         </div>
-                        <div class="p-mb-2 p-mr-2"  style="width: 300px; position: relative;top:-10px">
-                            <app-state-filter [onlyField]="true" (onSuggest)="updateData()"
-                                            ></app-state-filter>
+                        <div class="p-mb-2 p-mr-2" style="width: 300px; position: relative;top:-10px">
+                            <app-state-filter [disabled]="stateFilterDisable" [onlyField]="true"
+                                              (onSuggest)="updateData()"
+                            ></app-state-filter>
                         </div>
-                        <div class="p-mb-2 p-mr-2"  style="width: 300px; position: relative;top:-10px">
+                        <div class="p-mb-2 p-mr-2" style="width: 300px; position: relative;top:-10px">
 
                             <app-substring-filter (onSuggest)="updateData()"
-                                                  ></app-substring-filter>
+                            ></app-substring-filter>
                         </div>
-                        <div class="p-mb-2 p-mr-2" style="width: 100px; position: relative;top:-2px" >
+                        <div class="p-mb-2 p-mr-2" style="width: 100px; position: relative;top:-2px">
                             <button pButton type="button" (click)="downloadExel()"
                                     class="p-button-secondary"
                                     style="width: 70px"
-                               icon="pi pi-file-excel"
+                                    icon="pi pi-file-excel"
                             >exel
                             </button>
 
                         </div>
-                        <div class="p-mb-2 p-mr-2"  style=" position: relative;top:20px;left: 5px;width: 40px;font-size: 20px">
+                        <div class="p-mb-2 p-mr-2"
+                             style=" position: relative;top:20px;left: 5px;width: 40px;font-size: 20px">
                             <p-multiSelect [options]="columns" [(ngModel)]="_selectedColumns" optionLabel="header"
                                            [showHeader]="false"
                                            id="multisect"
@@ -110,9 +114,6 @@
                     </div>
 
 
-
-
-
                 </div>
             </ng-template>
             <ng-template pTemplate="colgroup">
@@ -120,6 +121,8 @@
                     <col style="width:30px">
                     <col style="width:30px">
                     <col *ngFor="let col of columns" style="{{'width:'+col.width+'px'}}">
+                    <col style="width:150px">
+
                 </colgroup>
             </ng-template>
             <ng-template pTemplate="header" let-columns>
@@ -134,28 +137,34 @@
                         {{col.header}}
                         <p-sortIcon [field]="col.header"></p-sortIcon>
                     </th>
+                    <th style="width:2rem;border-color: #f4f4f4" *ngIf="buttonActionDisable"
+                        [style]="{borderColor:'#f4f4f4', fontSize:'12px'}"></th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
-                <tr [pReorderableRow]="index">
+                <tr [pReorderableRow]="index" [pContextMenuRow]="rowData">
                     <td [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
                         <span class="pi pi-bars" pReorderableRowHandle></span>
                     </td>
                     <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px'}">
-                        <span *ngIf="rowData.Comment!==''" class="pi pi-info-circle" pReorderableRowHandle (click)="confirm($event,rowData)"></span>
+                        <span *ngIf="rowData.Comment!==''" class="pi pi-info-circle" pReorderableRowHandle
+                              (click)="confirm($event,rowData)"></span>
                     </td>
-
                     <td *ngFor="let col of columns" class="ui-resizable-column" pResizableColumn
                         [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
                     <span *ngIf="rowData[col.field]==='yes' || rowData[col.field]==='1'">
                         <i class="pi pi-check"></i>
                         </span>
                         <span *ngIf="rowData[col.field]==='no' || rowData[col.field]==='0'"></span>
-                        <span *ngIf="col.field==='Борг' || col.field==='Роб.' || col.field==='З/ч' || col.field==='Разом'" style="padding-left: 50%"> </span>
+                        <span *ngIf="col.field==='Борг' || col.field==='Роб.' || col.field==='З/ч' || col.field==='Разом'"
+                              style="padding-left: 50%"> </span>
                         <span *ngIf="!(rowData[col.field]==='yes' || rowData[col.field]==='1') && !(rowData[col.field]==='no' || rowData[col.field]==='0')">
                                             {{rowData[col.field]}}
-
                     </span>
+                    </td>
+                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px',zIndex:'2'}" *ngIf="buttonActionDisable">
+
+                        <app-button-list-action></app-button-list-action>
 
                     </td>
                 </tr>

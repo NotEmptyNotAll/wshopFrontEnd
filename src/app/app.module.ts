@@ -23,7 +23,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {PasswordModule} from 'primeng/password';
 import {MultiSelectModule} from 'primeng/multiselect';
 import {InputTextModule} from 'primeng/inputtext';
-import {FilterBoxComponent} from './filter-box/filter-box.component';
+import {FilterBoxComponent} from './widgets/filter-box/filter-box.component';
 import {MenuBarComponent} from './menu-bar/menu-bar.component';
 import {SidebarModule} from 'primeng/sidebar';
 import {ListboxModule} from 'primeng/listbox';
@@ -31,23 +31,28 @@ import {
     TranslateModule
 } from "@ngx-translate/core";
 import {NgtUniversalModule} from '@ng-toolkit/universal';
-import { DateFilterComponent } from './filters/date-filter/date-filter.component';
-import { StateFilterComponent } from './filters/state-filter/state-filter.component';
-import { PayedFilterComponent } from './filters/payed-filter/payed-filter.component';
-import { SubstringFilterComponent } from './filters/substring-filter/substring-filter.component';
+import { DateFilterComponent } from './widgets/filters/date-filter/date-filter.component';
+import { StateFilterComponent } from './widgets/filters/state-filter/state-filter.component';
+import { PayedFilterComponent } from './widgets/filters/payed-filter/payed-filter.component';
+import { SubstringFilterComponent } from './widgets/filters/substring-filter/substring-filter.component';
 import {DialogModule} from 'primeng/dialog';
 import {BlockUIModule} from 'primeng/blockui';
-import { PeriodDateFilterComponent } from './filters/period-date-filter/period-date-filter.component';
+import { PeriodDateFilterComponent } from './widgets/filters/period-date-filter/period-date-filter.component';
 import * as alasql from 'alasql';
 import {RadioButtonModule} from 'primeng/radiobutton';
-import { CustomerFilterComponent } from './filters/customer-filter/customer-filter.component';
-import { EmployeeFilterComponent } from './filters/employee-filter/employee-filter.component';
+import { CustomerFilterComponent } from './widgets/filters/customer-filter/customer-filter.component';
+import { EmployeeFilterComponent } from './widgets/filters/employee-filter/employee-filter.component';
 import { ConfirmPopupModule } from "primeng/confirmpopup";
 import { ConfirmationService, MessageService } from "primeng/api";
 import {RippleModule} from "primeng/ripple";
 import { MasterStartWindowComponent } from './master-start-window/master-start-window.component';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import { MasterSelectWindowComponent } from './master-select-window/master-select-window.component';
+import {ToastModule} from 'primeng/toast';
+import {SplitButtonModule} from 'primeng/splitbutton';
+import { DetailFilterComponent } from './widgets/filters/detail-filter/detail-filter.component';
+import { ButtonListActionComponent } from './widgets/button-list-action/button-list-action.component';
+import {ContextMenuModule} from "primeng/contextmenu";
 
 // @ts-ignore
 // @ts-ignore
@@ -55,7 +60,9 @@ import { MasterSelectWindowComponent } from './master-select-window/master-selec
     imports: [
         CommonModule,
         NgtUniversalModule,
+        ToastModule,
         DialogModule,
+        SplitButtonModule,
         TranslateModule.forChild(),
         TransferHttpCacheModule,
         ListboxModule,
@@ -79,7 +86,8 @@ import { MasterSelectWindowComponent } from './master-select-window/master-selec
         TabMenuModule,
         CalendarModule,
         BlockUIModule,
-        RippleModule
+        RippleModule,
+        ContextMenuModule
 
     ],
 
@@ -100,7 +108,9 @@ import { MasterSelectWindowComponent } from './master-select-window/master-selec
         CustomerFilterComponent,
         EmployeeFilterComponent,
         MasterStartWindowComponent,
-        MasterSelectWindowComponent],
+        MasterSelectWindowComponent,
+        DetailFilterComponent,
+        ButtonListActionComponent],
     providers: [ConfirmationService, MessageService]
 })
 
