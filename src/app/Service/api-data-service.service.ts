@@ -19,7 +19,7 @@ export class ApiDataServiceService {
     private users: User[];
     private userData: User;
     private lang: string = 'en'
-
+    public isLoading: boolean = false
 
     public getLang() {
         return this.lang
@@ -67,7 +67,7 @@ export class ApiDataServiceService {
     }
 
     public async post<T>(url: string, data: any): Promise<T> {
-
+        this.isLoading = true
         try {
 
             var axiosResponse = await this.axiosClient.request<T>({
@@ -75,7 +75,6 @@ export class ApiDataServiceService {
                 data: data,
                 url: this.mainURL + url,
             });
-
             return (axiosResponse.data);
 
         } catch (error) {
@@ -83,13 +82,15 @@ export class ApiDataServiceService {
             return this.post(url, data);
             // return (Promise.reject(this.normalizeError(error)));
 
+        } finally {
+            this.isLoading = false
         }
 
 
     }
 
     public async get<T>(url: string): Promise<T> {
-
+        this.isLoading = true
         try {
 
             var axiosResponse = await this.axiosClient.request<T>({
@@ -103,6 +104,8 @@ export class ApiDataServiceService {
 
             return (Promise.reject(this.normalizeError(error)));
 
+        } finally {
+            this.isLoading = false
         }
 
 

@@ -118,6 +118,7 @@ export class TablePageComponent implements OnInit {
         this.display=false
 
         let mainColumn = []
+        console.log( this.data.ordersTableBody)
         this.data.columnTables.map(elem => {
             mainColumn.push(
                 {

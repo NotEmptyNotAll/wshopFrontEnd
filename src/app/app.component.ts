@@ -6,6 +6,7 @@ import { SortEvent } from 'primeng/api';
 import {TranslateService} from "@ngx-translate/core";
 import {environment} from "../environments/environment";
 import { PrimeNGConfig } from 'primeng/api';
+import {ApiDataServiceService} from "./Service/api-data-service.service";
 
 const subject = webSocket("ws://10.102.200.11:4447");
 
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit {
 
 
     constructor(private primengConfig: PrimeNGConfig,
+                private apiService:ApiDataServiceService,
                 protected translateService: TranslateService) {
         this.translateService.instant('ua')
     }

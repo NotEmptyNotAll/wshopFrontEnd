@@ -1,0 +1,50 @@
+.preloader-container {
+    position: fixed;
+    z-index: 1031;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: lightgray;
+    opacity: 0.7;
+    display: block;
+    overflow: hidden;
+    padding: 25%;
+}
+.spiner{
+    opacity: 1 !important;
+}
+.preloader-center {
+    position: absolute;
+    padding: 15px;
+    top: 50%;
+    left:50%;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background: transparent;
+    z-index: 1000;
+    font-size: 60px;
+}
+.hidden{
+    display:none;
+
+}
+
+
+@keyframes p-progress-spinner-color {
+    100%,
+    0% {
+        stroke: #d62d20;
+    }
+    40% {
+        stroke: #0057e7;
+    }
+    66% {
+        stroke: #008744;
+    }
+    80%,
+    90% {
+        stroke: #ffa700;
+    }
+}

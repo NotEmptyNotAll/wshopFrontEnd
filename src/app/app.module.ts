@@ -53,6 +53,8 @@ import {SplitButtonModule} from 'primeng/splitbutton';
 import { DetailFilterComponent } from './widgets/filters/detail-filter/detail-filter.component';
 import { ButtonListActionComponent } from './widgets/button-list-action/button-list-action.component';
 import {ContextMenuModule} from "primeng/contextmenu";
+import { LoadingSpinerComponent } from './widgets/loading-spiner/loading-spiner.component';
+import {ProgressSpinnerModule} from "primeng/progressspinner";
 
 // @ts-ignore
 // @ts-ignore
@@ -87,7 +89,8 @@ import {ContextMenuModule} from "primeng/contextmenu";
         CalendarModule,
         BlockUIModule,
         RippleModule,
-        ContextMenuModule
+        ContextMenuModule,
+        ProgressSpinnerModule
 
     ],
 
@@ -110,7 +113,8 @@ import {ContextMenuModule} from "primeng/contextmenu";
         MasterStartWindowComponent,
         MasterSelectWindowComponent,
         DetailFilterComponent,
-        ButtonListActionComponent],
+        ButtonListActionComponent,
+        LoadingSpinerComponent],
     providers: [ConfirmationService, MessageService]
 })
 

@@ -1,5 +1,5 @@
 
-<app-master-start-window
+<app-master-start-window *ngIf="!apiService.isLoading"
         [display]="masterWindowVisible"
         (onConfirm)="moveToMasterSelectWindows()"
         title="НАЧАТЬ СМЕНУ" textOnConfirm="НАЧАТЬ" textOnCancel="ОТМЕНА"
