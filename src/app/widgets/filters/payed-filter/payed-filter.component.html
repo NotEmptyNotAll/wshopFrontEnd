@@ -1,13 +1,17 @@
 <div class="filter-component">
-    <h3 class="title" >оплата</h3>
-    <div class="p-fluid  p-grid p-formgrid" style="width: 200px;margin: 5px 5px 10px;position: relative;bottom: 20px">
-        <div class="p-field p-col-36 p-md-12">
+    <div class="white-line"></div>
+    <p class="title" >оплата</p>
+    <div class="filter-body">
+
+    <div class=" p-fluid  p-grid p-formgrid" >
+        <div class="p-field p-col-36 p-md-12" >
             <p-dropdown
-                         (onChange)="changeState()"  [showClear]="true"
+                        (onChange)="changeState()"  [showClear]="true"
                          [options]="states" [(ngModel)]="payed" optionLabel="name"></p-dropdown>
         </div>
+
     </div>
 
 
-
+</div>
 </div>

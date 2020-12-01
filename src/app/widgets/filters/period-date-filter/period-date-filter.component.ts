@@ -15,13 +15,13 @@ export class PeriodDateFilterComponent implements OnInit {
     private orderRequest: OrderRequest
     private isCloseDate: boolean = false
     private periods: any[] = [
-        {name: 'Усе', code: 0},
+        {name: 'Усі', code: 0},
         {name: 'Сьогодні', code: 1},
         {name: 'Вчора', code: 2},
-        {name: 'Цей тиждень', code: 3},
-        {name: 'Этот месяц', code: 4},
-        {name: 'Этот квартал', code: 5},
-        {name: 'Этот год', code: 6},
+        {name: 'Поточний тиждень', code: 3},
+        {name: 'Поточний місяць', code: 4},
+        {name: 'Поточний квартал', code: 5},
+        {name: 'Поточний рік', code: 6},
         {name: 'Минулий тиждень', code: 7},
         {name: 'Минулий місяць', code: 8},
         {name: 'Минулий квартал', code: 9},

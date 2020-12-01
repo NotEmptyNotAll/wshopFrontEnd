@@ -8,6 +8,7 @@ import {OrderService} from "./order.service";
 import {Router} from '@angular/router';
 import {TableOrderResponse} from "../Service/table-order-response";
 import {User} from "../Service/User";
+import * as moment from "moment";
 
 @Component({
     selector: 'app-orders',
@@ -106,7 +107,7 @@ export class OrdersComponent implements OnInit {
                     tableRow[cell.cellName] = Number(cell.cellData)
                 } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
                     let data = new Date(cell.cellData)
-                    tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth() + '.' + data.getFullYear();
+                    tableRow[cell.cellName] = moment(data.getTime()).utc().format("DD.MM.YY");
                 } else {
                     tableRow[cell.cellName] = cell.cellData
                 }

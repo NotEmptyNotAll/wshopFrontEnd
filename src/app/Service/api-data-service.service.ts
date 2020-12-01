@@ -79,7 +79,7 @@ export class ApiDataServiceService {
 
         } catch (error) {
             console.log(error)
-            return this.post(url, data);
+            return null;
             // return (Promise.reject(this.normalizeError(error)));
 
         } finally {

@@ -30,5 +30,55 @@ body {
   flex-direction: row;
   align-items: center;
 }
+.filter-component {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  width: 100%;
+position: relative;
+  height: 100px;
+  background: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+}
+.white-line{
+  position: absolute;
+  top:-11px;
+  width: 100%;
+  height: 10px;
+  background: white;
+  z-index: 1;
+}
+.size-icon{
+  font-size: 1.8rem !important;
+}
+.size-icon-table{
+  font-size: 1.5rem !important;
+}
+.title{
+  background:  white;
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  height: fit-content;
+  display: inline-block;
+  left: 10px;
 
+  border:  solid lightgray ;
+  border-width: 0px 1px 1px 1px ;
+  border-radius:0px 0px 10px 10px;
+  paddng:10px;
+  top:-10px;
+  margin: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+p{
+font-size: 18px;
+  font-style: normal;
+}
+.filter-body{
+  width: 200px;
+  margin: 5px 5px 10px;
+  position: relative;
+}
 

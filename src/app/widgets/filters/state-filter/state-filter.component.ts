@@ -16,7 +16,7 @@ export class StateFilterComponent implements OnInit {
 
 
     private states: any[] = [
-        {name: 'Усе', code: null},
+        {name: 'Усі', code: null},
         {name: 'завершений', code: 'FINISHED'},
         {name: 'незакриті', code: 'UNCLOSED'},
         {name: 'закриті', code: 'CLOSED'}

@@ -1,5 +1,5 @@
 <!--<div class="filter-component">-->
-<!--    <h3 class="title">{{'loginPage.datePeriod' | translate}}</h3>-->
+<!--    <p class="title">{{'loginPage.datePeriod' | translate}}</p>-->
 <!--    <p-dropdown (onClick)="changePeriod()" style="margin: 5px 5px 10px;position: relative;bottom: 20px"-->
 <!--                [options]="periods" [(ngModel)]="period" optionLabel="name">-->
 
@@ -24,14 +24,18 @@
     </div>
 </div>
 <div *ngIf="!onlyField" class="filter-component">
-    <h3 class="title" >{{'loginPage.datePeriod' | translate}}</h3>
-    <div class="p-fluid  p-grid p-formgrid" style="width: 200px;margin: 5px 5px 10px;position: relative;bottom: 20px">
+    <div class="white-line"></div>
+    <p class="title" >{{'loginPage.datePeriod' | translate}}</p>
+    <div class="filter-body">
+
+    <div class="p-fluid  p-grid p-formgrid" >
         <div class="p-field p-col-36 p-md-12">
             <p-dropdown (onClick)="changePeriod()" [options]="periods" [(ngModel)]="period"
                         placeholder="{{'loginPage.datePeriod' | translate}}" optionLabel="name"  [showClear]="true">
             </p-dropdown>
 
         </div>
+    </div>
     </div>
 
 

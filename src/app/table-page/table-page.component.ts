@@ -20,6 +20,7 @@ import {PayedFilterComponent} from "../widgets/filters/payed-filter/payed-filter
 import {StateFilterComponent} from "../widgets/filters/state-filter/state-filter.component";
 import {PeriodDateFilterComponent} from "../widgets/filters/period-date-filter/period-date-filter.component";
 import {DateFilterComponent} from "../widgets/filters/date-filter/date-filter.component";
+import * as moment from "moment";
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
@@ -140,7 +141,7 @@ export class TablePageComponent implements OnInit {
                     tableRow[cell.cellName] = Number(cell.cellData)
                 } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
                     let data = new Date(cell.cellData)
-                    tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth() + '.' + data.getFullYear();
+                    tableRow[cell.cellName] = moment(data.getTime()).utc().format("DD.MM.YY");
                 } else {
                     tableRow[cell.cellName] = cell.cellData
                 }

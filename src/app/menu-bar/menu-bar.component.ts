@@ -17,7 +17,7 @@ import {OrdersComponent} from "../orders-page/orders.component";
 })
 export class MenuBarComponent implements OnInit {
     ordersResponse: TableOrderResponse
-
+    private langTitle:string
     constructor(public apiService: ApiDataServiceService,
                 public orderService: OrderService,
                 private router: Router,
@@ -64,7 +64,7 @@ export class MenuBarComponent implements OnInit {
         this.itemsNoLogin = [
             {
                 icon: 'pi pi-fw pi-globe',
-                label: 'Lang',
+                label:'ua',
                 style: {fontSize: '1.2em'},
                 items: [
                     {
@@ -127,7 +127,7 @@ export class MenuBarComponent implements OnInit {
             },
             {
                 icon: 'pi pi-fw pi-globe',
-                label: 'Lang',
+                label: 'ua',
                 style: {fontSize: '1.2em'},
                 items: [
                     {
@@ -184,6 +184,9 @@ export class MenuBarComponent implements OnInit {
 
     public switchLanguage(lang: string): void {
         this.translate.use(lang);
+        this.items[0].label='ua'
+        this.itemsNoLogin[0].label=lang
+
         //this.translate.setDefaultLang(lang);
     }
 
@@ -195,6 +198,7 @@ export class MenuBarComponent implements OnInit {
                     lang: this.apiService.getLang()
                 }
             )
+
             this.orderService.setOrderResponse(this.ordersResponse)
                 //this.router.navigate(['/'])
             //this.router.navigate(['/order'])

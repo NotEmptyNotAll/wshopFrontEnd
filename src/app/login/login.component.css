@@ -9,7 +9,7 @@
 .login-page{
 
     position: relative;
-    top:100px;
+    top:200px;
     display: flex;
     flex-direction: column;
     align-items: center;
