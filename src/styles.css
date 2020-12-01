@@ -56,13 +56,13 @@ position: relative;
 }
 .title{
   background:  white;
-  position: relative;
   display: inline-block;
   width: fit-content;
   height: fit-content;
   display: inline-block;
   left: 10px;
-
+  top:-5px;
+  position: absolute;
   border:  solid lightgray ;
   border-width: 0px 1px 1px 1px ;
   border-radius:0px 0px 10px 10px;
@@ -78,6 +78,7 @@ font-size: 18px;
 }
 .filter-body{
   width: 200px;
+  top:20px;
   margin: 5px 5px 10px;
   position: relative;
 }
