@@ -118,7 +118,7 @@ export class TablePageComponent implements OnInit {
         );
         this.display=false
 
-        let mainColumn = []
+        let mainColumn = [];
         console.log( this.data.ordersTableBody)
         this.data.columnTables.map(elem => {
             mainColumn.push(
@@ -215,6 +215,20 @@ export class TablePageComponent implements OnInit {
     onRowSelect(event) {
         this.selectRow = event.data
     }
+
+    chooseColumn(){
+        let tempArr=[];
+        this.columns.forEach(elem=>{
+            let temp=this._selectedColumns.find(e=>{
+                return    e.field===elem.field
+            })
+            if(temp!==undefined){
+                tempArr.push(elem)
+            }
+        })
+        this._selectedColumns=tempArr
+    }
+
 
     changeData(): void {
         this.tableDataService.setChangeRow(this.selectRow)
