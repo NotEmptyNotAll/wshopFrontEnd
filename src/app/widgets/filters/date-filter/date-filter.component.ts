@@ -49,4 +49,36 @@ export class DateFilterComponent implements OnInit {
         this.filterService.setOrderRequest(this.orderRequest)
     }
 
+    changeMonthPeriodDateFrom() {
+        this.orderRequest.closeDate = this.isCloseDate
+        if(this.dateFrom != null || this.dateTo!=null){
+            if (this.dateFrom != null) {
+                this.orderRequest.dateFrom = moment(this.dateFrom).utc().format("YYYY-MM-DD")
+            }
+            if (this.dateTo == null) {
+                this.orderRequest.dateTo = moment().utc().format("YYYY-MM-DD")
+            }
+        }
+
+        this.filterService.setOrderRequest(this.orderRequest)
+    }
+
+
+    changeMonthPeriodDateTo() {
+        this.orderRequest.closeDate = this.isCloseDate
+        if((this.dateFrom != null || this.dateTo!=null)
+        && moment(this.dateTo).utc().format("YYYY-MM-DD")!== this.orderRequest.dateTo ){
+            if (this.dateTo != null) {
+                this.dateTo= new Date(this.dateTo.setMonth(this.dateTo.getMonth()+1))
+                 this.dateTo= new Date(this.dateTo.setDate(0))
+                this.orderRequest.dateTo = moment(this.dateTo).utc().format("YYYY-MM-DD")
+            }
+            if (this.dateFrom == null) {
+                this.orderRequest.dateFrom = moment().year(2000).utc().format("YYYY-MM-DD")
+            }
+        }
+
+        this.filterService.setOrderRequest(this.orderRequest)
+    }
+
 }

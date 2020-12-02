@@ -59,47 +59,84 @@ export class PeriodDateFilterComponent implements OnInit {
                 break;
             }
             case 3: {
-                dateFrom = moment().subtract(1, 'week').utc().format("YYYY-MM-DD")
-                dateTo = moment().utc().format("YYYY-MM-DD")
+                dateFrom = moment().weekday(1).utc().format("YYYY-MM-DD")
+                dateTo = moment().weekday(7).utc().format("YYYY-MM-DD")
                 break;
             }
             case 4: {
-                dateFrom = moment().subtract(1, 'month').utc().format("YYYY-MM-DD")
-                dateTo = moment().utc().format("YYYY-MM-DD")
+                dateFrom=new Date()
+                dateTo=new Date()
+                dateFrom.setDate(1)
+                dateTo.setMonth(dateTo.getMonth()+1)
+                dateTo.setDate(0)
+                dateFrom = moment(dateFrom).utc().format("YYYY-MM-DD")
+                dateTo = moment(dateTo).utc().format("YYYY-MM-DD")
                 break;
             }
             case 5: {
-                dateFrom = moment().quarter(moment().quarter() - 1).utc().format("YYYY-MM-DD")
-                dateTo = moment().quarter(moment().quarter()).utc().format("YYYY-MM-DD")
+
+                dateFrom=new Date()
+                dateTo=new Date()
+                dateFrom.setMonth(0)
+                dateFrom.setDate(1)
+                dateTo.setMonth(3)
+                dateTo.setDate(0)
+                dateFrom = moment(dateFrom).quarter(moment().quarter() ).utc().format("YYYY-MM-DD")
+                dateTo = moment(dateTo).quarter(moment().quarter()).utc().format("YYYY-MM-DD")
                 break;
             }
             case 6: {
-                dateFrom = moment().subtract(1, "year").utc().format("YYYY-MM-DD")
-                dateTo = moment().utc().format("YYYY-MM-DD")
+                dateFrom=new Date()
+                dateTo=new Date()
+                dateFrom.setMonth(0)
+                dateFrom.setDate(1)
+                dateTo.setMonth(11)
+                dateTo.setDate(31)
+                dateFrom = moment(dateFrom).utc().format("YYYY-MM-DD")
+                dateTo = moment(dateTo).utc().format("YYYY-MM-DD")
                 break;
             }
             case 7: {
-                dateFrom = moment().subtract(2, 'week').utc().format("YYYY-MM-DD")
-                dateTo = moment().subtract(1, 'week').utc().format("YYYY-MM-DD")
+                dateFrom = moment().week(moment().week()-1).weekday(1).utc().format("YYYY-MM-DD")
+                dateTo = moment().week(moment().week()-1).weekday(7).utc().format("YYYY-MM-DD")
                 break;
             }
             case 8: {
-                dateFrom = moment().subtract(2, 'month').utc().format("YYYY-MM-DD")
-                dateTo = moment().subtract(1, 'month').utc().format("YYYY-MM-DD")
+                dateFrom=new Date()
+                dateTo=new Date()
+                dateFrom.setMonth(dateTo.getMonth()-1)
+                dateFrom.setDate(1)
+                dateTo.setMonth(dateTo.getMonth())
+                dateTo.setDate(0)
+                dateFrom = moment(dateFrom).utc().format("YYYY-MM-DD")
+                dateTo = moment(dateTo).utc().format("YYYY-MM-DD")
                 break;
             }
             case 9: {
-                dateFrom = moment().quarter(moment().quarter() - 2).utc().format("YYYY-MM-DD")
-                dateTo = moment().quarter(moment().quarter() - 1).utc().format("YYYY-MM-DD")
+                dateFrom=new Date()
+                dateTo=new Date()
+                dateFrom.setMonth(0)
+                dateFrom.setDate(1)
+                dateTo.setMonth(3)
+                dateTo.setDate(0)
+                dateFrom = moment(dateFrom).quarter(moment().quarter()-1 ).utc().format("YYYY-MM-DD")
+                dateTo = moment(dateTo).quarter(moment().quarter()-1).utc().format("YYYY-MM-DD")
                 break;
             }
             case 10: {
-                dateFrom = moment().subtract(2, "year").utc().format("YYYY-MM-DD")
-                dateTo = moment().subtract(1, "year").utc().format("YYYY-MM-DD")
+                dateFrom=new Date()
+                dateTo=new Date()
+                dateFrom.setMonth(0)
+                dateFrom.setDate(1)
+                dateTo.setMonth(11)
+                dateTo.setDate(31)
+                dateFrom = moment(dateFrom).year(moment().year()-1).utc().format("YYYY-MM-DD")
+                dateTo = moment(dateTo).year(moment().year()-1).utc().format("YYYY-MM-DD")
                 break;
             }
 
         }
+
 
         this.orderRequest.closeDate = this.isCloseDate
         this.orderRequest.dateFrom = dateFrom;

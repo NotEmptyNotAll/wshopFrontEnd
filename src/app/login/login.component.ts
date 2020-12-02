@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     selectedUser: User;
     userIsSelected: boolean = false
     orderRequest: OrderRequest;
-    name:string
+    name: string
     users: User[];
 
     orders: Order[];
@@ -61,16 +61,18 @@ export class LoginComponent implements OnInit {
         this.password = "";
 
     }
+
     showSuccess() {
-        this.messageService.add({severity:'success', summary: this.name, detail: 'смена началась'});
+        this.messageService.add({severity: 'success', summary: this.name, detail: 'смена началась'});
     }
-    moveToMasterSelectWindows(){
+
+    moveToMasterSelectWindows() {
         this.showSuccess()
         this.router.navigate(['/selectWork'])
     }
 
     async login() {
-        this.name=this.selectedUser.name
+        this.name = this.selectedUser.name
         this.selectedUser.password = this.password;
         this.apiService.setUserData(this.selectedUser)
         console.log(this.orderRequest)
@@ -84,7 +86,7 @@ export class LoginComponent implements OnInit {
             this.selectedUser.name = 'Administrator (superuser) '
             this.selectedUser.password = '12345'
             this.orderService.setUserValidate(true)
-            this.masterWindowVisible=true
+            this.masterWindowVisible = true
             this.ordersResponse = await this.apiService.post<TableOrderResponse>(
                 'getListOFWork', this.filterService.getOrderRequest()
             );
