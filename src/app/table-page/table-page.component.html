@@ -1,4 +1,4 @@
-<div class="content-body" *ngIf="!tableDataService.showUpdatePage">
+<div class="content-body" id='mian' *ngIf="!tableDataService.showUpdatePage">
     <!--<div class="input-form">
         <input placeholder="input columns size" type="text"
                [ngClass]="{'err-input':inputErr,'input-text':!inputErr}"
@@ -41,7 +41,7 @@
 
             </p-footer>
         </p-dialog>
-    <p-confirmPopup></p-confirmPopup>
+    <p-confirmPopup [visible]="confirmDisplay" ></p-confirmPopup>
     <p-contextMenu #cm [model]="items"></p-contextMenu>
 
     <!--  currentPageReportTemplate="{{'loginPage.TableNumLabel' | translate}}"
@@ -149,7 +149,7 @@
                     </td>
                     <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px'}">
                         <span *ngIf="rowData.Comment!==''" class="pi pi-info-circle" pReorderableRowHandle
-                              (click)="confirm($event,rowData)"></span>
+                            (click)="confirm($event,rowData)"></span>
                     </td>
                     <td *ngFor="let col of columns" class="ui-resizable-column" pResizableColumn
                         [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">

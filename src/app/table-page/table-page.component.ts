@@ -53,6 +53,7 @@ export class TablePageComponent implements OnInit {
     inputErr = false
     data: TableOrderResponse
     columns: any[];
+    confirmDisplay:boolean=false;
     loading: boolean = false;
     items: MenuItem[]=[
         {label: 'action', icon: 'pi pi-fw pi-search'},
@@ -81,17 +82,21 @@ export class TablePageComponent implements OnInit {
     }
 
     confirm(event,rowData) {
-        console.log(rowData)
+        if(this.confirmDisplay){
+            this.confirmDisplay=false
+        }else {
+            this.confirmDisplay=true
+        }
         this.confirmationService.confirm({
             target: event.target,
             message: rowData.Comment,
             icon: 'pi pi-exclamation-triangle',
             rejectVisible:false,
             accept: () => {
-                //confirm action
+                this.confirmDisplay=false
             },
             reject: () => {
-                //reject action
+                this.confirmDisplay=false
             }
         });
     }
