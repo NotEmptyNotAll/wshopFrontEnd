@@ -10,8 +10,9 @@
     <div class="p-field p-col-36 p-md-12">
 <p-dropdown *ngIf="onlyField"
             [disabled]="disabled"
-             (onChange)="changeState()"  style="width: 300px" [showClear]="true" placeholder=""
-             [options]="states" [(ngModel)]="state" optionLabel="name"></p-dropdown>
+             (onChange)="changeState()"  style="width: 300px" [showClear]="true"
+             [options]="states"
+            [(ngModel)]="state" optionLabel="name"></p-dropdown>
     </div>
 </div>
 

@@ -9,9 +9,10 @@ import {OrderRequest} from "../order.request";
 })
 export class StateFilterComponent implements OnInit {
     private state = {name: '', code: ''}
-    @Input() onlyField:boolean=false
-    @Input() disabled:boolean=false
+    @Input() onlyField: boolean = false
+    @Input() disabled: boolean = false
     @Output() onSuggest: EventEmitter<any> = new EventEmitter();
+    @Output() onClear: EventEmitter<any> = new EventEmitter();
     private orderRequest: OrderRequest
 
 
@@ -28,15 +29,22 @@ export class StateFilterComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    clear(){
-        this.state=  {name: 'Усе', code: null}
+    clear() {
+        this.state = {name: 'Усе', code: null}
+        this.changeState()
+        this.onClear.emit()
     }
-    changeState() {
-        this.orderRequest = this.filterService.getOrderRequest()
-        this.orderRequest.state = this.state.code
-        this.filterService.setOrderRequest(this.orderRequest)
-        this.onSuggest.emit();
 
+    changeState() {
+
+        if (this.state === null) {
+            this.clear()
+        } else {
+            this.orderRequest = this.filterService.getOrderRequest()
+            this.orderRequest.state = this.state.code
+            this.filterService.setOrderRequest(this.orderRequest)
+            this.onSuggest.emit();
+        }
     }
 
 }

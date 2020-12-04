@@ -9,6 +9,8 @@ import {OrderRequest} from "../order.request";
 })
 export class SubstringFilterComponent implements OnInit {
   @Output() onSuggest: EventEmitter<any> = new EventEmitter();
+  @Output() onClear: EventEmitter<any> = new EventEmitter();
+
   private orderRequest: OrderRequest
 
   private sunString:string=''
@@ -16,8 +18,10 @@ export class SubstringFilterComponent implements OnInit {
   constructor(public filterService: FilterService) { }
   clear(){
     this.sunString= ''
+    this.onClear.emit()
   }
   onChang(){
+
     this.orderRequest = this.filterService.getOrderRequest()
     this.orderRequest.searchString =this.sunString ;
     this.filterService.setOrderRequest(this.orderRequest)

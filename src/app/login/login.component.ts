@@ -96,6 +96,7 @@ export class LoginComponent implements OnInit {
             this.ordersResponse = await this.apiService.post<TableOrderResponse>(
                 'getCroppedOrders', this.filterService.getOrderRequest()
             );
+            console.log(this.orderRequest)
             this.orderService.setOrderResponse(this.ordersResponse)
 
 

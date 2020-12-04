@@ -77,7 +77,7 @@ export class TablePageComponent implements OnInit {
         const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.tableDataService.mainData);
         let wb = XLSX.utils.book_new()
         XLSX.utils.book_append_sheet(wb, worksheet, 'blank')
-        XLSX.writeFile(wb, 'exmp' + '.xlsx') // name of the file is 'book.xlsx'
+        XLSX.writeFile(wb, 'замовлення' + '.xlsx') // name of the file is 'book.xlsx'
 
     }
 

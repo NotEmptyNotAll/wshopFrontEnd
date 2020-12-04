@@ -10,8 +10,9 @@ import * as moment from "moment";
 })
 export class PeriodDateFilterComponent implements OnInit {
     @Output() onSuggest: EventEmitter<any> = new EventEmitter();
-    @Input() onlyField:boolean=false
-    private period = null
+    @Output() onClear: EventEmitter<any> = new EventEmitter();
+    @Input() onlyField: boolean = false
+    private period = {name: '', code: -1}
     private orderRequest: OrderRequest
     private isCloseDate: boolean = false
     private periods: any[] = [
@@ -33,116 +34,124 @@ export class PeriodDateFilterComponent implements OnInit {
 
     ngOnInit(): void {
     }
-    clear(){
-        this.period=  {name: 'Усе', code: 0}
+
+    clear() {
+        this.period = {name: 'Усе', code: 0}
+        this.changePeriod()
+        this.onClear.emit()
     }
+
     changePeriod() {
 
-        this.orderRequest = this.filterService.getOrderRequest()
-        let dateTo = null;
-        let dateFrom = null;
-        switch (this.period.code) {
-            case 0: {
-                dateTo = null
-                dateFrom = null
-                break;
+        if (this.period === null) {
+            this.clear()
+        } else {
+            this.orderRequest = this.filterService.getOrderRequest()
+            let dateTo = null;
+            let dateFrom = null;
+            switch (this.period.code) {
+                case 0: {
+                    dateTo = null
+                    dateFrom = null
+                    break;
+                }
+
+                case 1: {
+                    dateFrom = moment().utc().format("YYYY-MM-DD")
+                    dateTo = moment().utc().format("YYYY-MM-DD")
+                    break;
+                }
+                case 2: {
+                    dateFrom = moment().subtract(1, 'days').utc().format("YYYY-MM-DD")
+                    dateTo = moment().subtract(1, 'days').utc().format("YYYY-MM-DD")
+                    break;
+                }
+                case 3: {
+                    dateFrom = moment().weekday(1).utc().format("YYYY-MM-DD")
+                    dateTo = moment().weekday(7).utc().format("YYYY-MM-DD")
+                    break;
+                }
+                case 4: {
+                    dateFrom = new Date()
+                    dateTo = new Date()
+                    dateFrom.setDate(1)
+                    dateTo.setMonth(dateTo.getMonth() + 1)
+                    dateTo.setDate(0)
+                    dateFrom = moment(dateFrom).utc().format("YYYY-MM-DD")
+                    dateTo = moment(dateTo).utc().format("YYYY-MM-DD")
+                    break;
+                }
+                case 5: {
+
+                    dateFrom = new Date()
+                    dateTo = new Date()
+                    dateFrom.setMonth(0)
+                    dateFrom.setDate(1)
+                    dateTo.setMonth(3)
+                    dateTo.setDate(0)
+                    dateFrom = moment(dateFrom).quarter(moment().quarter()).utc().format("YYYY-MM-DD")
+                    dateTo = moment(dateTo).quarter(moment().quarter()).utc().format("YYYY-MM-DD")
+                    break;
+                }
+                case 6: {
+                    dateFrom = new Date()
+                    dateTo = new Date()
+                    dateFrom.setMonth(0)
+                    dateFrom.setDate(1)
+                    dateTo.setMonth(11)
+                    dateTo.setDate(31)
+                    dateFrom = moment(dateFrom).utc().format("YYYY-MM-DD")
+                    dateTo = moment(dateTo).utc().format("YYYY-MM-DD")
+                    break;
+                }
+                case 7: {
+                    dateFrom = moment().week(moment().week() - 1).weekday(1).utc().format("YYYY-MM-DD")
+                    dateTo = moment().week(moment().week() - 1).weekday(7).utc().format("YYYY-MM-DD")
+                    break;
+                }
+                case 8: {
+                    dateFrom = new Date()
+                    dateTo = new Date()
+                    dateFrom.setMonth(dateTo.getMonth() - 1)
+                    dateFrom.setDate(1)
+                    dateTo.setMonth(dateTo.getMonth())
+                    dateTo.setDate(0)
+                    dateFrom = moment(dateFrom).utc().format("YYYY-MM-DD")
+                    dateTo = moment(dateTo).utc().format("YYYY-MM-DD")
+                    break;
+                }
+                case 9: {
+                    dateFrom = new Date()
+                    dateTo = new Date()
+                    dateFrom.setMonth(0)
+                    dateFrom.setDate(1)
+                    dateTo.setMonth(3)
+                    dateTo.setDate(0)
+                    dateFrom = moment(dateFrom).quarter(moment().quarter() - 1).utc().format("YYYY-MM-DD")
+                    dateTo = moment(dateTo).quarter(moment().quarter() - 1).utc().format("YYYY-MM-DD")
+                    break;
+                }
+                case 10: {
+                    dateFrom = new Date()
+                    dateTo = new Date()
+                    dateFrom.setMonth(0)
+                    dateFrom.setDate(1)
+                    dateTo.setMonth(11)
+                    dateTo.setDate(31)
+                    dateFrom = moment(dateFrom).year(moment().year() - 1).utc().format("YYYY-MM-DD")
+                    dateTo = moment(dateTo).year(moment().year() - 1).utc().format("YYYY-MM-DD")
+                    break;
+                }
+
             }
 
-            case 1: {
-                dateFrom = moment().utc().format("YYYY-MM-DD")
-                dateTo = moment().utc().format("YYYY-MM-DD")
-                break;
-            }
-            case 2: {
-                dateFrom = moment().subtract(1, 'days').utc().format("YYYY-MM-DD")
-                dateTo = moment().subtract(1, 'days').utc().format("YYYY-MM-DD")
-                break;
-            }
-            case 3: {
-                dateFrom = moment().weekday(1).utc().format("YYYY-MM-DD")
-                dateTo = moment().weekday(7).utc().format("YYYY-MM-DD")
-                break;
-            }
-            case 4: {
-                dateFrom=new Date()
-                dateTo=new Date()
-                dateFrom.setDate(1)
-                dateTo.setMonth(dateTo.getMonth()+1)
-                dateTo.setDate(0)
-                dateFrom = moment(dateFrom).utc().format("YYYY-MM-DD")
-                dateTo = moment(dateTo).utc().format("YYYY-MM-DD")
-                break;
-            }
-            case 5: {
 
-                dateFrom=new Date()
-                dateTo=new Date()
-                dateFrom.setMonth(0)
-                dateFrom.setDate(1)
-                dateTo.setMonth(3)
-                dateTo.setDate(0)
-                dateFrom = moment(dateFrom).quarter(moment().quarter() ).utc().format("YYYY-MM-DD")
-                dateTo = moment(dateTo).quarter(moment().quarter()).utc().format("YYYY-MM-DD")
-                break;
-            }
-            case 6: {
-                dateFrom=new Date()
-                dateTo=new Date()
-                dateFrom.setMonth(0)
-                dateFrom.setDate(1)
-                dateTo.setMonth(11)
-                dateTo.setDate(31)
-                dateFrom = moment(dateFrom).utc().format("YYYY-MM-DD")
-                dateTo = moment(dateTo).utc().format("YYYY-MM-DD")
-                break;
-            }
-            case 7: {
-                dateFrom = moment().week(moment().week()-1).weekday(1).utc().format("YYYY-MM-DD")
-                dateTo = moment().week(moment().week()-1).weekday(7).utc().format("YYYY-MM-DD")
-                break;
-            }
-            case 8: {
-                dateFrom=new Date()
-                dateTo=new Date()
-                dateFrom.setMonth(dateTo.getMonth()-1)
-                dateFrom.setDate(1)
-                dateTo.setMonth(dateTo.getMonth())
-                dateTo.setDate(0)
-                dateFrom = moment(dateFrom).utc().format("YYYY-MM-DD")
-                dateTo = moment(dateTo).utc().format("YYYY-MM-DD")
-                break;
-            }
-            case 9: {
-                dateFrom=new Date()
-                dateTo=new Date()
-                dateFrom.setMonth(0)
-                dateFrom.setDate(1)
-                dateTo.setMonth(3)
-                dateTo.setDate(0)
-                dateFrom = moment(dateFrom).quarter(moment().quarter()-1 ).utc().format("YYYY-MM-DD")
-                dateTo = moment(dateTo).quarter(moment().quarter()-1).utc().format("YYYY-MM-DD")
-                break;
-            }
-            case 10: {
-                dateFrom=new Date()
-                dateTo=new Date()
-                dateFrom.setMonth(0)
-                dateFrom.setDate(1)
-                dateTo.setMonth(11)
-                dateTo.setDate(31)
-                dateFrom = moment(dateFrom).year(moment().year()-1).utc().format("YYYY-MM-DD")
-                dateTo = moment(dateTo).year(moment().year()-1).utc().format("YYYY-MM-DD")
-                break;
-            }
-
+            this.orderRequest.closeDate = this.isCloseDate
+            this.orderRequest.dateFrom = dateFrom;
+            this.orderRequest.dateTo = dateTo;
+            this.filterService.setOrderRequest(this.orderRequest)
+            this.onSuggest.emit();
         }
-
-
-        this.orderRequest.closeDate = this.isCloseDate
-        this.orderRequest.dateFrom = dateFrom;
-        this.orderRequest.dateTo = dateTo;
-        this.filterService.setOrderRequest(this.orderRequest)
-        this.onSuggest.emit();
     }
 
 

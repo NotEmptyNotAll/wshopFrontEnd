@@ -17,8 +17,9 @@
 <!--</div>-->
 <div   *ngIf="onlyField"   class="p-fluid  p-grid p-formgrid" style="width: 270px">
     <div class="p-field p-col-36 p-md-12">
-        <p-dropdown (onClick)="changePeriod()"
-                    [options]="periods" [(ngModel)]="period" placeholder="{{'loginPage.datePeriod' | translate}}"
+        <p-dropdown (onChange)="changePeriod()"
+
+                    [options]="periods" [(ngModel)]="period"
                     optionLabel="name"  [showClear]="true">
     </p-dropdown>
     </div>

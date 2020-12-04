@@ -34,14 +34,14 @@
         <p-footer class="footer-dialog">
             <button pRipple type="button" (click)="cancelFilter()" style="margin-right: 15%;margin-left:10%" pButton
                     class="p-button-danger"
-                        [label]="'loginPage.cancel' | translate" icon="pi pi-times" label="delete"></button>
-                <button pRipple type="button" (click)="updateData()" style="margin-left:15%;margin-right:10% " pButton
-                        icon="pi pi-check"
-                        [label]="'loginPage.confirm' | translate"></button>
+                    [label]="'loginPage.cancel' | translate" icon="pi pi-times" label="delete"></button>
+            <button pRipple type="button" (click)="updateData()" style="margin-left:15%;margin-right:10% " pButton
+                    icon="pi pi-check"
+                    [label]="'loginPage.confirm' | translate"></button>
 
-            </p-footer>
-        </p-dialog>
-    <p-confirmPopup [visible]="confirmDisplay" ></p-confirmPopup>
+        </p-footer>
+    </p-dialog>
+    <p-confirmPopup [visible]="confirmDisplay"></p-confirmPopup>
     <p-contextMenu #cm [model]="items"></p-contextMenu>
 
     <!--  currentPageReportTemplate="{{'loginPage.TableNumLabel' | translate}}"
@@ -72,17 +72,21 @@
                         <div *ngIf="!standardFilterDisable" class="p-mb-2 p-mr-2" style=" position: relative;top:-2px">
                             <button pButton type="button" (click)="showDialog()"
                                     class="p-button-secondary"
+                                    pRipple
                                     icon="pi pi-filter size-icon-table"
                             >
                             </button>
                         </div>
                         <div class="p-mb-2 p-mr-2" style="width: 300px; position: relative;top:-10px">
                             <app-period-date-filter [onlyField]="true" (onSuggest)="updateData()"
+                                                    (onClear)="updateData()"
+
                             ></app-period-date-filter>
                         </div>
                         <div class="p-mb-2 p-mr-2" style="width: 300px; position: relative;top:-10px">
                             <app-state-filter [disabled]="stateFilterDisable" [onlyField]="true"
                                               (onSuggest)="updateData()"
+                                              (onClear)="updateData()"
                             ></app-state-filter>
                         </div>
                         <div class="p-mb-2 p-mr-2" style="width: 300px; position: relative;top:-10px">
@@ -93,6 +97,7 @@
                         <div class="p-mb-2 p-mr-2" style="width: 100px; position: relative;top:-2px">
                             <button pButton type="button" (click)="downloadExel()"
                                     class="p-button-secondary"
+                                    pRipple
                                     icon="pi pi-file-excel size-icon-table "
                             >
                             </button>
@@ -149,7 +154,7 @@
                     </td>
                     <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px'}">
                         <span *ngIf="rowData.Comment!==''" class="pi pi-info-circle" pReorderableRowHandle
-                            (click)="confirm($event,rowData)"></span>
+                              (click)="confirm($event,rowData)"></span>
                     </td>
                     <td *ngFor="let col of columns" class="ui-resizable-column" pResizableColumn
                         [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
