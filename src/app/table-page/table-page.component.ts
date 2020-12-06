@@ -38,10 +38,10 @@ export class TablePageComponent implements OnInit {
     @ViewChild(CustomerFilterComponent) childCustomerFilter:CustomerFilterComponent
     @ViewChild(EmployeeFilterComponent) childEmployeeFilter:EmployeeFilterComponent
     @ViewChild(PayedFilterComponent) childPayedFilter:PayedFilterComponent
-    @ViewChildren(StateFilterComponent) childStateFilter:StateFilterComponent
+    @ViewChild(StateFilterComponent) childStateFilter:StateFilterComponent
     @ViewChild(DateFilterComponent) childDateFilter:DateFilterComponent
     @ViewChild(SubstringFilterComponent) subStringFilter:DateFilterComponent
-    @ViewChildren(PeriodDateFilterComponent) childPeriodDateFilter:PeriodDateFilterComponent
+    @ViewChild(PeriodDateFilterComponent) childPeriodDateFilter:PeriodDateFilterComponent
     @Input() startData: TableData[]
     @Input() mainColumn: any[]
     @Input() stateFilterDisable:boolean=false
@@ -118,7 +118,7 @@ export class TablePageComponent implements OnInit {
         this.childStateFilter.clear()
         this.childDateFilter.clear()
         this.subStringFilter.clear()
-       // this.childPeriodDateFilter.clear()
+        this.childPeriodDateFilter.clear()
     }
     async updateData() {
         this.loading=true
