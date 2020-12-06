@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild, ViewChildren} from '@angular/core';
 import {TableData} from './tableData';
 import {TableDataService} from "./tableData.service";
 import {ConfirmationService, SortEvent} from 'primeng/api';
@@ -21,6 +21,7 @@ import {StateFilterComponent} from "../widgets/filters/state-filter/state-filter
 import {PeriodDateFilterComponent} from "../widgets/filters/period-date-filter/period-date-filter.component";
 import {DateFilterComponent} from "../widgets/filters/date-filter/date-filter.component";
 import * as moment from "moment";
+import {SubstringFilterComponent} from "../widgets/filters/substring-filter/substring-filter.component";
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
@@ -37,9 +38,10 @@ export class TablePageComponent implements OnInit {
     @ViewChild(CustomerFilterComponent) childCustomerFilter:CustomerFilterComponent
     @ViewChild(EmployeeFilterComponent) childEmployeeFilter:EmployeeFilterComponent
     @ViewChild(PayedFilterComponent) childPayedFilter:PayedFilterComponent
-    @ViewChild(StateFilterComponent) childStateFilter:StateFilterComponent
+    @ViewChildren(StateFilterComponent) childStateFilter:StateFilterComponent
     @ViewChild(DateFilterComponent) childDateFilter:DateFilterComponent
-    @ViewChild(PeriodDateFilterComponent) childPeriodDateFilter:PeriodDateFilterComponent
+    @ViewChild(SubstringFilterComponent) subStringFilter:DateFilterComponent
+    @ViewChildren(PeriodDateFilterComponent) childPeriodDateFilter:PeriodDateFilterComponent
     @Input() startData: TableData[]
     @Input() mainColumn: any[]
     @Input() stateFilterDisable:boolean=false
@@ -115,9 +117,11 @@ export class TablePageComponent implements OnInit {
         this.childPayedFilter.clear()
         this.childStateFilter.clear()
         this.childDateFilter.clear()
+        this.subStringFilter.clear()
        // this.childPeriodDateFilter.clear()
     }
     async updateData() {
+        this.loading=true
         this.data = await this.apiService.post<TableOrderResponse>(
             'getCroppedOrders', this.filterService.getOrderRequest()
         );
@@ -174,14 +178,15 @@ export class TablePageComponent implements OnInit {
         this.tableDataService.setTablePatternRow(tableRowPattern)
 
         this.tableDataService.setStartData(this.startData)
-        this.cols = this.mainColumn.slice()
-        this.columns = this.cols
-        this._selectedColumns = this.cols;
+      //  this.cols = this.mainColumn.slice()
+       // this.columns = this.cols
+    //    this._selectedColumns = this.cols;
 
         if (this.dynamicColumns !== '') {
             this.tableDataService.addColumnText = this.dynamicColumns
             this.setColumn()
         }
+        this.loading=false
     }
 
     constructor(public tableDataService: TableDataService,

@@ -428,7 +428,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"content-body\" *ngIf=\"!tableDataService.showUpdatePage\">\n    <!--<div class=\"input-form\">\n        <input placeholder=\"input columns size\" type=\"text\"\n               [ngClass]=\"{'err-input':inputErr,'input-text':!inputErr}\"\n               [(ngModel)]=\"tableDataService.addColumnText\" (input)=\"setColumn()\"/>\n        <input type=\"text\" class=\"input-text\" [(ngModel)]=\"tableDataService.search\"\n               (keydown.enter)=\"onSearch()\"/>\n        <button class=\"button button-search\" (click)=\"onSearch()\">search</button>\n    </div>\n\n        <div class=\"box\">\n        <app-filter-box></app-filter-box>\n        <div class=\"shadow box-item \">\n            <p-multiSelect [options]=\"columns\" [(ngModel)]=\"_selectedColumns\" optionLabel=\"header\"\n                           selectedItemsLabel=\" {0} columns selected\"\n                           [style]=\"{minWidth:'200px'}\"\n                           placeholder=\"Choose Columns\"></p-multiSelect>\n        </div>\n\n    </div>\n    -->\n    <p-dialog header=\"{{'loginPage.filters' | translate}}\"\n              [style]=\"{minWidth:'400px',minHeight:'500px',width:'600px'}\"\n              [(visible)]=\"display\" [resizable]=\"true\" responsive=\"false\">\n        <div class=\"filter-panel\">\n            <app-date-filter class=\"filter\"></app-date-filter>\n            <app-payed-filter class=\"filter\"></app-payed-filter>\n            <app-state-filter class=\"filter\" [onlyField]=\"false\"></app-state-filter>\n            <app-customer-filter class=\"filter\"></app-customer-filter>\n            <app-employee-filter class=\"filter\"></app-employee-filter>\n        </div>\n\n\n        <p-footer class=\"footer-dialog\">\n            <button pRipple type=\"button\" (click)=\"cancelFilter()\" style=\"margin-right: 15%;margin-left:10%\" pButton\n                    class=\"p-button-danger\"\n                        [label]=\"'loginPage.cancel' | translate\" icon=\"pi pi-times\" label=\"delete\"></button>\n                <button pRipple type=\"button\" (click)=\"updateData()\" style=\"margin-left:15%;margin-right:10% \" pButton\n                        icon=\"pi pi-check\"\n                        [label]=\"'loginPage.confirm' | translate\"></button>\n\n            </p-footer>\n        </p-dialog>\n    <p-confirmPopup></p-confirmPopup>\n    <p-contextMenu #cm [model]=\"items\"></p-contextMenu>\n\n    <!--  currentPageReportTemplate=\"{{'loginPage.TableNumLabel' | translate}}\"\n               [rows]=\"100\" [showCurrentPageReport]=\"true\" [rowsPerPageOptions]=\"[20,30,50,100]\"\n              [paginator]=\"true\" -->\n    <div style=\"height: 85vh;background: #f4f4f4;width: 100%\">\n        <p-table\n                [reorderableColumns]=\"true\"\n                class=\"table-style\"\n                [loading]=\"loading\"\n                [columns]=\"_selectedColumns\" [value]=\"tableDataService.mainData\" [scrollable]=\"true\"\n                scrollHeight=\"flex\"\n                [contextMenu]=\"cm\"\n                style=\"border-color: #f4f4f4\"\n                [style]=\"{borderColor:'#f4f4f4',zIndex:'0'}\"\n                [resizableColumns]=\"true\" selectionMode=\"single\"\n                dataKey=\"id\">\n\n            <ng-template pTemplate=\"caption\" style=\"border-color: #f4f4f4\">\n                <div class=\"table-header\" style=\"height: 35px\" [style]=\"{borderColor:'#f4f4f4'}\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row\">\n                        <div class=\"p-mb-4 p-mr-4\" style=\"width: 20%\">\n                            <h3> {{ title }}</h3>\n                        </div>\n\n                        <div class=\"p-mb-6 p-mr-6\" style=\"width: 40%\">\n                        </div>\n                        <div *ngIf=\"!standardFilterDisable\" class=\"p-mb-2 p-mr-2\" style=\" position: relative;top:-2px\">\n                            <button pButton type=\"button\" (click)=\"showDialog()\"\n                                    class=\"p-button-secondary\"\n                                    icon=\"pi pi-filter size-icon-table\"\n                            >\n                            </button>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 300px; position: relative;top:-10px\">\n                            <app-period-date-filter [onlyField]=\"true\" (onSuggest)=\"updateData()\"\n                            ></app-period-date-filter>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 300px; position: relative;top:-10px\">\n                            <app-state-filter [disabled]=\"stateFilterDisable\" [onlyField]=\"true\"\n                                              (onSuggest)=\"updateData()\"\n                            ></app-state-filter>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 300px; position: relative;top:-10px\">\n\n                            <app-substring-filter (onSuggest)=\"updateData()\"\n                            ></app-substring-filter>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 100px; position: relative;top:-2px\">\n                            <button pButton type=\"button\" (click)=\"downloadExel()\"\n                                    class=\"p-button-secondary\"\n                                    icon=\"pi pi-file-excel size-icon-table \"\n                            >\n                            </button>\n\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\"\n                             style=\" position: relative;top:-2px;\">\n                            <p-multiSelect [options]=\"columns\" [(ngModel)]=\"_selectedColumns\"\n                                           optionLabel=\"header\"\n                                           [showHeader]=\"false\"\n                                           id=\"multisect\"\n                                           selectedItemsLabel=\"\"\n                                           defaultLabel=\"\"\n                                           (onClick)=\"chooseColumn()\"\n                                           dropdownIcon=\"pi pi-microsoft size-icon\"\n                                           scrollHeight=\"700px\"\n                                           [style]=\"{width:'38px',height:'40px',position:'relative',background:'#f4f4f4',borderColor:'#f4f4f4'}\"\n                                           placeholder=\"\"></p-multiSelect>\n                        </div>\n                    </div>\n\n\n                </div>\n            </ng-template>\n            <ng-template pTemplate=\"colgroup\">\n                <colgroup>\n                    <col style=\"width:30px\">\n                    <col style=\"width:30px\">\n                    <col *ngFor=\"let col of columns\" style=\"{{'width:'+col.width+'px'}}\">\n                    <col *ngIf=\"buttonActionDisable\" style=\"width:150px\">\n\n                </colgroup>\n            </ng-template>\n            <ng-template pTemplate=\"header\" let-columns>\n                <tr style=\"border-color: #f4f4f4\" [style]=\"{borderColor:'#f4f4f4'}\">\n                    <th style=\"width:2rem;border-color: #f4f4f4\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>\n                    <th style=\"width:2rem;border-color: #f4f4f4\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>\n\n                    <th *ngFor=\"let col of columns\" pResizableColumn [pSortableColumn]=\"col.header\"\n                        style=\"border-color: #f4f4f4\" [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\">\n                        {{col.header}}\n                        <p-sortIcon [field]=\"col.header\"></p-sortIcon>\n                    </th>\n                    <th style=\"width:2rem;border-color: #f4f4f4\" *ngIf=\"buttonActionDisable\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-rowData let-columns=\"columns\" let-index=\"rowIndex\">\n                <tr [pReorderableRow]=\"index\" [pContextMenuRow]=\"rowData\">\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'12px'}\">\n                        <span class=\"pi pi-bars\" pReorderableRowHandle></span>\n                    </td>\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'14px'}\">\n                        <span *ngIf=\"rowData.Comment!==''\" class=\"pi pi-info-circle\" pReorderableRowHandle\n                              (click)=\"confirm($event,rowData)\"></span>\n                    </td>\n                    <td *ngFor=\"let col of columns\" class=\"ui-resizable-column\" pResizableColumn\n                        [style]=\"{borderColor:'#f4f4f4' , fontSize:'12px'}\">\n                    <span *ngIf=\"rowData[col.field]==='yes' || rowData[col.field]==='1'\">\n                        <i class=\"pi pi-check\"></i>\n                        </span>\n                        <span *ngIf=\"rowData[col.field]==='no' || rowData[col.field]==='0'\"></span>\n                        <span *ngIf=\"col.field==='Борг' || col.field==='Роб.' || col.field==='З/ч' || col.field==='Разом'\"\n                              style=\"padding-left: 50%\"> </span>\n                        <span *ngIf=\"!(rowData[col.field]==='yes' || rowData[col.field]==='1') && !(rowData[col.field]==='no' || rowData[col.field]==='0')\">\n                                            {{rowData[col.field]}}\n                    </span>\n                    </td>\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'14px',zIndex:'2'}\" *ngIf=\"buttonActionDisable\">\n\n                        <app-button-list-action></app-button-list-action>\n\n                    </td>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"emptymessage\">\n                <tr>\n                    <td [colSpan]=\"_selectedColumns.length\">No customers found.</td>\n                </tr>\n            </ng-template>\n        </p-table>\n    </div>\n    <!--\n    <p-confirmDialog [style]=\"{width: '30vw'}\" [baseZIndex]=\"10000\"></p-confirmDialog>\n    <div class=\"button-panel\">\n        <button type=\"button\" (click)=\"deleteData()\" pButton class=\"ui-button-danger\"\n                icon=\"pi pi-trash\" [disabled]=\"selectRow.id<=startData.length\" label=\"delete\"></button>\n        <button (click)=\"tableDataService.showUpdatePage=true\" type=\"button\" pButton icon=\"pi pi-plus\"\n                label=\"create\"></button>\n        <button type=\"button\" [disabled]=\"selectRow.id<=startData.length\" pButton icon=\"pi pi-pencil\"\n                class=\"ui-button-success\" (click)=\"changeData()\" label=\"change\"></button>\n    </div>-->\n\n</div>\n<app-create-add *ngIf=\"tableDataService.showUpdatePage\"></app-create-add>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"content-body\" id='mian' *ngIf=\"!tableDataService.showUpdatePage\">\n    <!--<div class=\"input-form\">\n        <input placeholder=\"input columns size\" type=\"text\"\n               [ngClass]=\"{'err-input':inputErr,'input-text':!inputErr}\"\n               [(ngModel)]=\"tableDataService.addColumnText\" (input)=\"setColumn()\"/>\n        <input type=\"text\" class=\"input-text\" [(ngModel)]=\"tableDataService.search\"\n               (keydown.enter)=\"onSearch()\"/>\n        <button class=\"button button-search\" (click)=\"onSearch()\">search</button>\n    </div>\n\n        <div class=\"box\">\n        <app-filter-box></app-filter-box>\n        <div class=\"shadow box-item \">\n            <p-multiSelect [options]=\"columns\" [(ngModel)]=\"_selectedColumns\" optionLabel=\"header\"\n                           selectedItemsLabel=\" {0} columns selected\"\n                           [style]=\"{minWidth:'200px'}\"\n                           placeholder=\"Choose Columns\"></p-multiSelect>\n        </div>\n\n    </div>\n    -->\n    <p-dialog header=\"{{'loginPage.filters' | translate}}\"\n              [style]=\"{minWidth:'400px',minHeight:'500px',width:'600px'}\"\n              [(visible)]=\"display\" [resizable]=\"true\" responsive=\"false\">\n        <div class=\"filter-panel\">\n            <app-date-filter class=\"filter\"></app-date-filter>\n            <app-payed-filter class=\"filter\"></app-payed-filter>\n            <app-state-filter class=\"filter\" [onlyField]=\"false\"></app-state-filter>\n            <app-customer-filter class=\"filter\"></app-customer-filter>\n            <app-employee-filter class=\"filter\"></app-employee-filter>\n        </div>\n\n\n        <p-footer class=\"footer-dialog\">\n            <button pRipple type=\"button\" (click)=\"cancelFilter()\" style=\"margin-right: 15%;margin-left:10%\" pButton\n                    class=\"p-button-danger\"\n                    [label]=\"'loginPage.cancel' | translate\" icon=\"pi pi-times\" label=\"delete\"></button>\n            <button pRipple type=\"button\" (click)=\"updateData()\" style=\"margin-left:15%;margin-right:10% \" pButton\n                    icon=\"pi pi-check\"\n                    [label]=\"'loginPage.confirm' | translate\"></button>\n\n        </p-footer>\n    </p-dialog>\n    <p-confirmPopup [visible]=\"confirmDisplay\"></p-confirmPopup>\n    <p-contextMenu #cm [model]=\"items\"></p-contextMenu>\n\n    <!--  currentPageReportTemplate=\"{{'loginPage.TableNumLabel' | translate}}\"\n               [rows]=\"100\" [showCurrentPageReport]=\"true\" [rowsPerPageOptions]=\"[20,30,50,100]\"\n              [paginator]=\"true\" -->\n    <div style=\"height: 85vh;background: #f4f4f4;width: 100%\">\n        <p-table\n                [reorderableColumns]=\"true\"\n                class=\"table-style\"\n                [loading]=\"loading\"\n                [columns]=\"_selectedColumns\" [value]=\"tableDataService.mainData\" [scrollable]=\"true\"\n                scrollHeight=\"flex\"\n                [contextMenu]=\"cm\"\n                style=\"border-color: #f4f4f4\"\n                [style]=\"{borderColor:'#f4f4f4',zIndex:'0'}\"\n                [resizableColumns]=\"true\" selectionMode=\"single\"\n                dataKey=\"id\">\n\n            <ng-template pTemplate=\"caption\" style=\"border-color: #f4f4f4\">\n                <div class=\"table-header\" style=\"height: 35px\" [style]=\"{borderColor:'#f4f4f4'}\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row\">\n                        <div class=\"p-mb-4 p-mr-4\" style=\"width: 20%\">\n                            <h3> {{ title }}</h3>\n                        </div>\n\n                        <div class=\"p-mb-6 p-mr-6\" style=\"width: 40%\">\n                        </div>\n                        <div *ngIf=\"!standardFilterDisable\" class=\"p-mb-2 p-mr-2\" style=\" position: relative;top:-2px\">\n                            <button pButton type=\"button\" (click)=\"showDialog()\"\n                                    class=\"p-button-secondary\"\n                                    pRipple\n                                    icon=\"pi pi-filter size-icon-table\"\n                            >\n                            </button>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 300px; position: relative;top:-10px\">\n                            <app-period-date-filter [onlyField]=\"true\" (onSuggest)=\"updateData()\"\n                                                    (onClear)=\"updateData()\"\n\n                            ></app-period-date-filter>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 300px; position: relative;top:-10px\">\n                            <app-state-filter [disabled]=\"stateFilterDisable\" [onlyField]=\"true\"\n                                              (onSuggest)=\"updateData()\"\n                                              (onClear)=\"updateData()\"\n                            ></app-state-filter>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 300px; position: relative;top:-10px\">\n\n                            <app-substring-filter (onSuggest)=\"updateData()\"\n                            ></app-substring-filter>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 100px; position: relative;top:-2px\">\n                            <button pButton type=\"button\" (click)=\"downloadExel()\"\n                                    class=\"p-button-secondary\"\n                                    pRipple\n                                    icon=\"pi pi-file-excel size-icon-table \"\n                            >\n                            </button>\n\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\"\n                             style=\" position: relative;top:-2px;\">\n                            <p-multiSelect [options]=\"columns\" [(ngModel)]=\"_selectedColumns\"\n                                           optionLabel=\"header\"\n                                           [showHeader]=\"false\"\n                                           id=\"multisect\"\n                                           selectedItemsLabel=\"\"\n                                           defaultLabel=\"\"\n                                           (onClick)=\"chooseColumn()\"\n                                           dropdownIcon=\"pi pi-microsoft size-icon\"\n                                           scrollHeight=\"700px\"\n                                           [style]=\"{width:'38px',height:'40px',position:'relative',background:'#f4f4f4',borderColor:'#f4f4f4'}\"\n                                           placeholder=\"\"></p-multiSelect>\n                        </div>\n                    </div>\n\n\n                </div>\n            </ng-template>\n            <ng-template pTemplate=\"colgroup\">\n                <colgroup>\n                    <col style=\"width:30px\">\n                    <col style=\"width:30px\">\n                    <col *ngFor=\"let col of columns\" style=\"{{'width:'+col.width+'px'}}\">\n                    <col *ngIf=\"buttonActionDisable\" style=\"width:150px\">\n\n                </colgroup>\n            </ng-template>\n            <ng-template pTemplate=\"header\" let-columns>\n                <tr style=\"border-color: #f4f4f4\" [style]=\"{borderColor:'#f4f4f4'}\">\n                    <th style=\"width:2rem;border-color: #f4f4f4\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>\n                    <th style=\"width:2rem;border-color: #f4f4f4\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>\n\n                    <th *ngFor=\"let col of columns\" pResizableColumn [pSortableColumn]=\"col.header\"\n                        style=\"border-color: #f4f4f4\" [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\">\n                        {{col.header}}\n                        <p-sortIcon [field]=\"col.header\"></p-sortIcon>\n                    </th>\n                    <th style=\"width:2rem;border-color: #f4f4f4\" *ngIf=\"buttonActionDisable\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-rowData let-columns=\"columns\" let-index=\"rowIndex\">\n                <tr [pReorderableRow]=\"index\" [pContextMenuRow]=\"rowData\">\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'12px'}\">\n                        <span class=\"pi pi-bars\" pReorderableRowHandle></span>\n                    </td>\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'14px'}\">\n                        <span *ngIf=\"rowData.Comment!==''\" class=\"pi pi-info-circle\" pReorderableRowHandle\n                              (click)=\"confirm($event,rowData)\"></span>\n                    </td>\n                    <td *ngFor=\"let col of columns\" class=\"ui-resizable-column\" pResizableColumn\n                        [style]=\"{borderColor:'#f4f4f4' , fontSize:'12px'}\">\n                    <span *ngIf=\"rowData[col.field]==='yes' || rowData[col.field]==='1'\">\n                        <i class=\"pi pi-check\"></i>\n                        </span>\n                        <span *ngIf=\"rowData[col.field]==='no' || rowData[col.field]==='0'\"></span>\n                        <span *ngIf=\"col.field==='Борг' || col.field==='Роб.' || col.field==='З/ч' || col.field==='Разом'\"\n                              style=\"padding-left: 50%\"> </span>\n                        <span *ngIf=\"!(rowData[col.field]==='yes' || rowData[col.field]==='1') && !(rowData[col.field]==='no' || rowData[col.field]==='0')\">\n                                            {{rowData[col.field]}}\n                    </span>\n                    </td>\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'14px',zIndex:'2'}\" *ngIf=\"buttonActionDisable\">\n\n                        <app-button-list-action></app-button-list-action>\n\n                    </td>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"emptymessage\">\n                <tr>\n                    <td [colSpan]=\"_selectedColumns.length\">No customers found.</td>\n                </tr>\n            </ng-template>\n        </p-table>\n    </div>\n    <!--\n    <p-confirmDialog [style]=\"{width: '30vw'}\" [baseZIndex]=\"10000\"></p-confirmDialog>\n    <div class=\"button-panel\">\n        <button type=\"button\" (click)=\"deleteData()\" pButton class=\"ui-button-danger\"\n                icon=\"pi pi-trash\" [disabled]=\"selectRow.id<=startData.length\" label=\"delete\"></button>\n        <button (click)=\"tableDataService.showUpdatePage=true\" type=\"button\" pButton icon=\"pi pi-plus\"\n                label=\"create\"></button>\n        <button type=\"button\" [disabled]=\"selectRow.id<=startData.length\" pButton icon=\"pi pi-pencil\"\n                class=\"ui-button-success\" (click)=\"changeData()\" label=\"change\"></button>\n    </div>-->\n\n</div>\n<app-create-add *ngIf=\"tableDataService.showUpdatePage\"></app-create-add>");
 
 /***/ }),
 
@@ -532,7 +532,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!--<div class=\"filter-component\">-->\n<!--    <p class=\"title\">{{'loginPage.datePeriod' | translate}}</p>-->\n<!--    <p-dropdown (onClick)=\"changePeriod()\" style=\"margin: 5px 5px 10px;position: relative;bottom: 20px\"-->\n<!--                [options]=\"periods\" [(ngModel)]=\"period\" optionLabel=\"name\">-->\n\n\n<!--    </p-dropdown>-->\n<!--    <div  style=\"position: relative;top:-10px; display: flex;flex-direction: row;justify-content: center;align-content: center\">-->\n<!--        <p-radioButton name=\"groupname\" inputId=\"val1\"  [value]=\"false\"-->\n<!--                       [(ngModel)]=\"isCloseDate\" style=\"margin-right: 5%\"></p-radioButton>-->\n<!--        <label for=\"val1\">відкр.</label>-->\n<!--        <p-radioButton name=\"groupname\" [value]=\"true\" inputId=\"val2\"-->\n<!--                       [(ngModel)]=\"isCloseDate\" style=\"margin-right: 5%;margin-left: 5%\"></p-radioButton>-->\n<!--        <label for=\"val2\">закр.</label>-->\n\n<!--    </div>-->\n<!--</div>-->\n<div   *ngIf=\"onlyField\"   class=\"p-fluid  p-grid p-formgrid\" style=\"width: 270px\">\n    <div class=\"p-field p-col-36 p-md-12\">\n        <p-dropdown (onClick)=\"changePeriod()\"\n                    [options]=\"periods\" [(ngModel)]=\"period\" placeholder=\"{{'loginPage.datePeriod' | translate}}\"\n                    optionLabel=\"name\"  [showClear]=\"true\">\n    </p-dropdown>\n    </div>\n</div>\n<div *ngIf=\"!onlyField\" class=\"filter-component\">\n    <div class=\"white-line\"></div>\n    <p class=\"title\" >{{'loginPage.datePeriod' | translate}}</p>\n    <div class=\"filter-body\">\n\n    <div class=\"p-fluid  p-grid p-formgrid\" >\n        <div class=\"p-field p-col-36 p-md-12\">\n            <p-dropdown (onClick)=\"changePeriod()\" [options]=\"periods\" [(ngModel)]=\"period\"\n                        placeholder=\"{{'loginPage.datePeriod' | translate}}\" optionLabel=\"name\"  [showClear]=\"true\">\n            </p-dropdown>\n\n        </div>\n    </div>\n    </div>\n\n\n\n\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<!--<div class=\"filter-component\">-->\n<!--    <p class=\"title\">{{'loginPage.datePeriod' | translate}}</p>-->\n<!--    <p-dropdown (onClick)=\"changePeriod()\" style=\"margin: 5px 5px 10px;position: relative;bottom: 20px\"-->\n<!--                [options]=\"periods\" [(ngModel)]=\"period\" optionLabel=\"name\">-->\n\n\n<!--    </p-dropdown>-->\n<!--    <div  style=\"position: relative;top:-10px; display: flex;flex-direction: row;justify-content: center;align-content: center\">-->\n<!--        <p-radioButton name=\"groupname\" inputId=\"val1\"  [value]=\"false\"-->\n<!--                       [(ngModel)]=\"isCloseDate\" style=\"margin-right: 5%\"></p-radioButton>-->\n<!--        <label for=\"val1\">відкр.</label>-->\n<!--        <p-radioButton name=\"groupname\" [value]=\"true\" inputId=\"val2\"-->\n<!--                       [(ngModel)]=\"isCloseDate\" style=\"margin-right: 5%;margin-left: 5%\"></p-radioButton>-->\n<!--        <label for=\"val2\">закр.</label>-->\n\n<!--    </div>-->\n<!--</div>-->\n<div   *ngIf=\"onlyField\"   class=\"p-fluid  p-grid p-formgrid\" style=\"width: 270px\">\n    <div class=\"p-field p-col-36 p-md-12\">\n        <p-dropdown (onChange)=\"changePeriod()\"\n\n                    [options]=\"periods\" [(ngModel)]=\"period\"\n                    optionLabel=\"name\"  [showClear]=\"true\">\n    </p-dropdown>\n    </div>\n</div>\n<div *ngIf=\"!onlyField\" class=\"filter-component\">\n    <div class=\"white-line\"></div>\n    <p class=\"title\" >{{'loginPage.datePeriod' | translate}}</p>\n    <div class=\"filter-body\">\n\n    <div class=\"p-fluid  p-grid p-formgrid\" >\n        <div class=\"p-field p-col-36 p-md-12\">\n            <p-dropdown (onClick)=\"changePeriod()\" [options]=\"periods\" [(ngModel)]=\"period\"\n                        placeholder=\"{{'loginPage.datePeriod' | translate}}\" optionLabel=\"name\"  [showClear]=\"true\">\n            </p-dropdown>\n\n        </div>\n    </div>\n    </div>\n\n\n\n\n</div>");
 
 /***/ }),
 
@@ -545,7 +545,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!--<div class=\"filter-component\">-->\n<!--    <p class=\"title\" >{{'loginPage.datePeriod' | translate}}</p>-->\n<!--    <p-dropdown  style=\"margin: 5px 5px 10px;position: relative;bottom: 20px\"-->\n<!--            (onChange)=\"changeState()\"  [options]=\"states\" [(ngModel)]=\"state\" optionLabel=\"name\"></p-dropdown>-->\n\n\n\n<!--</div>-->\n<div class=\"p-fluid  p-grid p-formgrid\">\n    <div class=\"p-field p-col-36 p-md-12\">\n<p-dropdown *ngIf=\"onlyField\"\n            [disabled]=\"disabled\"\n             (onChange)=\"changeState()\"  style=\"width: 300px\" [showClear]=\"true\" placeholder=\"\"\n             [options]=\"states\" [(ngModel)]=\"state\" optionLabel=\"name\"></p-dropdown>\n    </div>\n</div>\n\n\n<div *ngIf=\"!onlyField\" class=\"filter-component\">\n    <div class=\"white-line\"></div>\n    <p class=\"title\" >стан</p>\n    <div class=\"filter-body\">\n\n    <div class=\" p-fluid  p-grid p-formgrid\" >\n        <div class=\"p-field p-col-36 p-md-12\">\n            <p-dropdown            [disabled]=\"disabled\"\n                                   (onChange)=\"changeState()\"\n                                   [showClear]=\"true\" placeholder=\"стан\"\n                        [options]=\"states\" [(ngModel)]=\"state\" optionLabel=\"name\"></p-dropdown>\n\n        </div>\n    </div>\n</div>\n\n\n\n\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<!--<div class=\"filter-component\">-->\n<!--    <p class=\"title\" >{{'loginPage.datePeriod' | translate}}</p>-->\n<!--    <p-dropdown  style=\"margin: 5px 5px 10px;position: relative;bottom: 20px\"-->\n<!--            (onChange)=\"changeState()\"  [options]=\"states\" [(ngModel)]=\"state\" optionLabel=\"name\"></p-dropdown>-->\n\n\n\n<!--</div>-->\n<div class=\"p-fluid  p-grid p-formgrid\">\n    <div class=\"p-field p-col-36 p-md-12\">\n<p-dropdown *ngIf=\"onlyField\"\n            [disabled]=\"disabled\"\n             (onChange)=\"changeState()\"  style=\"width: 300px\" [showClear]=\"true\"\n             [options]=\"states\"\n            [(ngModel)]=\"state\" optionLabel=\"name\"></p-dropdown>\n    </div>\n</div>\n\n\n<div *ngIf=\"!onlyField\" class=\"filter-component\">\n    <div class=\"white-line\"></div>\n    <p class=\"title\" >стан</p>\n    <div class=\"filter-body\">\n\n    <div class=\" p-fluid  p-grid p-formgrid\" >\n        <div class=\"p-field p-col-36 p-md-12\">\n            <p-dropdown            [disabled]=\"disabled\"\n                                   (onChange)=\"changeState()\"\n                                   [showClear]=\"true\" placeholder=\"стан\"\n                        [options]=\"states\" [(ngModel)]=\"state\" optionLabel=\"name\"></p-dropdown>\n\n        </div>\n    </div>\n</div>\n\n\n\n\n</div>");
 
 /***/ }),
 
@@ -1218,6 +1218,7 @@ let LoginComponent = class LoginComponent {
             }
             else {
                 this.ordersResponse = yield this.apiService.post('getCroppedOrders', this.filterService.getOrderRequest());
+                console.log(this.orderRequest);
                 this.orderService.setOrderResponse(this.ordersResponse);
                 if (this.ordersResponse.ordersTableBody.length != 0) {
                     this.orderService.setUserValidate(true);
@@ -2424,6 +2425,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _widgets_filters_date_filter_date_filter_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../widgets/filters/date-filter/date-filter.component */ "./src/app/widgets/filters/date-filter/date-filter.component.ts");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _widgets_filters_substring_filter_substring_filter_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../widgets/filters/substring-filter/substring-filter.component */ "./src/app/widgets/filters/substring-filter/substring-filter.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2461,6 +2463,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 
 
 
+
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
 let TablePageComponent = class TablePageComponent {
@@ -2477,6 +2480,7 @@ let TablePageComponent = class TablePageComponent {
         this.dynamicColumns = '';
         this.selectRow = {};
         this.inputErr = false;
+        this.confirmDisplay = false;
         this.loading = false;
         this.items = [
             { label: 'action', icon: 'pi pi-fw pi-search' },
@@ -2498,21 +2502,25 @@ let TablePageComponent = class TablePageComponent {
         const worksheet = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].json_to_sheet(this.tableDataService.mainData);
         let wb = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_new();
         xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_append_sheet(wb, worksheet, 'blank');
-        xlsx__WEBPACK_IMPORTED_MODULE_8__["writeFile"](wb, 'exmp' + '.xlsx'); // name of the file is 'book.xlsx'
+        xlsx__WEBPACK_IMPORTED_MODULE_8__["writeFile"](wb, 'замовлення' + '.xlsx'); // name of the file is 'book.xlsx'
     }
     confirm(event, rowData) {
-        console.log(rowData);
-        event.target.close;
+        if (this.confirmDisplay) {
+            this.confirmDisplay = false;
+        }
+        else {
+            this.confirmDisplay = true;
+        }
         this.confirmationService.confirm({
             target: event.target,
             message: rowData.Comment,
             icon: 'pi pi-exclamation-triangle',
             rejectVisible: false,
             accept: () => {
-                //confirm action
+                this.confirmDisplay = false;
             },
             reject: () => {
-                //reject action
+                this.confirmDisplay = false;
             }
         });
     }
@@ -2530,6 +2538,7 @@ let TablePageComponent = class TablePageComponent {
         this.childPayedFilter.clear();
         this.childStateFilter.clear();
         this.childDateFilter.clear();
+        this.subStringFilter.clear();
         // this.childPeriodDateFilter.clear()
     }
     updateData() {
@@ -2583,7 +2592,7 @@ let TablePageComponent = class TablePageComponent {
             this.tableDataService.setTablePatternRow(tableRowPattern);
             this.tableDataService.setStartData(this.startData);
             this.cols = this.mainColumn.slice();
-            this.columns = this.cols;
+            // this.columns = this.cols
             this._selectedColumns = this.cols;
             if (this.dynamicColumns !== '') {
                 this.tableDataService.addColumnText = this.dynamicColumns;
@@ -2721,6 +2730,10 @@ __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_widgets_filters_date_filter_date_filter_component__WEBPACK_IMPORTED_MODULE_14__["DateFilterComponent"]),
     __metadata("design:type", _widgets_filters_date_filter_date_filter_component__WEBPACK_IMPORTED_MODULE_14__["DateFilterComponent"])
 ], TablePageComponent.prototype, "childDateFilter", void 0);
+__decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_widgets_filters_substring_filter_substring_filter_component__WEBPACK_IMPORTED_MODULE_16__["SubstringFilterComponent"]),
+    __metadata("design:type", _widgets_filters_date_filter_date_filter_component__WEBPACK_IMPORTED_MODULE_14__["DateFilterComponent"])
+], TablePageComponent.prototype, "subStringFilter", void 0);
 __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_widgets_filters_period_date_filter_period_date_filter_component__WEBPACK_IMPORTED_MODULE_13__["PeriodDateFilterComponent"]),
     __metadata("design:type", _widgets_filters_period_date_filter_period_date_filter_component__WEBPACK_IMPORTED_MODULE_13__["PeriodDateFilterComponent"])
@@ -3624,8 +3637,9 @@ let PeriodDateFilterComponent = class PeriodDateFilterComponent {
     constructor(filterService) {
         this.filterService = filterService;
         this.onSuggest = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.onClear = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.onlyField = false;
-        this.period = null;
+        this.period = { name: '', code: -1 };
         this.isCloseDate = false;
         this.periods = [
             { name: 'Усі', code: 0 },
@@ -3645,108 +3659,115 @@ let PeriodDateFilterComponent = class PeriodDateFilterComponent {
     }
     clear() {
         this.period = { name: 'Усе', code: 0 };
+        this.changePeriod();
+        this.onClear.emit();
     }
     changePeriod() {
-        this.orderRequest = this.filterService.getOrderRequest();
-        let dateTo = null;
-        let dateFrom = null;
-        switch (this.period.code) {
-            case 0: {
-                dateTo = null;
-                dateFrom = null;
-                break;
-            }
-            case 1: {
-                dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__().utc().format("YYYY-MM-DD");
-                dateTo = moment__WEBPACK_IMPORTED_MODULE_2__().utc().format("YYYY-MM-DD");
-                break;
-            }
-            case 2: {
-                dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__().subtract(1, 'days').utc().format("YYYY-MM-DD");
-                dateTo = moment__WEBPACK_IMPORTED_MODULE_2__().subtract(1, 'days').utc().format("YYYY-MM-DD");
-                break;
-            }
-            case 3: {
-                dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__().weekday(1).utc().format("YYYY-MM-DD");
-                dateTo = moment__WEBPACK_IMPORTED_MODULE_2__().weekday(7).utc().format("YYYY-MM-DD");
-                break;
-            }
-            case 4: {
-                dateFrom = new Date();
-                dateTo = new Date();
-                dateFrom.setDate(1);
-                dateTo.setMonth(dateTo.getMonth() + 1);
-                dateTo.setDate(0);
-                dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__(dateFrom).utc().format("YYYY-MM-DD");
-                dateTo = moment__WEBPACK_IMPORTED_MODULE_2__(dateTo).utc().format("YYYY-MM-DD");
-                break;
-            }
-            case 5: {
-                dateFrom = new Date();
-                dateTo = new Date();
-                dateFrom.setMonth(0);
-                dateFrom.setDate(1);
-                dateTo.setMonth(3);
-                dateTo.setDate(0);
-                dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__(dateFrom).quarter(moment__WEBPACK_IMPORTED_MODULE_2__().quarter()).utc().format("YYYY-MM-DD");
-                dateTo = moment__WEBPACK_IMPORTED_MODULE_2__(dateTo).quarter(moment__WEBPACK_IMPORTED_MODULE_2__().quarter()).utc().format("YYYY-MM-DD");
-                break;
-            }
-            case 6: {
-                dateFrom = new Date();
-                dateTo = new Date();
-                dateFrom.setMonth(0);
-                dateFrom.setDate(1);
-                dateTo.setMonth(11);
-                dateTo.setDate(31);
-                dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__(dateFrom).utc().format("YYYY-MM-DD");
-                dateTo = moment__WEBPACK_IMPORTED_MODULE_2__(dateTo).utc().format("YYYY-MM-DD");
-                break;
-            }
-            case 7: {
-                dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__().week(moment__WEBPACK_IMPORTED_MODULE_2__().week() - 1).weekday(1).utc().format("YYYY-MM-DD");
-                dateTo = moment__WEBPACK_IMPORTED_MODULE_2__().week(moment__WEBPACK_IMPORTED_MODULE_2__().week() - 1).weekday(7).utc().format("YYYY-MM-DD");
-                break;
-            }
-            case 8: {
-                dateFrom = new Date();
-                dateTo = new Date();
-                dateFrom.setMonth(dateTo.getMonth() - 1);
-                dateFrom.setDate(1);
-                dateTo.setMonth(dateTo.getMonth());
-                dateTo.setDate(0);
-                dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__(dateFrom).utc().format("YYYY-MM-DD");
-                dateTo = moment__WEBPACK_IMPORTED_MODULE_2__(dateTo).utc().format("YYYY-MM-DD");
-                break;
-            }
-            case 9: {
-                dateFrom = new Date();
-                dateTo = new Date();
-                dateFrom.setMonth(0);
-                dateFrom.setDate(1);
-                dateTo.setMonth(3);
-                dateTo.setDate(0);
-                dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__(dateFrom).quarter(moment__WEBPACK_IMPORTED_MODULE_2__().quarter() - 1).utc().format("YYYY-MM-DD");
-                dateTo = moment__WEBPACK_IMPORTED_MODULE_2__(dateTo).quarter(moment__WEBPACK_IMPORTED_MODULE_2__().quarter() - 1).utc().format("YYYY-MM-DD");
-                break;
-            }
-            case 10: {
-                dateFrom = new Date();
-                dateTo = new Date();
-                dateFrom.setMonth(0);
-                dateFrom.setDate(1);
-                dateTo.setMonth(11);
-                dateTo.setDate(31);
-                dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__(dateFrom).year(moment__WEBPACK_IMPORTED_MODULE_2__().year() - 1).utc().format("YYYY-MM-DD");
-                dateTo = moment__WEBPACK_IMPORTED_MODULE_2__(dateTo).year(moment__WEBPACK_IMPORTED_MODULE_2__().year() - 1).utc().format("YYYY-MM-DD");
-                break;
-            }
+        if (this.period === null) {
+            this.clear();
         }
-        this.orderRequest.closeDate = this.isCloseDate;
-        this.orderRequest.dateFrom = dateFrom;
-        this.orderRequest.dateTo = dateTo;
-        this.filterService.setOrderRequest(this.orderRequest);
-        this.onSuggest.emit();
+        else {
+            this.orderRequest = this.filterService.getOrderRequest();
+            let dateTo = null;
+            let dateFrom = null;
+            switch (this.period.code) {
+                case 0: {
+                    dateTo = null;
+                    dateFrom = null;
+                    break;
+                }
+                case 1: {
+                    dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__().utc().format("YYYY-MM-DD");
+                    dateTo = moment__WEBPACK_IMPORTED_MODULE_2__().utc().format("YYYY-MM-DD");
+                    break;
+                }
+                case 2: {
+                    dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__().subtract(1, 'days').utc().format("YYYY-MM-DD");
+                    dateTo = moment__WEBPACK_IMPORTED_MODULE_2__().subtract(1, 'days').utc().format("YYYY-MM-DD");
+                    break;
+                }
+                case 3: {
+                    dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__().weekday(1).utc().format("YYYY-MM-DD");
+                    dateTo = moment__WEBPACK_IMPORTED_MODULE_2__().weekday(7).utc().format("YYYY-MM-DD");
+                    break;
+                }
+                case 4: {
+                    dateFrom = new Date();
+                    dateTo = new Date();
+                    dateFrom.setDate(1);
+                    dateTo.setMonth(dateTo.getMonth() + 1);
+                    dateTo.setDate(0);
+                    dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__(dateFrom).utc().format("YYYY-MM-DD");
+                    dateTo = moment__WEBPACK_IMPORTED_MODULE_2__(dateTo).utc().format("YYYY-MM-DD");
+                    break;
+                }
+                case 5: {
+                    dateFrom = new Date();
+                    dateTo = new Date();
+                    dateFrom.setMonth(0);
+                    dateFrom.setDate(1);
+                    dateTo.setMonth(3);
+                    dateTo.setDate(0);
+                    dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__(dateFrom).quarter(moment__WEBPACK_IMPORTED_MODULE_2__().quarter()).utc().format("YYYY-MM-DD");
+                    dateTo = moment__WEBPACK_IMPORTED_MODULE_2__(dateTo).quarter(moment__WEBPACK_IMPORTED_MODULE_2__().quarter()).utc().format("YYYY-MM-DD");
+                    break;
+                }
+                case 6: {
+                    dateFrom = new Date();
+                    dateTo = new Date();
+                    dateFrom.setMonth(0);
+                    dateFrom.setDate(1);
+                    dateTo.setMonth(11);
+                    dateTo.setDate(31);
+                    dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__(dateFrom).utc().format("YYYY-MM-DD");
+                    dateTo = moment__WEBPACK_IMPORTED_MODULE_2__(dateTo).utc().format("YYYY-MM-DD");
+                    break;
+                }
+                case 7: {
+                    dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__().week(moment__WEBPACK_IMPORTED_MODULE_2__().week() - 1).weekday(1).utc().format("YYYY-MM-DD");
+                    dateTo = moment__WEBPACK_IMPORTED_MODULE_2__().week(moment__WEBPACK_IMPORTED_MODULE_2__().week() - 1).weekday(7).utc().format("YYYY-MM-DD");
+                    break;
+                }
+                case 8: {
+                    dateFrom = new Date();
+                    dateTo = new Date();
+                    dateFrom.setMonth(dateTo.getMonth() - 1);
+                    dateFrom.setDate(1);
+                    dateTo.setMonth(dateTo.getMonth());
+                    dateTo.setDate(0);
+                    dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__(dateFrom).utc().format("YYYY-MM-DD");
+                    dateTo = moment__WEBPACK_IMPORTED_MODULE_2__(dateTo).utc().format("YYYY-MM-DD");
+                    break;
+                }
+                case 9: {
+                    dateFrom = new Date();
+                    dateTo = new Date();
+                    dateFrom.setMonth(0);
+                    dateFrom.setDate(1);
+                    dateTo.setMonth(3);
+                    dateTo.setDate(0);
+                    dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__(dateFrom).quarter(moment__WEBPACK_IMPORTED_MODULE_2__().quarter() - 1).utc().format("YYYY-MM-DD");
+                    dateTo = moment__WEBPACK_IMPORTED_MODULE_2__(dateTo).quarter(moment__WEBPACK_IMPORTED_MODULE_2__().quarter() - 1).utc().format("YYYY-MM-DD");
+                    break;
+                }
+                case 10: {
+                    dateFrom = new Date();
+                    dateTo = new Date();
+                    dateFrom.setMonth(0);
+                    dateFrom.setDate(1);
+                    dateTo.setMonth(11);
+                    dateTo.setDate(31);
+                    dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__(dateFrom).year(moment__WEBPACK_IMPORTED_MODULE_2__().year() - 1).utc().format("YYYY-MM-DD");
+                    dateTo = moment__WEBPACK_IMPORTED_MODULE_2__(dateTo).year(moment__WEBPACK_IMPORTED_MODULE_2__().year() - 1).utc().format("YYYY-MM-DD");
+                    break;
+                }
+            }
+            this.orderRequest.closeDate = this.isCloseDate;
+            this.orderRequest.dateFrom = dateFrom;
+            this.orderRequest.dateTo = dateTo;
+            this.filterService.setOrderRequest(this.orderRequest);
+            this.onSuggest.emit();
+        }
     }
 };
 PeriodDateFilterComponent.ctorParameters = () => [
@@ -3756,6 +3777,10 @@ __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
     __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
 ], PeriodDateFilterComponent.prototype, "onSuggest", void 0);
+__decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+    __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
+], PeriodDateFilterComponent.prototype, "onClear", void 0);
 __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
     __metadata("design:type", Boolean)
@@ -3819,6 +3844,7 @@ let StateFilterComponent = class StateFilterComponent {
         this.onlyField = false;
         this.disabled = false;
         this.onSuggest = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.onClear = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.states = [
             { name: 'Усі', code: null },
             { name: 'виконані', code: 'FINISHED' },
@@ -3830,12 +3856,19 @@ let StateFilterComponent = class StateFilterComponent {
     }
     clear() {
         this.state = { name: 'Усе', code: null };
+        this.changeState();
+        this.onClear.emit();
     }
     changeState() {
-        this.orderRequest = this.filterService.getOrderRequest();
-        this.orderRequest.state = this.state.code;
-        this.filterService.setOrderRequest(this.orderRequest);
-        this.onSuggest.emit();
+        if (this.state === null) {
+            this.clear();
+        }
+        else {
+            this.orderRequest = this.filterService.getOrderRequest();
+            this.orderRequest.state = this.state.code;
+            this.filterService.setOrderRequest(this.orderRequest);
+            this.onSuggest.emit();
+        }
     }
 };
 StateFilterComponent.ctorParameters = () => [
@@ -3853,6 +3886,10 @@ __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
     __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
 ], StateFilterComponent.prototype, "onSuggest", void 0);
+__decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+    __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
+], StateFilterComponent.prototype, "onClear", void 0);
 StateFilterComponent = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
         selector: 'app-state-filter',
@@ -3909,10 +3946,12 @@ let SubstringFilterComponent = class SubstringFilterComponent {
     constructor(filterService) {
         this.filterService = filterService;
         this.onSuggest = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.onClear = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.sunString = '';
     }
     clear() {
         this.sunString = '';
+        this.onClear.emit();
     }
     onChang() {
         this.orderRequest = this.filterService.getOrderRequest();
@@ -3930,6 +3969,10 @@ __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
     __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
 ], SubstringFilterComponent.prototype, "onSuggest", void 0);
+__decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+    __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
+], SubstringFilterComponent.prototype, "onClear", void 0);
 SubstringFilterComponent = __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
         selector: 'app-substring-filter',
