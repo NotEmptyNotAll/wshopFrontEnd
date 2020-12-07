@@ -8,6 +8,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class MasterStartWindowComponent implements OnInit {
 
   @Output() onConfirm: EventEmitter<any> = new EventEmitter();
+  @Output() onCancelAction: EventEmitter<any> = new EventEmitter();
 
   @Input() display:boolean=true
   @Input() title:boolean=true
@@ -23,5 +24,6 @@ export class MasterStartWindowComponent implements OnInit {
   }
   onCancel(){
     this.display=false;
+    this.onCancelAction.emit()
   }
 }

@@ -22,6 +22,8 @@ import {PeriodDateFilterComponent} from "../widgets/filters/period-date-filter/p
 import {DateFilterComponent} from "../widgets/filters/date-filter/date-filter.component";
 import * as moment from "moment";
 import {SubstringFilterComponent} from "../widgets/filters/substring-filter/substring-filter.component";
+import {ServStateFilterService} from "../widgets/filters/state-filter/serv-state-filter.service";
+import {ServPeriodFilterService} from "../widgets/filters/period-date-filter/serv-period-filter.service";
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
@@ -72,6 +74,8 @@ export class TablePageComponent implements OnInit {
 
     showDialog() {
         this.display = true;
+        this.serviceStateFiler.onStndFilter()
+        this.filterPeriodService.onStndFilter()
     }
 
     downloadExel() {
@@ -111,6 +115,8 @@ export class TablePageComponent implements OnInit {
         // this._selectedColumns = this.cols.filter(col => val.includes(col));
     }
     cancelFilter(){
+        this.serviceStateFiler.onFastFilter()
+        this.filterPeriodService.onFastFilter()
         this.filterService.clearFilter()
         this.childCustomerFilter.clear()
         this.childEmployeeFilter.clear()
@@ -192,7 +198,9 @@ export class TablePageComponent implements OnInit {
     constructor(public tableDataService: TableDataService,
                 public orderService: OrderService,
                 public filterService: FilterService,
+                public filterPeriodService:ServPeriodFilterService,
                 public apiService: ApiDataServiceService,
+                public serviceStateFiler:ServStateFilterService,
                 private confirmationService: ConfirmationService,
                 private _router: Router) {
         this.selectRow = this.tableDataService.getTablePatternRow()

@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FilterService} from "../filter.service";
 import {OrderRequest} from "../order.request";
 import * as moment from "moment";
+import {ServPeriodFilterService} from "./serv-period-filter.service";
 
 @Component({
     selector: 'app-period-date-filter',
@@ -29,7 +30,9 @@ export class PeriodDateFilterComponent implements OnInit {
         {name: 'Минулий рік', code: 10},
     ]
 
-    constructor(public filterService: FilterService) {
+    constructor(
+        public filterPeriodService:ServPeriodFilterService,
+        public filterService: FilterService) {
     }
 
     ngOnInit(): void {

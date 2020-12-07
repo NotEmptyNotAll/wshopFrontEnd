@@ -56,6 +56,7 @@ export class LoginComponent implements OnInit {
         this.filterService.clearFilter()
     }
 
+
     cancel() {
         this.selectedUser = null;
         this.password = "";
@@ -69,6 +70,12 @@ export class LoginComponent implements OnInit {
     moveToMasterSelectWindows() {
         this.showSuccess()
         this.router.navigate(['/selectWork'])
+    }
+
+    quit() {
+        this.orderService.setUserValidate(false)
+        this.router.navigate(['/'])
+        this.masterWindowVisible = false
     }
 
     async login() {

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FilterService} from "../filter.service";
 import {OrderRequest} from "../order.request";
+import {ServStateFilterService} from "./serv-state-filter.service";
 
 @Component({
     selector: 'app-state-filter',
@@ -23,7 +24,9 @@ export class StateFilterComponent implements OnInit {
         {name: 'закриті', code: 'CLOSED'}
     ]
 
-    constructor(public filterService: FilterService) {
+    constructor(
+        public stateService:ServStateFilterService,
+        public filterService: FilterService) {
     }
 
     ngOnInit(): void {
@@ -35,15 +38,25 @@ export class StateFilterComponent implements OnInit {
         this.onClear.emit()
     }
 
+
+
     changeState() {
 
         if (this.state === null) {
             this.clear()
         } else {
-            this.orderRequest = this.filterService.getOrderRequest()
-            this.orderRequest.state = this.state.code
-            this.filterService.setOrderRequest(this.orderRequest)
-            this.onSuggest.emit();
+            if(this.onlyField){
+                this.orderRequest = this.filterService.getOrderRequest()
+                this.orderRequest.state = this.stateService.stateFastFilterData.code
+                this.filterService.setOrderRequest(this.orderRequest)
+                this.onSuggest.emit();
+            }else {
+                this.orderRequest = this.filterService.getOrderRequest()
+                this.orderRequest.state = this.state.code
+                this.filterService.setOrderRequest(this.orderRequest)
+                this.onSuggest.emit();
+            }
+
         }
     }
 

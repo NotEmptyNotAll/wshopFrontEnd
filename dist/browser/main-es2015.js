@@ -324,7 +324,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n<app-master-start-window *ngIf=\"!apiService.isLoading\"\n        [display]=\"masterWindowVisible\"\n        (onConfirm)=\"moveToMasterSelectWindows()\"\n        title=\"НАЧАТЬ СМЕНУ\" textOnConfirm=\"НАЧАТЬ\" textOnCancel=\"ОТМЕНА\"\n></app-master-start-window>\n<div class=\"login-page\" *ngIf=\"!masterWindowVisible\">\n    <div class=\"login-form shadow  \">\n        <!--<img src=\"assets/image/login-images.png\"/>\n        <hr width=\"100%\"/>-->\n        <div class=\"login-row\">\n\n            <span style=\"width: 90%\">\n            <p-dropdown\n                    autoWidth=\"false\" [style]=\"{'minWidth':'100%'}\"\n                    [showClear]=\"true\" [placeholder]=\"'loginPage.SelectName' | translate\"\n                    [options]=\"users\" [(ngModel)]=\"selectedUser\"\n                    [filter]=\"true\" optionLabel=\"name\"></p-dropdown>\n            </span>\n        </div>\n\n\n        <div class=\"login-row\">\n            <span style=\"width: 90%\">\n            <input type=\"password\" [(ngModel)]=\"password\"\n                   (keydown.enter)=\"login()\"\n                   [disabled]=\"selectedUser===null || selectedUser===undefined\"\n                   [style]=\"{'minWidth':'100%'}\"\n                   [placeholder]=\"'loginPage.password' | translate\"\n                   [feedback]=\"false\" pPassword/>\n            </span>\n        </div>\n        <div class=\"login-row\">\n\n            <button pRipple pButton type=\"button\" (click)=\"cancel()\"\n                    class=\" p-button-danger\"\n                    [label]=\"'loginPage.cancel' | translate\" icon=\"pi pi-times\"></button>\n\n            <button pRipple pButton type=\"button\" (click)=\"login()\"\n                    class=\" p-button-success\"\n                    [disabled]=\"selectedUser===null || selectedUser===undefined\"\n                    [label]=\"'loginPage.login' | translate\" icon=\"pi pi-check\"></button>\n\n        </div>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("\n<app-master-start-window *ngIf=\"!apiService.isLoading\"\n        [display]=\"masterWindowVisible\"\n                         (onCancelAction)=\"quit()\"\n        (onConfirm)=\"moveToMasterSelectWindows()\"\n        title=\"НАЧАТЬ ЗМІНУ\" textOnConfirm=\"ПОЧАТИ\" textOnCancel=\"СКАСУВАТИ\"\n></app-master-start-window>\n<div class=\"login-page\" *ngIf=\"!masterWindowVisible\">\n    <div class=\"login-form shadow  \">\n        <!--<img src=\"assets/image/login-images.png\"/>\n        <hr width=\"100%\"/>-->\n        <div class=\"login-row\">\n\n            <span style=\"width: 90%\">\n            <p-dropdown\n                    autoWidth=\"false\" [style]=\"{'minWidth':'100%'}\"\n                    [showClear]=\"true\" [placeholder]=\"'loginPage.SelectName' | translate\"\n                    [options]=\"users\" [(ngModel)]=\"selectedUser\"\n                    [filter]=\"true\" optionLabel=\"name\"></p-dropdown>\n            </span>\n        </div>\n\n\n        <div class=\"login-row\">\n            <span style=\"width: 90%\">\n            <input type=\"password\" [(ngModel)]=\"password\"\n                   (keydown.enter)=\"login()\"\n                   [disabled]=\"selectedUser===null || selectedUser===undefined\"\n                   [style]=\"{'minWidth':'100%'}\"\n                   [placeholder]=\"'loginPage.password' | translate\"\n                   [feedback]=\"false\" pPassword/>\n            </span>\n        </div>\n        <div class=\"login-row\">\n\n            <button pRipple pButton type=\"button\" (click)=\"cancel()\"\n                    class=\" p-button-danger\"\n                    [label]=\"'loginPage.cancel' | translate\" icon=\"pi pi-times\"></button>\n\n            <button pRipple pButton type=\"button\" (click)=\"login()\"\n                    class=\" p-button-success\"\n                    [disabled]=\"selectedUser===null || selectedUser===undefined\"\n                    [label]=\"'loginPage.login' | translate\" icon=\"pi pi-check\"></button>\n\n        </div>\n    </div>\n</div>");
 
 /***/ }),
 
@@ -337,7 +337,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div style=\"background: #F56C6C\">\n    <p>НАХОДИТЬСЯ В РАЗРАБОТКЕ</p>\n</div>\n<app-table-page [startData]=\"data\" title=\" вибір замовлення\"\n                [mainColumn]=\"mainColumn\" [stateFilterDisable]=\"true\"\n                [buttonItems]=\"buttItem\" [standardFilterDisable]=\"true\"\n                [buttonActionDisable]=\"true\"  *ngIf=\"data!=null\"></app-table-page>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div style=\"background: #F56C6C\">\n    <p>ЗНАХОДИТЬСЯ В РОЗРОБЦІ/p>\n</div>\n<app-table-page [startData]=\"data\" title=\" вибір замовлення\"\n                [mainColumn]=\"mainColumn\" [stateFilterDisable]=\"true\"\n                [buttonItems]=\"buttItem\" [standardFilterDisable]=\"true\"\n                [buttonActionDisable]=\"true\"  *ngIf=\"data!=null\"></app-table-page>");
 
 /***/ }),
 
@@ -545,7 +545,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!--<div class=\"filter-component\">-->\n<!--    <p class=\"title\" >{{'loginPage.datePeriod' | translate}}</p>-->\n<!--    <p-dropdown  style=\"margin: 5px 5px 10px;position: relative;bottom: 20px\"-->\n<!--            (onChange)=\"changeState()\"  [options]=\"states\" [(ngModel)]=\"state\" optionLabel=\"name\"></p-dropdown>-->\n\n\n\n<!--</div>-->\n<div class=\"p-fluid  p-grid p-formgrid\">\n    <div class=\"p-field p-col-36 p-md-12\">\n<p-dropdown *ngIf=\"onlyField\"\n            [disabled]=\"disabled\"\n             (onChange)=\"changeState()\"  style=\"width: 300px\" [showClear]=\"true\"\n             [options]=\"states\"\n            [(ngModel)]=\"state\" optionLabel=\"name\"></p-dropdown>\n    </div>\n</div>\n\n\n<div *ngIf=\"!onlyField\" class=\"filter-component\">\n    <div class=\"white-line\"></div>\n    <p class=\"title\" >стан</p>\n    <div class=\"filter-body\">\n\n    <div class=\" p-fluid  p-grid p-formgrid\" >\n        <div class=\"p-field p-col-36 p-md-12\">\n            <p-dropdown            [disabled]=\"disabled\"\n                                   (onChange)=\"changeState()\"\n                                   [showClear]=\"true\" placeholder=\"стан\"\n                        [options]=\"states\" [(ngModel)]=\"state\" optionLabel=\"name\"></p-dropdown>\n\n        </div>\n    </div>\n</div>\n\n\n\n\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<!--<div class=\"filter-component\">-->\n<!--    <p class=\"title\" >{{'loginPage.datePeriod' | translate}}</p>-->\n<!--    <p-dropdown  style=\"margin: 5px 5px 10px;position: relative;bottom: 20px\"-->\n<!--            (onChange)=\"changeState()\"  [options]=\"states\" [(ngModel)]=\"state\" optionLabel=\"name\"></p-dropdown>-->\n\n\n\n<!--</div>-->\n<div class=\"p-fluid  p-grid p-formgrid\">\n    <div class=\"p-field p-col-36 p-md-12\">\n<p-dropdown *ngIf=\"onlyField\"\n            [disabled]=\"stateService.disableFastFiled\"\n             (onChange)=\"changeState()\"  style=\"width: 300px\" [showClear]=\"true\"\n             [options]=\"states\"\n            [(ngModel)]=\"stateService.stateFastFilterData\" optionLabel=\"name\"></p-dropdown>\n    </div>\n</div>\n\n\n<div *ngIf=\"!onlyField\" class=\"filter-component\">\n    <div class=\"white-line\"></div>\n    <p class=\"title\" >стан</p>\n    <div class=\"filter-body\">\n\n    <div class=\" p-fluid  p-grid p-formgrid\" >\n        <div class=\"p-field p-col-36 p-md-12\">\n            <p-dropdown            [disabled]=\"disabled\"\n                                   (onChange)=\"changeState()\"\n                                   [showClear]=\"true\" placeholder=\"стан\"\n                        [options]=\"states\" [(ngModel)]=\"state\" optionLabel=\"name\"></p-dropdown>\n\n        </div>\n    </div>\n</div>\n\n\n\n\n</div>");
 
 /***/ }),
 
@@ -1196,6 +1196,11 @@ let LoginComponent = class LoginComponent {
         this.showSuccess();
         this.router.navigate(['/selectWork']);
     }
+    quit() {
+        this.orderService.setUserValidate(false);
+        this.router.navigate(['/']);
+        this.masterWindowVisible = false;
+    }
     login() {
         return __awaiter(this, void 0, void 0, function* () {
             this.name = this.selectedUser.name;
@@ -1468,6 +1473,7 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 let MasterStartWindowComponent = class MasterStartWindowComponent {
     constructor() {
         this.onConfirm = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.onCancelAction = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.display = true;
         this.title = true;
         this.textOnConfirm = true;
@@ -1480,12 +1486,17 @@ let MasterStartWindowComponent = class MasterStartWindowComponent {
     }
     onCancel() {
         this.display = false;
+        this.onCancelAction.emit();
     }
 };
 __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
     __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
 ], MasterStartWindowComponent.prototype, "onConfirm", void 0);
+__decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
+    __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])
+], MasterStartWindowComponent.prototype, "onCancelAction", void 0);
 __decorate([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
     __metadata("design:type", Boolean)
@@ -2426,6 +2437,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_15__);
 /* harmony import */ var _widgets_filters_substring_filter_substring_filter_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../widgets/filters/substring-filter/substring-filter.component */ "./src/app/widgets/filters/substring-filter/substring-filter.component.ts");
+/* harmony import */ var _widgets_filters_state_filter_serv_state_filter_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../widgets/filters/state-filter/serv-state-filter.service */ "./src/app/widgets/filters/state-filter/serv-state-filter.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2464,14 +2476,16 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 
 
 
+
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
 let TablePageComponent = class TablePageComponent {
-    constructor(tableDataService, orderService, filterService, apiService, confirmationService, _router) {
+    constructor(tableDataService, orderService, filterService, apiService, serviceStateFiler, confirmationService, _router) {
         this.tableDataService = tableDataService;
         this.orderService = orderService;
         this.filterService = filterService;
         this.apiService = apiService;
+        this.serviceStateFiler = serviceStateFiler;
         this.confirmationService = confirmationService;
         this._router = _router;
         this.stateFilterDisable = false;
@@ -2496,6 +2510,7 @@ let TablePageComponent = class TablePageComponent {
     }
     showDialog() {
         this.display = true;
+        this.serviceStateFiler.onStndFilter();
     }
     downloadExel() {
         console.log(this.tableDataService.mainData);
@@ -2539,10 +2554,12 @@ let TablePageComponent = class TablePageComponent {
         this.childStateFilter.clear();
         this.childDateFilter.clear();
         this.subStringFilter.clear();
-        // this.childPeriodDateFilter.clear()
+        this.childPeriodDateFilter.clear();
+        this.serviceStateFiler.onFastFilter();
     }
     updateData() {
         return __awaiter(this, void 0, void 0, function* () {
+            this.loading = true;
             this.data = yield this.apiService.post('getCroppedOrders', this.filterService.getOrderRequest());
             this.display = false;
             let mainColumn = [];
@@ -2591,13 +2608,14 @@ let TablePageComponent = class TablePageComponent {
             this.tableDataService.setMainData(tableBody);
             this.tableDataService.setTablePatternRow(tableRowPattern);
             this.tableDataService.setStartData(this.startData);
-            this.cols = this.mainColumn.slice();
+            //  this.cols = this.mainColumn.slice()
             // this.columns = this.cols
-            this._selectedColumns = this.cols;
+            //    this._selectedColumns = this.cols;
             if (this.dynamicColumns !== '') {
                 this.tableDataService.addColumnText = this.dynamicColumns;
                 this.setColumn();
             }
+            this.loading = false;
         });
     }
     deleteData() {
@@ -2707,6 +2725,7 @@ TablePageComponent.ctorParameters = () => [
     { type: _orders_page_order_service__WEBPACK_IMPORTED_MODULE_5__["OrderService"] },
     { type: _widgets_filters_filter_service__WEBPACK_IMPORTED_MODULE_6__["FilterService"] },
     { type: _Service_api_data_service_service__WEBPACK_IMPORTED_MODULE_7__["ApiDataServiceService"] },
+    { type: _widgets_filters_state_filter_serv_state_filter_service__WEBPACK_IMPORTED_MODULE_17__["ServStateFilterService"] },
     { type: primeng_api__WEBPACK_IMPORTED_MODULE_2__["ConfirmationService"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
 ];
@@ -2786,6 +2805,7 @@ TablePageComponent = __decorate([
         _orders_page_order_service__WEBPACK_IMPORTED_MODULE_5__["OrderService"],
         _widgets_filters_filter_service__WEBPACK_IMPORTED_MODULE_6__["FilterService"],
         _Service_api_data_service_service__WEBPACK_IMPORTED_MODULE_7__["ApiDataServiceService"],
+        _widgets_filters_state_filter_serv_state_filter_service__WEBPACK_IMPORTED_MODULE_17__["ServStateFilterService"],
         primeng_api__WEBPACK_IMPORTED_MODULE_2__["ConfirmationService"],
         _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
 ], TablePageComponent);
@@ -3201,13 +3221,13 @@ let DateFilterComponent = class DateFilterComponent {
         this.orderRequest.closeDate = this.isCloseDate;
         if (this.dateFrom != null || this.dateTo != null) {
             if (this.dateFrom != null) {
-                this.orderRequest.dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__(this.dateFrom).utc().format("YYYY-MM-DD");
+                this.orderRequest.dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__(this.dateFrom).dayOfYear(moment__WEBPACK_IMPORTED_MODULE_2__(this.dateFrom).dayOfYear() + 1).utc().format("YYYY-MM-DD");
             }
             else {
                 this.orderRequest.dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__().year(2000).utc().format("YYYY-MM-DD");
             }
             if (this.dateTo != null) {
-                this.orderRequest.dateTo = moment__WEBPACK_IMPORTED_MODULE_2__(this.dateTo).utc().format("YYYY-MM-DD");
+                this.orderRequest.dateTo = moment__WEBPACK_IMPORTED_MODULE_2__(this.dateTo).dayOfYear(moment__WEBPACK_IMPORTED_MODULE_2__(this.dateTo).dayOfYear() + 1).utc().format("YYYY-MM-DD");
             }
             else {
                 this.orderRequest.dateTo = moment__WEBPACK_IMPORTED_MODULE_2__().utc().format("YYYY-MM-DD");
@@ -3798,6 +3818,56 @@ PeriodDateFilterComponent = __decorate([
 
 /***/ }),
 
+/***/ "./src/app/widgets/filters/state-filter/serv-state-filter.service.ts":
+/*!***************************************************************************!*\
+  !*** ./src/app/widgets/filters/state-filter/serv-state-filter.service.ts ***!
+  \***************************************************************************/
+/*! exports provided: ServStateFilterService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ServStateFilterService", function() { return ServStateFilterService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+let ServStateFilterService = class ServStateFilterService {
+    constructor() {
+        this.stateFastFilterData = { name: '', code: '' };
+        this.stateFilterData = { name: '', code: '' };
+        this.stateTemp = { name: '', code: '' };
+        this.disableFastFiled = false;
+    }
+    onStndFilter() {
+        this.disableFastFiled = true;
+        this.stateTemp = this.stateFastFilterData;
+        this.stateFastFilterData = { name: '', code: '' };
+    }
+    onFastFilter() {
+        this.disableFastFiled = false;
+        this.stateFastFilterData = this.stateTemp;
+        this.stateTemp = { name: '', code: '' };
+    }
+};
+ServStateFilterService = __decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+        providedIn: 'root'
+    }),
+    __metadata("design:paramtypes", [])
+], ServStateFilterService);
+
+
+
+/***/ }),
+
 /***/ "./src/app/widgets/filters/state-filter/state-filter.component.css":
 /*!*************************************************************************!*\
   !*** ./src/app/widgets/filters/state-filter/state-filter.component.css ***!
@@ -3823,6 +3893,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StateFilterComponent", function() { return StateFilterComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
 /* harmony import */ var _filter_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../filter.service */ "./src/app/widgets/filters/filter.service.ts");
+/* harmony import */ var _serv_state_filter_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./serv-state-filter.service */ "./src/app/widgets/filters/state-filter/serv-state-filter.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3837,8 +3908,10 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 };
 
 
+
 let StateFilterComponent = class StateFilterComponent {
-    constructor(filterService) {
+    constructor(stateService, filterService) {
+        this.stateService = stateService;
         this.filterService = filterService;
         this.state = { name: '', code: '' };
         this.onlyField = false;
@@ -3872,6 +3945,7 @@ let StateFilterComponent = class StateFilterComponent {
     }
 };
 StateFilterComponent.ctorParameters = () => [
+    { type: _serv_state_filter_service__WEBPACK_IMPORTED_MODULE_2__["ServStateFilterService"] },
     { type: _filter_service__WEBPACK_IMPORTED_MODULE_1__["FilterService"] }
 ];
 __decorate([
@@ -3896,7 +3970,8 @@ StateFilterComponent = __decorate([
         template: __importDefault(__webpack_require__(/*! raw-loader!./state-filter.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/widgets/filters/state-filter/state-filter.component.html")).default,
         styles: [__importDefault(__webpack_require__(/*! ./state-filter.component.css */ "./src/app/widgets/filters/state-filter/state-filter.component.css")).default]
     }),
-    __metadata("design:paramtypes", [_filter_service__WEBPACK_IMPORTED_MODULE_1__["FilterService"]])
+    __metadata("design:paramtypes", [_serv_state_filter_service__WEBPACK_IMPORTED_MODULE_2__["ServStateFilterService"],
+        _filter_service__WEBPACK_IMPORTED_MODULE_1__["FilterService"]])
 ], StateFilterComponent);
 
 
@@ -4100,7 +4175,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/gl-9809p/project/months_selector/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/gl-9809p/project/project/months_selector/src/main.ts */"./src/main.ts");
 
 
 /***/ }),

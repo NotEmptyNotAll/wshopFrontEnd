@@ -1,8 +1,9 @@
 
 <app-master-start-window *ngIf="!apiService.isLoading"
         [display]="masterWindowVisible"
+                         (onCancelAction)="quit()"
         (onConfirm)="moveToMasterSelectWindows()"
-        title="НАЧАТЬ СМЕНУ" textOnConfirm="НАЧАТЬ" textOnCancel="ОТМЕНА"
+        title="НАЧАТЬ ЗМІНУ" textOnConfirm="ПОЧАТИ" textOnCancel="СКАСУВАТИ"
 ></app-master-start-window>
 <div class="login-page" *ngIf="!masterWindowVisible">
     <div class="login-form shadow  ">

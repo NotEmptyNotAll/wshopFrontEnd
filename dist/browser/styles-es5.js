@@ -778,27 +778,27 @@
   /***/
   function _(module, exports, __webpack_require__) {
     __webpack_require__(
-    /*! /home/gl-9809p/project/months_selector/src/styles.css */
+    /*! /home/gl-9809p/project/project/months_selector/src/styles.css */
     "./src/styles.css");
 
     __webpack_require__(
-    /*! /home/gl-9809p/project/months_selector/node_modules/primeng/resources/themes/saga-blue/theme.css */
+    /*! /home/gl-9809p/project/project/months_selector/node_modules/primeng/resources/themes/saga-blue/theme.css */
     "./node_modules/primeng/resources/themes/saga-blue/theme.css");
 
     __webpack_require__(
-    /*! /home/gl-9809p/project/months_selector/node_modules/primeng/resources/primeng.min.css */
+    /*! /home/gl-9809p/project/project/months_selector/node_modules/primeng/resources/primeng.min.css */
     "./node_modules/primeng/resources/primeng.min.css");
 
     __webpack_require__(
-    /*! /home/gl-9809p/project/months_selector/node_modules/primeflex/primeflex.css */
+    /*! /home/gl-9809p/project/project/months_selector/node_modules/primeflex/primeflex.css */
     "./node_modules/primeflex/primeflex.css");
 
     __webpack_require__(
-    /*! /home/gl-9809p/project/months_selector/node_modules/primeicons/primeicons.css */
+    /*! /home/gl-9809p/project/project/months_selector/node_modules/primeicons/primeicons.css */
     "./node_modules/primeicons/primeicons.css");
 
     module.exports = __webpack_require__(
-    /*! /home/gl-9809p/project/months_selector/node_modules/quill/dist/quill.snow.css */
+    /*! /home/gl-9809p/project/project/months_selector/node_modules/quill/dist/quill.snow.css */
     "./node_modules/quill/dist/quill.snow.css");
     /***/
   }

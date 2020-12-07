@@ -33,14 +33,15 @@ export class DateFilterComponent implements OnInit {
 
     changePeriod() {
         this.orderRequest.closeDate = this.isCloseDate
+
         if(this.dateFrom != null || this.dateTo!=null){
             if (this.dateFrom != null) {
-                this.orderRequest.dateFrom = moment(this.dateFrom).utc().format("YYYY-MM-DD")
+                this.orderRequest.dateFrom = moment(this.dateFrom).dayOfYear( moment(this.dateFrom).dayOfYear()+1).utc().format("YYYY-MM-DD")
             }else {
                 this.orderRequest.dateFrom = moment().year(2000).utc().format("YYYY-MM-DD")
             }
             if (this.dateTo != null) {
-                this.orderRequest.dateTo = moment(this.dateTo).utc().format("YYYY-MM-DD")
+                this.orderRequest.dateTo = moment(this.dateTo).dayOfYear( moment(this.dateTo).dayOfYear()+1).utc().format("YYYY-MM-DD")
             } else {
                 this.orderRequest.dateTo = moment().utc().format("YYYY-MM-DD")
             }
