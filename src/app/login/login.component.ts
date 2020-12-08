@@ -95,13 +95,14 @@ export class LoginComponent implements OnInit {
             this.orderService.setUserValidate(true)
             this.masterWindowVisible = true
             this.ordersResponse = await this.apiService.post<TableOrderResponse>(
-                'getListOFWork', this.filterService.getOrderRequest()
+                'getListOFWork', this.filterService.getOrderRequest(),
+                true
             );
             this.orderService.setOrderResponse(this.ordersResponse)
 
         } else {
             this.ordersResponse = await this.apiService.post<TableOrderResponse>(
-                'getCroppedOrders', this.filterService.getOrderRequest()
+                'getCroppedOrders', this.filterService.getOrderRequest(),true
             );
             console.log(this.orderRequest)
             this.orderService.setOrderResponse(this.ordersResponse)

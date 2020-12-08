@@ -5,7 +5,7 @@
 
         <div class=" p-fluid  p-grid p-formgrid">
             <div class="p-field p-col-36 p-md-12">
-                <p-autoComplete (onSelect)="changeState()" [(ngModel)]="selected" [suggestions]="filtered"
+                <p-autoComplete (onSelect)="changeState()" [(ngModel)]="selected" [suggestions]="customers"
                                 (completeMethod)="filter($event)" panelStyle="panel-style"
 
                                 field="name"

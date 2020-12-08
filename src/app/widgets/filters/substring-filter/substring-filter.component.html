@@ -11,7 +11,9 @@
         <span class="p-input-icon-left">
 
 <input type="text"
-       (change)="onChang()"  placeholder="пошук"   [(ngModel)]=" sunString" pInputText/>
+       (change)="onChang()"  placeholder="пошук"
+       [disabled]="substringService.disableFastFiled"
+       [(ngModel)]="substringService.substringFastFilterData" pInputText/>
     </span>
     </div>
 </div>

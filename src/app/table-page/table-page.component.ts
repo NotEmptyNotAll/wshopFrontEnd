@@ -10,7 +10,7 @@ import {TableOrderResponse} from "../Service/table-order-response";
 import {OrderService} from "../orders-page/order.service";
 import {FilterService} from "../widgets/filters/filter.service";
 import {ApiDataServiceService} from "../Service/api-data-service.service";
-import { MenuItem, MessageService } from 'primeng/api';
+import {MenuItem, MessageService} from 'primeng/api';
 
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
@@ -24,6 +24,7 @@ import * as moment from "moment";
 import {SubstringFilterComponent} from "../widgets/filters/substring-filter/substring-filter.component";
 import {ServStateFilterService} from "../widgets/filters/state-filter/serv-state-filter.service";
 import {ServPeriodFilterService} from "../widgets/filters/period-date-filter/serv-period-filter.service";
+import {ServSubstringFilterService} from "../widgets/filters/substring-filter/serv-substring-filter.service";
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
@@ -37,18 +38,18 @@ const EXCEL_EXTENSION = '.xlsx';
 })
 export class TablePageComponent implements OnInit {
     selectedProduct: any[];
-    @ViewChild(CustomerFilterComponent) childCustomerFilter:CustomerFilterComponent
-    @ViewChild(EmployeeFilterComponent) childEmployeeFilter:EmployeeFilterComponent
-    @ViewChild(PayedFilterComponent) childPayedFilter:PayedFilterComponent
-    @ViewChild(StateFilterComponent) childStateFilter:StateFilterComponent
-    @ViewChild(DateFilterComponent) childDateFilter:DateFilterComponent
-    @ViewChild(SubstringFilterComponent) subStringFilter:DateFilterComponent
-    @ViewChild(PeriodDateFilterComponent) childPeriodDateFilter:PeriodDateFilterComponent
+    @ViewChild(CustomerFilterComponent) childCustomerFilter: CustomerFilterComponent
+    @ViewChild(EmployeeFilterComponent) childEmployeeFilter: EmployeeFilterComponent
+    @ViewChild(PayedFilterComponent) childPayedFilter: PayedFilterComponent
+    @ViewChild(StateFilterComponent) childStateFilter: StateFilterComponent
+    @ViewChild(DateFilterComponent) childDateFilter: DateFilterComponent
+    @ViewChild(SubstringFilterComponent) subStringFilter: DateFilterComponent
+    @ViewChild(PeriodDateFilterComponent) childPeriodDateFilter: PeriodDateFilterComponent
     @Input() startData: TableData[]
     @Input() mainColumn: any[]
-    @Input() stateFilterDisable:boolean=false
-    @Input() buttonActionDisable:boolean=false
-    @Input() standardFilterDisable:boolean=false
+    @Input() stateFilterDisable: boolean = false
+    @Input() buttonActionDisable: boolean = false
+    @Input() standardFilterDisable: boolean = false
     @Input() title: string
     @Input() dynamicColumns: string = ''
     @Input() buttonItems: MenuItem[]
@@ -57,25 +58,46 @@ export class TablePageComponent implements OnInit {
     inputErr = false
     data: TableOrderResponse
     columns: any[];
-    confirmDisplay:boolean=false;
+    confirmDisplay: boolean = false;
     loading: boolean = false;
-    items: MenuItem[]=[
+    items: MenuItem[] = [
         {label: 'action', icon: 'pi pi-fw pi-search'},
         {label: 'action', icon: 'pi pi-fw pi-times'}
     ];
 
     _selectedColumns: any[];
     ordersResponse = null
-    contextItems:MenuItem[]=[
+    contextItems: MenuItem[] = [
         {label: 'View', icon: 'pi pi-fw pi-search'},
-            {label: 'Delete', icon: 'pi pi-fw pi-times'}
-        ];
+        {label: 'Delete', icon: 'pi pi-fw pi-times'}
+    ];
     display: boolean = false;
+
+    confirmOnFilter(event) {
+        if (this.serviceStateFiler.disableFastFiled || this.filterPeriodService.disableFastFiled) {
+            this.confirmationService.confirm({
+                target: event.target,
+                message: 'стандартнi фiльтри будуть очищені. Продовжити?',
+                icon: 'pi pi-exclamation-triangle',
+                accept: () => {
+                    this.cancelFilter();
+                    this.updateData()
+                    this.confirmDisplay = false
+                },
+                reject: () => {
+                    this.confirmDisplay = false
+                }
+            });
+        }
+
+    }
+
 
     showDialog() {
         this.display = true;
         this.serviceStateFiler.onStndFilter()
         this.filterPeriodService.onStndFilter()
+        this.serviceSubstring.onStndFilter()
     }
 
     downloadExel() {
@@ -87,25 +109,26 @@ export class TablePageComponent implements OnInit {
 
     }
 
-    confirm(event,rowData) {
-        if(this.confirmDisplay){
-            this.confirmDisplay=false
-        }else {
-            this.confirmDisplay=true
+    confirm(event, rowData) {
+        if (this.confirmDisplay) {
+            this.confirmDisplay = false
+        } else {
+            this.confirmDisplay = true
         }
         this.confirmationService.confirm({
             target: event.target,
             message: rowData.Comment,
             icon: 'pi pi-exclamation-triangle',
-            rejectVisible:false,
+            rejectVisible: false,
             accept: () => {
-                this.confirmDisplay=false
+                this.confirmDisplay = false
             },
             reject: () => {
-                this.confirmDisplay=false
+                this.confirmDisplay = false
             }
         });
     }
+
     @Input() get selectedColumns(): any[] {
         return this._selectedColumns;
     }
@@ -114,33 +137,36 @@ export class TablePageComponent implements OnInit {
         //restore original order
         // this._selectedColumns = this.cols.filter(col => val.includes(col));
     }
-    cancelFilter(){
+
+    cancelFilter() {
         this.serviceStateFiler.onFastFilter()
         this.filterPeriodService.onFastFilter()
+        this.serviceSubstring.onFastFilter()
         this.filterService.clearFilter()
         this.childCustomerFilter.clear()
         this.childEmployeeFilter.clear()
         this.childPayedFilter.clear()
         this.childStateFilter.clear()
         this.childDateFilter.clear()
-        this.subStringFilter.clear()
-        this.childPeriodDateFilter.clear()
+      //  this.childPeriodDateFilter.clear()
+        this.updateData()
     }
+
     async updateData() {
-        this.loading=true
+        this.loading = true
         this.data = await this.apiService.post<TableOrderResponse>(
-            'getCroppedOrders', this.filterService.getOrderRequest()
+            'getCroppedOrders', this.filterService.getOrderRequest(),false
         );
-        this.display=false
+        this.display = false
 
         let mainColumn = [];
-        console.log( this.data.ordersTableBody)
+        console.log(this.data.ordersTableBody)
         this.data.columnTables.map(elem => {
             mainColumn.push(
                 {
                     field: elem.nameColumn,
                     header: elem.nameColumn,
-                    width: elem.width<100?elem.width+elem.nameColumn.length*8:elem.width+elem.nameColumn.length*5
+                    width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
                 }
             )
         })
@@ -184,23 +210,24 @@ export class TablePageComponent implements OnInit {
         this.tableDataService.setTablePatternRow(tableRowPattern)
 
         this.tableDataService.setStartData(this.startData)
-      //  this.cols = this.mainColumn.slice()
-       // this.columns = this.cols
-    //    this._selectedColumns = this.cols;
+        //  this.cols = this.mainColumn.slice()
+        // this.columns = this.cols
+        //    this._selectedColumns = this.cols;
 
         if (this.dynamicColumns !== '') {
             this.tableDataService.addColumnText = this.dynamicColumns
             this.setColumn()
         }
-        this.loading=false
+        this.loading = false
     }
 
     constructor(public tableDataService: TableDataService,
                 public orderService: OrderService,
                 public filterService: FilterService,
-                public filterPeriodService:ServPeriodFilterService,
+                public filterPeriodService: ServPeriodFilterService,
                 public apiService: ApiDataServiceService,
-                public serviceStateFiler:ServStateFilterService,
+                public serviceSubstring:ServSubstringFilterService,
+                public serviceStateFiler: ServStateFilterService,
                 private confirmationService: ConfirmationService,
                 private _router: Router) {
         this.selectRow = this.tableDataService.getTablePatternRow()
@@ -234,17 +261,17 @@ export class TablePageComponent implements OnInit {
         this.selectRow = event.data
     }
 
-    chooseColumn(){
-        let tempArr=[];
-        this.columns.forEach(elem=>{
-            let temp=this._selectedColumns.find(e=>{
-                return    e.field===elem.field
+    chooseColumn() {
+        let tempArr = [];
+        this.columns.forEach(elem => {
+            let temp = this._selectedColumns.find(e => {
+                return e.field === elem.field
             })
-            if(temp!==undefined){
+            if (temp !== undefined) {
                 tempArr.push(elem)
             }
         })
-        this._selectedColumns=tempArr
+        this._selectedColumns = tempArr
     }
 
 
@@ -277,9 +304,9 @@ export class TablePageComponent implements OnInit {
                     if (item !== '') {
                         if (index >= this.cols.length - 2) {
                             this.cols.push(
-                                {field: 'temp' + item, header: item, width: item },
+                                {field: 'temp' + item, header: item, width: item},
                             )
-                        } else if (this.cols[index + 2].width !== item ) {
+                        } else if (this.cols[index + 2].width !== item) {
                             this.cols[index + 2].width = item
                             this.cols[index + 2].header = item
                         }

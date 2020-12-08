@@ -428,7 +428,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"content-body\" id='mian' *ngIf=\"!tableDataService.showUpdatePage\">\n    <!--<div class=\"input-form\">\n        <input placeholder=\"input columns size\" type=\"text\"\n               [ngClass]=\"{'err-input':inputErr,'input-text':!inputErr}\"\n               [(ngModel)]=\"tableDataService.addColumnText\" (input)=\"setColumn()\"/>\n        <input type=\"text\" class=\"input-text\" [(ngModel)]=\"tableDataService.search\"\n               (keydown.enter)=\"onSearch()\"/>\n        <button class=\"button button-search\" (click)=\"onSearch()\">search</button>\n    </div>\n\n        <div class=\"box\">\n        <app-filter-box></app-filter-box>\n        <div class=\"shadow box-item \">\n            <p-multiSelect [options]=\"columns\" [(ngModel)]=\"_selectedColumns\" optionLabel=\"header\"\n                           selectedItemsLabel=\" {0} columns selected\"\n                           [style]=\"{minWidth:'200px'}\"\n                           placeholder=\"Choose Columns\"></p-multiSelect>\n        </div>\n\n    </div>\n    -->\n    <p-dialog header=\"{{'loginPage.filters' | translate}}\"\n              [style]=\"{minWidth:'400px',minHeight:'500px',width:'600px'}\"\n              [(visible)]=\"display\" [resizable]=\"true\" responsive=\"false\">\n        <div class=\"filter-panel\">\n            <app-date-filter class=\"filter\"></app-date-filter>\n            <app-payed-filter class=\"filter\"></app-payed-filter>\n            <app-state-filter class=\"filter\" [onlyField]=\"false\"></app-state-filter>\n            <app-customer-filter class=\"filter\"></app-customer-filter>\n            <app-employee-filter class=\"filter\"></app-employee-filter>\n        </div>\n\n\n        <p-footer class=\"footer-dialog\">\n            <button pRipple type=\"button\" (click)=\"cancelFilter()\" style=\"margin-right: 15%;margin-left:10%\" pButton\n                    class=\"p-button-danger\"\n                    [label]=\"'loginPage.cancel' | translate\" icon=\"pi pi-times\" label=\"delete\"></button>\n            <button pRipple type=\"button\" (click)=\"updateData()\" style=\"margin-left:15%;margin-right:10% \" pButton\n                    icon=\"pi pi-check\"\n                    [label]=\"'loginPage.confirm' | translate\"></button>\n\n        </p-footer>\n    </p-dialog>\n    <p-confirmPopup [visible]=\"confirmDisplay\"></p-confirmPopup>\n    <p-contextMenu #cm [model]=\"items\"></p-contextMenu>\n\n    <!--  currentPageReportTemplate=\"{{'loginPage.TableNumLabel' | translate}}\"\n               [rows]=\"100\" [showCurrentPageReport]=\"true\" [rowsPerPageOptions]=\"[20,30,50,100]\"\n              [paginator]=\"true\" -->\n    <div style=\"height: 85vh;background: #f4f4f4;width: 100%\">\n        <p-table\n                [reorderableColumns]=\"true\"\n                class=\"table-style\"\n                [loading]=\"loading\"\n                [columns]=\"_selectedColumns\" [value]=\"tableDataService.mainData\" [scrollable]=\"true\"\n                scrollHeight=\"flex\"\n                [contextMenu]=\"cm\"\n                style=\"border-color: #f4f4f4\"\n                [style]=\"{borderColor:'#f4f4f4',zIndex:'0'}\"\n                [resizableColumns]=\"true\" selectionMode=\"single\"\n                dataKey=\"id\">\n\n            <ng-template pTemplate=\"caption\" style=\"border-color: #f4f4f4\">\n                <div class=\"table-header\" style=\"height: 35px\" [style]=\"{borderColor:'#f4f4f4'}\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row\">\n                        <div class=\"p-mb-4 p-mr-4\" style=\"width: 20%\">\n                            <h3> {{ title }}</h3>\n                        </div>\n\n                        <div class=\"p-mb-6 p-mr-6\" style=\"width: 40%\">\n                        </div>\n                        <div *ngIf=\"!standardFilterDisable\" class=\"p-mb-2 p-mr-2\" style=\" position: relative;top:-2px\">\n                            <button pButton type=\"button\" (click)=\"showDialog()\"\n                                    class=\"p-button-secondary\"\n                                    pRipple\n                                    icon=\"pi pi-filter size-icon-table\"\n                            >\n                            </button>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 300px; position: relative;top:-10px\">\n                            <app-period-date-filter [onlyField]=\"true\" (onSuggest)=\"updateData()\"\n                                                    (onClear)=\"updateData()\"\n\n                            ></app-period-date-filter>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 300px; position: relative;top:-10px\">\n                            <app-state-filter [disabled]=\"stateFilterDisable\" [onlyField]=\"true\"\n                                              (onSuggest)=\"updateData()\"\n                                              (onClear)=\"updateData()\"\n                            ></app-state-filter>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 300px; position: relative;top:-10px\">\n\n                            <app-substring-filter (onSuggest)=\"updateData()\"\n                            ></app-substring-filter>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 100px; position: relative;top:-2px\">\n                            <button pButton type=\"button\" (click)=\"downloadExel()\"\n                                    class=\"p-button-secondary\"\n                                    pRipple\n                                    icon=\"pi pi-file-excel size-icon-table \"\n                            >\n                            </button>\n\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\"\n                             style=\" position: relative;top:-2px;\">\n                            <p-multiSelect [options]=\"columns\" [(ngModel)]=\"_selectedColumns\"\n                                           optionLabel=\"header\"\n                                           [showHeader]=\"false\"\n                                           id=\"multisect\"\n                                           selectedItemsLabel=\"\"\n                                           defaultLabel=\"\"\n                                           (onClick)=\"chooseColumn()\"\n                                           dropdownIcon=\"pi pi-microsoft size-icon\"\n                                           scrollHeight=\"700px\"\n                                           [style]=\"{width:'38px',height:'40px',position:'relative',background:'#f4f4f4',borderColor:'#f4f4f4'}\"\n                                           placeholder=\"\"></p-multiSelect>\n                        </div>\n                    </div>\n\n\n                </div>\n            </ng-template>\n            <ng-template pTemplate=\"colgroup\">\n                <colgroup>\n                    <col style=\"width:30px\">\n                    <col style=\"width:30px\">\n                    <col *ngFor=\"let col of columns\" style=\"{{'width:'+col.width+'px'}}\">\n                    <col *ngIf=\"buttonActionDisable\" style=\"width:150px\">\n\n                </colgroup>\n            </ng-template>\n            <ng-template pTemplate=\"header\" let-columns>\n                <tr style=\"border-color: #f4f4f4\" [style]=\"{borderColor:'#f4f4f4'}\">\n                    <th style=\"width:2rem;border-color: #f4f4f4\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>\n                    <th style=\"width:2rem;border-color: #f4f4f4\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>\n\n                    <th *ngFor=\"let col of columns\" pResizableColumn [pSortableColumn]=\"col.header\"\n                        style=\"border-color: #f4f4f4\" [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\">\n                        {{col.header}}\n                        <p-sortIcon [field]=\"col.header\"></p-sortIcon>\n                    </th>\n                    <th style=\"width:2rem;border-color: #f4f4f4\" *ngIf=\"buttonActionDisable\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-rowData let-columns=\"columns\" let-index=\"rowIndex\">\n                <tr [pReorderableRow]=\"index\" [pContextMenuRow]=\"rowData\">\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'12px'}\">\n                        <span class=\"pi pi-bars\" pReorderableRowHandle></span>\n                    </td>\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'14px'}\">\n                        <span *ngIf=\"rowData.Comment!==''\" class=\"pi pi-info-circle\" pReorderableRowHandle\n                              (click)=\"confirm($event,rowData)\"></span>\n                    </td>\n                    <td *ngFor=\"let col of columns\" class=\"ui-resizable-column\" pResizableColumn\n                        [style]=\"{borderColor:'#f4f4f4' , fontSize:'12px'}\">\n                    <span *ngIf=\"rowData[col.field]==='yes' || rowData[col.field]==='1'\">\n                        <i class=\"pi pi-check\"></i>\n                        </span>\n                        <span *ngIf=\"rowData[col.field]==='no' || rowData[col.field]==='0'\"></span>\n                        <span *ngIf=\"col.field==='Борг' || col.field==='Роб.' || col.field==='З/ч' || col.field==='Разом'\"\n                              style=\"padding-left: 50%\"> </span>\n                        <span *ngIf=\"!(rowData[col.field]==='yes' || rowData[col.field]==='1') && !(rowData[col.field]==='no' || rowData[col.field]==='0')\">\n                                            {{rowData[col.field]}}\n                    </span>\n                    </td>\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'14px',zIndex:'2'}\" *ngIf=\"buttonActionDisable\">\n\n                        <app-button-list-action></app-button-list-action>\n\n                    </td>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"emptymessage\">\n                <tr>\n                    <td [colSpan]=\"_selectedColumns.length\">No customers found.</td>\n                </tr>\n            </ng-template>\n        </p-table>\n    </div>\n    <!--\n    <p-confirmDialog [style]=\"{width: '30vw'}\" [baseZIndex]=\"10000\"></p-confirmDialog>\n    <div class=\"button-panel\">\n        <button type=\"button\" (click)=\"deleteData()\" pButton class=\"ui-button-danger\"\n                icon=\"pi pi-trash\" [disabled]=\"selectRow.id<=startData.length\" label=\"delete\"></button>\n        <button (click)=\"tableDataService.showUpdatePage=true\" type=\"button\" pButton icon=\"pi pi-plus\"\n                label=\"create\"></button>\n        <button type=\"button\" [disabled]=\"selectRow.id<=startData.length\" pButton icon=\"pi pi-pencil\"\n                class=\"ui-button-success\" (click)=\"changeData()\" label=\"change\"></button>\n    </div>-->\n\n</div>\n<app-create-add *ngIf=\"tableDataService.showUpdatePage\"></app-create-add>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"content-body\" id='mian' *ngIf=\"!tableDataService.showUpdatePage\">\n    <!--<div class=\"input-form\">\n        <input placeholder=\"input columns size\" type=\"text\"\n               [ngClass]=\"{'err-input':inputErr,'input-text':!inputErr}\"\n               [(ngModel)]=\"tableDataService.addColumnText\" (input)=\"setColumn()\"/>\n        <input type=\"text\" class=\"input-text\" [(ngModel)]=\"tableDataService.search\"\n               (keydown.enter)=\"onSearch()\"/>\n        <button class=\"button button-search\" (click)=\"onSearch()\">search</button>\n    </div>\n\n        <div class=\"box\">\n        <app-filter-box></app-filter-box>\n        <div class=\"shadow box-item \">\n            <p-multiSelect [options]=\"columns\" [(ngModel)]=\"_selectedColumns\" optionLabel=\"header\"\n                           selectedItemsLabel=\" {0} columns selected\"\n                           [style]=\"{minWidth:'200px'}\"\n                           placeholder=\"Choose Columns\"></p-multiSelect>\n        </div>\n\n    </div>\n    -->\n    <p-dialog header=\"{{'loginPage.filters' | translate}}\"\n              [style]=\"{minWidth:'400px',minHeight:'500px',width:'600px'}\"\n              [(visible)]=\"display\" [resizable]=\"true\" responsive=\"false\">\n        <div class=\"filter-panel\">\n            <app-date-filter class=\"filter\"></app-date-filter>\n            <app-payed-filter class=\"filter\"></app-payed-filter>\n            <app-state-filter class=\"filter\" [onlyField]=\"false\"></app-state-filter>\n            <app-customer-filter class=\"filter\"></app-customer-filter>\n            <app-employee-filter class=\"filter\"></app-employee-filter>\n        </div>\n\n\n        <p-footer class=\"footer-dialog\">\n            <button pRipple type=\"button\" (click)=\"cancelFilter()\" style=\"margin-right: 15%;margin-left:10%\" pButton\n                    class=\"p-button-danger\"\n                    [label]=\"'loginPage.cancel' | translate\" icon=\"pi pi-times\" label=\"delete\"></button>\n            <button pRipple type=\"button\" (click)=\"updateData()\" style=\"margin-left:15%;margin-right:10% \" pButton\n                    icon=\"pi pi-check\"\n                    [label]=\"'loginPage.confirm' | translate\"></button>\n\n        </p-footer>\n    </p-dialog>\n    <p-confirmPopup [visible]=\"confirmDisplay\"></p-confirmPopup>\n    <p-contextMenu #cm [model]=\"items\"></p-contextMenu>\n\n    <!--  currentPageReportTemplate=\"{{'loginPage.TableNumLabel' | translate}}\"\n               [rows]=\"100\" [showCurrentPageReport]=\"true\" [rowsPerPageOptions]=\"[20,30,50,100]\"\n              [paginator]=\"true\" -->\n    <div style=\"height: 85vh;background: #f4f4f4;width: 100%\">\n        <p-table\n                [reorderableColumns]=\"true\"\n                class=\"table-style\"\n                [loading]=\"loading\"\n                [columns]=\"_selectedColumns\" [value]=\"tableDataService.mainData\" [scrollable]=\"true\"\n                scrollHeight=\"flex\"\n                [contextMenu]=\"cm\"\n                style=\"border-color: #f4f4f4\"\n                [style]=\"{borderColor:'#f4f4f4',zIndex:'0'}\"\n                [resizableColumns]=\"true\" selectionMode=\"single\"\n                dataKey=\"id\">\n\n            <ng-template pTemplate=\"caption\" style=\"border-color: #f4f4f4\">\n                <div class=\"table-header\" style=\"height: 35px\" [style]=\"{borderColor:'#f4f4f4'}\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row\">\n                        <div class=\"p-mb-4 p-mr-4\" style=\"width: 20%\">\n                            <h3> {{ title }}</h3>\n                        </div>\n\n                        <div class=\"p-mb-6 p-mr-6\" style=\"width: 40%\">\n                        </div>\n                        <div *ngIf=\"!standardFilterDisable\" class=\"p-mb-2 p-mr-2\" style=\" position: relative;top:-2px\">\n                            <button pButton type=\"button\" (click)=\"showDialog()\"\n                                    class=\"p-button-secondary\"\n                                    pRipple\n                                    icon=\"pi pi-filter size-icon-table\"\n                            >\n                            </button>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 300px; position: relative;top:-10px\">\n                            <app-period-date-filter [onlyField]=\"true\" (onSuggest)=\"updateData()\"\n                                                    (onClear)=\"updateData()\"\n\n                            ></app-period-date-filter>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 300px; position: relative;top:-10px\">\n                            <app-state-filter\n                                    [disabled]=\"stateFilterDisable\" [onlyField]=\"true\"\n                                    (onSuggest)=\"updateData()\"\n                                    (onClear)=\"updateData()\"\n                                    (click)=\"confirmOnStateFilter()\"\n                            ></app-state-filter>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 300px; position: relative;top:-10px\">\n\n                            <app-substring-filter (onSuggest)=\"updateData()\"\n                            ></app-substring-filter>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 100px; position: relative;top:-2px\">\n                            <button pButton type=\"button\" (click)=\"downloadExel()\"\n                                    class=\"p-button-secondary\"\n                                    pRipple\n                                    icon=\"pi pi-file-excel size-icon-table \"\n                            >\n                            </button>\n\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\"\n                             style=\" position: relative;top:-2px;\">\n                            <p-multiSelect [options]=\"columns\" [(ngModel)]=\"_selectedColumns\"\n                                           optionLabel=\"header\"\n                                           [showHeader]=\"false\"\n                                           id=\"multisect\"\n                                           selectedItemsLabel=\"\"\n                                           defaultLabel=\"\"\n                                           (onClick)=\"chooseColumn()\"\n                                           dropdownIcon=\"pi pi-microsoft size-icon\"\n                                           scrollHeight=\"700px\"\n                                           [style]=\"{width:'38px',height:'40px',position:'relative',background:'#f4f4f4',borderColor:'#f4f4f4'}\"\n                                           placeholder=\"\"></p-multiSelect>\n                        </div>\n                    </div>\n\n\n                </div>\n            </ng-template>\n            <ng-template pTemplate=\"colgroup\">\n                <colgroup>\n                    <col style=\"width:30px\">\n                    <col style=\"width:30px\">\n                    <col *ngFor=\"let col of columns\" style=\"{{'width:'+col.width+'px'}}\">\n                    <col *ngIf=\"buttonActionDisable\" style=\"width:150px\">\n\n                </colgroup>\n            </ng-template>\n            <ng-template pTemplate=\"header\" let-columns>\n                <tr style=\"border-color: #f4f4f4\" [style]=\"{borderColor:'#f4f4f4'}\">\n                    <th style=\"width:2rem;border-color: #f4f4f4\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>\n                    <th style=\"width:2rem;border-color: #f4f4f4\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>\n\n                    <th *ngFor=\"let col of columns\" pResizableColumn [pSortableColumn]=\"col.header\"\n                        style=\"border-color: #f4f4f4\" [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\">\n                        {{col.header}}\n                        <p-sortIcon [field]=\"col.header\"></p-sortIcon>\n                    </th>\n                    <th style=\"width:2rem;border-color: #f4f4f4\" *ngIf=\"buttonActionDisable\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-rowData let-columns=\"columns\" let-index=\"rowIndex\">\n                <tr [pReorderableRow]=\"index\" [pContextMenuRow]=\"rowData\">\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'12px'}\">\n                        <span class=\"pi pi-bars\" pReorderableRowHandle></span>\n                    </td>\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'14px'}\">\n                        <span *ngIf=\"rowData.Comment!==''\" class=\"pi pi-info-circle\" pReorderableRowHandle\n                              (click)=\"confirm($event,rowData)\"></span>\n                    </td>\n                    <td *ngFor=\"let col of columns\" class=\"ui-resizable-column\" pResizableColumn\n                        [style]=\"{borderColor:'#f4f4f4' , fontSize:'12px'}\">\n                    <span *ngIf=\"rowData[col.field]==='yes' || rowData[col.field]==='1'\">\n                        <i class=\"pi pi-check\"></i>\n                        </span>\n                        <span *ngIf=\"rowData[col.field]==='no' || rowData[col.field]==='0'\"></span>\n                        <span *ngIf=\"col.field==='Борг' || col.field==='Роб.' || col.field==='З/ч' || col.field==='Разом'\"\n                              style=\"padding-left: 50%\"> </span>\n                        <span *ngIf=\"!(rowData[col.field]==='yes' || rowData[col.field]==='1') && !(rowData[col.field]==='no' || rowData[col.field]==='0')\">\n                                            {{rowData[col.field]}}\n                    </span>\n                    </td>\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'14px',zIndex:'2'}\" *ngIf=\"buttonActionDisable\">\n\n                        <app-button-list-action></app-button-list-action>\n\n                    </td>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"emptymessage\">\n                <tr>\n                    <td [colSpan]=\"_selectedColumns.length\">No customers found.</td>\n                </tr>\n            </ng-template>\n        </p-table>\n    </div>\n    <!--\n    <p-confirmDialog [style]=\"{width: '30vw'}\" [baseZIndex]=\"10000\"></p-confirmDialog>\n    <div class=\"button-panel\">\n        <button type=\"button\" (click)=\"deleteData()\" pButton class=\"ui-button-danger\"\n                icon=\"pi pi-trash\" [disabled]=\"selectRow.id<=startData.length\" label=\"delete\"></button>\n        <button (click)=\"tableDataService.showUpdatePage=true\" type=\"button\" pButton icon=\"pi pi-plus\"\n                label=\"create\"></button>\n        <button type=\"button\" [disabled]=\"selectRow.id<=startData.length\" pButton icon=\"pi pi-pencil\"\n                class=\"ui-button-success\" (click)=\"changeData()\" label=\"change\"></button>\n    </div>-->\n\n</div>\n<app-create-add *ngIf=\"tableDataService.showUpdatePage\"></app-create-add>");
 
 /***/ }),
 
@@ -532,7 +532,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<!--<div class=\"filter-component\">-->\n<!--    <p class=\"title\">{{'loginPage.datePeriod' | translate}}</p>-->\n<!--    <p-dropdown (onClick)=\"changePeriod()\" style=\"margin: 5px 5px 10px;position: relative;bottom: 20px\"-->\n<!--                [options]=\"periods\" [(ngModel)]=\"period\" optionLabel=\"name\">-->\n\n\n<!--    </p-dropdown>-->\n<!--    <div  style=\"position: relative;top:-10px; display: flex;flex-direction: row;justify-content: center;align-content: center\">-->\n<!--        <p-radioButton name=\"groupname\" inputId=\"val1\"  [value]=\"false\"-->\n<!--                       [(ngModel)]=\"isCloseDate\" style=\"margin-right: 5%\"></p-radioButton>-->\n<!--        <label for=\"val1\">відкр.</label>-->\n<!--        <p-radioButton name=\"groupname\" [value]=\"true\" inputId=\"val2\"-->\n<!--                       [(ngModel)]=\"isCloseDate\" style=\"margin-right: 5%;margin-left: 5%\"></p-radioButton>-->\n<!--        <label for=\"val2\">закр.</label>-->\n\n<!--    </div>-->\n<!--</div>-->\n<div   *ngIf=\"onlyField\"   class=\"p-fluid  p-grid p-formgrid\" style=\"width: 270px\">\n    <div class=\"p-field p-col-36 p-md-12\">\n        <p-dropdown (onChange)=\"changePeriod()\"\n\n                    [options]=\"periods\" [(ngModel)]=\"period\"\n                    optionLabel=\"name\"  [showClear]=\"true\">\n    </p-dropdown>\n    </div>\n</div>\n<div *ngIf=\"!onlyField\" class=\"filter-component\">\n    <div class=\"white-line\"></div>\n    <p class=\"title\" >{{'loginPage.datePeriod' | translate}}</p>\n    <div class=\"filter-body\">\n\n    <div class=\"p-fluid  p-grid p-formgrid\" >\n        <div class=\"p-field p-col-36 p-md-12\">\n            <p-dropdown (onClick)=\"changePeriod()\" [options]=\"periods\" [(ngModel)]=\"period\"\n                        placeholder=\"{{'loginPage.datePeriod' | translate}}\" optionLabel=\"name\"  [showClear]=\"true\">\n            </p-dropdown>\n\n        </div>\n    </div>\n    </div>\n\n\n\n\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<!--<div class=\"filter-component\">-->\n<!--    <p class=\"title\">{{'loginPage.datePeriod' | translate}}</p>-->\n<!--    <p-dropdown (onClick)=\"changePeriod()\" style=\"margin: 5px 5px 10px;position: relative;bottom: 20px\"-->\n<!--                [options]=\"periods\" [(ngModel)]=\"period\" optionLabel=\"name\">-->\n\n\n<!--    </p-dropdown>-->\n<!--    <div  style=\"position: relative;top:-10px; display: flex;flex-direction: row;justify-content: center;align-content: center\">-->\n<!--        <p-radioButton name=\"groupname\" inputId=\"val1\"  [value]=\"false\"-->\n<!--                       [(ngModel)]=\"isCloseDate\" style=\"margin-right: 5%\"></p-radioButton>-->\n<!--        <label for=\"val1\">відкр.</label>-->\n<!--        <p-radioButton name=\"groupname\" [value]=\"true\" inputId=\"val2\"-->\n<!--                       [(ngModel)]=\"isCloseDate\" style=\"margin-right: 5%;margin-left: 5%\"></p-radioButton>-->\n<!--        <label for=\"val2\">закр.</label>-->\n\n<!--    </div>-->\n<!--</div>-->\n<div   *ngIf=\"onlyField\"   class=\"p-fluid  p-grid p-formgrid\" style=\"width: 270px\">\n    <div class=\"p-field p-col-36 p-md-12\">\n        <p-dropdown (onChange)=\"changePeriod()\"\n                    [disabled]=\"filterPeriodService.disableFastFiled\"\n                    [options]=\"periods\" [(ngModel)]=\"filterPeriodService.periodFastFilterData\"\n                    optionLabel=\"name\"  [showClear]=\"true\">\n    </p-dropdown>\n    </div>\n</div>\n<div *ngIf=\"!onlyField\" class=\"filter-component\">\n    <div class=\"white-line\"></div>\n    <p class=\"title\" >{{'loginPage.datePeriod' | translate}}</p>\n    <div class=\"filter-body\">\n\n    <div class=\"p-fluid  p-grid p-formgrid\" >\n        <div class=\"p-field p-col-36 p-md-12\">\n            <p-dropdown (onClick)=\"changePeriod()\" [options]=\"periods\" [(ngModel)]=\"period\"\n                        placeholder=\"{{'loginPage.datePeriod' | translate}}\" optionLabel=\"name\"  [showClear]=\"true\">\n            </p-dropdown>\n\n        </div>\n    </div>\n    </div>\n\n\n\n\n</div>");
 
 /***/ }),
 
@@ -2438,6 +2438,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_15__);
 /* harmony import */ var _widgets_filters_substring_filter_substring_filter_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../widgets/filters/substring-filter/substring-filter.component */ "./src/app/widgets/filters/substring-filter/substring-filter.component.ts");
 /* harmony import */ var _widgets_filters_state_filter_serv_state_filter_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../widgets/filters/state-filter/serv-state-filter.service */ "./src/app/widgets/filters/state-filter/serv-state-filter.service.ts");
+/* harmony import */ var _widgets_filters_period_date_filter_serv_period_filter_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../widgets/filters/period-date-filter/serv-period-filter.service */ "./src/app/widgets/filters/period-date-filter/serv-period-filter.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2477,13 +2478,15 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 
 
 
+
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
 let TablePageComponent = class TablePageComponent {
-    constructor(tableDataService, orderService, filterService, apiService, serviceStateFiler, confirmationService, _router) {
+    constructor(tableDataService, orderService, filterService, filterPeriodService, apiService, serviceStateFiler, confirmationService, _router) {
         this.tableDataService = tableDataService;
         this.orderService = orderService;
         this.filterService = filterService;
+        this.filterPeriodService = filterPeriodService;
         this.apiService = apiService;
         this.serviceStateFiler = serviceStateFiler;
         this.confirmationService = confirmationService;
@@ -2508,9 +2511,26 @@ let TablePageComponent = class TablePageComponent {
         this.display = false;
         this.selectRow = this.tableDataService.getTablePatternRow();
     }
+    confirmOnStateFilter(event) {
+        if (this.serviceStateFiler.disableFastFiled) {
+            this.confirmationService.confirm({
+                target: event.target,
+                message: 'стандартнi фiльтри будуть очищені. Продовжити?',
+                icon: 'pi pi-exclamation-triangle',
+                rejectVisible: false,
+                accept: () => {
+                    this.confirmDisplay = false;
+                },
+                reject: () => {
+                    this.confirmDisplay = false;
+                }
+            });
+        }
+    }
     showDialog() {
         this.display = true;
         this.serviceStateFiler.onStndFilter();
+        this.filterPeriodService.onStndFilter();
     }
     downloadExel() {
         console.log(this.tableDataService.mainData);
@@ -2547,6 +2567,8 @@ let TablePageComponent = class TablePageComponent {
         // this._selectedColumns = this.cols.filter(col => val.includes(col));
     }
     cancelFilter() {
+        this.serviceStateFiler.onFastFilter();
+        this.filterPeriodService.onFastFilter();
         this.filterService.clearFilter();
         this.childCustomerFilter.clear();
         this.childEmployeeFilter.clear();
@@ -2555,7 +2577,6 @@ let TablePageComponent = class TablePageComponent {
         this.childDateFilter.clear();
         this.subStringFilter.clear();
         this.childPeriodDateFilter.clear();
-        this.serviceStateFiler.onFastFilter();
     }
     updateData() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -2724,6 +2745,7 @@ TablePageComponent.ctorParameters = () => [
     { type: _tableData_service__WEBPACK_IMPORTED_MODULE_1__["TableDataService"] },
     { type: _orders_page_order_service__WEBPACK_IMPORTED_MODULE_5__["OrderService"] },
     { type: _widgets_filters_filter_service__WEBPACK_IMPORTED_MODULE_6__["FilterService"] },
+    { type: _widgets_filters_period_date_filter_serv_period_filter_service__WEBPACK_IMPORTED_MODULE_18__["ServPeriodFilterService"] },
     { type: _Service_api_data_service_service__WEBPACK_IMPORTED_MODULE_7__["ApiDataServiceService"] },
     { type: _widgets_filters_state_filter_serv_state_filter_service__WEBPACK_IMPORTED_MODULE_17__["ServStateFilterService"] },
     { type: primeng_api__WEBPACK_IMPORTED_MODULE_2__["ConfirmationService"] },
@@ -2804,6 +2826,7 @@ TablePageComponent = __decorate([
     __metadata("design:paramtypes", [_tableData_service__WEBPACK_IMPORTED_MODULE_1__["TableDataService"],
         _orders_page_order_service__WEBPACK_IMPORTED_MODULE_5__["OrderService"],
         _widgets_filters_filter_service__WEBPACK_IMPORTED_MODULE_6__["FilterService"],
+        _widgets_filters_period_date_filter_serv_period_filter_service__WEBPACK_IMPORTED_MODULE_18__["ServPeriodFilterService"],
         _Service_api_data_service_service__WEBPACK_IMPORTED_MODULE_7__["ApiDataServiceService"],
         _widgets_filters_state_filter_serv_state_filter_service__WEBPACK_IMPORTED_MODULE_17__["ServStateFilterService"],
         primeng_api__WEBPACK_IMPORTED_MODULE_2__["ConfirmationService"],
@@ -3638,6 +3661,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _filter_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../filter.service */ "./src/app/widgets/filters/filter.service.ts");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _serv_period_filter_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./serv-period-filter.service */ "./src/app/widgets/filters/period-date-filter/serv-period-filter.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3653,8 +3677,10 @@ var __importDefault = (undefined && undefined.__importDefault) || function (mod)
 
 
 
+
 let PeriodDateFilterComponent = class PeriodDateFilterComponent {
-    constructor(filterService) {
+    constructor(filterPeriodService, filterService) {
+        this.filterPeriodService = filterPeriodService;
         this.filterService = filterService;
         this.onSuggest = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.onClear = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
@@ -3791,6 +3817,7 @@ let PeriodDateFilterComponent = class PeriodDateFilterComponent {
     }
 };
 PeriodDateFilterComponent.ctorParameters = () => [
+    { type: _serv_period_filter_service__WEBPACK_IMPORTED_MODULE_3__["ServPeriodFilterService"] },
     { type: _filter_service__WEBPACK_IMPORTED_MODULE_1__["FilterService"] }
 ];
 __decorate([
@@ -3811,8 +3838,59 @@ PeriodDateFilterComponent = __decorate([
         template: __importDefault(__webpack_require__(/*! raw-loader!./period-date-filter.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/widgets/filters/period-date-filter/period-date-filter.component.html")).default,
         styles: [__importDefault(__webpack_require__(/*! ./period-date-filter.component.css */ "./src/app/widgets/filters/period-date-filter/period-date-filter.component.css")).default]
     }),
-    __metadata("design:paramtypes", [_filter_service__WEBPACK_IMPORTED_MODULE_1__["FilterService"]])
+    __metadata("design:paramtypes", [_serv_period_filter_service__WEBPACK_IMPORTED_MODULE_3__["ServPeriodFilterService"],
+        _filter_service__WEBPACK_IMPORTED_MODULE_1__["FilterService"]])
 ], PeriodDateFilterComponent);
+
+
+
+/***/ }),
+
+/***/ "./src/app/widgets/filters/period-date-filter/serv-period-filter.service.ts":
+/*!**********************************************************************************!*\
+  !*** ./src/app/widgets/filters/period-date-filter/serv-period-filter.service.ts ***!
+  \**********************************************************************************/
+/*! exports provided: ServPeriodFilterService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ServPeriodFilterService", function() { return ServPeriodFilterService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+let ServPeriodFilterService = class ServPeriodFilterService {
+    constructor() {
+        this.periodFastFilterData = { name: '', code: '' };
+        this.periodFilterData = { name: '', code: '' };
+        this.periodTemp = { name: '', code: '' };
+        this.disableFastFiled = false;
+    }
+    onStndFilter() {
+        this.disableFastFiled = true;
+        this.periodTemp = this.periodFastFilterData;
+        this.periodFastFilterData = { name: '', code: '' };
+    }
+    onFastFilter() {
+        this.disableFastFiled = false;
+        this.periodFilterData = this.periodTemp;
+        this.periodTemp = { name: '', code: '' };
+    }
+};
+ServPeriodFilterService = __decorate([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+        providedIn: 'root'
+    }),
+    __metadata("design:paramtypes", [])
+], ServPeriodFilterService);
 
 
 
@@ -3850,6 +3928,7 @@ let ServStateFilterService = class ServStateFilterService {
         this.disableFastFiled = true;
         this.stateTemp = this.stateFastFilterData;
         this.stateFastFilterData = { name: '', code: '' };
+        console.log(this.stateFastFilterData);
     }
     onFastFilter() {
         this.disableFastFiled = false;
@@ -3937,10 +4016,18 @@ let StateFilterComponent = class StateFilterComponent {
             this.clear();
         }
         else {
-            this.orderRequest = this.filterService.getOrderRequest();
-            this.orderRequest.state = this.state.code;
-            this.filterService.setOrderRequest(this.orderRequest);
-            this.onSuggest.emit();
+            if (this.onlyField) {
+                this.orderRequest = this.filterService.getOrderRequest();
+                this.orderRequest.state = this.stateService.stateFastFilterData.code;
+                this.filterService.setOrderRequest(this.orderRequest);
+                this.onSuggest.emit();
+            }
+            else {
+                this.orderRequest = this.filterService.getOrderRequest();
+                this.orderRequest.state = this.state.code;
+                this.filterService.setOrderRequest(this.orderRequest);
+                this.onSuggest.emit();
+            }
         }
     }
 };

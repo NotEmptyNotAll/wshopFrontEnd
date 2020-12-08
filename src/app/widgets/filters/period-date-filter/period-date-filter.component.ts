@@ -52,7 +52,7 @@ export class PeriodDateFilterComponent implements OnInit {
             this.orderRequest = this.filterService.getOrderRequest()
             let dateTo = null;
             let dateFrom = null;
-            switch (this.period.code) {
+            switch (this.filterPeriodService.periodFastFilterData.code) {
                 case 0: {
                     dateTo = null
                     dateFrom = null

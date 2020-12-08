@@ -80,14 +80,16 @@
                         <div class="p-mb-2 p-mr-2" style="width: 300px; position: relative;top:-10px">
                             <app-period-date-filter [onlyField]="true" (onSuggest)="updateData()"
                                                     (onClear)="updateData()"
+                                                    (click)="confirmOnFilter($event)"
 
                             ></app-period-date-filter>
                         </div>
                         <div class="p-mb-2 p-mr-2" style="width: 300px; position: relative;top:-10px">
                             <app-state-filter
-                                                [disabled]="stateFilterDisable" [onlyField]="true"
-                                              (onSuggest)="updateData()"
-                                              (onClear)="updateData()"
+                                    [disabled]="stateFilterDisable" [onlyField]="true"
+                                    (onSuggest)="updateData()"
+                                    (onClear)="updateData()"
+                                    (click)="confirmOnFilter($event)"
                             ></app-state-filter>
                         </div>
                         <div class="p-mb-2 p-mr-2" style="width: 300px; position: relative;top:-10px">

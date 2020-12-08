@@ -12,41 +12,42 @@ import {AutoComplete} from "primeng/autocomplete";
 })
 export class CustomerFilterComponent implements OnInit {
     private customer = {name: '', id: null}
-    @ViewChild(AutoComplete) chidFilter:AutoComplete
+    @ViewChild(AutoComplete) chidFilter: AutoComplete
 
     // @Output() onSuggest: EventEmitter<any> = new EventEmitter();
     private orderRequest: OrderRequest
     private customers: any[] = []
     filtered: any[];
     selected: User;
+
     constructor(public filterService: FilterService,
                 public apiService: ApiDataServiceService,
     ) {
     }
 
     ngOnInit(): void {
-        this.getCustomer();
+        this.getCustomer('');
     }
 
     filter(event) {
         //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
-        let filteredTemp: any[] = [];
-        let query = event.query;
-        for (let i = 0; i < this.customers.length; i++) {
-            let stat = this.customers[i];
-            if (stat.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-                filteredTemp.push(stat);
-            }
-        }
-        this.filtered = filteredTemp;
-
+        // let query = event.query;
+        // for (let i = 0; i < this.customers.length; i++) {
+        //     let stat = this.customers[i];
+        //     if (stat.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+        //         filteredTemp.push(stat);
+        //     }
+        // }
+        this.getCustomer(event.query)
     }
 
-    async getCustomer() {
-        this.customers = await this.apiService.get<User[]>('getListCustomer')
+    async getCustomer(nameCustomer) {
+        this.customers = await this.apiService.post<User[]>('getListCustomer'
+            , {name: nameCustomer, sizeResponse: 50},false)
     }
-    clear(){
-        this.filtered=[]
+
+    clear() {
+        this.filtered = []
         this.chidFilter.selectItem(null)
     }
 
@@ -54,7 +55,7 @@ export class CustomerFilterComponent implements OnInit {
     changeState() {
 
         this.orderRequest = this.filterService.getOrderRequest()
-        if (this.selected.id!==undefined && this.selected.id !== null) {
+        if (this.selected.id !== undefined && this.selected.id !== null) {
             this.orderRequest.customerId = this.selected.id
         } else {
             this.orderRequest.customerId = null

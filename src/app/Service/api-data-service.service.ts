@@ -12,7 +12,7 @@ import {User} from "./User";
 export class ApiDataServiceService {
 
     mainURL: string = 'http://10.102.200.11:5051/'
-    // mainURL: string = 'http://localhost:5051/'
+     testUrl: string = 'http://localhost:5051/'
     private axiosClient: AxiosInstance;
     private errorHandler: ErrorHandler;
     private ordersResp: Order[];
@@ -66,8 +66,31 @@ export class ApiDataServiceService {
 
     }
 
-    public async post<T>(url: string, data: any): Promise<T> {
+    public async testPost<T>(url: string, data: any): Promise<T> {
         this.isLoading = true
+        try {
+
+            var axiosResponse = await this.axiosClient.request<T>({
+                method: "post",
+                data: data,
+                url: this.testUrl+url,
+            });
+            return (axiosResponse.data);
+
+        } catch (error) {
+            console.log(error)
+            return null;
+            // return (Promise.reject(this.normalizeError(error)));
+
+        } finally {
+            this.isLoading = false
+        }
+
+
+    }
+
+    public async post<T>(url: string, data: any,applyLoading:boolean): Promise<T> {
+        this.isLoading = applyLoading
         try {
 
             var axiosResponse = await this.axiosClient.request<T>({

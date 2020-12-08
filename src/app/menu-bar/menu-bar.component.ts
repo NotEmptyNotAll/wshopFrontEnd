@@ -196,7 +196,7 @@ export class MenuBarComponent implements OnInit {
                 'getCroppedOrders', {
                     user: this.apiService.getUserData(),
                     lang: this.apiService.getLang()
-                }
+                },true
             )
 
             this.orderService.setOrderResponse(this.ordersResponse)
