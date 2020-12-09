@@ -77,10 +77,11 @@ export class TablePageComponent implements OnInit {
         if (this.serviceStateFiler.disableFastFiled || this.filterPeriodService.disableFastFiled) {
             this.confirmationService.confirm({
                 target: event.target,
-                message: 'стандартнi фiльтри будуть очищені. Продовжити?',
+               // message: 'стандартнi фiльтри будуть очищені. Продовжити?',
+                message: 'стандартные фильтры будут очищены. Продолжить?',
                 icon: 'pi pi-exclamation-triangle',
-                acceptLabel: 'так',
-                rejectLabel: 'нi',
+                acceptLabel: 'да',
+                rejectLabel: 'нет',
                 accept: () => {
                     this.serviceStateFiler.onFastFilter()
                     this.filterPeriodService.onFastFilter()
@@ -125,7 +126,7 @@ export class TablePageComponent implements OnInit {
             message: rowData.Comment,
             icon: 'pi pi-exclamation-triangle',
             rejectVisible: false,
-            acceptLabel: 'так',
+            acceptLabel: 'да',
             accept: () => {
                 this.confirmDisplay = false
             },
