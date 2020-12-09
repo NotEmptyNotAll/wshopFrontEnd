@@ -13,7 +13,7 @@ export class PayedFilterComponent implements OnInit {
     // @Output() onSuggest: EventEmitter<any> = new EventEmitter();
     private orderRequest: OrderRequest
     private states: any[] = [
-        {name: 'Всепше', code: null},
+        {name: 'Все', code: null},
         {name: 'оплаченые', code: false},
         {name: 'неоплаченые', code: true}
     ]
