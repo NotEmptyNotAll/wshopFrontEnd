@@ -64,7 +64,7 @@ export class MenuBarComponent implements OnInit {
         this.itemsNoLogin = [
             {
                 icon: 'pi pi-fw pi-globe',
-                label:'ua',
+                label:'ru',
                 style: {fontSize: '1.2em'},
                 items: [
                     {
@@ -127,7 +127,7 @@ export class MenuBarComponent implements OnInit {
             },
             {
                 icon: 'pi pi-fw pi-globe',
-                label: 'ua',
+                label: 'ru',
                 style: {fontSize: '1.2em'},
                 items: [
                     {
@@ -179,12 +179,12 @@ export class MenuBarComponent implements OnInit {
         } else {
             this.translate.use('ua');
         }*/
-        this.translate.use('ua');
+        this.translate.use('ru');
     }
 
     public switchLanguage(lang: string): void {
         this.translate.use(lang);
-        this.items[0].label='ua'
+        this.items[1].label=lang
         this.itemsNoLogin[0].label=lang
 
         //this.translate.setDefaultLang(lang);

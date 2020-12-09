@@ -1,6 +1,7 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
 import {OrderRequest} from "./order.request";
 import {User} from "../../Service/User";
+import * as moment from "moment";
 
 @Injectable({
     providedIn: 'root'
@@ -30,6 +31,9 @@ export class FilterService {
     }
 
     constructor() {
+        // this.orderRequest.dateFrom = moment().utc().format("YYYY-MM-DD")
+        // this.orderRequest.dateTo = moment().utc().format("YYYY-MM-DD")
+        // this.orderRequest.state='UNCLOSED'
     }
 
     public clearFilter() {

@@ -1,13 +1,11 @@
 <div class="filter-component">
     <div class="white-line"></div>
-    <p class="title">замовник</p>
+    <p class="title">заказчик</p>
     <div class="filter-body">
-
         <div class=" p-fluid  p-grid p-formgrid">
             <div class="p-field p-col-36 p-md-12">
                 <p-autoComplete (onSelect)="changeState()" [(ngModel)]="selected" [suggestions]="customers"
                                 (completeMethod)="filter($event)" panelStyle="panel-style"
-
                                 field="name"
                                 [dropdown]="true">
                     <ng-template let-country pTemplate="item">

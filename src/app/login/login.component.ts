@@ -87,18 +87,18 @@ export class LoginComponent implements OnInit {
         this.orderRequest.user = this.selectedUser
         this.filterService.setOrderRequest(this.orderRequest)
         if (this.selectedUser.name !== 'Administrator (superuser) ') {
-            this.orderRequest = this.filterService.getOrderRequest()
-            this.orderRequest.state = 'UNCLOSED'
-            this.filterService.setOrderRequest(this.orderRequest)
-            this.selectedUser.name = 'Administrator (superuser) '
-            this.selectedUser.password = '12345'
-            this.orderService.setUserValidate(true)
-            this.masterWindowVisible = true
-            this.ordersResponse = await this.apiService.post<TableOrderResponse>(
-                'getListOFWork', this.filterService.getOrderRequest(),
-                true
-            );
-            this.orderService.setOrderResponse(this.ordersResponse)
+            // this.orderRequest = this.filterService.getOrderRequest()
+            // this.orderRequest.state = 'UNCLOSED'
+            // this.filterService.setOrderRequest(this.orderRequest)
+            // this.selectedUser.name = 'Administrator (superuser) '
+            // this.selectedUser.password = '12345'
+            // this.orderService.setUserValidate(true)
+            // this.masterWindowVisible = true
+            // this.ordersResponse = await this.apiService.post<TableOrderResponse>(
+            //     'getListOFWork', this.filterService.getOrderRequest(),
+            //     true
+            // );
+           // this.orderService.setOrderResponse(this.ordersResponse)
 
         } else {
             this.ordersResponse = await this.apiService.post<TableOrderResponse>(

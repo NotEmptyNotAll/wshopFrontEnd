@@ -102,7 +102,7 @@ export class OrdersComponent implements OnInit {
             row.rowData.map(cell => {
                 if (cell.cellData.indexOf('thWOrders.orderClosed')!==-1) {
                     tableRow[cell.cellName] = cell.cellData.substr(22, 3)
-                } else if (cell.cellName === 'Код' || cell.cellName === 'Борг' || cell.cellName === 'Разом'
+                } else if (cell.cellName === 'Код' || cell.cellName === 'Долг' || cell.cellName === 'Всего'
                     || cell.cellName === 'З/ч' || cell.cellName === 'Роб.') {
                     tableRow[cell.cellName] = Number(cell.cellData)
                 } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {

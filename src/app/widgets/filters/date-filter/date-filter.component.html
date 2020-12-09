@@ -8,22 +8,22 @@
         <div style="display: flex;flex-direction: row;justify-content: center;align-content: center" >
             <p-radioButton name="groupname1" inputId="val4" [value]="1"
                            [(ngModel)]="menuChange" style="margin-right:5%;margin-left:5%;"></p-radioButton>
-            <label for="val4">днi</label>
+            <label for="val4">дни</label>
             <p-radioButton  name="groupname1" [value]="2" inputId="val5"
                            [(ngModel)]="menuChange" style="margin-right:5%;margin-left:5%;"></p-radioButton>
-            <label for="val5">мiсяцi</label>
+            <label for="val5">месяци</label>
             <p-radioButton  name="groupname1" [value]="3" inputId="val6"
                             [(ngModel)]="menuChange" style="margin-right:5%;margin-left:5%;"></p-radioButton>
-            <label for="val6">період</label>
+            <label for="val6">период</label>
         </div>
     </div>
 
     <div style="position:relative;left:12px;display: flex; flex-direction: column;justify-content: center;width: 100%;align-content: center">
-        <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder="дата від" (click)="changePeriod()" [(ngModel)]="dateFrom" *ngIf="menuChange===1" dateFormat="yy-mm-dd"
+        <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder="дата от" (click)="changePeriod()" [(ngModel)]="dateFrom" *ngIf="menuChange===1" dateFormat="yy-mm-dd"
                   ></p-calendar>
         <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder="дата до" (click)="changePeriod()" [(ngModel)]="dateTo" *ngIf="menuChange===1" dateFormat="yy-mm-dd"
                     ></p-calendar>
-        <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder="дата від"  (click)="changeMonthPeriodDateFrom()" [(ngModel)]="dateFromMonth" *ngIf="menuChange===2" view="month"
+        <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder="дата от"  (click)="changeMonthPeriodDateFrom()" [(ngModel)]="dateFromMonth" *ngIf="menuChange===2" view="month"
                     dateFormat="yy-mm-dd" ></p-calendar>
         <p-calendar style="margin-bottom:3%;"   [showIcon]="true" placeholder="дата до" (click)="changeMonthPeriodDateTo()" [(ngModel)]="dateToMonth" *ngIf="menuChange===2" view="month"
                      dateFormat="yy-mm-dd" ></p-calendar>
@@ -33,7 +33,7 @@
 
         <p-radioButton name="groupname" inputId="val1" [value]="false"
                        [(ngModel)]="isCloseDate" style="margin-right:5%;margin-left:5%"></p-radioButton>
-        <label for="val1">відкр.</label>
+        <label for="val1">откр.</label>
         <p-radioButton name="groupname" [value]="true" inputId="val2"
                        [(ngModel)]="isCloseDate" style="margin-right:5%;margin-left:5%"></p-radioButton>
         <label for="val2">закр.</label>
