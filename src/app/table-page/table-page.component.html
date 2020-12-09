@@ -24,10 +24,11 @@
               [(visible)]="display" [resizable]="true" responsive="false">
         <div class="filter-panel">
             <app-date-filter class="filter"></app-date-filter>
-            <app-payed-filter class="filter"></app-payed-filter>
-            <app-state-filter class="filter" [onlyField]="false"></app-state-filter>
             <app-customer-filter class="filter"></app-customer-filter>
             <app-employee-filter class="filter"></app-employee-filter>
+            <app-payed-filter class="filter"></app-payed-filter>
+            <app-state-filter class="filter" [onlyField]="false"></app-state-filter>
+
         </div>
 
 
@@ -55,6 +56,7 @@
                 [columns]="_selectedColumns" [value]="tableDataService.mainData" [scrollable]="true"
                 scrollHeight="flex"
                 [contextMenu]="cm"
+                columnResizeMode="expand"
                 style="border-color: #f4f4f4"
                 [style]="{borderColor:'#f4f4f4',zIndex:'0'}"
                 [resizableColumns]="true" selectionMode="single"
@@ -94,7 +96,8 @@
                         </div>
                         <div class="p-mb-2 p-mr-2" style="width: 300px; position: relative;top:-10px">
 
-                            <app-substring-filter (onSuggest)="updateData()"
+                            <app-substring-filter (click)="confirmOnFilter($event)"
+                                                  (onSuggest)="updateData()"
                             ></app-substring-filter>
                         </div>
                         <div class="p-mb-2 p-mr-2" style="width: 100px; position: relative;top:-2px">
@@ -139,7 +142,7 @@
                     <th style="width:2rem;border-color: #f4f4f4"
                         [style]="{borderColor:'#f4f4f4', fontSize:'12px'}"></th>
                     <th style="width:2rem;border-color: #f4f4f4"
-                        [style]="{borderColor:'#f4f4f4', fontSize:'12px'}"></th>
+                        [style]="{borderColor:'#f4f4f4', fontSize:'15px'}"></th>
 
                     <th *ngFor="let col of columns" pResizableColumn [pSortableColumn]="col.header"
                         style="border-color: #f4f4f4" [style]="{borderColor:'#f4f4f4', fontSize:'12px'}">

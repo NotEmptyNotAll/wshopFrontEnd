@@ -79,10 +79,15 @@ export class TablePageComponent implements OnInit {
                 target: event.target,
                 message: 'стандартнi фiльтри будуть очищені. Продовжити?',
                 icon: 'pi pi-exclamation-triangle',
+                acceptLabel: 'так',
+                rejectLabel: 'нi',
                 accept: () => {
+                    this.serviceStateFiler.onFastFilter()
+                    this.filterPeriodService.onFastFilter()
+                    this.serviceSubstring.onFastFilter()
+                    this.confirmDisplay = false
                     this.cancelFilter();
                     this.updateData()
-                    this.confirmDisplay = false
                 },
                 reject: () => {
                     this.confirmDisplay = false
@@ -120,6 +125,7 @@ export class TablePageComponent implements OnInit {
             message: rowData.Comment,
             icon: 'pi pi-exclamation-triangle',
             rejectVisible: false,
+            acceptLabel: 'так',
             accept: () => {
                 this.confirmDisplay = false
             },
@@ -139,23 +145,22 @@ export class TablePageComponent implements OnInit {
     }
 
     cancelFilter() {
-        this.serviceStateFiler.onFastFilter()
-        this.filterPeriodService.onFastFilter()
-        this.serviceSubstring.onFastFilter()
+        // this.serviceStateFiler.onFastFilter()
+        // this.filterPeriodService.onFastFilter()
+        // this.serviceSubstring.onFastFilter()
         this.filterService.clearFilter()
         this.childCustomerFilter.clear()
         this.childEmployeeFilter.clear()
         this.childPayedFilter.clear()
         this.childStateFilter.clear()
         this.childDateFilter.clear()
-      //  this.childPeriodDateFilter.clear()
-        this.updateData()
+        //  this.childPeriodDateFilter.clear()
     }
 
     async updateData() {
         this.loading = true
         this.data = await this.apiService.post<TableOrderResponse>(
-            'getCroppedOrders', this.filterService.getOrderRequest(),false
+            'getCroppedOrders', this.filterService.getOrderRequest(), false
         );
         this.display = false
 
@@ -226,7 +231,7 @@ export class TablePageComponent implements OnInit {
                 public filterService: FilterService,
                 public filterPeriodService: ServPeriodFilterService,
                 public apiService: ApiDataServiceService,
-                public serviceSubstring:ServSubstringFilterService,
+                public serviceSubstring: ServSubstringFilterService,
                 public serviceStateFiler: ServStateFilterService,
                 private confirmationService: ConfirmationService,
                 private _router: Router) {

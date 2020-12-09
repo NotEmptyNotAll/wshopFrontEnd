@@ -12,6 +12,8 @@ import {PeriodDateFilterComponent} from "../period-date-filter/period-date-filte
 export class DateFilterComponent implements OnInit {
     private dateTo = null;
     private dateFrom = null;
+    private dateToMonth = null;
+    private dateFromMonth = null;
     private orderRequest: OrderRequest
     private isCloseDate: boolean = false
     @ViewChild(PeriodDateFilterComponent) childPeriodDateFilter:PeriodDateFilterComponent
@@ -28,7 +30,10 @@ export class DateFilterComponent implements OnInit {
     clear() {
         this.dateTo = null;
         this.dateFrom = null;
-        this.childPeriodDateFilter.clear()
+        if(this.childPeriodDateFilter != null){
+            this.childPeriodDateFilter.clear()
+
+        }
     }
 
     changePeriod() {
@@ -52,11 +57,11 @@ export class DateFilterComponent implements OnInit {
 
     changeMonthPeriodDateFrom() {
         this.orderRequest.closeDate = this.isCloseDate
-        if(this.dateFrom != null || this.dateTo!=null){
-            if (this.dateFrom != null) {
-                this.orderRequest.dateFrom = moment(this.dateFrom).utc().format("YYYY-MM-DD")
+        if(this.dateFromMonth != null || this.dateToMonth!=null){
+            if (this.dateFromMonth != null) {
+                this.orderRequest.dateFrom = moment(this.dateFromMonth).utc().format("YYYY-MM-DD")
             }
-            if (this.dateTo == null) {
+            if (this.dateToMonth == null) {
                 this.orderRequest.dateTo = moment().utc().format("YYYY-MM-DD")
             }
         }
@@ -67,14 +72,14 @@ export class DateFilterComponent implements OnInit {
 
     changeMonthPeriodDateTo() {
         this.orderRequest.closeDate = this.isCloseDate
-        if((this.dateFrom != null || this.dateTo!=null)
-        && moment(this.dateTo).utc().format("YYYY-MM-DD")!== this.orderRequest.dateTo ){
-            if (this.dateTo != null) {
-                this.dateTo= new Date(this.dateTo.setMonth(this.dateTo.getMonth()+1))
-                 this.dateTo= new Date(this.dateTo.setDate(0))
-                this.orderRequest.dateTo = moment(this.dateTo).utc().format("YYYY-MM-DD")
+        if((this.dateFromMonth != null || this.dateToMonth!=null)
+        && moment(this.dateToMonth).utc().format("YYYY-MM-DD")!== this.orderRequest.dateTo ){
+            if (this.dateToMonth != null) {
+                this.dateToMonth= new Date(this.dateToMonth.setMonth(this.dateToMonth.getMonth()+1))
+                 this.dateToMonth= new Date(this.dateToMonth.setDate(0))
+                this.orderRequest.dateTo = moment(this.dateToMonth).utc().format("YYYY-MM-DD")
             }
-            if (this.dateFrom == null) {
+            if (this.dateFromMonth == null) {
                 this.orderRequest.dateFrom = moment().year(2000).utc().format("YYYY-MM-DD")
             }
         }

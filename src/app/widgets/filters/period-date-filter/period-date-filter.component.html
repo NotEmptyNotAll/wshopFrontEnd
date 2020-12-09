@@ -19,13 +19,22 @@
     <div class="p-field p-col-36 p-md-12">
         <p-dropdown (onChange)="changePeriod()"
                     [disabled]="filterPeriodService.disableFastFiled"
+                    placeholder="перiод"
                     [options]="periods" [(ngModel)]="filterPeriodService.periodFastFilterData"
                     optionLabel="name"  [showClear]="true">
     </p-dropdown>
     </div>
 </div>
-
-<div *ngIf="!onlyField" class="filter-component">
+<div   *ngIf="!onlyField"   class="p-fluid  p-grid p-formgrid" style="width: 270px">
+    <div class="p-field p-col-36 p-md-12">
+        <p-dropdown (onChange)="changePeriod()"
+                    placeholder="перiод"
+                    [options]="periods" [(ngModel)]="period"
+                    optionLabel="name"  [showClear]="true">
+        </p-dropdown>
+    </div>
+</div>
+<!--<div *ngIf="!onlyField" class="filter-component">
     <div class="white-line"></div>
     <p class="title" >{{'loginPage.datePeriod' | translate}}</p>
     <div class="filter-body">
@@ -43,4 +52,4 @@
 
 
 
-</div>
+</div>-->

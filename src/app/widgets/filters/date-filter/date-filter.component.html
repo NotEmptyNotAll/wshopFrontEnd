@@ -23,11 +23,11 @@
                   ></p-calendar>
         <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder="дата до" (click)="changePeriod()" [(ngModel)]="dateTo" *ngIf="menuChange===1" dateFormat="yy-mm-dd"
                     ></p-calendar>
-        <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder="дата від"  (click)="changeMonthPeriodDateFrom()" [(ngModel)]="dateFrom" *ngIf="menuChange===2" view="month"
+        <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder="дата від"  (click)="changeMonthPeriodDateFrom()" [(ngModel)]="dateFromMonth" *ngIf="menuChange===2" view="month"
                     dateFormat="yy-mm-dd" ></p-calendar>
-        <p-calendar style="margin-bottom:3%;"   [showIcon]="true" placeholder="дата до" (click)="changeMonthPeriodDateTo()" [(ngModel)]="dateTo" *ngIf="menuChange===2" view="month"
+        <p-calendar style="margin-bottom:3%;"   [showIcon]="true" placeholder="дата до" (click)="changeMonthPeriodDateTo()" [(ngModel)]="dateToMonth" *ngIf="menuChange===2" view="month"
                      dateFormat="yy-mm-dd" ></p-calendar>
-        <app-period-date-filter style="margin-bottom:3%;" [onlyField]="true"  *ngIf="menuChange===3" ></app-period-date-filter>
+        <app-period-date-filter style="margin-bottom:3%;" [onlyField]="false"  *ngIf="menuChange===3" ></app-period-date-filter>
     </div>
     <div style="margin-bottom:3%;display: flex;flex-direction: row;justify-content: center;align-content: center">
 

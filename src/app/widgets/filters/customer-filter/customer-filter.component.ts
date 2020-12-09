@@ -55,7 +55,7 @@ export class CustomerFilterComponent implements OnInit {
     changeState() {
 
         this.orderRequest = this.filterService.getOrderRequest()
-        if (this.selected.id !== undefined && this.selected.id !== null) {
+        if (this.selected!==null && this.selected.id !== undefined && this.selected.id !== null ) {
             this.orderRequest.customerId = this.selected.id
         } else {
             this.orderRequest.customerId = null
