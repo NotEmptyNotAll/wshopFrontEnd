@@ -12,7 +12,7 @@
             [disabled]="stateService.disableFastFiled"
              (onChange)="changeState()"  style="width: 300px" [showClear]="true"
              [options]="states"
-            placeholder="состояние"
+            placeholder="статус"
             [(ngModel)]="stateService.stateFastFilterData" optionLabel="name"></p-dropdown>
     </div>
 </div>
@@ -20,7 +20,7 @@
 
 <div *ngIf="!onlyField" class="filter-component">
     <div class="white-line"></div>
-    <p class="title" >состояние</p>
+    <p class="title" >статус</p>
     <div class="filter-body">
 
     <div class=" p-fluid  p-grid p-formgrid" >
@@ -28,7 +28,7 @@
             <p-dropdown            [disabled]="disabled"
                                    (onChange)="changeState()"
                                    [showClear]="true"
-                                   placeholder="состояние"
+                                   placeholder="статус"
                         [options]="states" [(ngModel)]="state" optionLabel="name"></p-dropdown>
 
         </div>
