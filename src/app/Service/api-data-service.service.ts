@@ -39,8 +39,9 @@ export class ApiDataServiceService {
     }
 
     constructor() {
+    //    axios.defaults.timeout = 5000
         this.axiosClient = axios.create({
-            timeout: 3000,
+            timeout: 120000,
             headers: {
                 "X-Initialized-At": Date.now().toString()
             }
@@ -73,12 +74,13 @@ export class ApiDataServiceService {
             var axiosResponse = await this.axiosClient.request<T>({
                 method: "post",
                 data: data,
-
+timeout:100000,
                 url: this.testUrl+url,
             });
             return (axiosResponse.data);
 
-        } catch (error) {
+        }
+        catch (error) {
             console.log(error)
             return null;
             // return (Promise.reject(this.normalizeError(error)));

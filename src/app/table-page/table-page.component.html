@@ -166,7 +166,7 @@
                         <i class="pi pi-check"></i>
                         </span>
                         <span *ngIf="rowData[col.field]==='no' || rowData[col.field]==='0'"></span>
-                        <span *ngIf="col.field==='Борг' || col.field==='Роб.' || col.field==='З/ч' || col.field==='Разом'"
+                        <span *ngIf="col.field==='Долг' || col.field==='Раб.' || col.field==='З/ч' || col.field==='Всего'"
                               style="padding-left: 50%"> </span>
                         <span *ngIf="!(rowData[col.field]==='yes' || rowData[col.field]==='1') && !(rowData[col.field]==='no' || rowData[col.field]==='0')">
                                             {{rowData[col.field]}}
