@@ -7,7 +7,7 @@ import {FilterService} from "../filter.service";
     providedIn: 'root'
 })
 export class ServPeriodFilterService {
-    public periodFastFilterData = {name: '', code: -1}
+    public periodFastFilterData = {name: 'Сегодня', code: 1}
     public periodFilterData = {name: '', code: -1}
     public periodTemp = {name: '', code: -1}
     public disableFastFiled = false

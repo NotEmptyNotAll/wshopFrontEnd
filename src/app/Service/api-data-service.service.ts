@@ -73,6 +73,7 @@ export class ApiDataServiceService {
             var axiosResponse = await this.axiosClient.request<T>({
                 method: "post",
                 data: data,
+
                 url: this.testUrl+url,
             });
             return (axiosResponse.data);

@@ -85,6 +85,10 @@ export class LoginComponent implements OnInit {
         console.log(this.orderRequest)
         this.orderRequest.lang = this.apiService.getLang();
         this.orderRequest.user = this.selectedUser
+        let dateFrom = moment().utc().format("YYYY-MM-DD")
+        let dateTo = moment().utc().format("YYYY-MM-DD")
+        this.orderRequest.dateTo=dateTo
+        this.orderRequest.dateFrom=dateFrom
         this.filterService.setOrderRequest(this.orderRequest)
         if (this.selectedUser.name !== 'Administrator (superuser) ') {
             // this.orderRequest = this.filterService.getOrderRequest()
@@ -113,6 +117,20 @@ export class LoginComponent implements OnInit {
                 this.router.navigate(['/order'])
                 ;
             }
+        }
+
+
+        this.ordersResponse = await this.apiService.post<TableOrderResponse>(
+            'getCroppedOrders', this.filterService.getOrderRequest(),true
+        );
+        console.log(this.orderRequest)
+        this.orderService.setOrderResponse(this.ordersResponse)
+
+
+        if (this.ordersResponse.ordersTableBody.length != 0) {
+            this.orderService.setUserValidate(true)
+            this.router.navigate(['/order'])
+            ;
         }
     }
 
