@@ -13,4 +13,7 @@ export interface OrderRequest {
     status: boolean;
     payed: boolean;
     user: User;
+    workStatus:number;
+    workId:number;
+    detailId:number;
 }

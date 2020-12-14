@@ -68,6 +68,7 @@ export class MasterSelectWindowComponent implements OnInit {
         // this.data = await this.apiService.get<Order[]>('getCroppedOrders')
         this.data = this.orderService.getOrderResponse()
         this.mainColumn = []
+        console.log(this.data)
         this.data.columnTables.map(elem => {
                 this.mainColumn.push(
                     {

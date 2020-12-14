@@ -21,6 +21,9 @@ export class FilterService {
         status: null,
         payed: null,
         user: null,
+        workId:null,
+        workStatus:null,
+        detailId:null,
         closeDate: false
     }
 

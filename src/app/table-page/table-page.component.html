@@ -52,13 +52,13 @@
         <p-table
                 [reorderableColumns]="true"
                 class="table-style"
-                [loading]="loading"
+                [loading]="apiService.isLoadingData"
                 [columns]="_selectedColumns" [value]="tableDataService.mainData" [scrollable]="true"
                 scrollHeight="flex"
                 [contextMenu]="cm"
                 columnResizeMode="expand"
                 style="border-color: #f4f4f4"
-                [style]="{borderColor:'#f4f4f4',zIndex:'0'}"
+                [style]="{borderColor:'#f4f4f4',zIndex:'0',minHeight:'100%'}"
                 [resizableColumns]="true" selectionMode="single"
                 dataKey="id">
 
@@ -78,13 +78,33 @@
                             >
                             </button>
                         </div>
-                        <div class="p-mb-2 p-mr-2" style="width: 300px; position: relative;top:-10px">
+                        <div *ngIf="standardFilterDisable" class="p-mb-2 p-mr-2" style="width: 300px; position: relative;top:-10px">
+                            <app-detail-filter (onSuggest)="updateData()"
+                                               (click)="confirmOnFilter($event)"
+                            ></app-detail-filter>
+                        </div>
+                        <div *ngIf="standardFilterDisable" class="p-mb-2 p-mr-2" style="width: 300px; position: relative;top:-10px">
+                            <app-work-filter (onSuggest)="updateData()"
+                                             (click)="confirmOnFilter($event)"
+                            ></app-work-filter>
+                        </div>
+                        <div *ngIf="standardFilterDisable" class="p-mb-2 p-mr-2" style="width: 300px; position: relative;top:-10px">
+                            <app-work-status-filter
+                                    [disabled]="stateFilterDisable" [onlyField]="true"
+                                    (onSuggest)="updateData()"
+                                    (onClear)="updateData()"
+                                    (click)="confirmOnFilter($event)"
+                            ></app-work-status-filter>
+                        </div>
+                        <div *ngIf="!standardFilterDisable" class="p-mb-2 p-mr-2"
+                             style="width: 300px; position: relative;top:-10px">
                             <app-period-date-filter [onlyField]="true" (onSuggest)="updateData()"
                                                     (onClear)="updateData()"
                                                     (click)="confirmOnFilter($event)"
                             ></app-period-date-filter>
                         </div>
-                        <div class="p-mb-2 p-mr-2" style="width: 300px; position: relative;top:-10px">
+                        <div *ngIf="!standardFilterDisable" class="p-mb-2 p-mr-2"
+                             style="width: 300px; position: relative;top:-10px">
                             <app-state-filter
                                     [disabled]="stateFilterDisable" [onlyField]="true"
                                     (onSuggest)="updateData()"
@@ -92,7 +112,8 @@
                                     (click)="confirmOnFilter($event)"
                             ></app-state-filter>
                         </div>
-                        <div class="p-mb-2 p-mr-2" style="width: 300px; position: relative;top:-10px">
+                        <div *ngIf="!standardFilterDisable" class="p-mb-2 p-mr-2"
+                             style="width: 300px; position: relative;top:-10px">
 
                             <app-substring-filter (click)="confirmOnFilter($event)"
                                                   (onSuggest)="updateData()"

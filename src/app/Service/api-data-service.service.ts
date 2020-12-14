@@ -3,6 +3,7 @@ import axios from "axios";
 import {AxiosInstance} from "axios";
 import {Order} from "../orders-page/orders";
 import {User} from "./User";
+import {MessageService} from "primeng/api";
 
 // @ts-ignore
 @Injectable({
@@ -12,14 +13,17 @@ import {User} from "./User";
 export class ApiDataServiceService {
 
     mainURL: string = 'http://10.102.200.11:5051/'
-     testUrl: string = 'http://localhost:5051/'
+    testUrl: string = 'http://localhost:5051/'
     private axiosClient: AxiosInstance;
     private errorHandler: ErrorHandler;
     private ordersResp: Order[];
     private users: User[];
     private userData: User;
-    private lang: string = 'en'
+    private lang: string = 'ru'
+    private errorNumber: number = 0
     public isLoading: boolean = false
+    public isLoadingData: boolean = false
+    private errorMsg: string = 'Произашла ошибка. Попробуйте повторить дествие или перезагрузиться'
 
     public getLang() {
         return this.lang
@@ -38,8 +42,9 @@ export class ApiDataServiceService {
         this.userData = user
     }
 
-    constructor() {
-    //    axios.defaults.timeout = 5000
+    constructor(
+        private messageService: MessageService) {
+        //    axios.defaults.timeout = 5000
         this.axiosClient = axios.create({
             timeout: 120000,
             headers: {
@@ -74,13 +79,12 @@ export class ApiDataServiceService {
             var axiosResponse = await this.axiosClient.request<T>({
                 method: "post",
                 data: data,
-timeout:100000,
-                url: this.testUrl+url,
+                timeout: 100000,
+                url: this.testUrl + url,
             });
             return (axiosResponse.data);
 
-        }
-        catch (error) {
+        } catch (error) {
             console.log(error)
             return null;
             // return (Promise.reject(this.normalizeError(error)));
@@ -92,8 +96,9 @@ timeout:100000,
 
     }
 
-    public async post<T>(url: string, data: any,applyLoading:boolean): Promise<T> {
+    public async post<T>(url: string, data: any, applyLoading: boolean): Promise<T> {
         this.isLoading = applyLoading
+        this.isLoadingData=true
         try {
 
             var axiosResponse = await this.axiosClient.request<T>({
@@ -101,15 +106,16 @@ timeout:100000,
                 data: data,
                 url: this.mainURL + url,
             });
+            this.errorNumber=0;
             return (axiosResponse.data);
 
         } catch (error) {
-            console.log(error)
-            return null;
+            return (Promise.reject(this.normalizeError(null)));
             // return (Promise.reject(this.normalizeError(error)));
 
         } finally {
             this.isLoading = false
+            this.isLoadingData=false
         }
 
 
@@ -127,28 +133,36 @@ timeout:100000,
             return (axiosResponse.data);
 
         } catch (error) {
-
-            return (Promise.reject(this.normalizeError(error)));
+            return (Promise.reject(this.normalizeError(null)));
 
         } finally {
             this.isLoading = false
         }
 
-
     }
 
 
-    private normalizeError(error: any) {
+    public normalizeError(message: string) {
+        this.errorNumber++;
+
+        if (message === null || message === '') {
+            message = this.errorMsg
+        }
 
         // this.errorHandler.handleError(error);
 
         // NOTE: Since I'm not really dealing with a production API, this doesn't really
         // normalize anything (ie, this is not the focus of this demo).
-        return ({
-            id: "-1",
-            code: "UnknownError",
-            message: "An unexpected error occurred."
+
+        this.messageService.add({
+            severity: 'error',
+            summary: 'ERROR',
+            detail: this.errorNumber > 1 ? this.errorMsg : message
         });
+        this.isLoading = false
+
+        return null
+
 
     }
 

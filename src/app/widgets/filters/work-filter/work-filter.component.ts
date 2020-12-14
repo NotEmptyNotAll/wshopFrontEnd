@@ -7,19 +7,19 @@ import {ApiDataServiceService} from "../../../Service/api-data-service.service";
 import {SimpleData} from "../SimpleData";
 
 @Component({
-    selector: 'app-detail-filter',
-    templateUrl: './detail-filter.component.html',
-    styleUrls: ['./detail-filter.component.css']
+    selector: 'app-work-filter',
+    templateUrl: './work-filter.component.html',
+    styleUrls: ['./work-filter.component.css']
 })
-export class DetailFilterComponent implements OnInit {
+export class WorkFilterComponent implements OnInit {
     @Output() onSuggest: EventEmitter<any> = new EventEmitter();
 
-    private detail = {name: '', id: null}
+    private work = {name: '', id: null}
     @ViewChild(AutoComplete) chidFilter: AutoComplete
 
     // @Output() onSuggest: EventEmitter<any> = new EventEmitter();
     private orderRequest: OrderRequest
-    private details: any[] = []
+    private works: any[] = []
     filtered: any[];
     selected: SimpleData;
 
@@ -45,7 +45,7 @@ export class DetailFilterComponent implements OnInit {
     }
 
     async getCustomer(name) {
-        this.details = await this.apiService.post<SimpleData[]>('getListDetails'
+        this.works = await this.apiService.post<SimpleData[]>('getListJobs'
             , {name: name, sizeResponse: 50}, false)
     }
 
@@ -59,13 +59,13 @@ export class DetailFilterComponent implements OnInit {
 
         this.orderRequest = this.filterService.getOrderRequest()
         if (this.selected !== null && this.selected.id !== undefined && this.selected.id !== null) {
-            this.orderRequest.detailId = this.selected.id
+            this.orderRequest.workId = this.selected.id
         } else {
-            this.orderRequest.detailId = null
+            this.orderRequest.workId = null
         }
         this.filterService.setOrderRequest(this.orderRequest)
-        this.onSuggest.emit()
-        //this.onSuggest.emit();
+
+        this.onSuggest.emit();
 
     }
 

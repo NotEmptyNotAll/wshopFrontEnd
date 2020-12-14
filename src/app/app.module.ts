@@ -55,6 +55,8 @@ import { ButtonListActionComponent } from './widgets/button-list-action/button-l
 import {ContextMenuModule} from "primeng/contextmenu";
 import { LoadingSpinerComponent } from './widgets/loading-spiner/loading-spiner.component';
 import {ProgressSpinnerModule} from "primeng/progressspinner";
+import { WorkFilterComponent } from './widgets/filters/work-filter/work-filter.component';
+import { WorkStatusFilterComponent } from './widgets/filters/work-status-filter/work-status-filter.component';
 
 // @ts-ignore
 // @ts-ignore
@@ -114,7 +116,9 @@ import {ProgressSpinnerModule} from "primeng/progressspinner";
         MasterSelectWindowComponent,
         DetailFilterComponent,
         ButtonListActionComponent,
-        LoadingSpinerComponent],
+        LoadingSpinerComponent,
+        WorkFilterComponent,
+        WorkStatusFilterComponent],
     providers: [ConfirmationService, MessageService]
 })
 

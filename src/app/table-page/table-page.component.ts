@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild, ViewChildren} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewChildren} from '@angular/core';
 import {TableData} from './tableData';
 import {TableDataService} from "./tableData.service";
 import {ConfirmationService, SortEvent} from 'primeng/api';
@@ -46,6 +46,7 @@ export class TablePageComponent implements OnInit {
     @ViewChild(SubstringFilterComponent) subStringFilter: DateFilterComponent
     @ViewChild(PeriodDateFilterComponent) childPeriodDateFilter: PeriodDateFilterComponent
     @Input() startData: TableData[]
+    @Output() onUpdateData: EventEmitter<any> = new EventEmitter();
     @Input() mainColumn: any[]
     @Input() stateFilterDisable: boolean = false
     @Input() buttonActionDisable: boolean = false
@@ -77,7 +78,7 @@ export class TablePageComponent implements OnInit {
         if (this.serviceStateFiler.disableFastFiled || this.filterPeriodService.disableFastFiled) {
             this.confirmationService.confirm({
                 target: event.target,
-               // message: 'стандартнi фiльтри будуть очищені. Продовжити?',
+                // message: 'стандартнi фiльтри будуть очищені. Продовжити?',
                 message: 'стандартные фильтры будут очищены. Продолжить?',
                 icon: 'pi pi-exclamation-triangle',
                 acceptLabel: 'да',
@@ -159,72 +160,15 @@ export class TablePageComponent implements OnInit {
     }
 
     async updateData() {
-        this.loading = true
-        this.data = await this.apiService.post<TableOrderResponse>(
-            'getCroppedOrders', this.filterService.getOrderRequest(), false
-        );
         this.display = false
 
-        let mainColumn = [];
-        console.log(this.data.ordersTableBody)
-        this.data.columnTables.map(elem => {
-            mainColumn.push(
-                {
-                    field: elem.nameColumn,
-                    header: elem.nameColumn,
-                    width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
-                }
-            )
-        })
-        let regexp = new RegExp('^[1-9]\d{0,2}$');
-        let tableBody = []
-        this.data.ordersTableBody.map(row => {
-            let tableRow: any = {}
-            row.rowData.map(cell => {
-                if (cell.cellData.indexOf('thWOrders.orderClosed') !== -1) {
-                    tableRow[cell.cellName] = cell.cellData.substr(22, 3)
-                } else if (cell.cellName === 'Код' || cell.cellName === 'Долг' || cell.cellName === 'Всего'
-                    || cell.cellName === 'З/ч' || cell.cellName === 'Раб.') {
-                    tableRow[cell.cellName] = Number(cell.cellData)
-                } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
-                    let data = new Date(cell.cellData)
-                    tableRow[cell.cellName] = moment(data.getTime()).utc().format("DD.MM.YY");
-                } else {
-                    tableRow[cell.cellName] = cell.cellData
-                }
-            })
-            tableBody.push(tableRow)
-        })
-        let tableRowPattern: any = {}
+            this.onUpdateData.emit()
 
-        console.log(this.data)
-        if (this.data.ordersTableBody.length !== 0) {
-            this.data.ordersTableBody[0].rowData.map(
-                cell => {
-                    if (cell.cellName === 'Close') {
-                        tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3)
-
-                    } else {
-                        tableRowPattern[cell.cellName] = cell.cellData;
-                    }
-                }
-            )
-        }
-
-
-        this.tableDataService.setMainData(tableBody)
-        this.tableDataService.setTablePatternRow(tableRowPattern)
-
-        this.tableDataService.setStartData(this.startData)
-        //  this.cols = this.mainColumn.slice()
-        // this.columns = this.cols
-        //    this._selectedColumns = this.cols;
 
         if (this.dynamicColumns !== '') {
             this.tableDataService.addColumnText = this.dynamicColumns
             this.setColumn()
         }
-        this.loading = false
     }
 
     constructor(public tableDataService: TableDataService,

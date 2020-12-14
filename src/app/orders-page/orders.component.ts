@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
 import {TableOrderResponse} from "../Service/table-order-response";
 import {User} from "../Service/User";
 import * as moment from "moment";
+import {FilterService} from "../widgets/filters/filter.service";
 
 @Component({
     selector: 'app-orders',
@@ -30,6 +31,8 @@ export class OrdersComponent implements OnInit {
                 public tableService: TableDataService,
                 public orderService: OrderService,
                 public renderer2: Renderer2,
+                public filterService: FilterService,
+                public tableDataService: TableDataService,
                 private router: Router) {
         this.start()
 
@@ -132,6 +135,65 @@ export class OrdersComponent implements OnInit {
         this.tableService.setTablePatternRow(tableRowPattern)
     }
 
+
+  async  updateData(){
+        this.data = await this.apiService.post<TableOrderResponse>(
+            'getCroppedOrders', this.filterService.getOrderRequest(), false
+        );
+
+        let mainColumn = [];
+        console.log(this.data.ordersTableBody)
+        this.data.columnTables.map(elem => {
+            mainColumn.push(
+                {
+                    field: elem.nameColumn,
+                    header: elem.nameColumn,
+                    width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
+                }
+            )
+        })
+        let regexp = new RegExp('^[1-9]\d{0,2}$');
+        let tableBody = []
+        this.data.ordersTableBody.map(row => {
+            let tableRow: any = {}
+            row.rowData.map(cell => {
+                if (cell.cellData.indexOf('thWOrders.orderClosed') !== -1) {
+                    tableRow[cell.cellName] = cell.cellData.substr(22, 3)
+                } else if (cell.cellName === 'Код' || cell.cellName === 'Долг' || cell.cellName === 'Всего'
+                    || cell.cellName === 'З/ч' || cell.cellName === 'Раб.') {
+                    tableRow[cell.cellName] = Number(cell.cellData)
+                } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
+                    let data = new Date(cell.cellData)
+                    tableRow[cell.cellName] = moment(data.getTime()).utc().format("DD.MM.YY");
+                } else {
+                    tableRow[cell.cellName] = cell.cellData
+                }
+            })
+            tableBody.push(tableRow)
+        })
+        let tableRowPattern: any = {}
+
+        console.log(this.data)
+        if (this.data.ordersTableBody.length !== 0) {
+            this.data.ordersTableBody[0].rowData.map(
+                cell => {
+                    if (cell.cellName === 'Close') {
+                        tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3)
+
+                    } else {
+                        tableRowPattern[cell.cellName] = cell.cellData;
+                    }
+                }
+            )
+        }
+
+
+        this.tableDataService.setMainData(tableBody)
+        this.tableDataService.setTablePatternRow(tableRowPattern)
+
+        this.tableDataService.setStartData(this.data)
+      return true;
+    }
     ngOnInit() {
 
     }

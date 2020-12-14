@@ -63,12 +63,12 @@ export class LoginComponent implements OnInit {
 
     }
 
-    showSuccess() {
-        this.messageService.add({severity: 'success', summary: this.name, detail: 'смена началась'});
+    showSuccess(msg: string) {
+        this.messageService.add({severity: 'success', summary: this.name, detail: msg});
     }
 
     moveToMasterSelectWindows() {
-        this.showSuccess()
+        this.showSuccess('смена началась')
         this.router.navigate(['/selectWork'])
     }
 
@@ -87,50 +87,44 @@ export class LoginComponent implements OnInit {
         this.orderRequest.user = this.selectedUser
         let dateFrom = moment().utc().format("YYYY-MM-DD")
         let dateTo = moment().utc().format("YYYY-MM-DD")
-        this.orderRequest.dateTo=dateTo
-        this.orderRequest.dateFrom=dateFrom
+        this.orderRequest.dateTo = dateTo
+        this.orderRequest.dateFrom = dateFrom
+        this.orderRequest.state = 'CLOSED'
         this.filterService.setOrderRequest(this.orderRequest)
-        if (this.selectedUser.name !== 'Administrator (superuser) ') {
-            // this.orderRequest = this.filterService.getOrderRequest()
-            // this.orderRequest.state = 'UNCLOSED'
-            // this.filterService.setOrderRequest(this.orderRequest)
-            // this.selectedUser.name = 'Administrator (superuser) '
-            // this.selectedUser.password = '12345'
-            // this.orderService.setUserValidate(true)
-            // this.masterWindowVisible = true
-            // this.ordersResponse = await this.apiService.post<TableOrderResponse>(
-            //     'getListOFWork', this.filterService.getOrderRequest(),
-            //     true
-            // );
-           // this.orderService.setOrderResponse(this.ordersResponse)
+        if (this.selectedUser.role !== 2) {
+            this.orderRequest = this.filterService.getOrderRequest()
+            //this.orderRequest.state = 'UNCLOSED'
+  //          this.orderRequest.user.id=100
+//            this.orderRequest.user.password='quadcore'
+            this.filterService.setOrderRequest(this.orderRequest)
 
-        } else {
+
             this.ordersResponse = await this.apiService.post<TableOrderResponse>(
-                'getCroppedOrders', this.filterService.getOrderRequest(),true
+                'getListOFWork', this.filterService.getOrderRequest(),
+                true
             );
-            console.log(this.orderRequest)
-            this.orderService.setOrderResponse(this.ordersResponse)
-
-
-            if (this.ordersResponse.ordersTableBody.length != 0) {
+            if (this.ordersResponse.status !== -1) {
                 this.orderService.setUserValidate(true)
-                this.router.navigate(['/order'])
-                ;
+                this.masterWindowVisible = true
+                this.orderService.setOrderResponse(this.ordersResponse)
+            } else {
+                this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
+
             }
-        }
+        } else {
 
+            this.ordersResponse = await this.apiService.post<TableOrderResponse>(
+                'getCroppedOrders', this.filterService.getOrderRequest(), true
+            );
 
-        this.ordersResponse = await this.apiService.post<TableOrderResponse>(
-            'getCroppedOrders', this.filterService.getOrderRequest(),true
-        );
-        console.log(this.orderRequest)
-        this.orderService.setOrderResponse(this.ordersResponse)
-
-
-        if (this.ordersResponse.ordersTableBody.length != 0) {
-            this.orderService.setUserValidate(true)
-            this.router.navigate(['/order'])
-            ;
+            if (this.ordersResponse.status !== -1) {
+                this.orderService.setOrderResponse(this.ordersResponse)
+                this.orderService.setUserValidate(true)
+                this.showSuccess('пользователь авторизтрован')
+                this.router.navigate(['/order']);
+            } else {
+                this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
+            }
         }
     }
 

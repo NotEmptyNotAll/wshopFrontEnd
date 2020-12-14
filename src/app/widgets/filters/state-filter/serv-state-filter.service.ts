@@ -7,7 +7,7 @@ import {OrderRequest} from "../order.request";
   providedIn: 'root'
 })
 export class ServStateFilterService {
-  public stateFastFilterData = {name: '', code: ''}
+  public stateFastFilterData =    {name: 'закрытые', code: 'CLOSED'}
   public stateFilterData = {name: '', code: ''}
   public stateTemp = {name: '', code: ''}
   public disableFastFiled = false

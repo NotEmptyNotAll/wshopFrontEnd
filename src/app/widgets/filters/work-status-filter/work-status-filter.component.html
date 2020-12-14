@@ -1,0 +1,10 @@
+<div class="p-fluid  p-grid p-formgrid">
+    <div class="p-field p-col-36 p-md-12">
+        <p-dropdown *ngIf="onlyField"
+                    [disabled]="stateService.disableFastFiled"
+                    (onChange)="changeState()"  style="width: 300px" [showClear]="true"
+                    [options]="states"
+                    placeholder="статус"
+                    [(ngModel)]="stateService.stateFastFilterData" optionLabel="name"></p-dropdown>
+    </div>
+</div>

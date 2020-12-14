@@ -17,17 +17,17 @@ export class PeriodDateFilterComponent implements OnInit {
     private orderRequest: OrderRequest
     private isCloseDate: boolean = false
     private periods: any[] = [
-        {name: 'Все', code: 0},
-        {name: 'Сегодня', code: 1},
-        {name: 'Вчера', code: 2},
-        {name: 'Текущая неделя', code: 3},
-        {name: 'Текущий месяц', code: 4},
-        {name: 'Текущий квартал', code: 5},
-        {name: 'Текущий год', code: 6},
-        {name: 'Прошедшая неделя', code: 7},
-        {name: 'Прошлый месяц', code: 8},
-        {name: 'Прошлый квартал', code: 9},
-        {name: 'Прошлый год', code: 10},
+        {name: 'все', code: 0},
+        {name: 'сегодня', code: 1},
+        {name: 'вчера', code: 2},
+        {name: 'текущая неделя', code: 3},
+        {name: 'текущий месяц', code: 4},
+        {name: 'текущий квартал', code: 5},
+        {name: 'текущий год', code: 6},
+        {name: 'прошедшая неделя', code: 7},
+        {name: 'прошлый месяц', code: 8},
+        {name: 'прошлый квартал', code: 9},
+        {name: 'прошлый год', code: 10},
     ]
 
     constructor(

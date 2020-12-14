@@ -18,7 +18,7 @@ export class StateFilterComponent implements OnInit {
 
 
     private states: any[] = [
-        {name: 'Все', code: null},
+        {name: 'все', code: null},
         {name: 'выполненные', code: 'FINISHED'},
         {name: 'незакрытые', code: 'UNCLOSED'},
         {name: 'закрытые', code: 'CLOSED'}
@@ -33,7 +33,7 @@ export class StateFilterComponent implements OnInit {
     }
 
     clear() {
-        this.state = {name: 'Усе', code: null}
+        this.state = {name: 'все', code: null}
         this.changeState()
         this.onClear.emit()
     }

@@ -4,4 +4,5 @@ import {TableColumnHeader} from "../table-page/table-column-header";
 export interface TableOrderResponse {
     columnTables: TableColumnHeader[];
     ordersTableBody: TableRow[];
+    status: number;
 }
