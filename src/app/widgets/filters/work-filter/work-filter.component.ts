@@ -41,7 +41,8 @@ export class WorkFilterComponent implements OnInit {
         //         filteredTemp.push(stat);
         //     }
         // }
-        this.getCustomer(event.query)
+
+            this.getCustomer(event.query)
     }
 
     async getCustomer(name) {
@@ -50,8 +51,12 @@ export class WorkFilterComponent implements OnInit {
     }
 
     clear() {
-        this.filtered = []
-        this.chidFilter.selectItem(null)
+        this.orderRequest = this.filterService.getOrderRequest()
+        this.orderRequest.workId = null
+        this.filterService.setOrderRequest(this.orderRequest)
+
+        this.onSuggest.emit();
+        this.getCustomer('')
     }
 
 

@@ -27,7 +27,8 @@ export class OrdersComponent implements OnInit {
     temp: any;
     private user: User;
 
-    constructor(@Inject(WINDOW) private window: Window, public apiService: ApiDataServiceService,
+    constructor(@Inject(WINDOW) private window: Window,
+                public apiService: ApiDataServiceService,
                 public tableService: TableDataService,
                 public orderService: OrderService,
                 public renderer2: Renderer2,

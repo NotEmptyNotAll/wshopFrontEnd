@@ -1,7 +1,8 @@
 <div style="background: #F56C6C">
-    <p>ЗНАХОДИТЬСЯ В РОЗРОБЦІ/p>
+    <p>ЗНАХОДИТЬСЯ В РОЗРОБЦІ</p>
 </div>
 <app-table-page [startData]="data" title=" вибір замовлення"
                 [mainColumn]="mainColumn" [stateFilterDisable]="true"
+                (onUpdateData)="onUpdate()"
                 [buttonItems]="buttItem" [standardFilterDisable]="true"
                 [buttonActionDisable]="true"  *ngIf="data!=null"></app-table-page>

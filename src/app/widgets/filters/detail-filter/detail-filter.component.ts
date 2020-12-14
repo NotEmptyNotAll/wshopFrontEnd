@@ -41,7 +41,9 @@ export class DetailFilterComponent implements OnInit {
         //         filteredTemp.push(stat);
         //     }
         // }
-        this.getCustomer(event.query)
+
+
+            this.getCustomer(event.query)
     }
 
     async getCustomer(name) {
@@ -49,9 +51,16 @@ export class DetailFilterComponent implements OnInit {
             , {name: name, sizeResponse: 50}, false)
     }
 
+
     clear() {
-        this.filtered = []
-        this.chidFilter.selectItem(null)
+        this.orderRequest = this.filterService.getOrderRequest()
+        this.orderRequest.detailId = 1
+        this.filterService.setOrderRequest(this.orderRequest)
+
+        this.onSuggest.emit();
+
+        this.getCustomer('')
+
     }
 
 
@@ -60,6 +69,7 @@ export class DetailFilterComponent implements OnInit {
         this.orderRequest = this.filterService.getOrderRequest()
         if (this.selected !== null && this.selected.id !== undefined && this.selected.id !== null) {
             this.orderRequest.detailId = this.selected.id
+
         } else {
             this.orderRequest.detailId = null
         }
