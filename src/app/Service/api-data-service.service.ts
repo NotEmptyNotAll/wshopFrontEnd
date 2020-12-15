@@ -12,7 +12,7 @@ import {MessageService} from "primeng/api";
 })
 export class ApiDataServiceService {
 
-    mainURL: string = 'http://10.102.200.11:5051/'
+    mainURL: string = 'https://10.102.200.11:5051/'
     testUrl: string = 'http://localhost:5051/'
     private axiosClient: AxiosInstance;
     private errorHandler: ErrorHandler;
