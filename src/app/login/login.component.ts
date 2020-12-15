@@ -112,20 +112,32 @@ export class LoginComponent implements OnInit {
             //     this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
             //
             // }
+        // } else {
+        //
+        //     this.ordersResponse = await this.apiService.post<TableOrderResponse>(
+        //         'getCroppedOrders', this.filterService.getOrderRequest(), true
+        //     );
+        //
+        //     if (this.ordersResponse.status !== -1) {
+        //         this.orderService.setOrderResponse(this.ordersResponse)
+        //         this.orderService.setUserValidate(true)
+        //         this.showSuccess('пользователь авторизтрован')
+        //         this.router.navigate(['/order']);
+        //     } else {
+        //         this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
+        //     }
+        // }
+        this.ordersResponse = await this.apiService.post<TableOrderResponse>(
+            'getCroppedOrders', this.filterService.getOrderRequest(), true
+        );
+
+        if (this.ordersResponse.status !== -1) {
+            this.orderService.setOrderResponse(this.ordersResponse)
+            this.orderService.setUserValidate(true)
+            this.showSuccess('пользователь авторизтрован')
+            this.router.navigate(['/order']);
         } else {
-
-            this.ordersResponse = await this.apiService.post<TableOrderResponse>(
-                'getCroppedOrders', this.filterService.getOrderRequest(), true
-            );
-
-            if (this.ordersResponse.status !== -1) {
-                this.orderService.setOrderResponse(this.ordersResponse)
-                this.orderService.setUserValidate(true)
-                this.showSuccess('пользователь авторизтрован')
-                this.router.navigate(['/order']);
-            } else {
-                this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
-            }
+            this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
         }
     }
 
