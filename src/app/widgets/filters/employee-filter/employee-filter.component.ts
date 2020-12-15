@@ -33,6 +33,7 @@ export class EmployeeFilterComponent implements OnInit {
     this.chidFilter.selectItem(null)
   }
   async getCustomer() {
+    this.apiService.applySubLoading=false
     this.employees = await this.apiService.get<User[]>('getListUser')
   }
   filter(event) {

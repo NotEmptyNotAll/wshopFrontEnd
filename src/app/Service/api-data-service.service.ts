@@ -23,6 +23,7 @@ export class ApiDataServiceService {
     private errorNumber: number = 0
     public isLoading: boolean = false
     public isLoadingData: boolean = false
+    public applySubLoading: boolean = true
     private errorMsg: string = 'Произашла ошибка. Попробуйте повторить дествие или перезагрузиться'
 
     public getLang() {
@@ -98,7 +99,7 @@ export class ApiDataServiceService {
 
     public async post<T>(url: string, data: any, applyLoading: boolean): Promise<T> {
         this.isLoading = applyLoading
-        this.isLoadingData=true
+        this.isLoadingData = this.applySubLoading
         try {
 
             var axiosResponse = await this.axiosClient.request<T>({
@@ -106,7 +107,7 @@ export class ApiDataServiceService {
                 data: data,
                 url: this.mainURL + url,
             });
-            this.errorNumber=0;
+            this.errorNumber = 0;
             return (axiosResponse.data);
 
         } catch (error) {
@@ -115,14 +116,15 @@ export class ApiDataServiceService {
 
         } finally {
             this.isLoading = false
-            this.isLoadingData=false
+            this.isLoadingData = false
+            this.applySubLoading = true
         }
 
 
     }
 
     public async get<T>(url: string): Promise<T> {
-        this.isLoading = true
+        this.isLoading = this.applySubLoading
         try {
 
             var axiosResponse = await this.axiosClient.request<T>({
@@ -137,6 +139,7 @@ export class ApiDataServiceService {
 
         } finally {
             this.isLoading = false
+            this.applySubLoading=true
         }
 
     }

@@ -94,10 +94,10 @@ export class LoginComponent implements OnInit {
         if (this.selectedUser.role !== 2) {
             this.orderRequest = this.filterService.getOrderRequest()
             //this.orderRequest.state = 'UNCLOSED'
-            this.orderRequest.user.id=0
-            this.orderRequest.user.password='12345'
+            // this.orderRequest.user.id=0
+            // this.orderRequest.user.password='12345'
             this.orderRequest.detailId=1
-            this.orderRequest.workStatus=1
+            this.orderRequest.workStatus=0
 
             this.filterService.setOrderRequest(this.orderRequest)
             this.ordersResponse = await this.apiService.post<TableOrderResponse>(

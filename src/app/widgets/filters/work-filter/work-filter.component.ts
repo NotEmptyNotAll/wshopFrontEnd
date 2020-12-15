@@ -46,6 +46,7 @@ export class WorkFilterComponent implements OnInit {
     }
 
     async getCustomer(name) {
+        this.apiService.applySubLoading=false
         this.works = await this.apiService.post<SimpleData[]>('getListJobs'
             , {name: name, sizeResponse: 50}, false)
     }

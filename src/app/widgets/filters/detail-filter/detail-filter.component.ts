@@ -14,7 +14,7 @@ import {SimpleData} from "../SimpleData";
 export class DetailFilterComponent implements OnInit {
     @Output() onSuggest: EventEmitter<any> = new EventEmitter();
 
-    private detail = {name: '', id: null}
+    private detail = {name: 'ГБЦ', id: 1}
     @ViewChild(AutoComplete) chidFilter: AutoComplete
 
     // @Output() onSuggest: EventEmitter<any> = new EventEmitter();
@@ -47,6 +47,7 @@ export class DetailFilterComponent implements OnInit {
     }
 
     async getCustomer(name) {
+        this.apiService.applySubLoading=false
         this.details = await this.apiService.post<SimpleData[]>('getListDetails'
             , {name: name, sizeResponse: 50}, false)
     }

@@ -10,7 +10,7 @@ import {FilterService} from "../filter.service";
 })
 export class WorkStatusFilterComponent implements OnInit {
 
-    private state = {name: 'не выполнена', code: 0}
+   public state = {name: 'не выполнена', code: 0}
     @Input() onlyField: boolean = false
     @Input() disabled: boolean = false
     @Output() onSuggest: EventEmitter<any> = new EventEmitter();
@@ -18,7 +18,7 @@ export class WorkStatusFilterComponent implements OnInit {
     private orderRequest: OrderRequest
 
 
-    private states: any[] = [
+    public states: any[] = [
         {name: 'все', code: null},
         {name: 'не выполнена', code: 0},
         {name: 'выполнена', code: 1},

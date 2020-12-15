@@ -57,6 +57,7 @@ import { LoadingSpinerComponent } from './widgets/loading-spiner/loading-spiner.
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import { WorkFilterComponent } from './widgets/filters/work-filter/work-filter.component';
 import { WorkStatusFilterComponent } from './widgets/filters/work-status-filter/work-status-filter.component';
+import { WorkPeriodFilterComponent } from './widgets/filters/work-period-filter/work-period-filter.component';
 
 // @ts-ignore
 // @ts-ignore
@@ -118,7 +119,8 @@ import { WorkStatusFilterComponent } from './widgets/filters/work-status-filter/
         ButtonListActionComponent,
         LoadingSpinerComponent,
         WorkFilterComponent,
-        WorkStatusFilterComponent],
+        WorkStatusFilterComponent,
+        WorkPeriodFilterComponent],
     providers: [ConfirmationService, MessageService]
 })
 

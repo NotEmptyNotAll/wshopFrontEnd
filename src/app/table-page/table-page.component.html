@@ -58,7 +58,7 @@
                 [contextMenu]="cm"
                 columnResizeMode="expand"
                 style="border-color: #f4f4f4"
-                [style]="{borderColor:'#f4f4f4',zIndex:'0',minHeight:'100%'}"
+                [style]="{borderColor:'#f4f4f4',zIndex:'0'}"
                 [resizableColumns]="true" selectionMode="single"
                 dataKey="id">
 
@@ -78,6 +78,13 @@
                             >
                             </button>
                         </div>
+
+                        <div *ngIf="standardFilterDisable" class="p-mb-2 p-mr-2"
+                             style="width: 300px; position: relative;top:-10px">
+                            <app-work-period-filter (onSuggest)="updateData()"
+                                                    (click)="confirmOnFilter($event)"
+                            ></app-work-period-filter>
+                        </div>
                         <div *ngIf="standardFilterDisable" class="p-mb-2 p-mr-2"
                              style="width: 300px; position: relative;top:-10px">
                             <app-detail-filter (onSuggest)="updateData()"
@@ -90,6 +97,7 @@
                                              (click)="confirmOnFilter($event)"
                             ></app-work-filter>
                         </div>
+
                         <div *ngIf="standardFilterDisable" class="p-mb-2 p-mr-2"
                              style="width: 300px; position: relative;top:-10px">
                             <app-work-status-filter
