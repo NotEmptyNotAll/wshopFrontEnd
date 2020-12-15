@@ -13,6 +13,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "ssl": true,
+            "sslKey": "localhost.key",
+            "sslCert": "localhost.crt",
             "outputPath": "dist/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
