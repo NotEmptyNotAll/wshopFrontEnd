@@ -162,7 +162,7 @@ export class TablePageComponent implements OnInit {
     async updateData() {
         this.display = false
 
-            this.onUpdateData.emit()
+        this.onUpdateData.emit()
 
 
         if (this.dynamicColumns !== '') {
@@ -280,22 +280,20 @@ export class TablePageComponent implements OnInit {
             let value2 = data2[event.field];
             let result = null;
 
-            if (value1 == null && value2 != null)
+          //  let dat1 = Date.parse(value1)
+            //let dat2 = Date.parse(value2)
+           if (value1 == null && value2 != null)
                 result = -1;
             else if (value1 != null && value2 == null)
                 result = 1;
             else if (value1 == null && value2 == null)
                 result = 0;
-            else if (value1.length > 3)
-                result = value1.localeCompare(value2)
-            else if (value1.length > 2 && value2.length < 3)
-                result = 1;
-            else if (value2.length > 2 && value1.length < 3)
-                result = -1
-            else if (value2.length > 3 && value1.length > 3)
-                result = value1.localeCompare(value2)
+            else if (typeof value1 === 'string' && typeof value2 === 'string')
+                result = value1.localeCompare(value2);
+            else
+                result = (value1 < value2) ? -1 : (value1 > value2) ? 1 : 0;
 
-            return result;
+            return (event.order * result);
         });
     }
 

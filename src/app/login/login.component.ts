@@ -89,7 +89,7 @@ export class LoginComponent implements OnInit {
         let dateTo = moment().utc().format("YYYY-MM-DD")
         this.orderRequest.dateTo = dateTo
         this.orderRequest.dateFrom = dateFrom
-        this.orderRequest.state = 'CLOSED'
+        this.orderRequest.state = 'UNCLOSED'
         this.filterService.setOrderRequest(this.orderRequest)
         // if (this.selectedUser.role !== 2) {
         //     // this.orderRequest = this.filterService.getOrderRequest()

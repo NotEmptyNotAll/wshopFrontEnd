@@ -58,6 +58,7 @@
                 [contextMenu]="cm"
                 columnResizeMode="expand"
                 style="border-color: #f4f4f4"
+                (sortFunction)="customSort($event)" [customSort]="true"
                 [style]="{borderColor:'#f4f4f4',zIndex:'0'}"
                 [resizableColumns]="true" selectionMode="single"
                 dataKey="id">
