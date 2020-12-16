@@ -14,8 +14,8 @@ export class PayedFilterComponent implements OnInit {
     private orderRequest: OrderRequest
     private states: any[] = [
         {name: 'Все', code: null},
-        {name: 'оплаченые', code: false},
-        {name: 'неоплаченые', code: true}
+        {name: 'оплаченые', code: true},
+        {name: 'неоплаченые', code: false}
     ]
 
     constructor(public filterService: FilterService) {
