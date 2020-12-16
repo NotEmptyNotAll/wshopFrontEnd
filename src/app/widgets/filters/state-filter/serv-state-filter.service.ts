@@ -15,15 +15,19 @@ export class ServStateFilterService {
 
   public onStndFilter() {
     this.disableFastFiled = true
-    this.stateTemp = this.stateFastFilterData
-    this.stateFastFilterData = {name: '', code: ''}
+    this.stateTemp.name = this.stateFastFilterData.name
+    this.stateTemp.code = this.stateFastFilterData.code
+    this.stateFastFilterData.name=''
+    this.stateFastFilterData.code=''
     console.log(this.stateFastFilterData)
   }
 
   public onFastFilter() {
     this.disableFastFiled = false
-    this.stateFastFilterData = this.stateTemp
-    this.stateTemp = {name: '', code: ''}
+    this.stateFastFilterData.name = this.stateTemp.name
+    this.stateFastFilterData.code = this.stateTemp.code
+    this.stateTemp.name=''
+    this.stateTemp.code=''
     this.changeState()
 
   }
@@ -33,6 +37,7 @@ export class ServStateFilterService {
         this.orderRequest = this.filterService.getOrderRequest()
         this.orderRequest.state = this.stateFastFilterData.code
         this.filterService.setOrderRequest(this.orderRequest)
+    console.log(this.filterService.getOrderRequest().state)
 
 
   }

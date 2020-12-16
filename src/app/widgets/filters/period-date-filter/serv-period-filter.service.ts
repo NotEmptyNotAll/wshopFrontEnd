@@ -15,14 +15,18 @@ export class ServPeriodFilterService {
 
     public onStndFilter() {
         this.disableFastFiled = true
-        this.periodTemp = this.periodFastFilterData
-        this.periodFastFilterData = {name: '', code: -1}
+        this.periodTemp.name = this.periodFastFilterData.name
+        this.periodTemp.code = this.periodFastFilterData.code
+        this.periodFastFilterData.name = ''
+        this.periodFastFilterData.code = -1
     }
 
     public onFastFilter() {
         this.disableFastFiled = false
-        this.periodFastFilterData = this.periodTemp
-        this.periodTemp = {name: '', code: -1}
+        this.periodFastFilterData.name = this.periodTemp.name
+        this.periodFastFilterData.code = this.periodTemp.code
+        this.periodTemp.name = ''
+        this.periodTemp.code = -1
         this.changePeriod()
     }
 
@@ -129,11 +133,11 @@ export class ServPeriodFilterService {
 
         }
 
-
         this.orderRequest.closeDate = false
         this.orderRequest.dateFrom = dateFrom;
         this.orderRequest.dateTo = dateTo;
         this.filterService.setOrderRequest(this.orderRequest)
+        console.log(this.filterService.getOrderRequest().state)
 
     }
 

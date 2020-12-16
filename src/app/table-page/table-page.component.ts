@@ -84,11 +84,11 @@ export class TablePageComponent implements OnInit {
                 acceptLabel: 'да',
                 rejectLabel: 'нет',
                 accept: () => {
+                    this.cancelFilter();
                     this.serviceStateFiler.onFastFilter()
                     this.filterPeriodService.onFastFilter()
                     this.serviceSubstring.onFastFilter()
                     this.confirmDisplay = false
-                    this.cancelFilter();
                     this.updateData()
                 },
                 reject: () => {

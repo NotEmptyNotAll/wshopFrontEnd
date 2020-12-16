@@ -16,13 +16,13 @@ export class ServSubstringFilterService {
         this.disableFastFiled = true
         this.substringTemp = this.substringFastFilterData
         this.substringFastFilterData = ''
-        console.log(this.substringFastFilterData)
     }
 
     public onFastFilter() {
         this.disableFastFiled = false
         this.substringFastFilterData = this.substringTemp
         this.substringTemp = ''
+        this.onChang()
 
     }
 
