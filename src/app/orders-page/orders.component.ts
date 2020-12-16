@@ -111,7 +111,7 @@ export class OrdersComponent implements OnInit {
                     tableRow[cell.cellName] = Number(cell.cellData)
                 } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
                     let data = new Date(cell.cellData)
-                    tableRow[cell.cellName] = moment(data.getTime()).utc().format("DD.MM.YY");
+                    tableRow[cell.cellName] = moment(data.getTime()).utc().format("YYYY-MM-DD");
                 } else {
                     tableRow[cell.cellName] = cell.cellData
                 }
@@ -165,7 +165,7 @@ export class OrdersComponent implements OnInit {
                     tableRow[cell.cellName] = Number(cell.cellData)
                 } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
                     let data = new Date(cell.cellData)
-                    tableRow[cell.cellName] = moment(data.getTime()).utc().format("DD.MM.YY");
+                    tableRow[cell.cellName] = moment(data.getTime()).utc().format("YYYY-MM-DD");
                 } else {
                     tableRow[cell.cellName] = cell.cellData
                 }

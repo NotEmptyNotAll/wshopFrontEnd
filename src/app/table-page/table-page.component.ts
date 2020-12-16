@@ -280,9 +280,12 @@ export class TablePageComponent implements OnInit {
             let value2 = data2[event.field];
             let result = null;
 
-          //  let dat1 = Date.parse(value1)
-            //let dat2 = Date.parse(value2)
-           if (value1 == null && value2 != null)
+            let dat1 = Date.parse(value1)
+            let dat2 = Date.parse(value2)
+            if (dat1 != null) {
+                result = (dat1 < dat2) ? -1 : (dat1 > dat2) ? 1 : 0;
+            }else
+            if (value1 == null && value2 != null)
                 result = -1;
             else if (value1 != null && value2 == null)
                 result = 1;
