@@ -4,6 +4,6 @@
     const server = require('./dist/browser/server');
     
     server.app.listen(port, () => {
-        console.log("Listening on: http://localhost:" + port );
+        console.log("Listening on: https://localhost:" + port );
     });
     
