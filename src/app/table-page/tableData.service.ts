@@ -15,17 +15,25 @@ export class TableDataService {
     startData: any[]
     addColumnText: string = ''
     showUpdatePage = false
-    patternTableRow:any={}
+    patternTableRow: any = {}
+
     constructor() {
 
     }
 
-    setTablePatternRow(mock:any){
-        this.patternTableRow=mock
+
+    public getMainData() {
+        return this.mainData
     }
-    getTablePatternRow(){
+
+    setTablePatternRow(mock: any) {
+        this.patternTableRow = mock
+    }
+
+    getTablePatternRow() {
         return this.patternTableRow
     }
+
     setStartData(data) {
         this.startData = data
         this.startSize = data.length
@@ -50,8 +58,8 @@ export class TableDataService {
         this.selectData = null
     }
 
-    searchData():void {
-        this.mainData= this.startData.concat(this.tempData).filter(item => {
+    searchData(): void {
+        this.mainData = this.startData.concat(this.tempData).filter(item => {
             return item.orderName.toLowerCase().indexOf(this.search.toLowerCase()) > -1
                 || item.id.toString().indexOf(this.search) > -1
         })
@@ -82,6 +90,6 @@ export class TableDataService {
     getChangeRow(): Observable<any> {
         return of(this.selectData)
     }
-    
+
 
 }

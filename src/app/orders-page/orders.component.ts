@@ -69,6 +69,7 @@ export class OrdersComponent implements OnInit {
         }, 1000);
     }
 
+
     tick(sec: number) {
         console.log(sec)
 
@@ -95,7 +96,7 @@ export class OrdersComponent implements OnInit {
                 {
                     field: elem.nameColumn,
                     header: elem.nameColumn,
-                    width: elem.width<100?elem.width+elem.nameColumn.length*8:elem.width+elem.nameColumn.length*5
+                    width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
                 }
             )
         })
@@ -104,7 +105,7 @@ export class OrdersComponent implements OnInit {
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
             row.rowData.map(cell => {
-                if (cell.cellData.indexOf('thWOrders.orderClosed')!==-1) {
+                if (cell.cellData.indexOf('thWOrders.orderClosed') !== -1) {
                     tableRow[cell.cellName] = cell.cellData.substr(22, 3)
                 } else if (cell.cellName === 'Код' || cell.cellName === 'Долг' || cell.cellName === 'Всего'
                     || cell.cellName === 'З/ч' || cell.cellName === 'Раб.') {
@@ -137,10 +138,46 @@ export class OrdersComponent implements OnInit {
     }
 
 
-  async  updateData(){
+    async twoDownload(sizeResponse) {
+        alert(sizeResponse)
+        let request = this.filterService.getOrderRequest()
+        request.sizeResponse = sizeResponse
+        this.filterService.setOrderRequest(request)
+        this.apiService.applySubLoading = false
         this.data = await this.apiService.post<TableOrderResponse>(
             'getCroppedOrders', this.filterService.getOrderRequest(), false
         );
+        let tableBody = []
+        this.data.ordersTableBody.map(row => {
+            let tableRow: any = {}
+            row.rowData.map(cell => {
+                if (cell.cellData.indexOf('thWOrders.orderClosed') !== -1) {
+                    tableRow[cell.cellName] = cell.cellData.substr(22, 3)
+                } else if (cell.cellName === 'Код' || cell.cellName === 'Долг' || cell.cellName === 'Всего'
+                    || cell.cellName === 'З/ч' || cell.cellName === 'Раб.') {
+                    tableRow[cell.cellName] = Number(cell.cellData)
+                } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
+                    let data = new Date(cell.cellData)
+                    tableRow[cell.cellName] = moment(data.getTime()).utc().format("YYYY-MM-DD");
+                } else {
+                    tableRow[cell.cellName] = cell.cellData
+                }
+            })
+            tableBody.push(tableRow)
+        })
+        this.tableDataService.setMainData(this.tableDataService.getMainData().concat(tableBody))
+
+    }
+
+    async updateData() {
+        this.data = await this.apiService.post<TableOrderResponse>(
+            'getCroppedOrders', this.filterService.getOrderRequest(), false
+        );
+
+        alert(this.data.sizeTwoPartData)
+        if (this.data.sizeTwoPartData > 0) {
+            this.twoDownload(this.data.sizeTwoPartData)
+        }
 
         let mainColumn = [];
         console.log(this.data.ordersTableBody)
@@ -172,29 +209,30 @@ export class OrdersComponent implements OnInit {
             })
             tableBody.push(tableRow)
         })
-        let tableRowPattern: any = {}
+        // let tableRowPattern: any = {}
 
-        console.log(this.data)
-        if (this.data.ordersTableBody.length !== 0) {
-            this.data.ordersTableBody[0].rowData.map(
-                cell => {
-                    if (cell.cellName === 'Close') {
-                        tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3)
-
-                    } else {
-                        tableRowPattern[cell.cellName] = cell.cellData;
-                    }
-                }
-            )
-        }
+        // console.log(this.data)
+        // if (this.data.ordersTableBody.length !== 0) {
+        //     this.data.ordersTableBody[0].rowData.map(
+        //         cell => {
+        //             if (cell.cellName === 'Close') {
+        //                 tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3)
+        //
+        //             } else {
+        //                 tableRowPattern[cell.cellName] = cell.cellData;
+        //             }
+        //         }
+        //     )
+        // }
 
 
         this.tableDataService.setMainData(tableBody)
-        this.tableDataService.setTablePatternRow(tableRowPattern)
+        // this.tableDataService.setTablePatternRow(tableRowPattern)
 
         this.tableDataService.setStartData(this.data)
-      return true;
+        return true;
     }
+
     ngOnInit() {
 
     }

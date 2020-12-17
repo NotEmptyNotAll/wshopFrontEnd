@@ -9,7 +9,7 @@ import {ServStateFilterService} from "./serv-state-filter.service";
     styleUrls: ['./state-filter.component.css']
 })
 export class StateFilterComponent implements OnInit {
-    private state = {name: '', code: ''}
+    private state =   {name: 'незакрытые', code: 'UNCLOSED'}
     @Input() onlyField: boolean = false
     @Input() disabled: boolean = false
     @Output() onSuggest: EventEmitter<any> = new EventEmitter();
@@ -33,7 +33,7 @@ export class StateFilterComponent implements OnInit {
     }
 
     clear() {
-        this.state = {name: 'все', code: null}
+        this.state = {name: 'незакрытые', code: 'UNCLOSED'}
         this.changeState()
         this.onClear.emit()
     }

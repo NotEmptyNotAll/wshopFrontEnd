@@ -17,5 +17,6 @@ export interface OrderRequest {
     user: User;
     workStatus: number;
     workId: number;
+    sizeResponse: number;
     detailId: number;
 }

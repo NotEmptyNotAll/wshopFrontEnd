@@ -58,6 +58,7 @@ import {ProgressSpinnerModule} from "primeng/progressspinner";
 import { WorkFilterComponent } from './widgets/filters/work-filter/work-filter.component';
 import { WorkStatusFilterComponent } from './widgets/filters/work-status-filter/work-status-filter.component';
 import { WorkPeriodFilterComponent } from './widgets/filters/work-period-filter/work-period-filter.component';
+import {ProgressBarModule} from "primeng/progressbar";
 
 // @ts-ignore
 // @ts-ignore
@@ -93,7 +94,8 @@ import { WorkPeriodFilterComponent } from './widgets/filters/work-period-filter/
         BlockUIModule,
         RippleModule,
         ContextMenuModule,
-        ProgressSpinnerModule
+        ProgressSpinnerModule,
+        ProgressBarModule
 
     ],
 

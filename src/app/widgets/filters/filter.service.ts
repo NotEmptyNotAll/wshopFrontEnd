@@ -19,6 +19,7 @@ export class FilterService {
         lang: null,
         state: null,
         status: null,
+        sizeResponse:null,
         payed: null,
         user: null,
         workId: null,

@@ -85,6 +85,7 @@ export class LoginComponent implements OnInit {
         console.log(this.orderRequest)
         this.orderRequest.lang = this.apiService.getLang();
         this.orderRequest.user = this.selectedUser
+        this.orderRequest.sizeResponse = 10;
         let dateFrom = moment().utc().format("YYYY-MM-DD")
         let dateTo = moment().utc().format("YYYY-MM-DD")
         this.orderRequest.dateTo = dateTo

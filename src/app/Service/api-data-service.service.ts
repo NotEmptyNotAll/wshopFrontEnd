@@ -13,7 +13,7 @@ import {MessageService} from "primeng/api";
 export class ApiDataServiceService {
 
     mainURL: string = 'https://10.102.200.11:5051/'
-    testUrl: string = 'http://localhost:5051/'
+    testUrl: string = 'https://localhost:5051/'
     private axiosClient: AxiosInstance;
     private errorHandler: ErrorHandler;
     private ordersResp: Order[];
@@ -21,9 +21,11 @@ export class ApiDataServiceService {
     private userData: User;
     private lang: string = 'ru'
     private errorNumber: number = 0
+    public barLoading: boolean = false
     public isLoading: boolean = false
     public isLoadingData: boolean = false
     public applySubLoading: boolean = true
+    public applySubLoadingBar: boolean = true
     private errorMsg: string = 'Произашла ошибка. Попробуйте повторить дествие или перезагрузиться'
 
     public getLang() {
@@ -98,6 +100,7 @@ export class ApiDataServiceService {
     }
 
     public async post<T>(url: string, data: any, applyLoading: boolean): Promise<T> {
+        this.barLoading = this.applySubLoadingBar
         this.isLoading = applyLoading
         this.isLoadingData = this.applySubLoading
         try {
@@ -115,6 +118,7 @@ export class ApiDataServiceService {
             // return (Promise.reject(this.normalizeError(error)));
 
         } finally {
+            this.barLoading = false
             this.isLoading = false
             this.isLoadingData = false
             this.applySubLoading = true
@@ -139,7 +143,7 @@ export class ApiDataServiceService {
 
         } finally {
             this.isLoading = false
-            this.applySubLoading=true
+            this.applySubLoading = true
         }
 
     }

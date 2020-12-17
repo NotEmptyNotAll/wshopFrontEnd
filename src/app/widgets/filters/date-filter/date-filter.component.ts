@@ -22,6 +22,23 @@ export class DateFilterComponent implements OnInit {
     constructor(public filterService: FilterService) {
     }
 
+    changeInputField(){
+        if(this.menuChange===1){
+            this.dateFromMonth = null;
+            this.dateToMonth = null;
+            this.childPeriodDateFilter.clear()
+        }else if(this.menuChange===2){
+            this.dateTo = null;
+            this.dateFrom = null;
+            this.childPeriodDateFilter.clear()
+        } if(this.menuChange===3){
+            this.dateTo = null;
+            this.dateFrom = null;
+            this.dateFromMonth = null;
+            this.dateToMonth = null;
+        }
+    }
+
     ngOnInit(): void {
         this.orderRequest = this.filterService.getOrderRequest()
 
@@ -30,6 +47,8 @@ export class DateFilterComponent implements OnInit {
     clear() {
         this.dateTo = null;
         this.dateFrom = null;
+        this.dateFromMonth = null;
+        this.dateToMonth = null;
         if(this.childPeriodDateFilter != null){
             this.childPeriodDateFilter.clear()
 

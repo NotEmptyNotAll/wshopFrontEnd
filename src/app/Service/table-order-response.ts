@@ -5,4 +5,5 @@ export interface TableOrderResponse {
     columnTables: TableColumnHeader[];
     ordersTableBody: TableRow[];
     status: number;
+    sizeTwoPartData: number;
 }
