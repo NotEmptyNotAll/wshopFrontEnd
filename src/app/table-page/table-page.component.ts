@@ -129,6 +129,7 @@ export class TablePageComponent implements OnInit {
             message: rowData.Comment,
             icon: 'pi pi-exclamation-triangle',
             rejectVisible: false,
+            acceptVisible: false,
             acceptLabel: 'да',
             accept: () => {
                 this.confirmDisplay = false

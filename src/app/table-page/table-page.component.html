@@ -50,8 +50,8 @@
               [paginator]="true" -->
     <div style="height: 89vh;background: #f4f4f4;width: 100%">
         <p-table
-                [rows]="15"
-                [virtualScroll]="true" [virtualRowHeight]="20"
+                [rows]="100"
+                [virtualScroll]="true" [virtualRowHeight]="1"
                 [lazy]="true" (onLazyLoad)="loadDataLazy($event)"
                 [reorderableColumns]="true"
                 class="table-style"
