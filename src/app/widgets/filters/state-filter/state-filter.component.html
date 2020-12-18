@@ -10,7 +10,7 @@
     <div class="p-field p-col-36 p-md-12">
 <p-dropdown *ngIf="onlyField"
             [disabled]="stateService.disableFastFiled"
-             (onChange)="changeState()"  style="width: 300px" [showClear]="true"
+             (onChange)="changeState()"  style="width: 300px"
              [options]="fastStates"
             placeholder="статус"
             [(ngModel)]="stateService.stateFastFilterData" optionLabel="name"></p-dropdown>
@@ -27,7 +27,7 @@
         <div class="p-field p-col-36 p-md-12">
             <p-dropdown            [disabled]="disabled"
                                    (onChange)="changeState()"
-                                   [showClear]="true"
+
                                    placeholder="статус"
                         [options]="states" [(ngModel)]="state" optionLabel="name"></p-dropdown>
 

@@ -13,6 +13,10 @@ export class ServPeriodFilterService {
     public disableFastFiled = false
     private orderRequest: OrderRequest
 
+    defaultFastFilter() {
+        this.periodFastFilterData = {name: 'сегодня', code: 1}
+    }
+
     public onStndFilter() {
         this.disableFastFiled = true
         this.periodTemp.name = this.periodFastFilterData.name

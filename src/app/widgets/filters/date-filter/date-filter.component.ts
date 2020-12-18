@@ -23,20 +23,20 @@ export class DateFilterComponent implements OnInit {
     }
 
     changeInputField(){
-        if(this.menuChange===1){
-            this.dateFromMonth = null;
-            this.dateToMonth = null;
-            this.childPeriodDateFilter.clear()
-        }else if(this.menuChange===2){
-            this.dateTo = null;
-            this.dateFrom = null;
-            this.childPeriodDateFilter.clear()
-        } if(this.menuChange===3){
-            this.dateTo = null;
-            this.dateFrom = null;
-            this.dateFromMonth = null;
-            this.dateToMonth = null;
-        }
+        // if(this.menuChange===1){
+        //     this.dateFromMonth = null;
+        //     this.dateToMonth = null;
+        //     this.childPeriodDateFilter.clear()
+        // }else if(this.menuChange===2){
+        //     this.dateTo = null;
+        //     this.dateFrom = null;
+        //     this.childPeriodDateFilter.clear()
+        // } if(this.menuChange===3){
+        //     this.dateTo = null;
+        //     this.dateFrom = null;
+        //     this.dateFromMonth = null;
+        //     this.dateToMonth = null;
+        // }
     }
 
     ngOnInit(): void {

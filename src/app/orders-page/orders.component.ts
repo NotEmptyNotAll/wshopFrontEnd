@@ -10,6 +10,8 @@ import {TableOrderResponse} from "../Service/table-order-response";
 import {User} from "../Service/User";
 import * as moment from "moment";
 import {FilterService} from "../widgets/filters/filter.service";
+import {ServStateFilterService} from "../widgets/filters/state-filter/serv-state-filter.service";
+import {ServPeriodFilterService} from "../widgets/filters/period-date-filter/serv-period-filter.service";
 
 @Component({
     selector: 'app-orders',
@@ -33,6 +35,8 @@ export class OrdersComponent implements OnInit {
                 public tableService: TableDataService,
                 public orderService: OrderService,
                 public renderer2: Renderer2,
+                public stateFilterService: ServStateFilterService,
+                public periodFilterService: ServPeriodFilterService,
                 public filterService: FilterService,
                 public tableDataService: TableDataService,
                 private router: Router) {
@@ -63,7 +67,10 @@ export class OrdersComponent implements OnInit {
         this.sec = 0
         setInterval(() => {
             this.sec++
+            console.log( this.sec)
             if (this.sec == 300) {
+                this.stateFilterService.defaultFastFilter()
+                this.periodFilterService.defaultFastFilter()
                 this.router.navigate(['/'])
             }
         }, 1000);
@@ -87,7 +94,7 @@ export class OrdersComponent implements OnInit {
         // this.data = await this.apiService.get<Order[]>('getCroppedOrders')
         this.data = this.orderService.getOrderResponse()
         this.mainColumn = []
-        this.apiService.startIndex=0;
+        this.apiService.startIndex = 0;
         this.data.columnTables.map(elem => {
             this.mainColumn.push(
                 {
@@ -97,7 +104,7 @@ export class OrdersComponent implements OnInit {
                 }
             )
         })
-        this.apiService.startIndex+=this.apiService.sizeDataResponse
+        this.apiService.startIndex += this.apiService.sizeDataResponse
 
         let regexp = new RegExp('^[1-9]\d{0,2}$');
         let tableBody = []
@@ -144,15 +151,15 @@ export class OrdersComponent implements OnInit {
         this.apiService.barLoading = true
         let request = this.filterService.getOrderRequest()
         request.sizeResponse = sizeResponse
-        request.sizeResponse=this.apiService.startIndex+this.apiService.sizeDataResponse
-        request.rowStartIndex=this.apiService.startIndex
+        request.sizeResponse = this.apiService.startIndex + this.apiService.sizeDataResponse
+        request.rowStartIndex = this.apiService.startIndex
         this.filterService.setOrderRequest(request)
         this.apiService.applySubLoading = false
         this.data = await this.apiService.post<TableOrderResponse>(
             'getCroppedOrders', this.filterService.getOrderRequest(), false
         );
-        this.apiService.startIndex+=this.apiService.sizeDataResponse
-        this.apiService.sizeNextRequest=this.data.sizeTwoPartData
+        this.apiService.startIndex += this.apiService.sizeDataResponse
+        this.apiService.sizeNextRequest = this.data.sizeTwoPartData
         let tableBody = []
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
@@ -175,13 +182,13 @@ export class OrdersComponent implements OnInit {
     }
 
     async updateData() {
-        this.apiService.startIndex=0;
+        this.apiService.startIndex = 0;
         console.log('////////////////')
         console.log(this.filterService.getOrderRequest())
         this.data = await this.apiService.post<TableOrderResponse>(
             'getCroppedOrders', this.filterService.getOrderRequest(), false
         );
-        this.apiService.startIndex+=this.apiService.sizeDataResponse
+        this.apiService.startIndex += this.apiService.sizeDataResponse
 
         if (this.data.sizeTwoPartData > 0) {
             this.twoDownload()
@@ -196,7 +203,7 @@ export class OrdersComponent implements OnInit {
                 }
             )
         })
-        this.apiService.sizeNextRequest=this.data.sizeTwoPartData
+        this.apiService.sizeNextRequest = this.data.sizeTwoPartData
         let regexp = new RegExp('^[1-9]\d{0,2}$');
         let tableBody = []
         this.data.ordersTableBody.map(row => {

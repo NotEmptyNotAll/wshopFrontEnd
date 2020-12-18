@@ -13,6 +13,10 @@ export class ServStateFilterService {
   public disableFastFiled = false
   private orderRequest: OrderRequest
 
+  defaultFastFilter() {
+    this.stateFastFilterData =  {name: 'незакрытые', code: 'UNCLOSED'}
+  }
+
   public onStndFilter() {
     this.disableFastFiled = true
     this.stateTemp.name = this.stateFastFilterData.name

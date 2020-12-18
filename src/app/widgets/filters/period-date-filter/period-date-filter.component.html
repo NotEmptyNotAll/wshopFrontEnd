@@ -21,7 +21,7 @@
                     [disabled]="filterPeriodService.disableFastFiled"
                     placeholder="период"
                     [options]="fastPeriods" [(ngModel)]="filterPeriodService.periodFastFilterData"
-                    optionLabel="name"  [showClear]="true">
+                    optionLabel="name"  >
     </p-dropdown>
     </div>
 </div>
@@ -30,7 +30,7 @@
         <p-dropdown (onChange)="changePeriod()"
                     placeholder="период"
                     [options]="periods" [(ngModel)]="period"
-                    optionLabel="name"  [showClear]="true">
+                    optionLabel="name"  >
         </p-dropdown>
     </div>
 </div>
