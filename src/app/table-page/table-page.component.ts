@@ -110,7 +110,6 @@ export class TablePageComponent implements OnInit {
     }
 
     downloadExel() {
-        console.log(this.tableDataService.mainData)
         const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.tableDataService.mainData);
         let wb = XLSX.utils.book_new()
         XLSX.utils.book_append_sheet(wb, worksheet, 'blank')
@@ -239,7 +238,6 @@ export class TablePageComponent implements OnInit {
         this.columns = this.cols
         this._selectedColumns = this.cols;
 
-        console.log(this.columns)
         if (this.dynamicColumns !== '') {
             this.tableDataService.addColumnText = this.dynamicColumns
             this.setColumn()
@@ -303,7 +301,7 @@ export class TablePageComponent implements OnInit {
     }
 
     loadDataLazy(event: LazyLoadEvent) {
-        if (this.apiService.sizeNextRequest  ) {
+        if (this.apiService.sizeNextRequest>0  ) {
             // let loadedCars = this.tableDataService.mainData.slice(event.first, (event.first + event.rows));
             // Array.prototype.splice.apply( this.tableDataService.mainData, [...[event.first, event.rows], ...loadedCars]);
 

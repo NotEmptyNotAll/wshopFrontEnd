@@ -30,6 +30,19 @@ export class PeriodDateFilterComponent implements OnInit {
         {name: 'прошлый год', code: 10},
     ]
 
+    private fastPeriods: any[] = [
+        {name: 'сегодня', code: 1},
+        {name: 'вчера', code: 2},
+        {name: 'текущая неделя', code: 3},
+        {name: 'текущий месяц', code: 4},
+        {name: 'текущий квартал', code: 5},
+        {name: 'текущий год', code: 6},
+        {name: 'прошедшая неделя', code: 7},
+        {name: 'прошлый месяц', code: 8},
+        {name: 'прошлый квартал', code: 9},
+        {name: 'прошлый год', code: 10},
+    ]
+
     constructor(
         public filterPeriodService:ServPeriodFilterService,
         public filterService: FilterService) {

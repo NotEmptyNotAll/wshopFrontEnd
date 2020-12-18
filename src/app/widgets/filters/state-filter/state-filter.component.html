@@ -11,7 +11,7 @@
 <p-dropdown *ngIf="onlyField"
             [disabled]="stateService.disableFastFiled"
              (onChange)="changeState()"  style="width: 300px" [showClear]="true"
-             [options]="states"
+             [options]="fastStates"
             placeholder="статус"
             [(ngModel)]="stateService.stateFastFilterData" optionLabel="name"></p-dropdown>
     </div>

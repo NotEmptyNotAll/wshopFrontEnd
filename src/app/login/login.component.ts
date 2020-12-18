@@ -82,13 +82,13 @@ export class LoginComponent implements OnInit {
         this.name = this.selectedUser.name
         this.selectedUser.password = this.password;
         this.apiService.setUserData(this.selectedUser)
-        console.log(this.orderRequest)
         this.orderRequest.lang = this.apiService.getLang();
         this.orderRequest.user = this.selectedUser
         this.orderRequest.sizeResponse = 15;
         let dateFrom = moment().utc().format("YYYY-MM-DD")
         let dateTo = moment().utc().format("YYYY-MM-DD")
         this.orderRequest.dateTo = dateTo
+        this.orderRequest.rowStartIndex=0
         this.orderRequest.dateFrom = dateFrom
         this.orderRequest.state = 'UNCLOSED'
         this.filterService.setOrderRequest(this.orderRequest)

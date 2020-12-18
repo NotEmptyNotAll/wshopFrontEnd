@@ -48,10 +48,10 @@
     <!--  currentPageReportTemplate="{{'loginPage.TableNumLabel' | translate}}"
                [rows]="100" [showCurrentPageReport]="true" [rowsPerPageOptions]="[20,30,50,100]"
               [paginator]="true" -->
-    <div style="height: 89vh;background: #f4f4f4;width: 100%">
+    <div style="height: 88vh;background: #f4f4f4;width: 100%">
         <p-table
                 [rows]="100"
-                [virtualScroll]="true" [virtualRowHeight]="1"
+                [virtualScroll]="true" [virtualRowHeight]="0"
                 [lazy]="true" (onLazyLoad)="loadDataLazy($event)"
                 [reorderableColumns]="true"
                 class="table-style"

@@ -13,6 +13,7 @@ export interface OrderRequest {
     state: string;
     closeDate: boolean;
     status: boolean;
+    rowStartIndex: number;
     payed: boolean;
     user: User;
     workStatus: number;

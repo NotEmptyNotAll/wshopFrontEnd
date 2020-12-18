@@ -66,13 +66,11 @@ export class OrdersComponent implements OnInit {
             if (this.sec == 300) {
                 this.router.navigate(['/'])
             }
-            console.log(this.sec)
         }, 1000);
     }
 
 
     tick(sec: number) {
-        console.log(sec)
 
         sec++;
         if (sec == 10) {
@@ -82,15 +80,12 @@ export class OrdersComponent implements OnInit {
             this.router.navigate(['/'])
             this.router.navigate(['/'])
         }
-        console.log(sec)
     }
 
     async getOrd() {
 
         // this.data = await this.apiService.get<Order[]>('getCroppedOrders')
         this.data = this.orderService.getOrderResponse()
-        console.log('///////////////////////////')
-        console.log(this.data)
         this.mainColumn = []
         this.data.columnTables.map(elem => {
             this.mainColumn.push(
@@ -140,16 +135,21 @@ export class OrdersComponent implements OnInit {
 
 
     async twoDownload() {
-        let sizeResponse = this.apiService.sizeNextRequest
+        console.log('////////////////2222')
+        console.log(this.filterService.getOrderRequest())
+        let sizeResponse = this.apiService.sizeDataResponse
         this.apiService.barLoading = true
         let request = this.filterService.getOrderRequest()
         request.sizeResponse = sizeResponse
+        request.sizeResponse=this.apiService.startIndex+this.apiService.sizeDataResponse
+        request.rowStartIndex=this.apiService.startIndex
         this.filterService.setOrderRequest(request)
         this.apiService.applySubLoading = false
         this.data = await this.apiService.post<TableOrderResponse>(
             'getCroppedOrders', this.filterService.getOrderRequest(), false
         );
-        this.apiService.sizeNextRequest = this.apiService.sizeDataResponse <= this.data.sizeTwoPartData ? this.apiService.sizeDataResponse : this.data.sizeTwoPartData
+        this.apiService.startIndex+=this.apiService.sizeDataResponse
+        this.apiService.sizeNextRequest=this.data.sizeTwoPartData
         let tableBody = []
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
@@ -172,17 +172,18 @@ export class OrdersComponent implements OnInit {
     }
 
     async updateData() {
+        this.apiService.startIndex=0;
+        console.log('////////////////')
+        console.log(this.filterService.getOrderRequest())
         this.data = await this.apiService.post<TableOrderResponse>(
             'getCroppedOrders', this.filterService.getOrderRequest(), false
         );
+        this.apiService.startIndex+=this.apiService.sizeDataResponse
 
-        this.apiService.sizeNextRequest = this.apiService.sizeDataResponse <= this.data.sizeTwoPartData ? this.apiService.sizeDataResponse : this.data.sizeTwoPartData
         if (this.data.sizeTwoPartData > 0) {
             this.twoDownload()
         }
-
         let mainColumn = [];
-        console.log(this.data.ordersTableBody)
         this.data.columnTables.map(elem => {
             mainColumn.push(
                 {

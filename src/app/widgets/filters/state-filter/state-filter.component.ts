@@ -16,6 +16,11 @@ export class StateFilterComponent implements OnInit {
     @Output() onClear: EventEmitter<any> = new EventEmitter();
     private orderRequest: OrderRequest
 
+    private fastStates: any[] = [
+        {name: 'выполненные', code: 'FINISHED'},
+        {name: 'незакрытые', code: 'UNCLOSED'},
+        {name: 'закрытые', code: 'CLOSED'}
+    ]
 
     private states: any[] = [
         {name: 'все', code: null},

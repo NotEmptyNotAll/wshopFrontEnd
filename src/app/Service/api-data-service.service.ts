@@ -22,6 +22,7 @@ export class ApiDataServiceService {
     private users: User[];
     private userData: User;
     private lang: string = 'ru'
+    public startIndex: number = 0
     private errorNumber: number = 0
     public barLoading: boolean = false
     public isLoading: boolean = false
