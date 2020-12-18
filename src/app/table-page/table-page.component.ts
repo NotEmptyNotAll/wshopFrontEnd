@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewChildren} from '@angular/core';
 import {TableData} from './tableData';
 import {TableDataService} from "./tableData.service";
-import {ConfirmationService, SortEvent} from 'primeng/api';
+import {ConfirmationService, LazyLoadEvent, SortEvent} from 'primeng/api';
 import {Router} from "@angular/router";
 import {CreateAddComponent} from "./create-add/create-add.component";
 import {Table} from 'primeng/table';
@@ -301,8 +301,11 @@ export class TablePageComponent implements OnInit {
         });
     }
 
-    loadDataLazy($event: any) {
+    loadDataLazy(event: LazyLoadEvent) {
         if (this.apiService.sizeNextRequest  ) {
+            // let loadedCars = this.tableDataService.mainData.slice(event.first, (event.first + event.rows));
+            // Array.prototype.splice.apply( this.tableDataService.mainData, [...[event.first, event.rows], ...loadedCars]);
+
             this.onLazyLoad.emit()
         }
     }
