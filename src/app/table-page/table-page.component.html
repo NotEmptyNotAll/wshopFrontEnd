@@ -50,6 +50,9 @@
               [paginator]="true" -->
     <div style="height: 85vh;background: #f4f4f4;width: 100%">
         <p-table
+                [rows]="15"
+                [virtualScroll]="true" [virtualRowHeight]="20"
+                [lazy]="true" (onLazyLoad)="loadDataLazy($event)"
                 [reorderableColumns]="true"
                 class="table-style"
                 [loading]="apiService.isLoadingData"
@@ -182,6 +185,13 @@
                     </th>
                     <!--                    <th style="width:2rem;border-color: #f4f4f4" *ngIf="buttonActionDisable"-->
                     <!--                        [style]="{borderColor:'#f4f4f4', fontSize:'12px'}"></th>-->
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="loadingbody" let-columns="columns">
+                <tr style="height:34px">
+                    <td *ngFor="let col of columns">
+                        <div class="loading-text"></div>
+                    </td>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">

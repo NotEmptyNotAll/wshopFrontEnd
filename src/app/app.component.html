@@ -1,6 +1,7 @@
 <app-menu-bar></app-menu-bar>
-<p-progressBar mode="indeterminate" *ngIf="apiService.barLoading" [style]="{left:'-40px',position:'relative',top:'-22px',width:'120%','height': '6px'}"></p-progressBar>
-
+<div style="position: absolute;top:53px;left: 0px;height: 6px;width: 100%">
+<p-progressBar mode="indeterminate" *ngIf="apiService.barLoading" [style]="{'height': '6px'}"></p-progressBar>
+</div>
 <div id="main">
 
     <router-outlet></router-outlet>

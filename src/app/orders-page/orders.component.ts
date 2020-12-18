@@ -25,6 +25,7 @@ export class OrdersComponent implements OnInit {
     sec: number
     secIncr: number = 1
     temp: any;
+    twoDownloadLoad: boolean = false
     private user: User;
 
     constructor(@Inject(WINDOW) private window: Window,
@@ -138,8 +139,9 @@ export class OrdersComponent implements OnInit {
     }
 
 
-    async twoDownload(sizeResponse) {
-        alert(sizeResponse)
+    async twoDownload() {
+        let sizeResponse = this.apiService.sizeNextRequest
+        this.apiService.barLoading = true
         let request = this.filterService.getOrderRequest()
         request.sizeResponse = sizeResponse
         this.filterService.setOrderRequest(request)
@@ -147,6 +149,7 @@ export class OrdersComponent implements OnInit {
         this.data = await this.apiService.post<TableOrderResponse>(
             'getCroppedOrders', this.filterService.getOrderRequest(), false
         );
+        this.apiService.sizeNextRequest = this.apiService.sizeDataResponse <= this.data.sizeTwoPartData ? this.apiService.sizeDataResponse : this.data.sizeTwoPartData
         let tableBody = []
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
@@ -166,7 +169,6 @@ export class OrdersComponent implements OnInit {
             tableBody.push(tableRow)
         })
         this.tableDataService.setMainData(this.tableDataService.getMainData().concat(tableBody))
-
     }
 
     async updateData() {
@@ -174,9 +176,9 @@ export class OrdersComponent implements OnInit {
             'getCroppedOrders', this.filterService.getOrderRequest(), false
         );
 
-        alert(this.data.sizeTwoPartData)
+        this.apiService.sizeNextRequest = this.apiService.sizeDataResponse <= this.data.sizeTwoPartData ? this.apiService.sizeDataResponse : this.data.sizeTwoPartData
         if (this.data.sizeTwoPartData > 0) {
-            this.twoDownload(this.data.sizeTwoPartData)
+            this.twoDownload()
         }
 
         let mainColumn = [];

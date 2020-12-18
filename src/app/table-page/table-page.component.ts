@@ -47,6 +47,7 @@ export class TablePageComponent implements OnInit {
     @ViewChild(PeriodDateFilterComponent) childPeriodDateFilter: PeriodDateFilterComponent
     @Input() startData: TableData[]
     @Output() onUpdateData: EventEmitter<any> = new EventEmitter();
+    @Output() onLazyLoad: EventEmitter<any> = new EventEmitter();
     @Input() mainColumn: any[]
     @Input() stateFilterDisable: boolean = false
     @Input() buttonActionDisable: boolean = false
@@ -54,6 +55,7 @@ export class TablePageComponent implements OnInit {
     @Input() title: string
     @Input() dynamicColumns: string = ''
     @Input() buttonItems: MenuItem[]
+    lazyLoadFix:boolean=true
     cols: any[];
     selectRow: any = {}
     inputErr = false
@@ -284,8 +286,7 @@ export class TablePageComponent implements OnInit {
             let dat2 = Date.parse(value2)
             if (dat1 != null) {
                 result = (dat1 < dat2) ? -1 : (dat1 > dat2) ? 1 : 0;
-            }else
-            if (value1 == null && value2 != null)
+            } else if (value1 == null && value2 != null)
                 result = -1;
             else if (value1 != null && value2 == null)
                 result = 1;
@@ -300,5 +301,10 @@ export class TablePageComponent implements OnInit {
         });
     }
 
+    loadDataLazy($event: any) {
+        if (this.apiService.sizeNextRequest  ) {
+            this.onLazyLoad.emit()
+        }
+    }
 }
 

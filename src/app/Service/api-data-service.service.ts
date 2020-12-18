@@ -15,6 +15,8 @@ export class ApiDataServiceService {
     mainURL: string = 'https://10.102.200.11:5051/'
     testUrl: string = 'https://localhost:5051/'
     private axiosClient: AxiosInstance;
+    public sizeNextRequest:number=0
+    public sizeDataResponse:number=15
     private errorHandler: ErrorHandler;
     private ordersResp: Order[];
     private users: User[];
@@ -100,7 +102,7 @@ export class ApiDataServiceService {
     }
 
     public async post<T>(url: string, data: any, applyLoading: boolean): Promise<T> {
-        this.barLoading = this.applySubLoadingBar
+        // this.barLoading = this.applySubLoadingBar
         this.isLoading = applyLoading
         this.isLoadingData = this.applySubLoading
         try {
@@ -114,13 +116,15 @@ export class ApiDataServiceService {
             return (axiosResponse.data);
 
         } catch (error) {
+            // this.barLoading = false
             return (Promise.reject(this.normalizeError(null)));
             // return (Promise.reject(this.normalizeError(error)));
 
         } finally {
-            this.barLoading = false
+            // this.barLoading = false
             this.isLoading = false
             this.isLoadingData = false
+            this.barLoading=false
             this.applySubLoading = true
         }
 
