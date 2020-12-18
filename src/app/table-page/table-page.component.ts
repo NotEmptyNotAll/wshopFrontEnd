@@ -301,6 +301,7 @@ export class TablePageComponent implements OnInit {
     }
 
     loadDataLazy(event: LazyLoadEvent) {
+        console.log(this.apiService.sizeNextRequest)
         if (this.apiService.sizeNextRequest>0  ) {
             // let loadedCars = this.tableDataService.mainData.slice(event.first, (event.first + event.rows));
             // Array.prototype.splice.apply( this.tableDataService.mainData, [...[event.first, event.rows], ...loadedCars]);

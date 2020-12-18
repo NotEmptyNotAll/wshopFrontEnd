@@ -87,6 +87,7 @@ export class OrdersComponent implements OnInit {
         // this.data = await this.apiService.get<Order[]>('getCroppedOrders')
         this.data = this.orderService.getOrderResponse()
         this.mainColumn = []
+        this.apiService.startIndex=0;
         this.data.columnTables.map(elem => {
             this.mainColumn.push(
                 {
@@ -96,6 +97,8 @@ export class OrdersComponent implements OnInit {
                 }
             )
         })
+        this.apiService.startIndex+=this.apiService.sizeDataResponse
+
         let regexp = new RegExp('^[1-9]\d{0,2}$');
         let tableBody = []
         this.data.ordersTableBody.map(row => {
@@ -193,6 +196,7 @@ export class OrdersComponent implements OnInit {
                 }
             )
         })
+        this.apiService.sizeNextRequest=this.data.sizeTwoPartData
         let regexp = new RegExp('^[1-9]\d{0,2}$');
         let tableBody = []
         this.data.ordersTableBody.map(row => {
