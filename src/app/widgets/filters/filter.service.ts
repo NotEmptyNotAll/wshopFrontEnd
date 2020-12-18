@@ -22,6 +22,7 @@ export class FilterService {
         sizeResponse:null,
         payed: null,
         user: null,
+        rowStartIndex:null,
         workId: null,
         workStatus: null,
         workDateTo: null,
