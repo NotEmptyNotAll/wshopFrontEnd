@@ -184,7 +184,7 @@ export class OrdersComponent implements OnInit {
     async updateData() {
         this.apiService.startIndex = 0;
         let request = this.filterService.getOrderRequest()
-        request.sizeResponse = 100
+        request.sizeResponse = 3000
         this.filterService.setOrderRequest(request)
         this.data = await this.apiService.post<TableOrderResponse>(
             'getCroppedOrders', this.filterService.getOrderRequest(), false
