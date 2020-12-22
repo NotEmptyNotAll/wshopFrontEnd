@@ -19,15 +19,18 @@ export class ServStateFilterService {
 
   public onStndFilter() {
     this.disableFastFiled = true
+    this.stateFilterData= {name: 'незакрытые', code: 'UNCLOSED'}
+    this.orderRequest = this.filterService.getOrderRequest()
+    this.orderRequest.state = this.stateFilterData.code
+    this.filterService.setOrderRequest(this.orderRequest)
     this.stateTemp.name = this.stateFastFilterData.name
     this.stateTemp.code = this.stateFastFilterData.code
-    this.stateFastFilterData.name=''
-    this.stateFastFilterData.code=''
-    console.log(this.stateFastFilterData)
+    this.stateFastFilterData=null
   }
 
   public onFastFilter() {
     this.disableFastFiled = false
+    this.stateFastFilterData={name: '', code: ''}
     this.stateFastFilterData.name = this.stateTemp.name
     this.stateFastFilterData.code = this.stateTemp.code
     this.stateTemp.name=''

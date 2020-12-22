@@ -19,16 +19,23 @@ export class ServPeriodFilterService {
 
     public onStndFilter() {
         this.disableFastFiled = true
+        this.orderRequest = this.filterService.getOrderRequest()
+        this.orderRequest.dateFrom=null
+        this.orderRequest.dateTo=null
+        this.filterService.setOrderRequest(this.orderRequest)
+
         this.periodTemp.name = this.periodFastFilterData.name
         this.periodTemp.code = this.periodFastFilterData.code
-        this.periodFastFilterData.name = ''
-        this.periodFastFilterData.code = -1
+        this.periodFastFilterData=null
     }
 
     public onFastFilter() {
         this.disableFastFiled = false
+
+        this.periodFastFilterData={name: '', code: -1}
         this.periodFastFilterData.name = this.periodTemp.name
         this.periodFastFilterData.code = this.periodTemp.code
+
         this.periodTemp.name = ''
         this.periodTemp.code = -1
         this.changePeriod()

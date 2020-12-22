@@ -329,7 +329,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<app-menu-bar></app-menu-bar>\n<div id=\"main\">\n\n    <router-outlet></router-outlet>\n\n</div>\n<app-loading-spiner *ngIf=\"apiService.isLoading\"></app-loading-spiner>\n<p-toast></p-toast>\n";
+    __webpack_exports__["default"] = "<app-menu-bar></app-menu-bar>\n<div style=\"position: absolute;top:53px;left: 0px;height: 6px;width: 100%\">\n<p-progressBar mode=\"indeterminate\" *ngIf=\"apiService.barLoading\" [style]=\"{color:'chocolate','height': '6px'}\"></p-progressBar>\n</div>\n<div id=\"main\">\n\n    <router-outlet></router-outlet>\n\n</div>\n<app-loading-spiner *ngIf=\"apiService.isLoading\"></app-loading-spiner>\n<p-toast></p-toast>\n";
     /***/
   },
 
@@ -349,7 +349,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n<app-master-start-window *ngIf=\"!apiService.isLoading\"\n        [display]=\"masterWindowVisible\"\n                         (onCancelAction)=\"quit()\"\n        (onConfirm)=\"moveToMasterSelectWindows()\"\n        title=\"НАЧАТЬ ЗМІНУ\" textOnConfirm=\"ПОЧАТИ\" textOnCancel=\"СКАСУВАТИ\"\n></app-master-start-window>\n<div class=\"login-page\" *ngIf=\"!masterWindowVisible\">\n    <div class=\"login-form shadow  \">\n        <!--<img src=\"assets/image/login-images.png\"/>\n        <hr width=\"100%\"/>-->\n        <div class=\"login-row\">\n\n            <span style=\"width: 90%\">\n            <p-dropdown\n                    autoWidth=\"false\" [style]=\"{'minWidth':'100%'}\"\n                    [showClear]=\"true\" [placeholder]=\"'loginPage.SelectName' | translate\"\n                    [options]=\"users\" [(ngModel)]=\"selectedUser\"\n                    [filter]=\"true\" optionLabel=\"name\"></p-dropdown>\n            </span>\n        </div>\n\n\n        <div class=\"login-row\">\n            <span style=\"width: 90%\">\n            <input type=\"password\" [(ngModel)]=\"password\"\n                   (keydown.enter)=\"login()\"\n                   [disabled]=\"selectedUser===null || selectedUser===undefined\"\n                   [style]=\"{'minWidth':'100%'}\"\n                   [placeholder]=\"'loginPage.password' | translate\"\n                   [feedback]=\"false\" pPassword/>\n            </span>\n        </div>\n        <div class=\"login-row\">\n\n            <button pRipple pButton type=\"button\" (click)=\"cancel()\"\n                    class=\" p-button-danger\"\n                    [label]=\"'loginPage.cancel' | translate\" icon=\"pi pi-times\"></button>\n\n            <button pRipple pButton type=\"button\" (click)=\"login()\"\n                    class=\" p-button-success\"\n                    [disabled]=\"selectedUser===null || selectedUser===undefined\"\n                    [label]=\"'loginPage.login' | translate\" icon=\"pi pi-check\"></button>\n\n        </div>\n    </div>\n</div>";
+    __webpack_exports__["default"] = "\n<app-master-start-window *ngIf=\"!apiService.isLoading\"\n                         [display]=\"masterWindowVisible\"\n                         (onCancelAction)=\"quit()\"\n                         (onConfirm)=\"moveToMasterSelectWindows()\"\n                         title=\"НАЧАТЬ ЗМІНУ\" textOnConfirm=\"ПОЧАТИ\" textOnCancel=\"СКАСУВАТИ\"\n></app-master-start-window>\n<div class=\"login-page\" *ngIf=\"!masterWindowVisible\">\n    <div class=\"login-form shadow  \">\n        <!--<img src=\"assets/image/login-images.png\"/>\n        <hr width=\"100%\"/>-->\n        <div class=\"login-row\">\n\n            <span style=\"width: 90%\">\n            <p-dropdown\n                    autoWidth=\"false\" [style]=\"{'minWidth':'100%'}\"\n                    [showClear]=\"true\" [placeholder]=\"'loginPage.SelectName' | translate\"\n                    [options]=\"users\" [(ngModel)]=\"selectedUser\"\n                    [filter]=\"true\" optionLabel=\"name\"></p-dropdown>\n            </span>\n        </div>\n\n\n        <div class=\"login-row\">\n            <span style=\"width: 90%\">\n            <input type=\"password\" [(ngModel)]=\"password\"\n                   (keydown.enter)=\"login()\"\n                   [disabled]=\"selectedUser===null || selectedUser===undefined\"\n                   [style]=\"{'minWidth':'100%'}\"\n                   [placeholder]=\"'loginPage.password' | translate\"\n                   [feedback]=\"false\" pPassword/>\n            </span>\n        </div>\n        <div class=\"login-row\">\n\n            <button pRipple pButton type=\"button\" (click)=\"cancel()\"\n                    class=\" p-button-danger\"\n                    style=\"min-width: 8rem\"\n                    [label]=\"'loginPage.cancel' | translate\" icon=\"pi pi-times\"></button>\n\n            <button pRipple pButton type=\"button\" (click)=\"login()\"\n                    class=\" p-button-success\"\n                    style=\"min-width: 8rem\"\n                    [disabled]=\"selectedUser===null || selectedUser===undefined\"\n                    [label]=\"'loginPage.login' | translate\" icon=\"pi pi-check\"></button>\n\n        </div>\n    </div>\n</div>";
     /***/
   },
 
@@ -369,7 +369,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div style=\"background: #F56C6C\">\n    <p>ЗНАХОДИТЬСЯ В РОЗРОБЦІ/p>\n</div>\n<app-table-page [startData]=\"data\" title=\" вибір замовлення\"\n                [mainColumn]=\"mainColumn\" [stateFilterDisable]=\"true\"\n                [buttonItems]=\"buttItem\" [standardFilterDisable]=\"true\"\n                [buttonActionDisable]=\"true\"  *ngIf=\"data!=null\"></app-table-page>";
+    __webpack_exports__["default"] = "<div style=\"background: #F56C6C\">\n    <p>ЗНАХОДИТЬСЯ В РОЗРОБЦІ</p>\n</div>\n<app-table-page [startData]=\"data\" title=\" вибір замовлення\"\n                [mainColumn]=\"mainColumn\" [stateFilterDisable]=\"true\"\n                (onUpdateData)=\"onUpdate()\"\n                [buttonItems]=\"buttItem\" [standardFilterDisable]=\"true\"\n                [buttonActionDisable]=\"true\"  *ngIf=\"data!=null\"></app-table-page>";
     /***/
   },
 
@@ -409,7 +409,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<p-menubar id=\"openNav\" [model]=\"(apiService.getUserData()!==null && apiService.getUserData()!==undefined)?items:itemsNoLogin\"\n           [style]=\"{zIndex:'999',background:'#f4f4f4',\nminWidth:'100%', height:'53px',position:'fixed',left:'0px',top:'0px'} \"\n>\n    <p-button *ngIf=\"apiService.getUserData()!==null && apiService.getUserData()!==undefined\"\n              type=\"text\" [style]=\"{minWidth:'40px',minHeight:'40px',\n                  background:'#DC143C', borderColor:'#DC143C'}\"\n              (click)=\"quit()\" icon=\"pi pi-fw  pi-power-off\"\n              class=\"p-button-success p-button-text\"\n              [label]=\"\"></p-button>\n    <p-button *ngIf=\"apiService.getUserData()===null || apiService.getUserData()===undefined\"\n              type=\"text\" [style]=\"{minWidth:'40px',minHeight:'40px'}\"\n              (click)=\"quit()\" icon=\"pi pi-fw pi-user\"\n              class=\"p-button-success p-button-text\"\n              [label]=\"\"></p-button>\n</p-menubar>\n\n<!--<p-sidebar [modal]=\"false\" [(visible)]=\"display\">\n    <h2>{{'loginPage.menu' | translate}}</h2>\n    <hr class=\"hr-style\"/>\n    <p-listbox\n\n            [style]=\"{minWidth:'100%',borderColor:'white',\n            position:'absolute',left:'0px',fontSize:'1.5em'}\"\n            [options]=\" [ {name:  'loginPage.listOrders' | translate, code: 'NY'}]\" [(ngModel)]=\"cities1\"\n            optionLabel=\"name\"></p-listbox>\n\n</p-sidebar>-->\n\n<div class=\"side-menu\" style=\"display:none;\" id=\"mySidebar\">\n\n    <h3 style=\"position: relative; left: 10px\">{{'loginPage.menu' | translate}}</h3>\n    <hr class=\"hr-style\" style=\"    z-index: 2;\"/>\n    <p-listbox\n            id=\"mySidebarList\"\n            [style]=\"{minWidth:'100%',borderColor:'white',zIndex:'2',width:'100%',\n\n            position:'absolute',left:'0px',fontSize:'1.5em'}\"\n            [options]=\" [ {name:  'loginPage.listOrders' | translate, code: 'NY'}]\" [(ngModel)]=\"cities1\"\n            optionLabel=\"name\"></p-listbox>\n</div>\n\n<br/>\n<br/>";
+    __webpack_exports__["default"] = "<p-menubar id=\"openNav\" [model]=\"(apiService.getUserData()!==null && apiService.getUserData()!==undefined)?items:itemsNoLogin\"\n           [style]=\"{zIndex:'999',background:'#f4f4f4',\nminWidth:'100%', height:'53px',position:'fixed',left:'0px',top:'0px'} \"\n>\n    <p-button *ngIf=\"apiService.getUserData()!==null && apiService.getUserData()!==undefined\"\n              type=\"text\" [style]=\"{minWidth:'40px',minHeight:'40px',\n                  background:'#DC143C', borderColor:'#DC143C'}\"\n              (click)=\"quit()\" icon=\"pi pi-fw  pi-power-off\"\n              class=\"p-button-success p-button-text\"\n              [label]=\"\"></p-button>\n    <p-button *ngIf=\"apiService.getUserData()===null || apiService.getUserData()===undefined\"\n              type=\"text\" [style]=\"{minWidth:'40px',minHeight:'40px'}\"\n              (click)=\"quit()\" icon=\"pi pi-fw pi-user\"\n              class=\"p-button-success p-button-text\"\n              [label]=\"\"></p-button>\n</p-menubar>\n\n\n<!--<p-sidebar [modal]=\"false\" [(visible)]=\"display\">\n    <h2>{{'loginPage.menu' | translate}}</h2>\n    <hr class=\"hr-style\"/>\n    <p-listbox\n\n            [style]=\"{minWidth:'100%',borderColor:'white',\n            position:'absolute',left:'0px',fontSize:'1.5em'}\"\n            [options]=\" [ {name:  'loginPage.listOrders' | translate, code: 'NY'}]\" [(ngModel)]=\"cities1\"\n            optionLabel=\"name\"></p-listbox>\n\n</p-sidebar>-->\n\n<div class=\"side-menu\" style=\"display:none;\" id=\"mySidebar\">\n\n    <h3 style=\"position: relative; left: 10px\">{{'loginPage.menu' | translate}}</h3>\n    <hr class=\"hr-style\" style=\"    z-index: 2;\"/>\n    <p-listbox\n            id=\"mySidebarList\"\n            [style]=\"{minWidth:'100%',borderColor:'white',zIndex:'2',width:'100%',\n\n            position:'absolute',left:'0px',fontSize:'1.5em'}\"\n            [options]=\" [ {name:  'loginPage.listOrders' | translate, code: 'NY'}]\" [(ngModel)]=\"cities1\"\n            optionLabel=\"name\"></p-listbox>\n</div>\n\n<br/>\n<br/>";
     /***/
   },
 
@@ -449,7 +449,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<app-table-page [startData]=\"data\" [title]=\" 'loginPage.listOrders' | translate\"\n                [mainColumn]=\"mainColumn\"\n                [buttonActionDisable]=\"false\"\n                [buttonItems]=\"[]\"\n                [stateFilterDisable]=\"false\"  *ngIf=\"data!=null\"></app-table-page>";
+    __webpack_exports__["default"] = "<app-table-page [startData]=\"data\" [title]=\" 'loginPage.listOrders' | translate\"\n                [mainColumn]=\"mainColumn\"\n                (onUpdateData)=\"updateData()\"\n                (onLazyLoad)=\"twoDownload()\"\n                [buttonActionDisable]=\"false\"\n                [buttonItems]=\"[]\"\n                [stateFilterDisable]=\"false\"  *ngIf=\"data!=null\"></app-table-page>";
     /***/
   },
 
@@ -509,7 +509,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"content-body\" id='mian' *ngIf=\"!tableDataService.showUpdatePage\">\n    <!--<div class=\"input-form\">\n        <input placeholder=\"input columns size\" type=\"text\"\n               [ngClass]=\"{'err-input':inputErr,'input-text':!inputErr}\"\n               [(ngModel)]=\"tableDataService.addColumnText\" (input)=\"setColumn()\"/>\n        <input type=\"text\" class=\"input-text\" [(ngModel)]=\"tableDataService.search\"\n               (keydown.enter)=\"onSearch()\"/>\n        <button class=\"button button-search\" (click)=\"onSearch()\">search</button>\n    </div>\n\n        <div class=\"box\">\n        <app-filter-box></app-filter-box>\n        <div class=\"shadow box-item \">\n            <p-multiSelect [options]=\"columns\" [(ngModel)]=\"_selectedColumns\" optionLabel=\"header\"\n                           selectedItemsLabel=\" {0} columns selected\"\n                           [style]=\"{minWidth:'200px'}\"\n                           placeholder=\"Choose Columns\"></p-multiSelect>\n        </div>\n\n    </div>\n    -->\n    <p-dialog header=\"{{'loginPage.filters' | translate}}\"\n              [style]=\"{minWidth:'400px',minHeight:'500px',width:'600px'}\"\n              [(visible)]=\"display\" [resizable]=\"true\" responsive=\"false\">\n        <div class=\"filter-panel\">\n            <app-date-filter class=\"filter\"></app-date-filter>\n            <app-payed-filter class=\"filter\"></app-payed-filter>\n            <app-state-filter class=\"filter\" [onlyField]=\"false\"></app-state-filter>\n            <app-customer-filter class=\"filter\"></app-customer-filter>\n            <app-employee-filter class=\"filter\"></app-employee-filter>\n        </div>\n\n\n        <p-footer class=\"footer-dialog\">\n            <button pRipple type=\"button\" (click)=\"cancelFilter()\" style=\"margin-right: 15%;margin-left:10%\" pButton\n                    class=\"p-button-danger\"\n                    [label]=\"'loginPage.cancel' | translate\" icon=\"pi pi-times\" label=\"delete\"></button>\n            <button pRipple type=\"button\" (click)=\"updateData()\" style=\"margin-left:15%;margin-right:10% \" pButton\n                    icon=\"pi pi-check\"\n                    [label]=\"'loginPage.confirm' | translate\"></button>\n\n        </p-footer>\n    </p-dialog>\n    <p-confirmPopup [visible]=\"confirmDisplay\"></p-confirmPopup>\n    <p-contextMenu #cm [model]=\"items\"></p-contextMenu>\n\n    <!--  currentPageReportTemplate=\"{{'loginPage.TableNumLabel' | translate}}\"\n               [rows]=\"100\" [showCurrentPageReport]=\"true\" [rowsPerPageOptions]=\"[20,30,50,100]\"\n              [paginator]=\"true\" -->\n    <div style=\"height: 85vh;background: #f4f4f4;width: 100%\">\n        <p-table\n                [reorderableColumns]=\"true\"\n                class=\"table-style\"\n                [loading]=\"loading\"\n                [columns]=\"_selectedColumns\" [value]=\"tableDataService.mainData\" [scrollable]=\"true\"\n                scrollHeight=\"flex\"\n                [contextMenu]=\"cm\"\n                style=\"border-color: #f4f4f4\"\n                [style]=\"{borderColor:'#f4f4f4',zIndex:'0'}\"\n                [resizableColumns]=\"true\" selectionMode=\"single\"\n                dataKey=\"id\">\n\n            <ng-template pTemplate=\"caption\" style=\"border-color: #f4f4f4\">\n                <div class=\"table-header\" style=\"height: 35px\" [style]=\"{borderColor:'#f4f4f4'}\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row\">\n                        <div class=\"p-mb-4 p-mr-4\" style=\"width: 20%\">\n                            <h3> {{ title }}</h3>\n                        </div>\n\n                        <div class=\"p-mb-6 p-mr-6\" style=\"width: 40%\">\n                        </div>\n                        <div *ngIf=\"!standardFilterDisable\" class=\"p-mb-2 p-mr-2\" style=\" position: relative;top:-2px\">\n                            <button pButton type=\"button\" (click)=\"showDialog()\"\n                                    class=\"p-button-secondary\"\n                                    pRipple\n                                    icon=\"pi pi-filter size-icon-table\"\n                            >\n                            </button>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 300px; position: relative;top:-10px\">\n                            <app-period-date-filter [onlyField]=\"true\" (onSuggest)=\"updateData()\"\n                                                    (onClear)=\"updateData()\"\n\n                            ></app-period-date-filter>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 300px; position: relative;top:-10px\">\n                            <app-state-filter\n                                    [disabled]=\"stateFilterDisable\" [onlyField]=\"true\"\n                                    (onSuggest)=\"updateData()\"\n                                    (onClear)=\"updateData()\"\n                                    (click)=\"confirmOnStateFilter()\"\n                            ></app-state-filter>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 300px; position: relative;top:-10px\">\n\n                            <app-substring-filter (onSuggest)=\"updateData()\"\n                            ></app-substring-filter>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 100px; position: relative;top:-2px\">\n                            <button pButton type=\"button\" (click)=\"downloadExel()\"\n                                    class=\"p-button-secondary\"\n                                    pRipple\n                                    icon=\"pi pi-file-excel size-icon-table \"\n                            >\n                            </button>\n\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\"\n                             style=\" position: relative;top:-2px;\">\n                            <p-multiSelect [options]=\"columns\" [(ngModel)]=\"_selectedColumns\"\n                                           optionLabel=\"header\"\n                                           [showHeader]=\"false\"\n                                           id=\"multisect\"\n                                           selectedItemsLabel=\"\"\n                                           defaultLabel=\"\"\n                                           (onClick)=\"chooseColumn()\"\n                                           dropdownIcon=\"pi pi-microsoft size-icon\"\n                                           scrollHeight=\"700px\"\n                                           [style]=\"{width:'38px',height:'40px',position:'relative',background:'#f4f4f4',borderColor:'#f4f4f4'}\"\n                                           placeholder=\"\"></p-multiSelect>\n                        </div>\n                    </div>\n\n\n                </div>\n            </ng-template>\n            <ng-template pTemplate=\"colgroup\">\n                <colgroup>\n                    <col style=\"width:30px\">\n                    <col style=\"width:30px\">\n                    <col *ngFor=\"let col of columns\" style=\"{{'width:'+col.width+'px'}}\">\n                    <col *ngIf=\"buttonActionDisable\" style=\"width:150px\">\n\n                </colgroup>\n            </ng-template>\n            <ng-template pTemplate=\"header\" let-columns>\n                <tr style=\"border-color: #f4f4f4\" [style]=\"{borderColor:'#f4f4f4'}\">\n                    <th style=\"width:2rem;border-color: #f4f4f4\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>\n                    <th style=\"width:2rem;border-color: #f4f4f4\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>\n\n                    <th *ngFor=\"let col of columns\" pResizableColumn [pSortableColumn]=\"col.header\"\n                        style=\"border-color: #f4f4f4\" [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\">\n                        {{col.header}}\n                        <p-sortIcon [field]=\"col.header\"></p-sortIcon>\n                    </th>\n                    <th style=\"width:2rem;border-color: #f4f4f4\" *ngIf=\"buttonActionDisable\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-rowData let-columns=\"columns\" let-index=\"rowIndex\">\n                <tr [pReorderableRow]=\"index\" [pContextMenuRow]=\"rowData\">\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'12px'}\">\n                        <span class=\"pi pi-bars\" pReorderableRowHandle></span>\n                    </td>\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'14px'}\">\n                        <span *ngIf=\"rowData.Comment!==''\" class=\"pi pi-info-circle\" pReorderableRowHandle\n                              (click)=\"confirm($event,rowData)\"></span>\n                    </td>\n                    <td *ngFor=\"let col of columns\" class=\"ui-resizable-column\" pResizableColumn\n                        [style]=\"{borderColor:'#f4f4f4' , fontSize:'12px'}\">\n                    <span *ngIf=\"rowData[col.field]==='yes' || rowData[col.field]==='1'\">\n                        <i class=\"pi pi-check\"></i>\n                        </span>\n                        <span *ngIf=\"rowData[col.field]==='no' || rowData[col.field]==='0'\"></span>\n                        <span *ngIf=\"col.field==='Борг' || col.field==='Роб.' || col.field==='З/ч' || col.field==='Разом'\"\n                              style=\"padding-left: 50%\"> </span>\n                        <span *ngIf=\"!(rowData[col.field]==='yes' || rowData[col.field]==='1') && !(rowData[col.field]==='no' || rowData[col.field]==='0')\">\n                                            {{rowData[col.field]}}\n                    </span>\n                    </td>\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'14px',zIndex:'2'}\" *ngIf=\"buttonActionDisable\">\n\n                        <app-button-list-action></app-button-list-action>\n\n                    </td>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"emptymessage\">\n                <tr>\n                    <td [colSpan]=\"_selectedColumns.length\">No customers found.</td>\n                </tr>\n            </ng-template>\n        </p-table>\n    </div>\n    <!--\n    <p-confirmDialog [style]=\"{width: '30vw'}\" [baseZIndex]=\"10000\"></p-confirmDialog>\n    <div class=\"button-panel\">\n        <button type=\"button\" (click)=\"deleteData()\" pButton class=\"ui-button-danger\"\n                icon=\"pi pi-trash\" [disabled]=\"selectRow.id<=startData.length\" label=\"delete\"></button>\n        <button (click)=\"tableDataService.showUpdatePage=true\" type=\"button\" pButton icon=\"pi pi-plus\"\n                label=\"create\"></button>\n        <button type=\"button\" [disabled]=\"selectRow.id<=startData.length\" pButton icon=\"pi pi-pencil\"\n                class=\"ui-button-success\" (click)=\"changeData()\" label=\"change\"></button>\n    </div>-->\n\n</div>\n<app-create-add *ngIf=\"tableDataService.showUpdatePage\"></app-create-add>";
+    __webpack_exports__["default"] = "<div class=\"content-body\" id='mian' *ngIf=\"!tableDataService.showUpdatePage\">\n    <!--<div class=\"input-form\">\n        <input placeholder=\"input columns size\" type=\"text\"\n               [ngClass]=\"{'err-input':inputErr,'input-text':!inputErr}\"\n               [(ngModel)]=\"tableDataService.addColumnText\" (input)=\"setColumn()\"/>\n        <input type=\"text\" class=\"input-text\" [(ngModel)]=\"tableDataService.search\"\n               (keydown.enter)=\"onSearch()\"/>\n        <button class=\"button button-search\" (click)=\"onSearch()\">search</button>\n    </div>\n\n        <div class=\"box\">\n        <app-filter-box></app-filter-box>\n        <div class=\"shadow box-item \">\n            <p-multiSelect [options]=\"columns\" [(ngModel)]=\"_selectedColumns\" optionLabel=\"header\"\n                           selectedItemsLabel=\" {0} columns selected\"\n                           [style]=\"{minWidth:'200px'}\"\n                           placeholder=\"Choose Columns\"></p-multiSelect>\n        </div>\n\n    </div>\n    -->\n    <p-dialog header=\"{{'loginPage.filters' | translate}}\"\n              [style]=\"{minWidth:'400px',minHeight:'500px',width:'600px'}\"\n              [(visible)]=\"display\" [resizable]=\"true\" responsive=\"false\">\n        <div class=\"filter-panel\">\n            <app-date-filter class=\"filter\"></app-date-filter>\n            <app-customer-filter class=\"filter\"></app-customer-filter>\n            <app-employee-filter class=\"filter\"></app-employee-filter>\n            <app-payed-filter class=\"filter\"></app-payed-filter>\n            <app-state-filter class=\"filter\" [onlyField]=\"false\"></app-state-filter>\n\n        </div>\n\n\n        <p-footer class=\"footer-dialog\">\n            <button pRipple type=\"button\" (click)=\"cancelFilter()\" style=\"margin-right: 15%;margin-left:10%\" pButton\n                    class=\"p-button-danger\"\n                    [label]=\"'loginPage.cancel' | translate\" icon=\"pi pi-times\" label=\"delete\"></button>\n            <button pRipple type=\"button\" (click)=\"updateData()\" style=\"margin-left:15%;margin-right:10% \" pButton\n                    icon=\"pi pi-check\"\n                    [label]=\"'loginPage.confirm' | translate\"></button>\n\n        </p-footer>\n    </p-dialog>\n    <p-confirmPopup [visible]=\"confirmDisplay\"></p-confirmPopup>\n    <p-contextMenu #cm [model]=\"items\"></p-contextMenu>\n\n    <!--  currentPageReportTemplate=\"{{'loginPage.TableNumLabel' | translate}}\"\n               [rows]=\"100\" [showCurrentPageReport]=\"true\" [rowsPerPageOptions]=\"[20,30,50,100]\"\n              [paginator]=\"true\" -->\n    <div style=\"height: 88vh;background: #f4f4f4;width: 100%\">\n        <p-table\n                [rows]=\"20\"\n                [virtualScroll]=\"true\" [virtualRowHeight]=\"15\"\n                [reorderableColumns]=\"true\"\n                class=\"table-style\"\n                [loading]=\"apiService.isLoadingData\"\n                [columns]=\"_selectedColumns\" [value]=\"tableDataService.mainData\" [scrollable]=\"true\"\n                scrollHeight=\"flex\"\n                [contextMenu]=\"cm\"\n                columnResizeMode=\"expand\"\n                style=\"border-color: #f4f4f4\"\n                (sortFunction)=\"customSort($event)\" [customSort]=\"true\"\n                [style]=\"{borderColor:'#f4f4f4',zIndex:'0'}\"\n                [resizableColumns]=\"true\" selectionMode=\"single\"\n                dataKey=\"id\">\n\n            <ng-template pTemplate=\"caption\" style=\"border-color: #f4f4f4\">\n                <div class=\"table-header\" style=\"height: 35px\" [style]=\"{borderColor:'#f4f4f4'}\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row\">\n                        <div class=\"p-mb-4 p-mr-4\" style=\"width: 20%\">\n                            <h3> {{ title }}</h3>\n                        </div>\n                        <div class=\"p-mb-6 p-mr-6\" style=\"width: 40%\">\n                        </div>\n                        <div *ngIf=\"!standardFilterDisable\" class=\"p-mb-2 p-mr-2\" style=\" position: relative;top:-2px\">\n                            <button pButton type=\"button\" (click)=\"showDialog()\"\n                                    class=\"p-button-secondary\"\n                                    pRipple\n                                    icon=\"pi pi-filter size-icon-table\"\n                            >\n                            </button>\n                        </div>\n\n                        <div *ngIf=\"standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n                            <app-work-period-filter (onSuggest)=\"updateData()\"\n                                                    (click)=\"confirmOnFilter($event)\"\n                            ></app-work-period-filter>\n                        </div>\n                        <div *ngIf=\"standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n                            <app-detail-filter (onSuggest)=\"updateData()\"\n                                               (click)=\"confirmOnFilter($event)\"\n                            ></app-detail-filter>\n                        </div>\n                        <div *ngIf=\"standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n                            <app-work-filter (onSuggest)=\"updateData()\"\n                                             (click)=\"confirmOnFilter($event)\"\n                            ></app-work-filter>\n                        </div>\n\n                        <div *ngIf=\"standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n                            <app-work-status-filter\n                                    [disabled]=\"stateFilterDisable\" [onlyField]=\"true\"\n                                    (onSuggest)=\"updateData()\"\n                                    (onClear)=\"updateData()\"\n                                    (click)=\"confirmOnFilter($event)\"\n                            ></app-work-status-filter>\n                        </div>\n                        <div *ngIf=\"!standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n                            <app-period-date-filter [onlyField]=\"true\" (onSuggest)=\"updateData()\"\n                                                    (onClear)=\"updateData()\"\n                                                    (click)=\"confirmOnFilter($event)\"\n                            ></app-period-date-filter>\n                        </div>\n                        <div *ngIf=\"!standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n                            <app-state-filter\n                                    [disabled]=\"stateFilterDisable\" [onlyField]=\"true\"\n                                    (onSuggest)=\"updateData()\"\n                                    (onClear)=\"updateData()\"\n                                    (click)=\"confirmOnFilter($event)\"\n                            ></app-state-filter>\n                        </div>\n                        <div *ngIf=\"!standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n\n                            <app-substring-filter (click)=\"confirmOnFilter($event)\"\n                                                  (onSuggest)=\"updateData()\"\n                            ></app-substring-filter>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 100px; position: relative;top:-2px\">\n                            <button pButton type=\"button\" (click)=\"downloadExel()\"\n                                    class=\"p-button-secondary\"\n                                    pRipple\n                                    icon=\"pi pi-file-excel size-icon-table \"\n                            >\n                            </button>\n\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\"\n                             style=\" position: relative;top:-2px;\">\n                            <p-multiSelect [options]=\"columns\" [(ngModel)]=\"_selectedColumns\"\n                                           optionLabel=\"header\"\n                                           [showHeader]=\"false\"\n                                           id=\"multisect\"\n                                           selectedItemsLabel=\"\"\n                                           defaultLabel=\"\"\n                                           (onClick)=\"chooseColumn()\"\n                                           dropdownIcon=\"pi pi-microsoft size-icon\"\n                                           scrollHeight=\"700px\"\n                                           [style]=\"{width:'38px',height:'40px',position:'relative',background:'#f4f4f4',borderColor:'#f4f4f4'}\"\n                                           placeholder=\"\"></p-multiSelect>\n                        </div>\n                    </div>\n\n\n                </div>\n            </ng-template>\n            <ng-template pTemplate=\"colgroup\">\n                <colgroup>\n                    <col style=\"width:30px\">\n                    <col style=\"width:30px\">\n                    <col *ngFor=\"let col of columns\" style=\"{{'width:'+col.width+'px'}}\">\n                    <!--                    <col *ngIf=\"buttonActionDisable\" style=\"width:150px\">-->\n\n                </colgroup>\n            </ng-template>\n            <ng-template pTemplate=\"header\" let-columns>\n                <tr style=\"border-color: #f4f4f4\" [style]=\"{borderColor:'#f4f4f4'}\">\n                    <th style=\"width:2rem;border-color: #f4f4f4\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>\n                    <th style=\"width:2rem;border-color: #f4f4f4\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'15px'}\"></th>\n\n                    <th *ngFor=\"let col of columns\" pResizableColumn [pSortableColumn]=\"col.header\"\n                        style=\"border-color: #f4f4f4\" [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\">\n                        {{col.header}}\n                        <p-sortIcon [field]=\"col.header\"></p-sortIcon>\n                    </th>\n                    <!--                    <th style=\"width:2rem;border-color: #f4f4f4\" *ngIf=\"buttonActionDisable\"-->\n                    <!--                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>-->\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"loadingbody\" let-columns=\"columns\">\n                <tr style=\"height:34px\">\n                    <td *ngFor=\"let col of columns\">\n                        <div class=\"loading-text\"></div>\n                    </td>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-rowData let-columns=\"columns\" let-index=\"rowIndex\">\n                <tr [pReorderableRow]=\"index\" [pContextMenuRow]=\"rowData\">\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'12px'}\">\n                        <span class=\"pi pi-bars\" pReorderableRowHandle></span>\n                    </td>\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'14px'}\">\n                        <span *ngIf=\"rowData.Comment!==''\" class=\"pi pi-info-circle\" pReorderableRowHandle\n                              (click)=\"confirm($event,rowData)\"></span>\n                    </td>\n                    <td *ngFor=\"let col of columns\" class=\"ui-resizable-column\" pResizableColumn\n                        [style]=\"{borderColor:'#f4f4f4' , fontSize:'12px'}\">\n                        <span *ngIf=\"buttonActionDisable\">\n                                                                        {{rowData[col.field]}}\n\n                        </span>\n                        <span *ngIf=\"!buttonActionDisable\">\n                    <span *ngIf=\"(rowData[col.field]==='yes' || rowData[col.field]==='1') \">\n                        <i class=\"pi pi-check\"></i>\n                        </span>\n                        <span *ngIf=\"rowData[col.field]==='no' || rowData[col.field]==='0'\"></span>\n                        <span *ngIf=\"col.field==='Долг' || col.field==='Раб.' || col.field==='З/ч' || col.field==='Всего'\"\n                              style=\"padding-left: 50%\"> </span>\n                        <span *ngIf=\"!(rowData[col.field]==='yes' || rowData[col.field]==='1') && !(rowData[col.field]==='no' || rowData[col.field]==='0')\">\n                                            {{rowData[col.field]}}\n                    </span>\n                        </span>\n                    </td>\n                    <!--                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'14px',zIndex:'2'}\" *ngIf=\"buttonActionDisable\">-->\n\n                    <!--                        <app-button-list-action></app-button-list-action>-->\n\n                    <!--                    </td>-->\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"emptymessage\">\n                <tr>\n                    <td [colSpan]=\"_selectedColumns.length\">No customers found.</td>\n                </tr>\n            </ng-template>\n        </p-table>\n    </div>\n    <!--\n    <p-confirmDialog [style]=\"{width: '30vw'}\" [baseZIndex]=\"10000\"></p-confirmDialog>\n    <div class=\"button-panel\">\n        <button type=\"button\" (click)=\"deleteData()\" pButton class=\"ui-button-danger\"\n                icon=\"pi pi-trash\" [disabled]=\"selectRow.id<=startData.length\" label=\"delete\"></button>\n        <button (click)=\"tableDataService.showUpdatePage=true\" type=\"button\" pButton icon=\"pi pi-plus\"\n                label=\"create\"></button>\n        <button type=\"button\" [disabled]=\"selectRow.id<=startData.length\" pButton icon=\"pi pi-pencil\"\n                class=\"ui-button-success\" (click)=\"changeData()\" label=\"change\"></button>\n    </div>-->\n\n</div>\n<app-create-add *ngIf=\"tableDataService.showUpdatePage\"></app-create-add>";
     /***/
   },
 
@@ -569,7 +569,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"filter-component\">\n    <div class=\"white-line\"></div>\n    <p class=\"title\">замовник</p>\n    <div class=\"filter-body\">\n\n        <div class=\" p-fluid  p-grid p-formgrid\">\n            <div class=\"p-field p-col-36 p-md-12\">\n                <p-autoComplete (onSelect)=\"changeState()\" [(ngModel)]=\"selected\" [suggestions]=\"filtered\"\n                                (completeMethod)=\"filter($event)\" panelStyle=\"panel-style\"\n\n                                field=\"name\"\n                                [dropdown]=\"true\">\n                    <ng-template let-country pTemplate=\"item\">\n                        <div class=\"country-item\">\n                            <div>{{country.name}}</div>\n                        </div>\n                    </ng-template>\n                </p-autoComplete>\n            </div>\n        </div>\n    </div>\n</div>";
+    __webpack_exports__["default"] = "<div class=\"filter-component\">\n    <div class=\"white-line\"></div>\n    <p class=\"title\">заказчик</p>\n    <div class=\"filter-body\">\n        <div class=\" p-fluid  p-grid p-formgrid\">\n            <div class=\"p-field p-col-36 p-md-12\">\n                <p-autoComplete (onSelect)=\"changeState()\" [(ngModel)]=\"selected\" [suggestions]=\"customers\"\n                                (completeMethod)=\"filter($event)\" panelStyle=\"panel-style\"\n                                field=\"name\"\n                                [dropdown]=\"true\">\n                    <ng-template let-country pTemplate=\"item\">\n                        <div class=\"country-item\">\n                            <div>{{country.name}}</div>\n                        </div>\n                    </ng-template>\n                </p-autoComplete>\n            </div>\n        </div>\n    </div>\n</div>";
     /***/
   },
 
@@ -589,7 +589,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"filter-component\">\n    <p class=\"title\">дата</p>\n    <div class=\"white-line\"></div>\n    <div style=\"position: relative;top:10px\">\n    <div style=\"margin-bottom:3%; display: flex;flex-direction: column;justify-content: center;align-content: center\">\n\n\n        <div style=\"display: flex;flex-direction: row;justify-content: center;align-content: center\" >\n            <p-radioButton name=\"groupname1\" inputId=\"val4\" [value]=\"1\"\n                           [(ngModel)]=\"menuChange\" style=\"margin-right:5%;margin-left:5%;\"></p-radioButton>\n            <label for=\"val4\">днi</label>\n            <p-radioButton  name=\"groupname1\" [value]=\"2\" inputId=\"val5\"\n                           [(ngModel)]=\"menuChange\" style=\"margin-right:5%;margin-left:5%;\"></p-radioButton>\n            <label for=\"val5\">мiсяцi</label>\n            <p-radioButton  name=\"groupname1\" [value]=\"3\" inputId=\"val6\"\n                            [(ngModel)]=\"menuChange\" style=\"margin-right:5%;margin-left:5%;\"></p-radioButton>\n            <label for=\"val6\">період</label>\n        </div>\n    </div>\n\n    <div style=\"position:relative;left:12px;display: flex; flex-direction: column;justify-content: center;width: 100%;align-content: center\">\n        <p-calendar style=\"margin-bottom:3%;\" [showIcon]=\"true\" placeholder=\"дата від\" (click)=\"changePeriod()\" [(ngModel)]=\"dateFrom\" *ngIf=\"menuChange===1\" dateFormat=\"yy-mm-dd\"\n                  ></p-calendar>\n        <p-calendar style=\"margin-bottom:3%;\" [showIcon]=\"true\" placeholder=\"дата до\" (click)=\"changePeriod()\" [(ngModel)]=\"dateTo\" *ngIf=\"menuChange===1\" dateFormat=\"yy-mm-dd\"\n                    ></p-calendar>\n        <p-calendar style=\"margin-bottom:3%;\" [showIcon]=\"true\" placeholder=\"дата від\"  (click)=\"changeMonthPeriodDateFrom()\" [(ngModel)]=\"dateFrom\" *ngIf=\"menuChange===2\" view=\"month\"\n                    dateFormat=\"yy-mm-dd\" ></p-calendar>\n        <p-calendar style=\"margin-bottom:3%;\"   [showIcon]=\"true\" placeholder=\"дата до\" (click)=\"changeMonthPeriodDateTo()\" [(ngModel)]=\"dateTo\" *ngIf=\"menuChange===2\" view=\"month\"\n                     dateFormat=\"yy-mm-dd\" ></p-calendar>\n        <app-period-date-filter style=\"margin-bottom:3%;\" [onlyField]=\"true\"  *ngIf=\"menuChange===3\" ></app-period-date-filter>\n    </div>\n    <div style=\"margin-bottom:3%;display: flex;flex-direction: row;justify-content: center;align-content: center\">\n\n        <p-radioButton name=\"groupname\" inputId=\"val1\" [value]=\"false\"\n                       [(ngModel)]=\"isCloseDate\" style=\"margin-right:5%;margin-left:5%\"></p-radioButton>\n        <label for=\"val1\">відкр.</label>\n        <p-radioButton name=\"groupname\" [value]=\"true\" inputId=\"val2\"\n                       [(ngModel)]=\"isCloseDate\" style=\"margin-right:5%;margin-left:5%\"></p-radioButton>\n        <label for=\"val2\">закр.</label>\n    </div>\n    </div>\n</div>";
+    __webpack_exports__["default"] = "<div class=\"filter-component\">\n    <p class=\"title\">дата</p>\n    <div class=\"white-line\"></div>\n    <div style=\"position: relative;top:10px\">\n    <div style=\"margin-bottom:3%; display: flex;flex-direction: column;justify-content: center;align-content: center\">\n\n\n        <div style=\"display: flex;flex-direction: row;justify-content: center;align-content: center\" >\n            <p-radioButton name=\"groupname1\" inputId=\"val4\" [value]=\"1\"\n                           [(ngModel)]=\"menuChange\" (onClick)=\"changeInputField()\" style=\"margin-right:5%;margin-left:5%;\"></p-radioButton>\n            <label for=\"val4\">дни</label>\n            <p-radioButton  name=\"groupname1\" [value]=\"2\" inputId=\"val5\"\n                           [(ngModel)]=\"menuChange\" (onClick)=\"changeInputField()\" style=\"margin-right:5%;margin-left:5%;\"></p-radioButton>\n            <label for=\"val5\">месяцы</label>\n            <p-radioButton  name=\"groupname1\" [value]=\"3\" inputId=\"val6\"\n                            [(ngModel)]=\"menuChange\"  (onClick)=\"changeInputField()\" style=\"margin-right:5%;margin-left:5%;\"></p-radioButton>\n            <label for=\"val6\">период</label>\n        </div>\n    </div>\n\n    <div style=\"position:relative;left:22px;display: flex; flex-direction: column;justify-content: center;width: 100%;align-content: center\">\n        <p-calendar style=\"margin-bottom:3%;\" [showIcon]=\"true\" placeholder=\"дата от\" (click)=\"changePeriod()\" [(ngModel)]=\"dateFrom\" *ngIf=\"menuChange===1\" dateFormat=\"yy-mm-dd\"\n                  ></p-calendar>\n        <p-calendar style=\"margin-bottom:3%;\" [showIcon]=\"true\" placeholder=\"дата до\" (click)=\"changePeriod()\" [(ngModel)]=\"dateTo\" *ngIf=\"menuChange===1\" dateFormat=\"yy-mm-dd\"\n                    ></p-calendar>\n        <p-calendar style=\"margin-bottom:3%;\" [showIcon]=\"true\" placeholder=\"дата от\"  (click)=\"changeMonthPeriodDateFrom()\" [(ngModel)]=\"dateFromMonth\" *ngIf=\"menuChange===2\" view=\"month\"\n                    dateFormat=\"yy-mm-dd\" ></p-calendar>\n        <p-calendar style=\"margin-bottom:3%;\"   [showIcon]=\"true\" placeholder=\"дата до\" (click)=\"changeMonthPeriodDateTo()\" [(ngModel)]=\"dateToMonth\" *ngIf=\"menuChange===2\" view=\"month\"\n                     dateFormat=\"yy-mm-dd\" ></p-calendar>\n        <app-period-date-filter style=\"margin-bottom:3%;\" [onlyField]=\"false\"  *ngIf=\"menuChange===3\" ></app-period-date-filter>\n    </div>\n    <div style=\"margin-bottom:3%;display: flex;flex-direction: row;justify-content: center;align-content: center\">\n\n        <p-radioButton name=\"groupname\" inputId=\"val1\" [value]=\"false\"\n                       [(ngModel)]=\"isCloseDate\" style=\"margin-right:5%;margin-left:5%\"></p-radioButton>\n        <label for=\"val1\">откр.</label>\n        <p-radioButton name=\"groupname\" [value]=\"true\" inputId=\"val2\"\n                       [(ngModel)]=\"isCloseDate\" style=\"margin-right:5%;margin-left:5%\"></p-radioButton>\n        <label for=\"val2\">закр.</label>\n    </div>\n    </div>\n</div>";
     /***/
   },
 
@@ -609,7 +609,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<p>detail-filter works!</p>\n";
+    __webpack_exports__["default"] = "<div class=\" p-fluid  p-grid p-formgrid\">\n    <div class=\"p-field p-col-36 p-md-12\">\n        <p-autoComplete (onSelect)=\"changeState()\" [(ngModel)]=\"selected\" [suggestions]=\"details\"\n                        (completeMethod)=\"filter($event)\" panelStyle=\"panel-style\"\n                        field=\"name\"\n                        (onClear)=\"clear()\"\n                        [dropdown]=\"true\">\n            <ng-template let-country pTemplate=\"item\">\n                <div class=\"country-item\">\n                    <div>{{country.name}}</div>\n                </div>\n            </ng-template>\n        </p-autoComplete>\n    </div>\n</div>";
     /***/
   },
 
@@ -629,7 +629,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"filter-component\">\n    <div class=\"white-line\"></div>\n    <p class=\"title\">працівник</p>\n    <div class=\"filter-body\">\n\n    <div class=\" p-fluid  p-grid p-formgrid\" >\n        <div class=\"p-field p-col-36 p-md-12\">\n            <p-autoComplete [(ngModel)]=\"selected\" [suggestions]=\"filtered\"\n                            (onSelect)=\"changeState()\" (completeMethod)=\"filter($event)\"\n                            field=\"name\"\n                            [dropdown]=\"true\">\n                <ng-template let-country pTemplate=\"item\">\n                    <div class=\"country-item\">\n                        <div>{{country.name}}</div>\n                    </div>\n                </ng-template>\n            </p-autoComplete>\n        </div>\n    </div>\n    </div>\n</div>";
+    __webpack_exports__["default"] = "<div class=\"filter-component\">\n    <div class=\"white-line\"></div>\n    <p class=\"title\">сотрудник</p>\n    <div class=\"filter-body\">\n\n    <div class=\" p-fluid  p-grid p-formgrid\" >\n        <div class=\"p-field p-col-36 p-md-12\">\n            <p-autoComplete [(ngModel)]=\"selected\" [suggestions]=\"filtered\"\n                            (onSelect)=\"changeState()\" (completeMethod)=\"filter($event)\"\n                            field=\"name\"\n                            [dropdown]=\"true\">\n                <ng-template let-country pTemplate=\"item\">\n                    <div class=\"country-item\">\n                        <div>{{country.name}}</div>\n                    </div>\n                </ng-template>\n            </p-autoComplete>\n        </div>\n    </div>\n    </div>\n</div>";
     /***/
   },
 
@@ -669,7 +669,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<!--<div class=\"filter-component\">-->\n<!--    <p class=\"title\">{{'loginPage.datePeriod' | translate}}</p>-->\n<!--    <p-dropdown (onClick)=\"changePeriod()\" style=\"margin: 5px 5px 10px;position: relative;bottom: 20px\"-->\n<!--                [options]=\"periods\" [(ngModel)]=\"period\" optionLabel=\"name\">-->\n\n\n<!--    </p-dropdown>-->\n<!--    <div  style=\"position: relative;top:-10px; display: flex;flex-direction: row;justify-content: center;align-content: center\">-->\n<!--        <p-radioButton name=\"groupname\" inputId=\"val1\"  [value]=\"false\"-->\n<!--                       [(ngModel)]=\"isCloseDate\" style=\"margin-right: 5%\"></p-radioButton>-->\n<!--        <label for=\"val1\">відкр.</label>-->\n<!--        <p-radioButton name=\"groupname\" [value]=\"true\" inputId=\"val2\"-->\n<!--                       [(ngModel)]=\"isCloseDate\" style=\"margin-right: 5%;margin-left: 5%\"></p-radioButton>-->\n<!--        <label for=\"val2\">закр.</label>-->\n\n<!--    </div>-->\n<!--</div>-->\n<div   *ngIf=\"onlyField\"   class=\"p-fluid  p-grid p-formgrid\" style=\"width: 270px\">\n    <div class=\"p-field p-col-36 p-md-12\">\n        <p-dropdown (onChange)=\"changePeriod()\"\n                    [disabled]=\"filterPeriodService.disableFastFiled\"\n                    [options]=\"periods\" [(ngModel)]=\"filterPeriodService.periodFastFilterData\"\n                    optionLabel=\"name\"  [showClear]=\"true\">\n    </p-dropdown>\n    </div>\n</div>\n<div *ngIf=\"!onlyField\" class=\"filter-component\">\n    <div class=\"white-line\"></div>\n    <p class=\"title\" >{{'loginPage.datePeriod' | translate}}</p>\n    <div class=\"filter-body\">\n\n    <div class=\"p-fluid  p-grid p-formgrid\" >\n        <div class=\"p-field p-col-36 p-md-12\">\n            <p-dropdown (onClick)=\"changePeriod()\" [options]=\"periods\" [(ngModel)]=\"period\"\n                        placeholder=\"{{'loginPage.datePeriod' | translate}}\" optionLabel=\"name\"  [showClear]=\"true\">\n            </p-dropdown>\n\n        </div>\n    </div>\n    </div>\n\n\n\n\n</div>";
+    __webpack_exports__["default"] = "<!--<div class=\"filter-component\">-->\n<!--    <p class=\"title\">{{'loginPage.datePeriod' | translate}}</p>-->\n<!--    <p-dropdown (onClick)=\"changePeriod()\" style=\"margin: 5px 5px 10px;position: relative;bottom: 20px\"-->\n<!--                [options]=\"periods\" [(ngModel)]=\"period\" optionLabel=\"name\">-->\n\n\n<!--    </p-dropdown>-->\n<!--    <div  style=\"position: relative;top:-10px; display: flex;flex-direction: row;justify-content: center;align-content: center\">-->\n<!--        <p-radioButton name=\"groupname\" inputId=\"val1\"  [value]=\"false\"-->\n<!--                       [(ngModel)]=\"isCloseDate\" style=\"margin-right: 5%\"></p-radioButton>-->\n<!--        <label for=\"val1\">відкр.</label>-->\n<!--        <p-radioButton name=\"groupname\" [value]=\"true\" inputId=\"val2\"-->\n<!--                       [(ngModel)]=\"isCloseDate\" style=\"margin-right: 5%;margin-left: 5%\"></p-radioButton>-->\n<!--        <label for=\"val2\">закр.</label>-->\n\n<!--    </div>-->\n<!--</div>-->\n<div   *ngIf=\"onlyField\"   class=\"p-fluid  p-grid p-formgrid\" style=\"width: 270px\">\n    <div class=\"p-field p-col-36 p-md-12\">\n        <p-dropdown (onChange)=\"changePeriod()\"\n                    [disabled]=\"filterPeriodService.disableFastFiled\"\n                    placeholder=\"период\"\n                    [options]=\"fastPeriods\" [(ngModel)]=\"filterPeriodService.periodFastFilterData\"\n                    optionLabel=\"name\"  >\n    </p-dropdown>\n    </div>\n</div>\n<div   *ngIf=\"!onlyField\"   class=\"p-fluid  p-grid p-formgrid\" style=\"width: 270px\">\n    <div class=\"p-field p-col-36 p-md-12\">\n        <p-dropdown (onChange)=\"changePeriod()\"\n                    placeholder=\"период\"\n                    [options]=\"periods\" [(ngModel)]=\"period\"\n                    optionLabel=\"name\"  >\n        </p-dropdown>\n    </div>\n</div>\n<!--<div *ngIf=\"!onlyField\" class=\"filter-component\">\n    <div class=\"white-line\"></div>\n    <p class=\"title\" >{{'loginPage.datePeriod' | translate}}</p>\n    <div class=\"filter-body\">\n\n    <div class=\"p-fluid  p-grid p-formgrid\" >\n        <div class=\"p-field p-col-36 p-md-12\">\n            <p-dropdown (onClick)=\"changePeriod()\" [options]=\"periods\" [(ngModel)]=\"period\"\n                        placeholder=\"{{'loginPage.datePeriod' | translate}}\" optionLabel=\"name\"  [showClear]=\"true\">\n            </p-dropdown>\n\n        </div>\n    </div>\n    </div>\n\n\n\n\n</div>-->";
     /***/
   },
 
@@ -689,7 +689,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<!--<div class=\"filter-component\">-->\n<!--    <p class=\"title\" >{{'loginPage.datePeriod' | translate}}</p>-->\n<!--    <p-dropdown  style=\"margin: 5px 5px 10px;position: relative;bottom: 20px\"-->\n<!--            (onChange)=\"changeState()\"  [options]=\"states\" [(ngModel)]=\"state\" optionLabel=\"name\"></p-dropdown>-->\n\n\n\n<!--</div>-->\n<div class=\"p-fluid  p-grid p-formgrid\">\n    <div class=\"p-field p-col-36 p-md-12\">\n<p-dropdown *ngIf=\"onlyField\"\n            [disabled]=\"stateService.disableFastFiled\"\n             (onChange)=\"changeState()\"  style=\"width: 300px\" [showClear]=\"true\"\n             [options]=\"states\"\n            [(ngModel)]=\"stateService.stateFastFilterData\" optionLabel=\"name\"></p-dropdown>\n    </div>\n</div>\n\n\n<div *ngIf=\"!onlyField\" class=\"filter-component\">\n    <div class=\"white-line\"></div>\n    <p class=\"title\" >стан</p>\n    <div class=\"filter-body\">\n\n    <div class=\" p-fluid  p-grid p-formgrid\" >\n        <div class=\"p-field p-col-36 p-md-12\">\n            <p-dropdown            [disabled]=\"disabled\"\n                                   (onChange)=\"changeState()\"\n                                   [showClear]=\"true\" placeholder=\"стан\"\n                        [options]=\"states\" [(ngModel)]=\"state\" optionLabel=\"name\"></p-dropdown>\n\n        </div>\n    </div>\n</div>\n\n\n\n\n</div>";
+    __webpack_exports__["default"] = "<!--<div class=\"filter-component\">-->\n<!--    <p class=\"title\" >{{'loginPage.datePeriod' | translate}}</p>-->\n<!--    <p-dropdown  style=\"margin: 5px 5px 10px;position: relative;bottom: 20px\"-->\n<!--            (onChange)=\"changeState()\"  [options]=\"states\" [(ngModel)]=\"state\" optionLabel=\"name\"></p-dropdown>-->\n\n\n\n<!--</div>-->\n<div class=\"p-fluid  p-grid p-formgrid\">\n    <div class=\"p-field p-col-36 p-md-12\">\n<p-dropdown *ngIf=\"onlyField\"\n            [disabled]=\"stateService.disableFastFiled\"\n             (onChange)=\"changeState()\"  style=\"width: 300px\"\n             [options]=\"fastStates\"\n            placeholder=\"статус\"\n            [(ngModel)]=\"stateService.stateFastFilterData\" optionLabel=\"name\"></p-dropdown>\n    </div>\n</div>\n\n\n<div *ngIf=\"!onlyField\" class=\"filter-component\">\n    <div class=\"white-line\"></div>\n    <p class=\"title\" >статус</p>\n    <div class=\"filter-body\">\n\n    <div class=\" p-fluid  p-grid p-formgrid\" >\n        <div class=\"p-field p-col-36 p-md-12\">\n            <p-dropdown            [disabled]=\"disabled\"\n                                   (onChange)=\"changeState()\"\n\n                                   placeholder=\"статус\"\n                        [options]=\"states\" [(ngModel)]=\"state\" optionLabel=\"name\"></p-dropdown>\n\n        </div>\n    </div>\n</div>\n\n\n\n\n</div>";
     /***/
   },
 
@@ -709,7 +709,67 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<!--<div class=\"filter-component\">-->\n<!--    <h3 class=\"title\">{{'loginPage.datePeriod' | translate}}</h3>-->\n\n<!--    <input type=\"text\"  style=\"margin: 5px 5px 10px;-->\n<!--    position: relative;bottom: 20px\"-->\n<!--           (ngModelChange)=\"onChang()\"  [(ngModel)]=\" sunString\" pInputText/>-->\n<!--</div>-->\n\n<div class=\"p-fluid  p-grid p-formgrid\">\n    <div class=\"p-field p-col-36 p-md-12\">\n        <span class=\"p-input-icon-left\">\n\n<input type=\"text\"\n       (change)=\"onChang()\"  placeholder=\"пошук\"   [(ngModel)]=\" sunString\" pInputText/>\n    </span>\n    </div>\n</div>";
+    __webpack_exports__["default"] = "<!--<div class=\"filter-component\">-->\n<!--    <h3 class=\"title\">{{'loginPage.datePeriod' | translate}}</h3>-->\n\n<!--    <input type=\"text\"  style=\"margin: 5px 5px 10px;-->\n<!--    position: relative;bottom: 20px\"-->\n<!--           (ngModelChange)=\"onChang()\"  [(ngModel)]=\" sunString\" pInputText/>-->\n<!--</div>-->\n\n<div class=\"p-fluid  p-grid p-formgrid\">\n    <div class=\"p-field p-col-36 p-md-12\">\n        <span class=\"p-input-icon-left\">\n\n<input type=\"text\"\n       (change)=\"onChang()\"  placeholder=\"поиск\"\n       [disabled]=\"substringService.disableFastFiled\"\n       [(ngModel)]=\"substringService.substringFastFilterData\" pInputText/>\n    </span>\n    </div>\n</div>";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/widgets/filters/work-filter/work-filter.component.html":
+  /*!**************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/widgets/filters/work-filter/work-filter.component.html ***!
+    \**************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppWidgetsFiltersWorkFilterWorkFilterComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\" p-fluid  p-grid p-formgrid\">\n    <div class=\"p-field p-col-36 p-md-12\">\n        <p-autoComplete (onSelect)=\"changeState()\" [(ngModel)]=\"selected\" [suggestions]=\"works\"\n                        (completeMethod)=\"filter($event)\" panelStyle=\"panel-style\"\n                        field=\"name\"\n                        (onClear)=\"clear()\"\n                        [dropdown]=\"true\">\n            <ng-template let-country pTemplate=\"item\">\n                <div class=\"country-item\">\n                    <div>{{country.name}}</div>\n                </div>\n            </ng-template>\n        </p-autoComplete>\n    </div>\n</div>";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/widgets/filters/work-period-filter/work-period-filter.component.html":
+  /*!****************************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/widgets/filters/work-period-filter/work-period-filter.component.html ***!
+    \****************************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppWidgetsFiltersWorkPeriodFilterWorkPeriodFilterComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n<div    class=\"p-fluid  p-grid p-formgrid\" style=\"width: 270px\">\n    <div class=\"p-field p-col-36 p-md-12\">\n        <p-dropdown (onChange)=\"changePeriod()\"\n                    placeholder=\"период\"\n                    [options]=\"periods\" [(ngModel)]=\"period\"\n                    optionLabel=\"name\"  [showClear]=\"true\">\n        </p-dropdown>\n    </div>\n</div>";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/widgets/filters/work-status-filter/work-status-filter.component.html":
+  /*!****************************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/widgets/filters/work-status-filter/work-status-filter.component.html ***!
+    \****************************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppWidgetsFiltersWorkStatusFilterWorkStatusFilterComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"p-fluid  p-grid p-formgrid\">\n    <div class=\"p-field p-col-36 p-md-12\">\n        <p-dropdown *ngIf=\"onlyField\"\n                    (onChange)=\"changeState()\"  style=\"width: 300px\" [showClear]=\"true\"\n                    [options]=\"states\"\n                    placeholder=\"статус\"\n                    [(ngModel)]=\"state\" optionLabel=\"name\"></p-dropdown>\n    </div>\n</div>";
     /***/
   },
 
@@ -798,6 +858,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
     var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+    /* harmony import */
+
+
+    var primeng_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! primeng/api */
+    "./node_modules/primeng/__ivy_ngcc__/fesm2015/primeng-api.js");
 
     var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
       var c = arguments.length,
@@ -847,14 +913,26 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
     var ApiDataServiceService = /*#__PURE__*/function () {
-      function ApiDataServiceService() {
+      function ApiDataServiceService(messageService) {
         _classCallCheck(this, ApiDataServiceService);
 
-        this.mainURL = 'http://10.102.200.11:5051/';
-        this.lang = 'en';
+        this.messageService = messageService;
+        this.mainURL = 'https://10.102.200.11:5051/';
+        this.testUrl = 'https://localhost:5051/';
+        this.sizeNextRequest = 0;
+        this.sizeDataResponse = 15;
+        this.lang = 'ru';
+        this.startIndex = 0;
+        this.errorNumber = 0;
+        this.barLoading = false;
         this.isLoading = false;
+        this.isLoadingData = false;
+        this.applySubLoading = true;
+        this.applySubLoadingBar = true;
+        this.errorMsg = 'Произашла ошибка. Попробуйте повторить дествие или перезагрузиться'; //    axios.defaults.timeout = 5000
+
         this.axiosClient = axios__WEBPACK_IMPORTED_MODULE_1___default.a.create({
-          timeout: 3000,
+          timeout: 120000,
           headers: {
             "X-Initialized-At": Date.now().toString()
           }
@@ -915,8 +993,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           }));
         }
       }, {
-        key: "post",
-        value: function post(url, data) {
+        key: "testPost",
+        value: function testPost(url, data) {
           return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
             var axiosResponse;
             return regeneratorRuntime.wrap(function _callee2$(_context2) {
@@ -929,7 +1007,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     return this.axiosClient.request({
                       method: "post",
                       data: data,
-                      url: this.mainURL + url
+                      timeout: 100000,
+                      url: this.testUrl + url
                     });
 
                   case 4:
@@ -956,64 +1035,126 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           }));
         }
       }, {
-        key: "get",
-        value: function get(url) {
+        key: "post",
+        value: function post(url, data, applyLoading) {
           return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
             var axiosResponse;
             return regeneratorRuntime.wrap(function _callee3$(_context3) {
               while (1) {
                 switch (_context3.prev = _context3.next) {
                   case 0:
-                    this.isLoading = true;
-                    _context3.prev = 1;
-                    _context3.next = 4;
+                    // this.barLoading = this.applySubLoadingBar
+                    this.isLoading = applyLoading;
+                    this.isLoadingData = this.applySubLoading;
+                    _context3.prev = 2;
+                    _context3.next = 5;
+                    return this.axiosClient.request({
+                      method: "post",
+                      data: data,
+                      url: this.mainURL + url
+                    });
+
+                  case 5:
+                    axiosResponse = _context3.sent;
+                    this.errorNumber = 0;
+                    return _context3.abrupt("return", axiosResponse.data);
+
+                  case 10:
+                    _context3.prev = 10;
+                    _context3.t0 = _context3["catch"](2);
+                    return _context3.abrupt("return", Promise.reject(this.normalizeError(null)));
+
+                  case 13:
+                    _context3.prev = 13;
+                    // this.barLoading = false
+                    this.isLoading = false;
+                    this.isLoadingData = false;
+                    this.barLoading = false;
+                    this.applySubLoading = true;
+                    return _context3.finish(13);
+
+                  case 19:
+                  case "end":
+                    return _context3.stop();
+                }
+              }
+            }, _callee3, this, [[2, 10, 13, 19]]);
+          }));
+        }
+      }, {
+        key: "get",
+        value: function get(url) {
+          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
+            var axiosResponse;
+            return regeneratorRuntime.wrap(function _callee4$(_context4) {
+              while (1) {
+                switch (_context4.prev = _context4.next) {
+                  case 0:
+                    this.isLoading = this.applySubLoading;
+                    _context4.prev = 1;
+                    _context4.next = 4;
                     return this.axiosClient.request({
                       method: "get",
                       url: this.mainURL + url
                     });
 
                   case 4:
-                    axiosResponse = _context3.sent;
-                    return _context3.abrupt("return", axiosResponse.data);
+                    axiosResponse = _context4.sent;
+                    return _context4.abrupt("return", axiosResponse.data);
 
                   case 8:
-                    _context3.prev = 8;
-                    _context3.t0 = _context3["catch"](1);
-                    return _context3.abrupt("return", Promise.reject(this.normalizeError(_context3.t0)));
+                    _context4.prev = 8;
+                    _context4.t0 = _context4["catch"](1);
+                    return _context4.abrupt("return", Promise.reject(this.normalizeError(null)));
 
                   case 11:
-                    _context3.prev = 11;
+                    _context4.prev = 11;
                     this.isLoading = false;
-                    return _context3.finish(11);
+                    this.applySubLoading = true;
+                    return _context4.finish(11);
 
-                  case 14:
+                  case 15:
                   case "end":
-                    return _context3.stop();
+                    return _context4.stop();
                 }
               }
-            }, _callee3, this, [[1, 8, 11, 14]]);
+            }, _callee4, this, [[1, 8, 11, 15]]);
           }));
         }
       }, {
         key: "normalizeError",
-        value: function normalizeError(error) {
-          // this.errorHandler.handleError(error);
+        value: function normalizeError(message) {
+          this.errorNumber++;
+
+          if (message === null || message === '') {
+            message = this.errorMsg;
+          } // this.errorHandler.handleError(error);
           // NOTE: Since I'm not really dealing with a production API, this doesn't really
           // normalize anything (ie, this is not the focus of this demo).
-          return {
-            id: "-1",
-            code: "UnknownError",
-            message: "An unexpected error occurred."
-          };
+
+
+          this.messageService.add({
+            severity: 'error',
+            summary: 'ERROR',
+            detail: this.errorNumber > 1 ? this.errorMsg : message
+          });
+          this.isLoading = false;
+          return null;
         }
       }]);
 
       return ApiDataServiceService;
     }();
 
+    ApiDataServiceService.ctorParameters = function () {
+      return [{
+        type: primeng_api__WEBPACK_IMPORTED_MODULE_2__["MessageService"]
+      }];
+    };
+
     ApiDataServiceService = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
       providedIn: 'root'
-    }), __metadata("design:paramtypes", [])], ApiDataServiceService);
+    }), __metadata("design:paramtypes", [primeng_api__WEBPACK_IMPORTED_MODULE_2__["MessageService"]])], ApiDataServiceService);
     /***/
   },
 
@@ -1694,6 +1835,30 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var primeng_progressspinner__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(
     /*! primeng/progressspinner */
     "./node_modules/primeng/__ivy_ngcc__/fesm2015/primeng-progressspinner.js");
+    /* harmony import */
+
+
+    var _widgets_filters_work_filter_work_filter_component__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(
+    /*! ./widgets/filters/work-filter/work-filter.component */
+    "./src/app/widgets/filters/work-filter/work-filter.component.ts");
+    /* harmony import */
+
+
+    var _widgets_filters_work_status_filter_work_status_filter_component__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(
+    /*! ./widgets/filters/work-status-filter/work-status-filter.component */
+    "./src/app/widgets/filters/work-status-filter/work-status-filter.component.ts");
+    /* harmony import */
+
+
+    var _widgets_filters_work_period_filter_work_period_filter_component__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(
+    /*! ./widgets/filters/work-period-filter/work-period-filter.component */
+    "./src/app/widgets/filters/work-period-filter/work-period-filter.component.ts");
+    /* harmony import */
+
+
+    var primeng_progressbar__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(
+    /*! primeng/progressbar */
+    "./node_modules/primeng/__ivy_ngcc__/fesm2015/primeng-progressbar.js");
 
     var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
       var c = arguments.length,
@@ -1712,8 +1877,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     };
 
     AppModule = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_19__["CommonModule"], _ng_toolkit_universal__WEBPACK_IMPORTED_MODULE_30__["NgtUniversalModule"], primeng_toast__WEBPACK_IMPORTED_MODULE_47__["ToastModule"], primeng_dialog__WEBPACK_IMPORTED_MODULE_35__["DialogModule"], primeng_splitbutton__WEBPACK_IMPORTED_MODULE_48__["SplitButtonModule"], _ngx_translate_core__WEBPACK_IMPORTED_MODULE_29__["TranslateModule"].forChild(), _nguniversal_common__WEBPACK_IMPORTED_MODULE_0__["TransferHttpCacheModule"], primeng_listbox__WEBPACK_IMPORTED_MODULE_28__["ListboxModule"], primeng_multiselect__WEBPACK_IMPORTED_MODULE_23__["MultiSelectModule"], primeng_password__WEBPACK_IMPORTED_MODULE_22__["PasswordModule"], primeng_sidebar__WEBPACK_IMPORTED_MODULE_27__["SidebarModule"], primeng_inputtext__WEBPACK_IMPORTED_MODULE_24__["InputTextModule"], primeng_radiobutton__WEBPACK_IMPORTED_MODULE_38__["RadioButtonModule"], primeng_dropdown__WEBPACK_IMPORTED_MODULE_21__["DropdownModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_3__["BrowserAnimationsModule"], primeng_menubar__WEBPACK_IMPORTED_MODULE_15__["MenubarModule"], primeng_autocomplete__WEBPACK_IMPORTED_MODULE_45__["AutoCompleteModule"], primeng_confirmpopup__WEBPACK_IMPORTED_MODULE_41__["ConfirmPopupModule"], primeng_table__WEBPACK_IMPORTED_MODULE_6__["TableModule"], primeng_confirmdialog__WEBPACK_IMPORTED_MODULE_11__["ConfirmDialogModule"], primeng_button__WEBPACK_IMPORTED_MODULE_7__["ButtonModule"], primeng_messages__WEBPACK_IMPORTED_MODULE_12__["MessagesModule"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_9__["AppRoutingModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], primeng_tabmenu__WEBPACK_IMPORTED_MODULE_13__["TabMenuModule"], primeng_calendar__WEBPACK_IMPORTED_MODULE_14__["CalendarModule"], primeng_blockui__WEBPACK_IMPORTED_MODULE_36__["BlockUIModule"], primeng_ripple__WEBPACK_IMPORTED_MODULE_43__["RippleModule"], primeng_contextmenu__WEBPACK_IMPORTED_MODULE_51__["ContextMenuModule"], primeng_progressspinner__WEBPACK_IMPORTED_MODULE_53__["ProgressSpinnerModule"]],
-      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"], _table_page_create_add_create_add_component__WEBPACK_IMPORTED_MODULE_8__["CreateAddComponent"], _table_page_table_page_component__WEBPACK_IMPORTED_MODULE_10__["TablePageComponent"], _months_page_months_page_component__WEBPACK_IMPORTED_MODULE_16__["MonthsPageComponent"], _region_page_region_page_component__WEBPACK_IMPORTED_MODULE_17__["RegionPageComponent"], _orders_page_orders_component__WEBPACK_IMPORTED_MODULE_18__["OrdersComponent"], _login_login_component__WEBPACK_IMPORTED_MODULE_20__["LoginComponent"], _widgets_filter_box_filter_box_component__WEBPACK_IMPORTED_MODULE_25__["FilterBoxComponent"], _menu_bar_menu_bar_component__WEBPACK_IMPORTED_MODULE_26__["MenuBarComponent"], _widgets_filters_date_filter_date_filter_component__WEBPACK_IMPORTED_MODULE_31__["DateFilterComponent"], _widgets_filters_state_filter_state_filter_component__WEBPACK_IMPORTED_MODULE_32__["StateFilterComponent"], _widgets_filters_payed_filter_payed_filter_component__WEBPACK_IMPORTED_MODULE_33__["PayedFilterComponent"], _widgets_filters_substring_filter_substring_filter_component__WEBPACK_IMPORTED_MODULE_34__["SubstringFilterComponent"], _widgets_filters_period_date_filter_period_date_filter_component__WEBPACK_IMPORTED_MODULE_37__["PeriodDateFilterComponent"], _widgets_filters_customer_filter_customer_filter_component__WEBPACK_IMPORTED_MODULE_39__["CustomerFilterComponent"], _widgets_filters_employee_filter_employee_filter_component__WEBPACK_IMPORTED_MODULE_40__["EmployeeFilterComponent"], _master_start_window_master_start_window_component__WEBPACK_IMPORTED_MODULE_44__["MasterStartWindowComponent"], _master_select_window_master_select_window_component__WEBPACK_IMPORTED_MODULE_46__["MasterSelectWindowComponent"], _widgets_filters_detail_filter_detail_filter_component__WEBPACK_IMPORTED_MODULE_49__["DetailFilterComponent"], _widgets_button_list_action_button_list_action_component__WEBPACK_IMPORTED_MODULE_50__["ButtonListActionComponent"], _widgets_loading_spiner_loading_spiner_component__WEBPACK_IMPORTED_MODULE_52__["LoadingSpinerComponent"]],
+      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_19__["CommonModule"], _ng_toolkit_universal__WEBPACK_IMPORTED_MODULE_30__["NgtUniversalModule"], primeng_toast__WEBPACK_IMPORTED_MODULE_47__["ToastModule"], primeng_dialog__WEBPACK_IMPORTED_MODULE_35__["DialogModule"], primeng_splitbutton__WEBPACK_IMPORTED_MODULE_48__["SplitButtonModule"], _ngx_translate_core__WEBPACK_IMPORTED_MODULE_29__["TranslateModule"].forChild(), _nguniversal_common__WEBPACK_IMPORTED_MODULE_0__["TransferHttpCacheModule"], primeng_listbox__WEBPACK_IMPORTED_MODULE_28__["ListboxModule"], primeng_multiselect__WEBPACK_IMPORTED_MODULE_23__["MultiSelectModule"], primeng_password__WEBPACK_IMPORTED_MODULE_22__["PasswordModule"], primeng_sidebar__WEBPACK_IMPORTED_MODULE_27__["SidebarModule"], primeng_inputtext__WEBPACK_IMPORTED_MODULE_24__["InputTextModule"], primeng_radiobutton__WEBPACK_IMPORTED_MODULE_38__["RadioButtonModule"], primeng_dropdown__WEBPACK_IMPORTED_MODULE_21__["DropdownModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_3__["BrowserAnimationsModule"], primeng_menubar__WEBPACK_IMPORTED_MODULE_15__["MenubarModule"], primeng_autocomplete__WEBPACK_IMPORTED_MODULE_45__["AutoCompleteModule"], primeng_confirmpopup__WEBPACK_IMPORTED_MODULE_41__["ConfirmPopupModule"], primeng_table__WEBPACK_IMPORTED_MODULE_6__["TableModule"], primeng_confirmdialog__WEBPACK_IMPORTED_MODULE_11__["ConfirmDialogModule"], primeng_button__WEBPACK_IMPORTED_MODULE_7__["ButtonModule"], primeng_messages__WEBPACK_IMPORTED_MODULE_12__["MessagesModule"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_9__["AppRoutingModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"], primeng_tabmenu__WEBPACK_IMPORTED_MODULE_13__["TabMenuModule"], primeng_calendar__WEBPACK_IMPORTED_MODULE_14__["CalendarModule"], primeng_blockui__WEBPACK_IMPORTED_MODULE_36__["BlockUIModule"], primeng_ripple__WEBPACK_IMPORTED_MODULE_43__["RippleModule"], primeng_contextmenu__WEBPACK_IMPORTED_MODULE_51__["ContextMenuModule"], primeng_progressspinner__WEBPACK_IMPORTED_MODULE_53__["ProgressSpinnerModule"], primeng_progressbar__WEBPACK_IMPORTED_MODULE_57__["ProgressBarModule"]],
+      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"], _table_page_create_add_create_add_component__WEBPACK_IMPORTED_MODULE_8__["CreateAddComponent"], _table_page_table_page_component__WEBPACK_IMPORTED_MODULE_10__["TablePageComponent"], _months_page_months_page_component__WEBPACK_IMPORTED_MODULE_16__["MonthsPageComponent"], _region_page_region_page_component__WEBPACK_IMPORTED_MODULE_17__["RegionPageComponent"], _orders_page_orders_component__WEBPACK_IMPORTED_MODULE_18__["OrdersComponent"], _login_login_component__WEBPACK_IMPORTED_MODULE_20__["LoginComponent"], _widgets_filter_box_filter_box_component__WEBPACK_IMPORTED_MODULE_25__["FilterBoxComponent"], _menu_bar_menu_bar_component__WEBPACK_IMPORTED_MODULE_26__["MenuBarComponent"], _widgets_filters_date_filter_date_filter_component__WEBPACK_IMPORTED_MODULE_31__["DateFilterComponent"], _widgets_filters_state_filter_state_filter_component__WEBPACK_IMPORTED_MODULE_32__["StateFilterComponent"], _widgets_filters_payed_filter_payed_filter_component__WEBPACK_IMPORTED_MODULE_33__["PayedFilterComponent"], _widgets_filters_substring_filter_substring_filter_component__WEBPACK_IMPORTED_MODULE_34__["SubstringFilterComponent"], _widgets_filters_period_date_filter_period_date_filter_component__WEBPACK_IMPORTED_MODULE_37__["PeriodDateFilterComponent"], _widgets_filters_customer_filter_customer_filter_component__WEBPACK_IMPORTED_MODULE_39__["CustomerFilterComponent"], _widgets_filters_employee_filter_employee_filter_component__WEBPACK_IMPORTED_MODULE_40__["EmployeeFilterComponent"], _master_start_window_master_start_window_component__WEBPACK_IMPORTED_MODULE_44__["MasterStartWindowComponent"], _master_select_window_master_select_window_component__WEBPACK_IMPORTED_MODULE_46__["MasterSelectWindowComponent"], _widgets_filters_detail_filter_detail_filter_component__WEBPACK_IMPORTED_MODULE_49__["DetailFilterComponent"], _widgets_button_list_action_button_list_action_component__WEBPACK_IMPORTED_MODULE_50__["ButtonListActionComponent"], _widgets_loading_spiner_loading_spiner_component__WEBPACK_IMPORTED_MODULE_52__["LoadingSpinerComponent"], _widgets_filters_work_filter_work_filter_component__WEBPACK_IMPORTED_MODULE_54__["WorkFilterComponent"], _widgets_filters_work_status_filter_work_status_filter_component__WEBPACK_IMPORTED_MODULE_55__["WorkStatusFilterComponent"], _widgets_filters_work_period_filter_work_period_filter_component__WEBPACK_IMPORTED_MODULE_56__["WorkPeriodFilterComponent"]],
       providers: [primeng_api__WEBPACK_IMPORTED_MODULE_42__["ConfirmationService"], primeng_api__WEBPACK_IMPORTED_MODULE_42__["MessageService"]]
     })], AppModule);
     /***/
@@ -1794,6 +1959,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _widgets_filters_filter_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ../widgets/filters/filter.service */
     "./src/app/widgets/filters/filter.service.ts");
+    /* harmony import */
+
+
+    var moment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! moment */
+    "./node_modules/moment/moment.js");
+    /* harmony import */
+
+
+    var moment__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_6__);
 
     var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
       var c = arguments.length,
@@ -1866,23 +2041,23 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(LoginComponent, [{
         key: "getUsers",
         value: function getUsers() {
-          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
-            return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
+            return regeneratorRuntime.wrap(function _callee5$(_context5) {
               while (1) {
-                switch (_context4.prev = _context4.next) {
+                switch (_context5.prev = _context5.next) {
                   case 0:
-                    _context4.next = 2;
+                    _context5.next = 2;
                     return this.apiService.get('getListUser');
 
                   case 2:
-                    this.users = _context4.sent;
+                    this.users = _context5.sent;
 
                   case 3:
                   case "end":
-                    return _context4.stop();
+                    return _context5.stop();
                 }
               }
-            }, _callee4, this);
+            }, _callee5, this);
           }));
         }
       }, {
@@ -1901,17 +2076,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         }
       }, {
         key: "showSuccess",
-        value: function showSuccess() {
+        value: function showSuccess(msg) {
           this.messageService.add({
             severity: 'success',
             summary: this.name,
-            detail: 'смена началась'
+            detail: msg
           });
         }
       }, {
         key: "moveToMasterSelectWindows",
         value: function moveToMasterSelectWindows() {
-          this.showSuccess();
+          this.showSuccess('смена началась');
           this.router.navigate(['/selectWork']);
         }
       }, {
@@ -1924,60 +2099,82 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "login",
         value: function login() {
-          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
-            return regeneratorRuntime.wrap(function _callee5$(_context5) {
+          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+            var dateFrom, dateTo;
+            return regeneratorRuntime.wrap(function _callee6$(_context6) {
               while (1) {
-                switch (_context5.prev = _context5.next) {
+                switch (_context6.prev = _context6.next) {
                   case 0:
                     this.name = this.selectedUser.name;
                     this.selectedUser.password = this.password;
                     this.apiService.setUserData(this.selectedUser);
-                    console.log(this.orderRequest);
                     this.orderRequest.lang = this.apiService.getLang();
                     this.orderRequest.user = this.selectedUser;
-                    this.filterService.setOrderRequest(this.orderRequest);
-
-                    if (!(this.selectedUser.name !== 'Administrator (superuser) ')) {
-                      _context5.next = 21;
-                      break;
-                    }
-
-                    this.orderRequest = this.filterService.getOrderRequest();
+                    this.orderRequest.sizeResponse = 15;
+                    dateFrom = moment__WEBPACK_IMPORTED_MODULE_6__().utc().format("YYYY-MM-DD");
+                    dateTo = moment__WEBPACK_IMPORTED_MODULE_6__().utc().format("YYYY-MM-DD");
+                    this.orderRequest.dateTo = dateTo;
+                    this.orderRequest.rowStartIndex = 0;
+                    this.orderRequest.dateFrom = dateFrom;
                     this.orderRequest.state = 'UNCLOSED';
-                    this.filterService.setOrderRequest(this.orderRequest);
-                    this.selectedUser.name = 'Administrator (superuser) ';
-                    this.selectedUser.password = '12345';
-                    this.orderService.setUserValidate(true);
-                    this.masterWindowVisible = true;
-                    _context5.next = 17;
-                    return this.apiService.post('getListOFWork', this.filterService.getOrderRequest());
+                    this.filterService.setOrderRequest(this.orderRequest); // if (this.selectedUser.role !== 2) {
+                    //     // this.orderRequest = this.filterService.getOrderRequest()
+                    //     // //this.orderRequest.state = 'UNCLOSED'
+                    //     // // this.orderRequest.user.id=0
+                    //     // // this.orderRequest.user.password='12345'
+                    //     // this.orderRequest.detailId=1
+                    //     // this.orderRequest.workStatus=0
+                    //     //
+                    //     // this.filterService.setOrderRequest(this.orderRequest)
+                    //     // this.ordersResponse = await this.apiService.post<TableOrderResponse>(
+                    //     //     'getListOFWork', this.filterService.getOrderRequest(),
+                    //     //     true
+                    //     // );
+                    //     // if (this.ordersResponse.status !== -1) {
+                    //     //     this.orderService.setUserValidate(true)
+                    //     //     this.masterWindowVisible = true
+                    //     //     this.orderService.setOrderResponse(this.ordersResponse)
+                    //     // } else {
+                    //     //     this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
+                    //     //
+                    //     // }
+                    // } else {
+                    //
+                    //     this.ordersResponse = await this.apiService.post<TableOrderResponse>(
+                    //         'getCroppedOrders', this.filterService.getOrderRequest(), true
+                    //     );
+                    //
+                    //     if (this.ordersResponse.status !== -1) {
+                    //         this.orderService.setOrderResponse(this.ordersResponse)
+                    //         this.orderService.setUserValidate(true)
+                    //         this.showSuccess('пользователь авторизтрован')
+                    //         this.router.navigate(['/order']);
+                    //     } else {
+                    //         this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
+                    //     }
+                    // }
+
+                    _context6.next = 15;
+                    return this.apiService.post('getCroppedOrders', this.filterService.getOrderRequest(), true);
+
+                  case 15:
+                    this.ordersResponse = _context6.sent;
+
+                    if (this.ordersResponse.status !== -1) {
+                      this.orderService.setOrderResponse(this.ordersResponse);
+                      this.orderService.setUserValidate(true);
+                      this.showSuccess('пользователь авторизтрован');
+                      this.router.navigate(['/order']);
+                    } else {
+                      this.apiService.normalizeError('Произашла ошибка. Неправильный пароль');
+                    }
 
                   case 17:
-                    this.ordersResponse = _context5.sent;
-                    this.orderService.setOrderResponse(this.ordersResponse);
-                    _context5.next = 27;
-                    break;
-
-                  case 21:
-                    _context5.next = 23;
-                    return this.apiService.post('getCroppedOrders', this.filterService.getOrderRequest());
-
-                  case 23:
-                    this.ordersResponse = _context5.sent;
-                    console.log(this.orderRequest);
-                    this.orderService.setOrderResponse(this.ordersResponse);
-
-                    if (this.ordersResponse.ordersTableBody.length != 0) {
-                      this.orderService.setUserValidate(true);
-                      this.router.navigate(['/order']);
-                    }
-
-                  case 27:
                   case "end":
-                    return _context5.stop();
+                    return _context6.stop();
                 }
               }
-            }, _callee5, this);
+            }, _callee6, this);
           }));
         }
       }, {
@@ -2088,6 +2285,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _widgets_filters_filter_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ../widgets/filters/filter.service */
     "./src/app/widgets/filters/filter.service.ts");
+    /* harmony import */
+
+
+    var moment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! moment */
+    "./node_modules/moment/moment.js");
+    /* harmony import */
+
+
+    var moment__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_5__);
+    /* harmony import */
+
+
+    var _Service_api_data_service_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ../Service/api-data-service.service */
+    "./src/app/Service/api-data-service.service.ts");
 
     var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
       var c = arguments.length,
@@ -2142,7 +2355,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     };
 
     var MasterSelectWindowComponent = /*#__PURE__*/function () {
-      function MasterSelectWindowComponent(tableService, orderService, renderer2, filterService, router) {
+      function MasterSelectWindowComponent(tableService, orderService, renderer2, tableDataService, apiService, filterService, router) {
         var _this = this;
 
         _classCallCheck(this, MasterSelectWindowComponent);
@@ -2150,6 +2363,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.tableService = tableService;
         this.orderService = orderService;
         this.renderer2 = renderer2;
+        this.tableDataService = tableDataService;
+        this.apiService = apiService;
         this.filterService = filterService;
         this.router = router;
         this.secIncr = 1;
@@ -2194,13 +2409,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "getOrd",
         value: function getOrd() {
-          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee6() {
+          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
             var _this2 = this;
 
             var regexp, tableBody, tableRowPattern;
-            return regeneratorRuntime.wrap(function _callee6$(_context6) {
+            return regeneratorRuntime.wrap(function _callee7$(_context7) {
               while (1) {
-                switch (_context6.prev = _context6.next) {
+                switch (_context7.prev = _context7.next) {
                   case 0:
                     // this.data = await this.apiService.get<Order[]>('getCroppedOrders')
                     this.data = this.orderService.getOrderResponse();
@@ -2217,9 +2432,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     this.data.ordersTableBody.map(function (row) {
                       var tableRow = {};
                       row.rowData.map(function (cell) {
-                        if (cell.cellData.indexOf('thWOrders.orderClosed') !== -1) {
-                          tableRow[cell.cellName] = cell.cellData.substr(22, 3);
-                        } else if (cell.cellName === 'Код' || cell.cellName === 'Борг' || cell.cellName === 'Разом' || cell.cellName === 'З/ч' || cell.cellName === 'Роб.') {
+                        if (cell.cellName === 'Код' || cell.cellName === 'Борг' || cell.cellName === 'Разом' || cell.cellName === 'З/ч' || cell.cellName === 'Роб.') {
                           tableRow[cell.cellName] = Number(cell.cellData);
                         } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
                           var data = new Date(cell.cellData);
@@ -2230,23 +2443,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                       });
                       tableBody.push(tableRow);
                     });
-                    tableRowPattern = {};
-                    this.data.ordersTableBody[0].rowData.map(function (cell) {
-                      if (cell.cellName === 'Close') {
-                        tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3);
-                      } else {
-                        tableRowPattern[cell.cellName] = cell.cellData;
-                      }
-                    });
+                    tableRowPattern = {}; // this.data.ordersTableBody[0].rowData.map(
+                    //     cell => {
+                    //         if (cell.cellName === 'Close') {
+                    //             tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3)
+                    //
+                    //         } else {
+                    //             tableRowPattern[cell.cellName] = cell.cellData;
+                    //         }
+                    //     }
+                    // )
+                    //
+
                     this.tableService.setMainData(tableBody);
                     this.tableService.setTablePatternRow(tableRowPattern);
 
-                  case 10:
+                  case 9:
                   case "end":
-                    return _context6.stop();
+                    return _context7.stop();
                 }
               }
-            }, _callee6, this);
+            }, _callee7, this);
           }));
         }
       }, {
@@ -2265,6 +2482,70 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             console.log(_this3.sec);
           }, 1000);
         }
+      }, {
+        key: "onUpdate",
+        value: function onUpdate() {
+          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+            var mainColumn, regexp, tableBody, tableRowPattern;
+            return regeneratorRuntime.wrap(function _callee8$(_context8) {
+              while (1) {
+                switch (_context8.prev = _context8.next) {
+                  case 0:
+                    _context8.next = 2;
+                    return this.apiService.post('getListOFWork', this.filterService.getOrderRequest(), false);
+
+                  case 2:
+                    this.data = _context8.sent;
+                    mainColumn = [];
+                    console.log(this.data.ordersTableBody);
+                    this.data.columnTables.map(function (elem) {
+                      mainColumn.push({
+                        field: elem.nameColumn,
+                        header: elem.nameColumn,
+                        width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
+                      });
+                    });
+                    regexp = new RegExp('^[1-9]\d{0,2}$');
+                    tableBody = [];
+                    this.data.ordersTableBody.map(function (row) {
+                      var tableRow = {};
+                      row.rowData.map(function (cell) {
+                        if (cell.cellName === 'Код' || cell.cellName === 'Долг' || cell.cellName === 'Всего' || cell.cellName === 'З/ч' || cell.cellName === 'Раб.') {
+                          tableRow[cell.cellName] = Number(cell.cellData);
+                        } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
+                          var data = new Date(cell.cellData);
+                          tableRow[cell.cellName] = moment__WEBPACK_IMPORTED_MODULE_5__(data.getTime()).utc().format("DD.MM.YY");
+                        } else {
+                          tableRow[cell.cellName] = cell.cellData;
+                        }
+                      });
+                      tableBody.push(tableRow);
+                    });
+                    tableRowPattern = {};
+                    console.log(this.data);
+
+                    if (this.data.ordersTableBody.length !== 0) {
+                      this.data.ordersTableBody[0].rowData.map(function (cell) {
+                        if (cell.cellName === 'Close') {
+                          tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3);
+                        } else {
+                          tableRowPattern[cell.cellName] = cell.cellData;
+                        }
+                      });
+                    }
+
+                    this.tableDataService.setMainData(tableBody);
+                    this.tableDataService.setTablePatternRow(tableRowPattern);
+                    this.tableDataService.setStartData(this.data);
+
+                  case 15:
+                  case "end":
+                    return _context8.stop();
+                }
+              }
+            }, _callee8, this);
+          }));
+        }
       }]);
 
       return MasterSelectWindowComponent;
@@ -2277,6 +2558,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         type: _orders_page_order_service__WEBPACK_IMPORTED_MODULE_2__["OrderService"]
       }, {
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"]
+      }, {
+        type: _table_page_tableData_service__WEBPACK_IMPORTED_MODULE_1__["TableDataService"]
+      }, {
+        type: _Service_api_data_service_service__WEBPACK_IMPORTED_MODULE_6__["ApiDataServiceService"]
       }, {
         type: _widgets_filters_filter_service__WEBPACK_IMPORTED_MODULE_4__["FilterService"]
       }, {
@@ -2292,7 +2577,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       styles: [__importDefault(__webpack_require__(
       /*! ./master-select-window.component.css */
       "./src/app/master-select-window/master-select-window.component.css"))["default"]]
-    }), __metadata("design:paramtypes", [_table_page_tableData_service__WEBPACK_IMPORTED_MODULE_1__["TableDataService"], _orders_page_order_service__WEBPACK_IMPORTED_MODULE_2__["OrderService"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"], _widgets_filters_filter_service__WEBPACK_IMPORTED_MODULE_4__["FilterService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])], MasterSelectWindowComponent);
+    }), __metadata("design:paramtypes", [_table_page_tableData_service__WEBPACK_IMPORTED_MODULE_1__["TableDataService"], _orders_page_order_service__WEBPACK_IMPORTED_MODULE_2__["OrderService"], _angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"], _table_page_tableData_service__WEBPACK_IMPORTED_MODULE_1__["TableDataService"], _Service_api_data_service_service__WEBPACK_IMPORTED_MODULE_6__["ApiDataServiceService"], _widgets_filters_filter_service__WEBPACK_IMPORTED_MODULE_4__["FilterService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])], MasterSelectWindowComponent);
     /***/
   },
 
@@ -2587,7 +2872,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           }];
           this.itemsNoLogin = [{
             icon: 'pi pi-fw pi-globe',
-            label: 'ua',
+            label: 'ru',
             style: {
               fontSize: '1.2em'
             },
@@ -2663,7 +2948,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             }
           }, {
             icon: 'pi pi-fw pi-globe',
-            label: 'ua',
+            label: 'ru',
             style: {
               fontSize: '1.2em'
             },
@@ -2730,46 +3015,46 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           } else {
               this.translate.use('ua');
           }*/
-          this.translate.use('ua');
+          this.translate.use('ru');
         }
       }, {
         key: "switchLanguage",
         value: function switchLanguage(lang) {
           this.translate.use(lang);
-          this.items[0].label = 'ua';
+          this.items[1].label = lang;
           this.itemsNoLogin[0].label = lang; //this.translate.setDefaultLang(lang);
         }
       }, {
         key: "changeLangPost",
         value: function changeLangPost() {
-          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee7() {
-            return regeneratorRuntime.wrap(function _callee7$(_context7) {
+          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
+            return regeneratorRuntime.wrap(function _callee9$(_context9) {
               while (1) {
-                switch (_context7.prev = _context7.next) {
+                switch (_context9.prev = _context9.next) {
                   case 0:
                     if (!(this.apiService.getUserData() !== undefined)) {
-                      _context7.next = 5;
+                      _context9.next = 5;
                       break;
                     }
 
-                    _context7.next = 3;
+                    _context9.next = 3;
                     return this.apiService.post('getCroppedOrders', {
                       user: this.apiService.getUserData(),
                       lang: this.apiService.getLang()
-                    });
+                    }, true);
 
                   case 3:
-                    this.ordersResponse = _context7.sent;
+                    this.ordersResponse = _context9.sent;
                     this.orderService.setOrderResponse(this.ordersResponse); //this.router.navigate(['/'])
                     //this.router.navigate(['/order'])
                     //this.ordersComponent.getOrd()
 
                   case 5:
                   case "end":
-                    return _context7.stop();
+                    return _context9.stop();
                 }
               }
-            }, _callee7, this);
+            }, _callee9, this);
           }));
         }
       }, {
@@ -3150,6 +3435,24 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
     var moment__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_6__);
+    /* harmony import */
+
+
+    var _widgets_filters_filter_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! ../widgets/filters/filter.service */
+    "./src/app/widgets/filters/filter.service.ts");
+    /* harmony import */
+
+
+    var _widgets_filters_state_filter_serv_state_filter_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! ../widgets/filters/state-filter/serv-state-filter.service */
+    "./src/app/widgets/filters/state-filter/serv-state-filter.service.ts");
+    /* harmony import */
+
+
+    var _widgets_filters_period_date_filter_serv_period_filter_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    /*! ../widgets/filters/period-date-filter/serv-period-filter.service */
+    "./src/app/widgets/filters/period-date-filter/serv-period-filter.service.ts");
 
     var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
       var c = arguments.length,
@@ -3210,7 +3513,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     };
 
     var OrdersComponent = /*#__PURE__*/function () {
-      function OrdersComponent(window, apiService, tableService, orderService, renderer2, router) {
+      function OrdersComponent(window, apiService, tableService, orderService, renderer2, stateFilterService, periodFilterService, filterService, tableDataService, router) {
         var _this5 = this;
 
         _classCallCheck(this, OrdersComponent);
@@ -3220,8 +3523,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.tableService = tableService;
         this.orderService = orderService;
         this.renderer2 = renderer2;
+        this.stateFilterService = stateFilterService;
+        this.periodFilterService = periodFilterService;
+        this.filterService = filterService;
+        this.tableDataService = tableDataService;
         this.router = router;
         this.secIncr = 1;
+        this.twoDownloadLoad = false;
         this.start();
         this.listener1 = this.renderer2.listen('window', 'scroll', function (e) {
           _this5.sec = 0;
@@ -3248,18 +3556,20 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.sec = 0;
           setInterval(function () {
             _this6.sec++;
+            console.log(_this6.sec);
 
             if (_this6.sec == 300) {
+              _this6.stateFilterService.defaultFastFilter();
+
+              _this6.periodFilterService.defaultFastFilter();
+
               _this6.router.navigate(['/']);
             }
-
-            console.log(_this6.sec);
           }, 1000);
         }
       }, {
         key: "tick",
         value: function tick(sec) {
-          console.log(sec);
           sec++;
 
           if (sec == 10) {
@@ -3269,25 +3579,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             this.router.navigate(['/']);
             this.router.navigate(['/']);
           }
-
-          console.log(sec);
         }
       }, {
         key: "getOrd",
         value: function getOrd() {
-          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee8() {
+          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
             var _this7 = this;
 
             var regexp, tableBody, tableRowPattern;
-            return regeneratorRuntime.wrap(function _callee8$(_context8) {
+            return regeneratorRuntime.wrap(function _callee10$(_context10) {
               while (1) {
-                switch (_context8.prev = _context8.next) {
+                switch (_context10.prev = _context10.next) {
                   case 0:
                     // this.data = await this.apiService.get<Order[]>('getCroppedOrders')
                     this.data = this.orderService.getOrderResponse();
-                    console.log('///////////////////////////');
-                    console.log(this.data);
                     this.mainColumn = [];
+                    this.apiService.startIndex = 0;
                     this.data.columnTables.map(function (elem) {
                       _this7.mainColumn.push({
                         field: elem.nameColumn,
@@ -3295,6 +3602,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                         width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
                       });
                     });
+                    this.apiService.startIndex += this.apiService.sizeDataResponse;
                     regexp = new RegExp('^[1-9]\d{0,2}$');
                     tableBody = [];
                     this.data.ordersTableBody.map(function (row) {
@@ -3302,11 +3610,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                       row.rowData.map(function (cell) {
                         if (cell.cellData.indexOf('thWOrders.orderClosed') !== -1) {
                           tableRow[cell.cellName] = cell.cellData.substr(22, 3);
-                        } else if (cell.cellName === 'Код' || cell.cellName === 'Борг' || cell.cellName === 'Разом' || cell.cellName === 'З/ч' || cell.cellName === 'Роб.') {
+                        } else if (cell.cellName === 'Код' || cell.cellName === 'Долг' || cell.cellName === 'Всего' || cell.cellName === 'З/ч' || cell.cellName === 'Раб.') {
                           tableRow[cell.cellName] = Number(cell.cellData);
                         } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
                           var data = new Date(cell.cellData);
-                          tableRow[cell.cellName] = moment__WEBPACK_IMPORTED_MODULE_6__(data.getTime()).utc().format("DD.MM.YY");
+                          tableRow[cell.cellName] = moment__WEBPACK_IMPORTED_MODULE_6__(data.getTime()).utc().format("YYYY-MM-DD");
                         } else {
                           tableRow[cell.cellName] = cell.cellData;
                         }
@@ -3326,10 +3634,139 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
                   case 12:
                   case "end":
-                    return _context8.stop();
+                    return _context10.stop();
                 }
               }
-            }, _callee8, this);
+            }, _callee10, this);
+          }));
+        }
+      }, {
+        key: "twoDownload",
+        value: function twoDownload() {
+          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
+            var sizeResponse, request, tableBody;
+            return regeneratorRuntime.wrap(function _callee11$(_context11) {
+              while (1) {
+                switch (_context11.prev = _context11.next) {
+                  case 0:
+                    console.log('////////////////2222');
+                    console.log(this.filterService.getOrderRequest());
+                    sizeResponse = this.apiService.sizeDataResponse;
+                    this.apiService.barLoading = true;
+                    request = this.filterService.getOrderRequest();
+                    request.sizeResponse = sizeResponse;
+                    request.sizeResponse = this.apiService.startIndex + this.apiService.sizeDataResponse;
+                    request.rowStartIndex = this.apiService.startIndex;
+                    this.filterService.setOrderRequest(request);
+                    this.apiService.applySubLoading = false;
+                    _context11.next = 12;
+                    return this.apiService.post('getCroppedOrders', this.filterService.getOrderRequest(), false);
+
+                  case 12:
+                    this.data = _context11.sent;
+                    this.apiService.startIndex += this.apiService.sizeDataResponse;
+                    this.apiService.sizeNextRequest = this.data.sizeTwoPartData;
+                    tableBody = [];
+                    this.data.ordersTableBody.map(function (row) {
+                      var tableRow = {};
+                      row.rowData.map(function (cell) {
+                        if (cell.cellData.indexOf('thWOrders.orderClosed') !== -1) {
+                          tableRow[cell.cellName] = cell.cellData.substr(22, 3);
+                        } else if (cell.cellName === 'Код' || cell.cellName === 'Долг' || cell.cellName === 'Всего' || cell.cellName === 'З/ч' || cell.cellName === 'Раб.') {
+                          tableRow[cell.cellName] = Number(cell.cellData);
+                        } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
+                          var data = new Date(cell.cellData);
+                          tableRow[cell.cellName] = moment__WEBPACK_IMPORTED_MODULE_6__(data.getTime()).utc().format("YYYY-MM-DD");
+                        } else {
+                          tableRow[cell.cellName] = cell.cellData;
+                        }
+                      });
+                      tableBody.push(tableRow);
+                    });
+                    this.tableDataService.setMainData(this.tableDataService.getMainData().concat(tableBody));
+
+                  case 18:
+                  case "end":
+                    return _context11.stop();
+                }
+              }
+            }, _callee11, this);
+          }));
+        }
+      }, {
+        key: "updateData",
+        value: function updateData() {
+          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
+            var request, mainColumn, regexp, tableBody;
+            return regeneratorRuntime.wrap(function _callee12$(_context12) {
+              while (1) {
+                switch (_context12.prev = _context12.next) {
+                  case 0:
+                    this.apiService.startIndex = 0;
+                    request = this.filterService.getOrderRequest();
+                    request.sizeResponse = 100;
+                    this.filterService.setOrderRequest(request);
+                    _context12.next = 6;
+                    return this.apiService.post('getCroppedOrders', this.filterService.getOrderRequest(), false);
+
+                  case 6:
+                    this.data = _context12.sent;
+                    this.apiService.startIndex += this.apiService.sizeDataResponse; // if (this.data.sizeTwoPartData > 0) {
+                    //     this.twoDownload()
+                    // }
+
+                    mainColumn = [];
+                    this.data.columnTables.map(function (elem) {
+                      mainColumn.push({
+                        field: elem.nameColumn,
+                        header: elem.nameColumn,
+                        width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
+                      });
+                    });
+                    this.apiService.sizeNextRequest = this.data.sizeTwoPartData;
+                    regexp = new RegExp('^[1-9]\d{0,2}$');
+                    tableBody = [];
+                    this.data.ordersTableBody.map(function (row) {
+                      var tableRow = {};
+                      row.rowData.map(function (cell) {
+                        if (cell.cellData.indexOf('thWOrders.orderClosed') !== -1) {
+                          tableRow[cell.cellName] = cell.cellData.substr(22, 3);
+                        } else if (cell.cellName === 'Код' || cell.cellName === 'Долг' || cell.cellName === 'Всего' || cell.cellName === 'З/ч' || cell.cellName === 'Раб.') {
+                          tableRow[cell.cellName] = Number(cell.cellData);
+                        } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
+                          var data = new Date(cell.cellData);
+                          tableRow[cell.cellName] = moment__WEBPACK_IMPORTED_MODULE_6__(data.getTime()).utc().format("YYYY-MM-DD");
+                        } else {
+                          tableRow[cell.cellName] = cell.cellData;
+                        }
+                      });
+                      tableBody.push(tableRow);
+                    }); // let tableRowPattern: any = {}
+                    // console.log(this.data)
+                    // if (this.data.ordersTableBody.length !== 0) {
+                    //     this.data.ordersTableBody[0].rowData.map(
+                    //         cell => {
+                    //             if (cell.cellName === 'Close') {
+                    //                 tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3)
+                    //
+                    //             } else {
+                    //                 tableRowPattern[cell.cellName] = cell.cellData;
+                    //             }
+                    //         }
+                    //     )
+                    // }
+
+                    this.tableDataService.setMainData(tableBody); // this.tableDataService.setTablePatternRow(tableRowPattern)
+
+                    this.tableDataService.setStartData(this.data);
+                    return _context12.abrupt("return", true);
+
+                  case 17:
+                  case "end":
+                    return _context12.stop();
+                }
+              }
+            }, _callee12, this);
           }));
         }
       }, {
@@ -3356,6 +3793,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"]
       }, {
+        type: _widgets_filters_state_filter_serv_state_filter_service__WEBPACK_IMPORTED_MODULE_8__["ServStateFilterService"]
+      }, {
+        type: _widgets_filters_period_date_filter_serv_period_filter_service__WEBPACK_IMPORTED_MODULE_9__["ServPeriodFilterService"]
+      }, {
+        type: _widgets_filters_filter_service__WEBPACK_IMPORTED_MODULE_7__["FilterService"]
+      }, {
+        type: _table_page_tableData_service__WEBPACK_IMPORTED_MODULE_3__["TableDataService"]
+      }, {
         type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]
       }];
     };
@@ -3368,7 +3813,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       styles: [__importDefault(__webpack_require__(
       /*! ./orders.component.css */
       "./src/app/orders-page/orders.component.css"))["default"]]
-    }), __param(0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_ng_toolkit_universal__WEBPACK_IMPORTED_MODULE_0__["WINDOW"])), __metadata("design:paramtypes", [Window, _Service_api_data_service_service__WEBPACK_IMPORTED_MODULE_2__["ApiDataServiceService"], _table_page_tableData_service__WEBPACK_IMPORTED_MODULE_3__["TableDataService"], _order_service__WEBPACK_IMPORTED_MODULE_4__["OrderService"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])], OrdersComponent);
+    }), __param(0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_ng_toolkit_universal__WEBPACK_IMPORTED_MODULE_0__["WINDOW"])), __metadata("design:paramtypes", [Window, _Service_api_data_service_service__WEBPACK_IMPORTED_MODULE_2__["ApiDataServiceService"], _table_page_tableData_service__WEBPACK_IMPORTED_MODULE_3__["TableDataService"], _order_service__WEBPACK_IMPORTED_MODULE_4__["OrderService"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["Renderer2"], _widgets_filters_state_filter_serv_state_filter_service__WEBPACK_IMPORTED_MODULE_8__["ServStateFilterService"], _widgets_filters_period_date_filter_serv_period_filter_service__WEBPACK_IMPORTED_MODULE_9__["ServPeriodFilterService"], _widgets_filters_filter_service__WEBPACK_IMPORTED_MODULE_7__["FilterService"], _table_page_tableData_service__WEBPACK_IMPORTED_MODULE_3__["TableDataService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])], OrdersComponent);
     /***/
   },
 
@@ -3712,7 +4157,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "thead tr th {\n    position: relative;\n}\n\n.table-style {\n    width: 100%!important;\n    height: 100%!important;\n    background: #f4f4f4 !important;\n    border-color: #f4f4f4 !important;\n    font-size: 3px !important;\n}\n\nspan.ui-column-resizer {\n    display: block;\n    position: absolute;\n    top: 0;\n    right: 0;\n    margin: 0;\n    width: 8px;\n    height: 100%;\n    padding: 0;\n    cursor: col-resize;\n    border: 1px solid transparent;\n}\n\n:host {\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\n    font-size: 14px;\n    color: #333;\n    box-sizing: border-box;\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n}\n\n.content-body {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}\n\ntr:nth-child(even) {\n    background-color: #f2f2f2\n}\n\ntable {\n    border-collapse: collapse;\n    text-align: left;\n}\n\np-table {\n    text-align: left;\n    width: 98vw;\n}\n\n.shadow {\n    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Параметры тени */\n}\n\n.shadow:hover {\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Параметры тени */\n}\n\n.box-item {\n    border-radius: 1px;\n    padding: 20px;\n    margin: 0px 50px 20px 50px;\n}\n\n.box {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.err-input {\n    font: 1.2em \"Fira Sans\", sans-serif;\n    color: white;\n    border-radius: 3px;\n    padding: 8px 12px;\n    margin: 10px;\n    width: auto;\n    box-sizing: border-box;\n    transition: 0.5s;\n    outline: none;\n    border: 3px solid lightcoral;\n    background: lightcoral;\n}\n\n.button-search {\n    background-color: grey;\n\n}\n\n.button-panel {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.button-panel button {\n    font-size: 1em;\n    padding: 5px;\n    margin: 15px;\n}\n\n.button-create {\n    width: 100px;\n    background: #409EFF;\n}\n\n.button-delete {\n    width: 100px;\n    background: #F56C6C;\n}\n\n.button-add {\n    width: 100px;\n    background: #67C23A;\n}\n\n.button:hover {\n    opacity: 1\n}\n\n.content-dialog{\n    display: flex;\n    flex-direction: column;\n}\n\n.filter-panel {\n    display: inline-flex;\n    flex-wrap: wrap;\n    justify-content: center;\n\n    flex-direction: row;\n    width: auto;\n    min-height: 600px;\n    min-width: 200px;\n    height: auto;\n}\n\n.filter{\n    display: inline-flex;\n    margin: 20px;\n}\n\n.panel-button-menu{\n    z-index:10000 !important\n}\n\n.button {\n    border: none;\n    color: white;\n    padding: 10px 15px;\n    text-align: center;\n    font-size: 16px;\n    margin: 10px;\n    opacity: 0.6;\n    transition: 0.3s;\n    display: inline-block;\n    text-decoration: none;\n    cursor: pointer;\n    border-radius: 3px;\n}\n\n.fast-filter{\n    position: absolute;\n    height: 35px;\n    margin: 10px;\n    top: 0px\n}\n\n.footer-dialog{\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-content: center;\n    align-self: flex-end;\n\n    width: 100%;\n    height: 40px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGFibGUtcGFnZS90YWJsZS1wYWdlLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxrQkFBa0I7QUFDdEI7O0FBRUE7SUFDSSxxQkFBcUI7SUFDckIsc0JBQXNCO0lBQ3RCLDhCQUE4QjtJQUM5QixnQ0FBZ0M7SUFDaEMseUJBQXlCO0FBQzdCOztBQUVBO0lBQ0ksY0FBYztJQUNkLGtCQUFrQjtJQUNsQixNQUFNO0lBQ04sUUFBUTtJQUNSLFNBQVM7SUFDVCxVQUFVO0lBQ1YsWUFBWTtJQUNaLFVBQVU7SUFDVixrQkFBa0I7SUFDbEIsNkJBQTZCO0FBQ2pDOztBQUdBO0lBQ0ksMEpBQTBKO0lBQzFKLGVBQWU7SUFDZixXQUFXO0lBQ1gsc0JBQXNCO0lBQ3RCLG1DQUFtQztJQUNuQyxrQ0FBa0M7QUFDdEM7O0FBRUE7SUFDSSxhQUFhO0lBQ2Isc0JBQXNCO0lBQ3RCLG1CQUFtQjtBQUN2Qjs7QUFFQTtJQUNJO0FBQ0o7O0FBRUE7SUFDSSx5QkFBeUI7SUFDekIsZ0JBQWdCO0FBQ3BCOztBQUVBO0lBQ0ksZ0JBQWdCO0lBQ2hCLFdBQVc7QUFDZjs7QUFFQTtJQUNJLHNDQUFzQyxFQUFFLG1CQUFtQjtBQUMvRDs7QUFFQTtJQUNJLHVDQUF1QyxFQUFFLG1CQUFtQjtBQUNoRTs7QUFFQTtJQUNJLGtCQUFrQjtJQUNsQixhQUFhO0lBQ2IsMEJBQTBCO0FBQzlCOztBQUVBO0lBQ0ksYUFBYTtJQUNiLHVCQUF1QjtJQUN2QixtQkFBbUI7QUFDdkI7O0FBRUE7SUFDSSxtQ0FBbUM7SUFDbkMsWUFBWTtJQUNaLGtCQUFrQjtJQUNsQixpQkFBaUI7SUFDakIsWUFBWTtJQUNaLFdBQVc7SUFDWCxzQkFBc0I7SUFFdEIsZ0JBQWdCO0lBQ2hCLGFBQWE7SUFDYiw0QkFBNEI7SUFDNUIsc0JBQXNCO0FBQzFCOztBQUdBO0lBQ0ksc0JBQXNCOztBQUUxQjs7QUFHQTtJQUNJLGFBQWE7SUFDYix1QkFBdUI7SUFDdkIsbUJBQW1CO0FBQ3ZCOztBQUVBO0lBQ0ksY0FBYztJQUNkLFlBQVk7SUFDWixZQUFZO0FBQ2hCOztBQUVBO0lBQ0ksWUFBWTtJQUNaLG1CQUFtQjtBQUN2Qjs7QUFFQTtJQUNJLFlBQVk7SUFDWixtQkFBbUI7QUFDdkI7O0FBRUE7SUFDSSxZQUFZO0lBQ1osbUJBQW1CO0FBQ3ZCOztBQUVBO0lBQ0k7QUFDSjs7QUFDQTtJQUNJLGFBQWE7SUFDYixzQkFBc0I7QUFDMUI7O0FBQ0E7SUFDSSxvQkFBb0I7SUFDcEIsZUFBZTtJQUNmLHVCQUF1Qjs7SUFFdkIsbUJBQW1CO0lBQ25CLFdBQVc7SUFDWCxpQkFBaUI7SUFDakIsZ0JBQWdCO0lBQ2hCLFlBQVk7QUFDaEI7O0FBQ0E7SUFDSSxvQkFBb0I7SUFDcEIsWUFBWTtBQUNoQjs7QUFDQTtJQUNJO0FBQ0o7O0FBQ0E7SUFDSSxZQUFZO0lBQ1osWUFBWTtJQUNaLGtCQUFrQjtJQUNsQixrQkFBa0I7SUFDbEIsZUFBZTtJQUNmLFlBQVk7SUFDWixZQUFZO0lBQ1osZ0JBQWdCO0lBQ2hCLHFCQUFxQjtJQUNyQixxQkFBcUI7SUFDckIsZUFBZTtJQUNmLGtCQUFrQjtBQUN0Qjs7QUFDQTtJQUNJLGtCQUFrQjtJQUNsQixZQUFZO0lBQ1osWUFBWTtJQUNaO0FBQ0o7O0FBQ0E7SUFDSSxhQUFhO0lBQ2IsbUJBQW1CO0lBQ25CLHVCQUF1QjtJQUN2QixxQkFBcUI7SUFDckIsb0JBQW9COztJQUVwQixXQUFXO0lBQ1gsWUFBWTtBQUNoQiIsImZpbGUiOiJzcmMvYXBwL3RhYmxlLXBhZ2UvdGFibGUtcGFnZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsidGhlYWQgdHIgdGgge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cblxuLnRhYmxlLXN0eWxlIHtcbiAgICB3aWR0aDogMTAwJSFpbXBvcnRhbnQ7XG4gICAgaGVpZ2h0OiAxMDAlIWltcG9ydGFudDtcbiAgICBiYWNrZ3JvdW5kOiAjZjRmNGY0ICFpbXBvcnRhbnQ7XG4gICAgYm9yZGVyLWNvbG9yOiAjZjRmNGY0ICFpbXBvcnRhbnQ7XG4gICAgZm9udC1zaXplOiAzcHggIWltcG9ydGFudDtcbn1cblxuc3Bhbi51aS1jb2x1bW4tcmVzaXplciB7XG4gICAgZGlzcGxheTogYmxvY2s7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIHRvcDogMDtcbiAgICByaWdodDogMDtcbiAgICBtYXJnaW46IDA7XG4gICAgd2lkdGg6IDhweDtcbiAgICBoZWlnaHQ6IDEwMCU7XG4gICAgcGFkZGluZzogMDtcbiAgICBjdXJzb3I6IGNvbC1yZXNpemU7XG4gICAgYm9yZGVyOiAxcHggc29saWQgdHJhbnNwYXJlbnQ7XG59XG5cblxuOmhvc3Qge1xuICAgIGZvbnQtZmFtaWx5OiAtYXBwbGUtc3lzdGVtLCBCbGlua01hY1N5c3RlbUZvbnQsIFwiU2Vnb2UgVUlcIiwgUm9ib3RvLCBIZWx2ZXRpY2EsIEFyaWFsLCBzYW5zLXNlcmlmLCBcIkFwcGxlIENvbG9yIEVtb2ppXCIsIFwiU2Vnb2UgVUkgRW1vamlcIiwgXCJTZWdvZSBVSSBTeW1ib2xcIjtcbiAgICBmb250LXNpemU6IDE0cHg7XG4gICAgY29sb3I6ICMzMzM7XG4gICAgYm94LXNpemluZzogYm9yZGVyLWJveDtcbiAgICAtd2Via2l0LWZvbnQtc21vb3RoaW5nOiBhbnRpYWxpYXNlZDtcbiAgICAtbW96LW9zeC1mb250LXNtb290aGluZzogZ3JheXNjYWxlO1xufVxuXG4uY29udGVudC1ib2R5IHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cblxudHI6bnRoLWNoaWxkKGV2ZW4pIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjJmMmYyXG59XG5cbnRhYmxlIHtcbiAgICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xuICAgIHRleHQtYWxpZ246IGxlZnQ7XG59XG5cbnAtdGFibGUge1xuICAgIHRleHQtYWxpZ246IGxlZnQ7XG4gICAgd2lkdGg6IDk4dnc7XG59XG5cbi5zaGFkb3cge1xuICAgIGJveC1zaGFkb3c6IDAgMCA1cHggcmdiYSgwLCAwLCAwLCAwLjUpOyAvKiDQn9Cw0YDQsNC80LXRgtGA0Ysg0YLQtdC90LggKi9cbn1cblxuLnNoYWRvdzpob3ZlciB7XG4gICAgYm94LXNoYWRvdzogMCAwIDEwcHggcmdiYSgwLCAwLCAwLCAwLjUpOyAvKiDQn9Cw0YDQsNC80LXRgtGA0Ysg0YLQtdC90LggKi9cbn1cblxuLmJveC1pdGVtIHtcbiAgICBib3JkZXItcmFkaXVzOiAxcHg7XG4gICAgcGFkZGluZzogMjBweDtcbiAgICBtYXJnaW46IDBweCA1MHB4IDIwcHggNTBweDtcbn1cblxuLmJveCB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuXG4uZXJyLWlucHV0IHtcbiAgICBmb250OiAxLjJlbSBcIkZpcmEgU2Fuc1wiLCBzYW5zLXNlcmlmO1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICBib3JkZXItcmFkaXVzOiAzcHg7XG4gICAgcGFkZGluZzogOHB4IDEycHg7XG4gICAgbWFyZ2luOiAxMHB4O1xuICAgIHdpZHRoOiBhdXRvO1xuICAgIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG4gICAgLXdlYmtpdC10cmFuc2l0aW9uOiAwLjVzO1xuICAgIHRyYW5zaXRpb246IDAuNXM7XG4gICAgb3V0bGluZTogbm9uZTtcbiAgICBib3JkZXI6IDNweCBzb2xpZCBsaWdodGNvcmFsO1xuICAgIGJhY2tncm91bmQ6IGxpZ2h0Y29yYWw7XG59XG5cblxuLmJ1dHRvbi1zZWFyY2gge1xuICAgIGJhY2tncm91bmQtY29sb3I6IGdyZXk7XG5cbn1cblxuXG4uYnV0dG9uLXBhbmVsIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG5cbi5idXR0b24tcGFuZWwgYnV0dG9uIHtcbiAgICBmb250LXNpemU6IDFlbTtcbiAgICBwYWRkaW5nOiA1cHg7XG4gICAgbWFyZ2luOiAxNXB4O1xufVxuXG4uYnV0dG9uLWNyZWF0ZSB7XG4gICAgd2lkdGg6IDEwMHB4O1xuICAgIGJhY2tncm91bmQ6ICM0MDlFRkY7XG59XG5cbi5idXR0b24tZGVsZXRlIHtcbiAgICB3aWR0aDogMTAwcHg7XG4gICAgYmFja2dyb3VuZDogI0Y1NkM2Qztcbn1cblxuLmJ1dHRvbi1hZGQge1xuICAgIHdpZHRoOiAxMDBweDtcbiAgICBiYWNrZ3JvdW5kOiAjNjdDMjNBO1xufVxuXG4uYnV0dG9uOmhvdmVyIHtcbiAgICBvcGFjaXR5OiAxXG59XG4uY29udGVudC1kaWFsb2d7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xufVxuLmZpbHRlci1wYW5lbCB7XG4gICAgZGlzcGxheTogaW5saW5lLWZsZXg7XG4gICAgZmxleC13cmFwOiB3cmFwO1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuXG4gICAgZmxleC1kaXJlY3Rpb246IHJvdztcbiAgICB3aWR0aDogYXV0bztcbiAgICBtaW4taGVpZ2h0OiA2MDBweDtcbiAgICBtaW4td2lkdGg6IDIwMHB4O1xuICAgIGhlaWdodDogYXV0bztcbn1cbi5maWx0ZXJ7XG4gICAgZGlzcGxheTogaW5saW5lLWZsZXg7XG4gICAgbWFyZ2luOiAyMHB4O1xufVxuLnBhbmVsLWJ1dHRvbi1tZW51e1xuICAgIHotaW5kZXg6MTAwMDAgIWltcG9ydGFudFxufVxuLmJ1dHRvbiB7XG4gICAgYm9yZGVyOiBub25lO1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICBwYWRkaW5nOiAxMHB4IDE1cHg7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGZvbnQtc2l6ZTogMTZweDtcbiAgICBtYXJnaW46IDEwcHg7XG4gICAgb3BhY2l0eTogMC42O1xuICAgIHRyYW5zaXRpb246IDAuM3M7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgYm9yZGVyLXJhZGl1czogM3B4O1xufVxuLmZhc3QtZmlsdGVye1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBoZWlnaHQ6IDM1cHg7XG4gICAgbWFyZ2luOiAxMHB4O1xuICAgIHRvcDogMHB4XG59XG4uZm9vdGVyLWRpYWxvZ3tcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgYWxpZ24tY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLXNlbGY6IGZsZXgtZW5kO1xuXG4gICAgd2lkdGg6IDEwMCU7XG4gICAgaGVpZ2h0OiA0MHB4O1xufVxuIl19 */";
+    __webpack_exports__["default"] = "thead tr th {\n    position: relative;\n}\n\n.loading-text {\n    display: block;\n    background-color: #f1f1f1;\n    min-height: 19px;\n    -webkit-animation: pulse 1s infinite ease-in-out;\n            animation: pulse 1s infinite ease-in-out;\n    text-indent: -99999px;\n    overflow: hidden;\n}\n\n.table-style {\n    width: 100%!important;\n    height: 100%!important;\n    background: #f4f4f4 !important;\n    border-color: #f4f4f4 !important;\n    font-size: 3px !important;\n}\n\nspan.ui-column-resizer {\n    display: block;\n    position: absolute;\n    top: 0;\n    right: 0;\n    margin: 0;\n    width: 8px;\n    height: 100%;\n    padding: 0;\n    cursor: col-resize;\n    border: 1px solid transparent;\n}\n\n:host {\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\n    font-size: 14px;\n    color: #333;\n    box-sizing: border-box;\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n}\n\n.content-body {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n}\n\ntr:nth-child(even) {\n    background-color: #f2f2f2\n}\n\ntable {\n    border-collapse: collapse;\n    text-align: left;\n}\n\np-table {\n    text-align: left;\n    width: 98vw;\n}\n\n.shadow {\n    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Параметры тени */\n}\n\n.shadow:hover {\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Параметры тени */\n}\n\n.box-item {\n    border-radius: 1px;\n    padding: 20px;\n    margin: 0px 50px 20px 50px;\n}\n\n.box {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.err-input {\n    font: 1.2em \"Fira Sans\", sans-serif;\n    color: white;\n    border-radius: 3px;\n    padding: 8px 12px;\n    margin: 10px;\n    width: auto;\n    box-sizing: border-box;\n    transition: 0.5s;\n    outline: none;\n    border: 3px solid lightcoral;\n    background: lightcoral;\n}\n\n.button-search {\n    background-color: grey;\n\n}\n\n.button-panel {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.button-panel button {\n    font-size: 1em;\n    padding: 5px;\n    margin: 15px;\n}\n\n.button-create {\n    width: 100px;\n    background: #409EFF;\n}\n\n.button-delete {\n    width: 100px;\n    background: #F56C6C;\n}\n\n.button-add {\n    width: 100px;\n    background: #67C23A;\n}\n\n.button:hover {\n    opacity: 1\n}\n\n.content-dialog{\n    display: flex;\n    flex-direction: column;\n}\n\n.filter-panel {\n    display: inline-flex;\n    flex-wrap: wrap;\n    justify-content: center;\n\n    flex-direction: row;\n    width: auto;\n    min-height: 600px;\n    min-width: 200px;\n    height: auto;\n}\n\n.filter{\n    display: inline-flex;\n    margin: 20px;\n}\n\n.panel-button-menu{\n    z-index:10000 !important\n}\n\n.button {\n    border: none;\n    color: white;\n    padding: 10px 15px;\n    text-align: center;\n    font-size: 16px;\n    margin: 10px;\n    opacity: 0.6;\n    transition: 0.3s;\n    display: inline-block;\n    text-decoration: none;\n    cursor: pointer;\n    border-radius: 3px;\n}\n\n.fast-filter{\n    position: absolute;\n    height: 35px;\n    margin: 10px;\n    top: 0px\n}\n\n.footer-dialog{\n    display: flex;\n    flex-direction: row;\n    justify-content: center;\n    align-content: center;\n    align-self: flex-end;\n\n    width: 100%;\n    height: 40px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGFibGUtcGFnZS90YWJsZS1wYWdlLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxrQkFBa0I7QUFDdEI7O0FBRUE7SUFDSSxjQUFjO0lBQ2QseUJBQXlCO0lBQ3pCLGdCQUFnQjtJQUNoQixnREFBd0M7WUFBeEMsd0NBQXdDO0lBQ3hDLHFCQUFxQjtJQUNyQixnQkFBZ0I7QUFDcEI7O0FBQ0E7SUFDSSxxQkFBcUI7SUFDckIsc0JBQXNCO0lBQ3RCLDhCQUE4QjtJQUM5QixnQ0FBZ0M7SUFDaEMseUJBQXlCO0FBQzdCOztBQUVBO0lBQ0ksY0FBYztJQUNkLGtCQUFrQjtJQUNsQixNQUFNO0lBQ04sUUFBUTtJQUNSLFNBQVM7SUFDVCxVQUFVO0lBQ1YsWUFBWTtJQUNaLFVBQVU7SUFDVixrQkFBa0I7SUFDbEIsNkJBQTZCO0FBQ2pDOztBQUdBO0lBQ0ksMEpBQTBKO0lBQzFKLGVBQWU7SUFDZixXQUFXO0lBQ1gsc0JBQXNCO0lBQ3RCLG1DQUFtQztJQUNuQyxrQ0FBa0M7QUFDdEM7O0FBRUE7SUFDSSxhQUFhO0lBQ2Isc0JBQXNCO0lBQ3RCLG1CQUFtQjtBQUN2Qjs7QUFFQTtJQUNJO0FBQ0o7O0FBRUE7SUFDSSx5QkFBeUI7SUFDekIsZ0JBQWdCO0FBQ3BCOztBQUVBO0lBQ0ksZ0JBQWdCO0lBQ2hCLFdBQVc7QUFDZjs7QUFFQTtJQUNJLHNDQUFzQyxFQUFFLG1CQUFtQjtBQUMvRDs7QUFFQTtJQUNJLHVDQUF1QyxFQUFFLG1CQUFtQjtBQUNoRTs7QUFFQTtJQUNJLGtCQUFrQjtJQUNsQixhQUFhO0lBQ2IsMEJBQTBCO0FBQzlCOztBQUVBO0lBQ0ksYUFBYTtJQUNiLHVCQUF1QjtJQUN2QixtQkFBbUI7QUFDdkI7O0FBRUE7SUFDSSxtQ0FBbUM7SUFDbkMsWUFBWTtJQUNaLGtCQUFrQjtJQUNsQixpQkFBaUI7SUFDakIsWUFBWTtJQUNaLFdBQVc7SUFDWCxzQkFBc0I7SUFFdEIsZ0JBQWdCO0lBQ2hCLGFBQWE7SUFDYiw0QkFBNEI7SUFDNUIsc0JBQXNCO0FBQzFCOztBQUdBO0lBQ0ksc0JBQXNCOztBQUUxQjs7QUFHQTtJQUNJLGFBQWE7SUFDYix1QkFBdUI7SUFDdkIsbUJBQW1CO0FBQ3ZCOztBQUVBO0lBQ0ksY0FBYztJQUNkLFlBQVk7SUFDWixZQUFZO0FBQ2hCOztBQUVBO0lBQ0ksWUFBWTtJQUNaLG1CQUFtQjtBQUN2Qjs7QUFFQTtJQUNJLFlBQVk7SUFDWixtQkFBbUI7QUFDdkI7O0FBRUE7SUFDSSxZQUFZO0lBQ1osbUJBQW1CO0FBQ3ZCOztBQUVBO0lBQ0k7QUFDSjs7QUFDQTtJQUNJLGFBQWE7SUFDYixzQkFBc0I7QUFDMUI7O0FBQ0E7SUFDSSxvQkFBb0I7SUFDcEIsZUFBZTtJQUNmLHVCQUF1Qjs7SUFFdkIsbUJBQW1CO0lBQ25CLFdBQVc7SUFDWCxpQkFBaUI7SUFDakIsZ0JBQWdCO0lBQ2hCLFlBQVk7QUFDaEI7O0FBQ0E7SUFDSSxvQkFBb0I7SUFDcEIsWUFBWTtBQUNoQjs7QUFDQTtJQUNJO0FBQ0o7O0FBQ0E7SUFDSSxZQUFZO0lBQ1osWUFBWTtJQUNaLGtCQUFrQjtJQUNsQixrQkFBa0I7SUFDbEIsZUFBZTtJQUNmLFlBQVk7SUFDWixZQUFZO0lBQ1osZ0JBQWdCO0lBQ2hCLHFCQUFxQjtJQUNyQixxQkFBcUI7SUFDckIsZUFBZTtJQUNmLGtCQUFrQjtBQUN0Qjs7QUFDQTtJQUNJLGtCQUFrQjtJQUNsQixZQUFZO0lBQ1osWUFBWTtJQUNaO0FBQ0o7O0FBQ0E7SUFDSSxhQUFhO0lBQ2IsbUJBQW1CO0lBQ25CLHVCQUF1QjtJQUN2QixxQkFBcUI7SUFDckIsb0JBQW9COztJQUVwQixXQUFXO0lBQ1gsWUFBWTtBQUNoQiIsImZpbGUiOiJzcmMvYXBwL3RhYmxlLXBhZ2UvdGFibGUtcGFnZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsidGhlYWQgdHIgdGgge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbn1cblxuLmxvYWRpbmctdGV4dCB7XG4gICAgZGlzcGxheTogYmxvY2s7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2YxZjFmMTtcbiAgICBtaW4taGVpZ2h0OiAxOXB4O1xuICAgIGFuaW1hdGlvbjogcHVsc2UgMXMgaW5maW5pdGUgZWFzZS1pbi1vdXQ7XG4gICAgdGV4dC1pbmRlbnQ6IC05OTk5OXB4O1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG59XG4udGFibGUtc3R5bGUge1xuICAgIHdpZHRoOiAxMDAlIWltcG9ydGFudDtcbiAgICBoZWlnaHQ6IDEwMCUhaW1wb3J0YW50O1xuICAgIGJhY2tncm91bmQ6ICNmNGY0ZjQgIWltcG9ydGFudDtcbiAgICBib3JkZXItY29sb3I6ICNmNGY0ZjQgIWltcG9ydGFudDtcbiAgICBmb250LXNpemU6IDNweCAhaW1wb3J0YW50O1xufVxuXG5zcGFuLnVpLWNvbHVtbi1yZXNpemVyIHtcbiAgICBkaXNwbGF5OiBibG9jaztcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgdG9wOiAwO1xuICAgIHJpZ2h0OiAwO1xuICAgIG1hcmdpbjogMDtcbiAgICB3aWR0aDogOHB4O1xuICAgIGhlaWdodDogMTAwJTtcbiAgICBwYWRkaW5nOiAwO1xuICAgIGN1cnNvcjogY29sLXJlc2l6ZTtcbiAgICBib3JkZXI6IDFweCBzb2xpZCB0cmFuc3BhcmVudDtcbn1cblxuXG46aG9zdCB7XG4gICAgZm9udC1mYW1pbHk6IC1hcHBsZS1zeXN0ZW0sIEJsaW5rTWFjU3lzdGVtRm9udCwgXCJTZWdvZSBVSVwiLCBSb2JvdG8sIEhlbHZldGljYSwgQXJpYWwsIHNhbnMtc2VyaWYsIFwiQXBwbGUgQ29sb3IgRW1vamlcIiwgXCJTZWdvZSBVSSBFbW9qaVwiLCBcIlNlZ29lIFVJIFN5bWJvbFwiO1xuICAgIGZvbnQtc2l6ZTogMTRweDtcbiAgICBjb2xvcjogIzMzMztcbiAgICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xuICAgIC13ZWJraXQtZm9udC1zbW9vdGhpbmc6IGFudGlhbGlhc2VkO1xuICAgIC1tb3otb3N4LWZvbnQtc21vb3RoaW5nOiBncmF5c2NhbGU7XG59XG5cbi5jb250ZW50LWJvZHkge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuXG50cjpudGgtY2hpbGQoZXZlbikge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmMmYyZjJcbn1cblxudGFibGUge1xuICAgIGJvcmRlci1jb2xsYXBzZTogY29sbGFwc2U7XG4gICAgdGV4dC1hbGlnbjogbGVmdDtcbn1cblxucC10YWJsZSB7XG4gICAgdGV4dC1hbGlnbjogbGVmdDtcbiAgICB3aWR0aDogOTh2dztcbn1cblxuLnNoYWRvdyB7XG4gICAgYm94LXNoYWRvdzogMCAwIDVweCByZ2JhKDAsIDAsIDAsIDAuNSk7IC8qINCf0LDRgNCw0LzQtdGC0YDRiyDRgtC10L3QuCAqL1xufVxuXG4uc2hhZG93OmhvdmVyIHtcbiAgICBib3gtc2hhZG93OiAwIDAgMTBweCByZ2JhKDAsIDAsIDAsIDAuNSk7IC8qINCf0LDRgNCw0LzQtdGC0YDRiyDRgtC10L3QuCAqL1xufVxuXG4uYm94LWl0ZW0ge1xuICAgIGJvcmRlci1yYWRpdXM6IDFweDtcbiAgICBwYWRkaW5nOiAyMHB4O1xuICAgIG1hcmdpbjogMHB4IDUwcHggMjBweCA1MHB4O1xufVxuXG4uYm94IHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG5cbi5lcnItaW5wdXQge1xuICAgIGZvbnQ6IDEuMmVtIFwiRmlyYSBTYW5zXCIsIHNhbnMtc2VyaWY7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIGJvcmRlci1yYWRpdXM6IDNweDtcbiAgICBwYWRkaW5nOiA4cHggMTJweDtcbiAgICBtYXJnaW46IDEwcHg7XG4gICAgd2lkdGg6IGF1dG87XG4gICAgYm94LXNpemluZzogYm9yZGVyLWJveDtcbiAgICAtd2Via2l0LXRyYW5zaXRpb246IDAuNXM7XG4gICAgdHJhbnNpdGlvbjogMC41cztcbiAgICBvdXRsaW5lOiBub25lO1xuICAgIGJvcmRlcjogM3B4IHNvbGlkIGxpZ2h0Y29yYWw7XG4gICAgYmFja2dyb3VuZDogbGlnaHRjb3JhbDtcbn1cblxuXG4uYnV0dG9uLXNlYXJjaCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogZ3JleTtcblxufVxuXG5cbi5idXR0b24tcGFuZWwge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cblxuLmJ1dHRvbi1wYW5lbCBidXR0b24ge1xuICAgIGZvbnQtc2l6ZTogMWVtO1xuICAgIHBhZGRpbmc6IDVweDtcbiAgICBtYXJnaW46IDE1cHg7XG59XG5cbi5idXR0b24tY3JlYXRlIHtcbiAgICB3aWR0aDogMTAwcHg7XG4gICAgYmFja2dyb3VuZDogIzQwOUVGRjtcbn1cblxuLmJ1dHRvbi1kZWxldGUge1xuICAgIHdpZHRoOiAxMDBweDtcbiAgICBiYWNrZ3JvdW5kOiAjRjU2QzZDO1xufVxuXG4uYnV0dG9uLWFkZCB7XG4gICAgd2lkdGg6IDEwMHB4O1xuICAgIGJhY2tncm91bmQ6ICM2N0MyM0E7XG59XG5cbi5idXR0b246aG92ZXIge1xuICAgIG9wYWNpdHk6IDFcbn1cbi5jb250ZW50LWRpYWxvZ3tcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG59XG4uZmlsdGVyLXBhbmVsIHtcbiAgICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcbiAgICBmbGV4LXdyYXA6IHdyYXA7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG5cbiAgICBmbGV4LWRpcmVjdGlvbjogcm93O1xuICAgIHdpZHRoOiBhdXRvO1xuICAgIG1pbi1oZWlnaHQ6IDYwMHB4O1xuICAgIG1pbi13aWR0aDogMjAwcHg7XG4gICAgaGVpZ2h0OiBhdXRvO1xufVxuLmZpbHRlcntcbiAgICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcbiAgICBtYXJnaW46IDIwcHg7XG59XG4ucGFuZWwtYnV0dG9uLW1lbnV7XG4gICAgei1pbmRleDoxMDAwMCAhaW1wb3J0YW50XG59XG4uYnV0dG9uIHtcbiAgICBib3JkZXI6IG5vbmU7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIHBhZGRpbmc6IDEwcHggMTVweDtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgZm9udC1zaXplOiAxNnB4O1xuICAgIG1hcmdpbjogMTBweDtcbiAgICBvcGFjaXR5OiAwLjY7XG4gICAgdHJhbnNpdGlvbjogMC4zcztcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICBib3JkZXItcmFkaXVzOiAzcHg7XG59XG4uZmFzdC1maWx0ZXJ7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIGhlaWdodDogMzVweDtcbiAgICBtYXJnaW46IDEwcHg7XG4gICAgdG9wOiAwcHhcbn1cbi5mb290ZXItZGlhbG9ne1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IHJvdztcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBhbGlnbi1jb250ZW50OiBjZW50ZXI7XG4gICAgYWxpZ24tc2VsZjogZmxleC1lbmQ7XG5cbiAgICB3aWR0aDogMTAwJTtcbiAgICBoZWlnaHQ6IDQwcHg7XG59XG4iXX0= */";
     /***/
   },
 
@@ -3832,31 +4277,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony import */
 
 
-    var moment__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
-    /*! moment */
-    "./node_modules/moment/moment.js");
-    /* harmony import */
-
-
-    var moment__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_15__);
-    /* harmony import */
-
-
-    var _widgets_filters_substring_filter_substring_filter_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
+    var _widgets_filters_substring_filter_substring_filter_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(
     /*! ../widgets/filters/substring-filter/substring-filter.component */
     "./src/app/widgets/filters/substring-filter/substring-filter.component.ts");
     /* harmony import */
 
 
-    var _widgets_filters_state_filter_serv_state_filter_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
+    var _widgets_filters_state_filter_serv_state_filter_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
     /*! ../widgets/filters/state-filter/serv-state-filter.service */
     "./src/app/widgets/filters/state-filter/serv-state-filter.service.ts");
     /* harmony import */
 
 
-    var _widgets_filters_period_date_filter_serv_period_filter_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
+    var _widgets_filters_period_date_filter_serv_period_filter_service__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
     /*! ../widgets/filters/period-date-filter/serv-period-filter.service */
     "./src/app/widgets/filters/period-date-filter/serv-period-filter.service.ts");
+    /* harmony import */
+
+
+    var _widgets_filters_substring_filter_serv_substring_filter_service__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
+    /*! ../widgets/filters/substring-filter/serv-substring-filter.service */
+    "./src/app/widgets/filters/substring-filter/serv-substring-filter.service.ts");
 
     var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
       var c = arguments.length,
@@ -3914,7 +4355,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var EXCEL_EXTENSION = '.xlsx';
 
     var TablePageComponent = /*#__PURE__*/function () {
-      function TablePageComponent(tableDataService, orderService, filterService, filterPeriodService, apiService, serviceStateFiler, confirmationService, _router) {
+      function TablePageComponent(tableDataService, orderService, filterService, filterPeriodService, apiService, serviceSubstring, serviceStateFiler, confirmationService, _router) {
         _classCallCheck(this, TablePageComponent);
 
         this.tableDataService = tableDataService;
@@ -3922,13 +4363,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.filterService = filterService;
         this.filterPeriodService = filterPeriodService;
         this.apiService = apiService;
+        this.serviceSubstring = serviceSubstring;
         this.serviceStateFiler = serviceStateFiler;
         this.confirmationService = confirmationService;
         this._router = _router;
+        this.onUpdateData = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.onLazyLoad = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.stateFilterDisable = false;
         this.buttonActionDisable = false;
         this.standardFilterDisable = false;
         this.dynamicColumns = '';
+        this.lazyLoadFix = true;
         this.selectRow = {};
         this.inputErr = false;
         this.confirmDisplay = false;
@@ -3953,18 +4398,30 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }
 
       _createClass(TablePageComponent, [{
-        key: "confirmOnStateFilter",
-        value: function confirmOnStateFilter(event) {
+        key: "confirmOnFilter",
+        value: function confirmOnFilter(event) {
           var _this9 = this;
 
-          if (this.serviceStateFiler.disableFastFiled) {
+          if (this.serviceStateFiler.disableFastFiled || this.filterPeriodService.disableFastFiled) {
             this.confirmationService.confirm({
               target: event.target,
-              message: 'стандартнi фiльтри будуть очищені. Продовжити?',
+              // message: 'стандартнi фiльтри будуть очищені. Продовжити?',
+              message: 'стандартные фильтры будут очищены. Продолжить?',
               icon: 'pi pi-exclamation-triangle',
-              rejectVisible: false,
+              acceptLabel: 'да',
+              rejectLabel: 'нет',
               accept: function accept() {
+                _this9.cancelFilter();
+
+                _this9.serviceStateFiler.onFastFilter();
+
+                _this9.filterPeriodService.onFastFilter();
+
+                _this9.serviceSubstring.onFastFilter();
+
                 _this9.confirmDisplay = false;
+
+                _this9.updateData();
               },
               reject: function reject() {
                 _this9.confirmDisplay = false;
@@ -3978,11 +4435,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.display = true;
           this.serviceStateFiler.onStndFilter();
           this.filterPeriodService.onStndFilter();
+          this.serviceSubstring.onStndFilter();
         }
       }, {
         key: "downloadExel",
         value: function downloadExel() {
-          console.log(this.tableDataService.mainData);
           var worksheet = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].json_to_sheet(this.tableDataService.mainData);
           var wb = xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_new();
           xlsx__WEBPACK_IMPORTED_MODULE_8__["utils"].book_append_sheet(wb, worksheet, 'blank');
@@ -4004,6 +4461,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             message: rowData.Comment,
             icon: 'pi pi-exclamation-triangle',
             rejectVisible: false,
+            acceptVisible: false,
+            acceptLabel: 'да',
             accept: function accept() {
               _this10.confirmDisplay = false;
             },
@@ -4015,92 +4474,38 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "cancelFilter",
         value: function cancelFilter() {
-          this.serviceStateFiler.onFastFilter();
-          this.filterPeriodService.onFastFilter();
+          // this.serviceStateFiler.onFastFilter()
+          // this.filterPeriodService.onFastFilter()
+          // this.serviceSubstring.onFastFilter()
           this.filterService.clearFilter();
           this.childCustomerFilter.clear();
           this.childEmployeeFilter.clear();
           this.childPayedFilter.clear();
           this.childStateFilter.clear();
-          this.childDateFilter.clear();
-          this.subStringFilter.clear();
-          this.childPeriodDateFilter.clear();
+          this.childDateFilter.clear(); //  this.childPeriodDateFilter.clear()
         }
       }, {
         key: "updateData",
         value: function updateData() {
-          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee9() {
-            var mainColumn, regexp, tableBody, tableRowPattern;
-            return regeneratorRuntime.wrap(function _callee9$(_context9) {
+          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee13() {
+            return regeneratorRuntime.wrap(function _callee13$(_context13) {
               while (1) {
-                switch (_context9.prev = _context9.next) {
+                switch (_context13.prev = _context13.next) {
                   case 0:
-                    this.loading = true;
-                    _context9.next = 3;
-                    return this.apiService.post('getCroppedOrders', this.filterService.getOrderRequest());
-
-                  case 3:
-                    this.data = _context9.sent;
                     this.display = false;
-                    mainColumn = [];
-                    console.log(this.data.ordersTableBody);
-                    this.data.columnTables.map(function (elem) {
-                      mainColumn.push({
-                        field: elem.nameColumn,
-                        header: elem.nameColumn,
-                        width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
-                      });
-                    });
-                    regexp = new RegExp('^[1-9]\d{0,2}$');
-                    tableBody = [];
-                    this.data.ordersTableBody.map(function (row) {
-                      var tableRow = {};
-                      row.rowData.map(function (cell) {
-                        if (cell.cellData.indexOf('thWOrders.orderClosed') !== -1) {
-                          tableRow[cell.cellName] = cell.cellData.substr(22, 3);
-                        } else if (cell.cellName === 'Код' || cell.cellName === 'Борг' || cell.cellName === 'Разом' || cell.cellName === 'З/ч' || cell.cellName === 'Роб.') {
-                          tableRow[cell.cellName] = Number(cell.cellData);
-                        } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
-                          var data = new Date(cell.cellData);
-                          tableRow[cell.cellName] = moment__WEBPACK_IMPORTED_MODULE_15__(data.getTime()).utc().format("DD.MM.YY");
-                        } else {
-                          tableRow[cell.cellName] = cell.cellData;
-                        }
-                      });
-                      tableBody.push(tableRow);
-                    });
-                    tableRowPattern = {};
-                    console.log(this.data);
-
-                    if (this.data.ordersTableBody.length !== 0) {
-                      this.data.ordersTableBody[0].rowData.map(function (cell) {
-                        if (cell.cellName === 'Close') {
-                          tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3);
-                        } else {
-                          tableRowPattern[cell.cellName] = cell.cellData;
-                        }
-                      });
-                    }
-
-                    this.tableDataService.setMainData(tableBody);
-                    this.tableDataService.setTablePatternRow(tableRowPattern);
-                    this.tableDataService.setStartData(this.startData); //  this.cols = this.mainColumn.slice()
-                    // this.columns = this.cols
-                    //    this._selectedColumns = this.cols;
+                    this.onUpdateData.emit();
 
                     if (this.dynamicColumns !== '') {
                       this.tableDataService.addColumnText = this.dynamicColumns;
                       this.setColumn();
                     }
 
-                    this.loading = false;
-
-                  case 19:
+                  case 3:
                   case "end":
-                    return _context9.stop();
+                    return _context13.stop();
                 }
               }
-            }, _callee9, this);
+            }, _callee13, this);
           }));
         }
       }, {
@@ -4164,7 +4569,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.cols = this.mainColumn.slice();
           this.columns = this.cols;
           this._selectedColumns = this.cols;
-          console.log(this.columns);
 
           if (this.dynamicColumns !== '') {
             this.tableDataService.addColumnText = this.dynamicColumns;
@@ -4215,9 +4619,26 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             var value1 = data1[event.field];
             var value2 = data2[event.field];
             var result = null;
-            if (value1 == null && value2 != null) result = -1;else if (value1 != null && value2 == null) result = 1;else if (value1 == null && value2 == null) result = 0;else if (value1.length > 3) result = value1.localeCompare(value2);else if (value1.length > 2 && value2.length < 3) result = 1;else if (value2.length > 2 && value1.length < 3) result = -1;else if (value2.length > 3 && value1.length > 3) result = value1.localeCompare(value2);
-            return result;
+            var dat1 = Date.parse(value1);
+            var dat2 = Date.parse(value2);
+
+            if (dat1 != null) {
+              result = dat1 < dat2 ? -1 : dat1 > dat2 ? 1 : 0;
+            } else if (value1 == null && value2 != null) result = -1;else if (value1 != null && value2 == null) result = 1;else if (value1 == null && value2 == null) result = 0;else if (typeof value1 === 'string' && typeof value2 === 'string') result = value1.localeCompare(value2);else result = value1 < value2 ? -1 : value1 > value2 ? 1 : 0;
+
+            return event.order * result;
           });
+        }
+      }, {
+        key: "loadDataLazy",
+        value: function loadDataLazy(event) {
+          console.log(this.apiService.sizeNextRequest);
+
+          if (this.apiService.sizeNextRequest > 0) {
+            // let loadedCars = this.tableDataService.mainData.slice(event.first, (event.first + event.rows));
+            // Array.prototype.splice.apply( this.tableDataService.mainData, [...[event.first, event.rows], ...loadedCars]);
+            this.onLazyLoad.emit();
+          }
         }
       }, {
         key: "selectedColumns",
@@ -4240,11 +4661,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         type: _widgets_filters_filter_service__WEBPACK_IMPORTED_MODULE_6__["FilterService"]
       }, {
-        type: _widgets_filters_period_date_filter_serv_period_filter_service__WEBPACK_IMPORTED_MODULE_18__["ServPeriodFilterService"]
+        type: _widgets_filters_period_date_filter_serv_period_filter_service__WEBPACK_IMPORTED_MODULE_17__["ServPeriodFilterService"]
       }, {
         type: _Service_api_data_service_service__WEBPACK_IMPORTED_MODULE_7__["ApiDataServiceService"]
       }, {
-        type: _widgets_filters_state_filter_serv_state_filter_service__WEBPACK_IMPORTED_MODULE_17__["ServStateFilterService"]
+        type: _widgets_filters_substring_filter_serv_substring_filter_service__WEBPACK_IMPORTED_MODULE_18__["ServSubstringFilterService"]
+      }, {
+        type: _widgets_filters_state_filter_serv_state_filter_service__WEBPACK_IMPORTED_MODULE_16__["ServStateFilterService"]
       }, {
         type: primeng_api__WEBPACK_IMPORTED_MODULE_2__["ConfirmationService"]
       }, {
@@ -4262,11 +4685,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_widgets_filters_date_filter_date_filter_component__WEBPACK_IMPORTED_MODULE_14__["DateFilterComponent"]), __metadata("design:type", _widgets_filters_date_filter_date_filter_component__WEBPACK_IMPORTED_MODULE_14__["DateFilterComponent"])], TablePageComponent.prototype, "childDateFilter", void 0);
 
-    __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_widgets_filters_substring_filter_substring_filter_component__WEBPACK_IMPORTED_MODULE_16__["SubstringFilterComponent"]), __metadata("design:type", _widgets_filters_date_filter_date_filter_component__WEBPACK_IMPORTED_MODULE_14__["DateFilterComponent"])], TablePageComponent.prototype, "subStringFilter", void 0);
+    __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_widgets_filters_substring_filter_substring_filter_component__WEBPACK_IMPORTED_MODULE_15__["SubstringFilterComponent"]), __metadata("design:type", _widgets_filters_date_filter_date_filter_component__WEBPACK_IMPORTED_MODULE_14__["DateFilterComponent"])], TablePageComponent.prototype, "subStringFilter", void 0);
 
     __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(_widgets_filters_period_date_filter_period_date_filter_component__WEBPACK_IMPORTED_MODULE_13__["PeriodDateFilterComponent"]), __metadata("design:type", _widgets_filters_period_date_filter_period_date_filter_component__WEBPACK_IMPORTED_MODULE_13__["PeriodDateFilterComponent"])], TablePageComponent.prototype, "childPeriodDateFilter", void 0);
 
     __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(), __metadata("design:type", Array)], TablePageComponent.prototype, "startData", void 0);
+
+    __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(), __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])], TablePageComponent.prototype, "onUpdateData", void 0);
+
+    __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(), __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])], TablePageComponent.prototype, "onLazyLoad", void 0);
 
     __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(), __metadata("design:type", Array)], TablePageComponent.prototype, "mainColumn", void 0);
 
@@ -4293,7 +4720,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       styles: [__importDefault(__webpack_require__(
       /*! ./table-page.component.css */
       "./src/app/table-page/table-page.component.css"))["default"]]
-    }), __metadata("design:paramtypes", [_tableData_service__WEBPACK_IMPORTED_MODULE_1__["TableDataService"], _orders_page_order_service__WEBPACK_IMPORTED_MODULE_5__["OrderService"], _widgets_filters_filter_service__WEBPACK_IMPORTED_MODULE_6__["FilterService"], _widgets_filters_period_date_filter_serv_period_filter_service__WEBPACK_IMPORTED_MODULE_18__["ServPeriodFilterService"], _Service_api_data_service_service__WEBPACK_IMPORTED_MODULE_7__["ApiDataServiceService"], _widgets_filters_state_filter_serv_state_filter_service__WEBPACK_IMPORTED_MODULE_17__["ServStateFilterService"], primeng_api__WEBPACK_IMPORTED_MODULE_2__["ConfirmationService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])], TablePageComponent);
+    }), __metadata("design:paramtypes", [_tableData_service__WEBPACK_IMPORTED_MODULE_1__["TableDataService"], _orders_page_order_service__WEBPACK_IMPORTED_MODULE_5__["OrderService"], _widgets_filters_filter_service__WEBPACK_IMPORTED_MODULE_6__["FilterService"], _widgets_filters_period_date_filter_serv_period_filter_service__WEBPACK_IMPORTED_MODULE_17__["ServPeriodFilterService"], _Service_api_data_service_service__WEBPACK_IMPORTED_MODULE_7__["ApiDataServiceService"], _widgets_filters_substring_filter_serv_substring_filter_service__WEBPACK_IMPORTED_MODULE_18__["ServSubstringFilterService"], _widgets_filters_state_filter_serv_state_filter_service__WEBPACK_IMPORTED_MODULE_16__["ServStateFilterService"], primeng_api__WEBPACK_IMPORTED_MODULE_2__["ConfirmationService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])], TablePageComponent);
     /***/
   },
 
@@ -4357,6 +4784,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }
 
       _createClass(TableDataService, [{
+        key: "getMainData",
+        value: function getMainData() {
+          return this.mainData;
+        }
+      }, {
         key: "setTablePatternRow",
         value: function setTablePatternRow(mock) {
           this.patternTableRow = mock;
@@ -4789,45 +5221,45 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(CustomerFilterComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          this.getCustomer();
+          this.getCustomer('');
         }
       }, {
         key: "filter",
         value: function filter(event) {
           //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
-          var filteredTemp = [];
-          var query = event.query;
-
-          for (var i = 0; i < this.customers.length; i++) {
-            var stat = this.customers[i];
-
-            if (stat.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-              filteredTemp.push(stat);
-            }
-          }
-
-          this.filtered = filteredTemp;
+          // let query = event.query;
+          // for (let i = 0; i < this.customers.length; i++) {
+          //     let stat = this.customers[i];
+          //     if (stat.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+          //         filteredTemp.push(stat);
+          //     }
+          // }
+          this.getCustomer(event.query);
         }
       }, {
         key: "getCustomer",
-        value: function getCustomer() {
-          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee10() {
-            return regeneratorRuntime.wrap(function _callee10$(_context10) {
+        value: function getCustomer(nameCustomer) {
+          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee14() {
+            return regeneratorRuntime.wrap(function _callee14$(_context14) {
               while (1) {
-                switch (_context10.prev = _context10.next) {
+                switch (_context14.prev = _context14.next) {
                   case 0:
-                    _context10.next = 2;
-                    return this.apiService.get('getListCustomer');
-
-                  case 2:
-                    this.customers = _context10.sent;
+                    this.apiService.applySubLoading = false;
+                    _context14.next = 3;
+                    return this.apiService.post('getListCustomer', {
+                      name: nameCustomer,
+                      sizeResponse: 50
+                    }, false);
 
                   case 3:
+                    this.customers = _context14.sent;
+
+                  case 4:
                   case "end":
-                    return _context10.stop();
+                    return _context14.stop();
                 }
               }
-            }, _callee10, this);
+            }, _callee14, this);
           }));
         }
       }, {
@@ -4841,7 +5273,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function changeState() {
           this.orderRequest = this.filterService.getOrderRequest();
 
-          if (this.selected.id !== undefined && this.selected.id !== null) {
+          if (this.selected !== null && this.selected.id !== undefined && this.selected.id !== null) {
             this.orderRequest.customerId = this.selected.id;
           } else {
             this.orderRequest.customerId = null;
@@ -4893,7 +5325,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".filter-component {\n    width:auto;\n    min-width: 280px;\n    height: 190px;\n    background: #f4f4f4;\n    display: flex;\n    flex-direction: column;\n    align-content: center;\n    justify-content: center;\n    border: 1px solid lightgray;\n    border-radius: 5px;\n\n}\n\n.title-d{\n    background:  white;\n    display: inline-block;\n    width: -webkit-fit-content;\n    width: -moz-fit-content;\n    width: fit-content;\n    height: -webkit-fit-content;\n    height: -moz-fit-content;\n    height: fit-content;\n    display: inline-block;\n    left: 10px;\n    top:-5px;\n    position: absolute;\n    border:  solid lightgray ;\n    border-width: 0px 1px 1px 1px ;\n    border-radius:0px 0px 10px 10px;\n    paddng:10px;\n    margin: 0px;\n    padding-left: 5px;\n    padding-right: 5px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd2lkZ2V0cy9maWx0ZXJzL2RhdGUtZmlsdGVyL2RhdGUtZmlsdGVyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxVQUFVO0lBQ1YsZ0JBQWdCO0lBQ2hCLGFBQWE7SUFDYixtQkFBbUI7SUFDbkIsYUFBYTtJQUNiLHNCQUFzQjtJQUN0QixxQkFBcUI7SUFDckIsdUJBQXVCO0lBQ3ZCLDJCQUEyQjtJQUMzQixrQkFBa0I7O0FBRXRCOztBQUVBO0lBQ0ksa0JBQWtCO0lBQ2xCLHFCQUFxQjtJQUNyQiwwQkFBa0I7SUFBbEIsdUJBQWtCO0lBQWxCLGtCQUFrQjtJQUNsQiwyQkFBbUI7SUFBbkIsd0JBQW1CO0lBQW5CLG1CQUFtQjtJQUNuQixxQkFBcUI7SUFDckIsVUFBVTtJQUNWLFFBQVE7SUFDUixrQkFBa0I7SUFDbEIseUJBQXlCO0lBQ3pCLDhCQUE4QjtJQUM5QiwrQkFBK0I7SUFDL0IsV0FBVztJQUNYLFdBQVc7SUFDWCxpQkFBaUI7SUFDakIsa0JBQWtCO0FBQ3RCIiwiZmlsZSI6InNyYy9hcHAvd2lkZ2V0cy9maWx0ZXJzL2RhdGUtZmlsdGVyL2RhdGUtZmlsdGVyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZmlsdGVyLWNvbXBvbmVudCB7XG4gICAgd2lkdGg6YXV0bztcbiAgICBtaW4td2lkdGg6IDI4MHB4O1xuICAgIGhlaWdodDogMTkwcHg7XG4gICAgYmFja2dyb3VuZDogI2Y0ZjRmNDtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgYWxpZ24tY29udGVudDogY2VudGVyO1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIGxpZ2h0Z3JheTtcbiAgICBib3JkZXItcmFkaXVzOiA1cHg7XG5cbn1cblxuLnRpdGxlLWR7XG4gICAgYmFja2dyb3VuZDogIHdoaXRlO1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICB3aWR0aDogZml0LWNvbnRlbnQ7XG4gICAgaGVpZ2h0OiBmaXQtY29udGVudDtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgbGVmdDogMTBweDtcbiAgICB0b3A6LTVweDtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgYm9yZGVyOiAgc29saWQgbGlnaHRncmF5IDtcbiAgICBib3JkZXItd2lkdGg6IDBweCAxcHggMXB4IDFweCA7XG4gICAgYm9yZGVyLXJhZGl1czowcHggMHB4IDEwcHggMTBweDtcbiAgICBwYWRkbmc6MTBweDtcbiAgICBtYXJnaW46IDBweDtcbiAgICBwYWRkaW5nLWxlZnQ6IDVweDtcbiAgICBwYWRkaW5nLXJpZ2h0OiA1cHg7XG59Il19 */";
+    __webpack_exports__["default"] = ".filter-component {\n    width:auto;\n    min-width: 300px;\n    height: 190px;\n    background: #f4f4f4;\n    display: flex;\n    flex-direction: column;\n    align-content: center;\n    justify-content: center;\n    border: 1px solid lightgray;\n    border-radius: 5px;\n\n}\n\n.title-d{\n    background:  white;\n    display: inline-block;\n    width: -webkit-fit-content;\n    width: -moz-fit-content;\n    width: fit-content;\n    height: -webkit-fit-content;\n    height: -moz-fit-content;\n    height: fit-content;\n    display: inline-block;\n    left: 10px;\n    top:-5px;\n    position: absolute;\n    border:  solid lightgray ;\n    border-width: 0px 1px 1px 1px ;\n    border-radius:0px 0px 10px 10px;\n    paddng:10px;\n    margin: 0px;\n    padding-left: 5px;\n    padding-right: 5px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvd2lkZ2V0cy9maWx0ZXJzL2RhdGUtZmlsdGVyL2RhdGUtZmlsdGVyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxVQUFVO0lBQ1YsZ0JBQWdCO0lBQ2hCLGFBQWE7SUFDYixtQkFBbUI7SUFDbkIsYUFBYTtJQUNiLHNCQUFzQjtJQUN0QixxQkFBcUI7SUFDckIsdUJBQXVCO0lBQ3ZCLDJCQUEyQjtJQUMzQixrQkFBa0I7O0FBRXRCOztBQUVBO0lBQ0ksa0JBQWtCO0lBQ2xCLHFCQUFxQjtJQUNyQiwwQkFBa0I7SUFBbEIsdUJBQWtCO0lBQWxCLGtCQUFrQjtJQUNsQiwyQkFBbUI7SUFBbkIsd0JBQW1CO0lBQW5CLG1CQUFtQjtJQUNuQixxQkFBcUI7SUFDckIsVUFBVTtJQUNWLFFBQVE7SUFDUixrQkFBa0I7SUFDbEIseUJBQXlCO0lBQ3pCLDhCQUE4QjtJQUM5QiwrQkFBK0I7SUFDL0IsV0FBVztJQUNYLFdBQVc7SUFDWCxpQkFBaUI7SUFDakIsa0JBQWtCO0FBQ3RCIiwiZmlsZSI6InNyYy9hcHAvd2lkZ2V0cy9maWx0ZXJzL2RhdGUtZmlsdGVyL2RhdGUtZmlsdGVyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZmlsdGVyLWNvbXBvbmVudCB7XG4gICAgd2lkdGg6YXV0bztcbiAgICBtaW4td2lkdGg6IDMwMHB4O1xuICAgIGhlaWdodDogMTkwcHg7XG4gICAgYmFja2dyb3VuZDogI2Y0ZjRmNDtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgYWxpZ24tY29udGVudDogY2VudGVyO1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIGxpZ2h0Z3JheTtcbiAgICBib3JkZXItcmFkaXVzOiA1cHg7XG5cbn1cblxuLnRpdGxlLWR7XG4gICAgYmFja2dyb3VuZDogIHdoaXRlO1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICB3aWR0aDogZml0LWNvbnRlbnQ7XG4gICAgaGVpZ2h0OiBmaXQtY29udGVudDtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgbGVmdDogMTBweDtcbiAgICB0b3A6LTVweDtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgYm9yZGVyOiAgc29saWQgbGlnaHRncmF5IDtcbiAgICBib3JkZXItd2lkdGg6IDBweCAxcHggMXB4IDFweCA7XG4gICAgYm9yZGVyLXJhZGl1czowcHggMHB4IDEwcHggMTBweDtcbiAgICBwYWRkbmc6MTBweDtcbiAgICBtYXJnaW46IDBweDtcbiAgICBwYWRkaW5nLWxlZnQ6IDVweDtcbiAgICBwYWRkaW5nLXJpZ2h0OiA1cHg7XG59Il19 */";
     /***/
   },
 
@@ -4972,11 +5404,30 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.filterService = filterService;
         this.dateTo = null;
         this.dateFrom = null;
+        this.dateToMonth = null;
+        this.dateFromMonth = null;
         this.isCloseDate = false;
         this.menuChange = 1;
       }
 
       _createClass(DateFilterComponent, [{
+        key: "changeInputField",
+        value: function changeInputField() {// if(this.menuChange===1){
+          //     this.dateFromMonth = null;
+          //     this.dateToMonth = null;
+          //     this.childPeriodDateFilter.clear()
+          // }else if(this.menuChange===2){
+          //     this.dateTo = null;
+          //     this.dateFrom = null;
+          //     this.childPeriodDateFilter.clear()
+          // } if(this.menuChange===3){
+          //     this.dateTo = null;
+          //     this.dateFrom = null;
+          //     this.dateFromMonth = null;
+          //     this.dateToMonth = null;
+          // }
+        }
+      }, {
         key: "ngOnInit",
         value: function ngOnInit() {
           this.orderRequest = this.filterService.getOrderRequest();
@@ -4986,7 +5437,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function clear() {
           this.dateTo = null;
           this.dateFrom = null;
-          this.childPeriodDateFilter.clear();
+          this.dateFromMonth = null;
+          this.dateToMonth = null;
+
+          if (this.childPeriodDateFilter != null) {
+            this.childPeriodDateFilter.clear();
+          }
         }
       }, {
         key: "changePeriod",
@@ -5014,12 +5470,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function changeMonthPeriodDateFrom() {
           this.orderRequest.closeDate = this.isCloseDate;
 
-          if (this.dateFrom != null || this.dateTo != null) {
-            if (this.dateFrom != null) {
-              this.orderRequest.dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__(this.dateFrom).utc().format("YYYY-MM-DD");
+          if (this.dateFromMonth != null || this.dateToMonth != null) {
+            if (this.dateFromMonth != null) {
+              this.orderRequest.dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__(this.dateFromMonth).utc().format("YYYY-MM-DD");
             }
 
-            if (this.dateTo == null) {
+            if (this.dateToMonth == null) {
               this.orderRequest.dateTo = moment__WEBPACK_IMPORTED_MODULE_2__().utc().format("YYYY-MM-DD");
             }
           }
@@ -5031,14 +5487,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function changeMonthPeriodDateTo() {
           this.orderRequest.closeDate = this.isCloseDate;
 
-          if ((this.dateFrom != null || this.dateTo != null) && moment__WEBPACK_IMPORTED_MODULE_2__(this.dateTo).utc().format("YYYY-MM-DD") !== this.orderRequest.dateTo) {
-            if (this.dateTo != null) {
-              this.dateTo = new Date(this.dateTo.setMonth(this.dateTo.getMonth() + 1));
-              this.dateTo = new Date(this.dateTo.setDate(0));
-              this.orderRequest.dateTo = moment__WEBPACK_IMPORTED_MODULE_2__(this.dateTo).utc().format("YYYY-MM-DD");
+          if ((this.dateFromMonth != null || this.dateToMonth != null) && moment__WEBPACK_IMPORTED_MODULE_2__(this.dateToMonth).utc().format("YYYY-MM-DD") !== this.orderRequest.dateTo) {
+            if (this.dateToMonth != null) {
+              this.dateToMonth = new Date(this.dateToMonth.setMonth(this.dateToMonth.getMonth() + 1));
+              this.dateToMonth = new Date(this.dateToMonth.setDate(0));
+              this.orderRequest.dateTo = moment__WEBPACK_IMPORTED_MODULE_2__(this.dateToMonth).utc().format("YYYY-MM-DD");
             }
 
-            if (this.dateFrom == null) {
+            if (this.dateFromMonth == null) {
               this.orderRequest.dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__().year(2000).utc().format("YYYY-MM-DD");
             }
           }
@@ -5115,6 +5571,24 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var primeng_autocomplete__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! primeng/autocomplete */
+    "./node_modules/primeng/__ivy_ngcc__/fesm2015/primeng-autocomplete.js");
+    /* harmony import */
+
+
+    var _filter_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../filter.service */
+    "./src/app/widgets/filters/filter.service.ts");
+    /* harmony import */
+
+
+    var _Service_api_data_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../../../Service/api-data-service.service */
+    "./src/app/Service/api-data-service.service.ts");
 
     var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
       var c = arguments.length,
@@ -5130,6 +5604,38 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
 
+    var __awaiter = undefined && undefined.__awaiter || function (thisArg, _arguments, P, generator) {
+      function adopt(value) {
+        return value instanceof P ? value : new P(function (resolve) {
+          resolve(value);
+        });
+      }
+
+      return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) {
+          try {
+            step(generator.next(value));
+          } catch (e) {
+            reject(e);
+          }
+        }
+
+        function rejected(value) {
+          try {
+            step(generator["throw"](value));
+          } catch (e) {
+            reject(e);
+          }
+        }
+
+        function step(result) {
+          result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+      });
+    };
+
     var __importDefault = undefined && undefined.__importDefault || function (mod) {
       return mod && mod.__esModule ? mod : {
         "default": mod
@@ -5137,17 +5643,103 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     };
 
     var DetailFilterComponent = /*#__PURE__*/function () {
-      function DetailFilterComponent() {
+      function DetailFilterComponent(filterService, apiService) {
         _classCallCheck(this, DetailFilterComponent);
+
+        this.filterService = filterService;
+        this.apiService = apiService;
+        this.onSuggest = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.detail = {
+          name: 'ГБЦ',
+          id: 1
+        };
+        this.details = [];
       }
 
       _createClass(DetailFilterComponent, [{
         key: "ngOnInit",
-        value: function ngOnInit() {}
+        value: function ngOnInit() {
+          this.getCustomer('');
+        }
+      }, {
+        key: "filter",
+        value: function filter(event) {
+          //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
+          // let query = event.query;
+          // for (let i = 0; i < this.customers.length; i++) {
+          //     let stat = this.customers[i];
+          //     if (stat.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+          //         filteredTemp.push(stat);
+          //     }
+          // }
+          this.getCustomer(event.query);
+        }
+      }, {
+        key: "getCustomer",
+        value: function getCustomer(name) {
+          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee15() {
+            return regeneratorRuntime.wrap(function _callee15$(_context15) {
+              while (1) {
+                switch (_context15.prev = _context15.next) {
+                  case 0:
+                    this.apiService.applySubLoading = false;
+                    _context15.next = 3;
+                    return this.apiService.post('getListDetails', {
+                      name: name,
+                      sizeResponse: 50
+                    }, false);
+
+                  case 3:
+                    this.details = _context15.sent;
+
+                  case 4:
+                  case "end":
+                    return _context15.stop();
+                }
+              }
+            }, _callee15, this);
+          }));
+        }
+      }, {
+        key: "clear",
+        value: function clear() {
+          this.orderRequest = this.filterService.getOrderRequest();
+          this.orderRequest.detailId = 1;
+          this.filterService.setOrderRequest(this.orderRequest);
+          this.onSuggest.emit();
+          this.getCustomer('');
+        }
+      }, {
+        key: "changeState",
+        value: function changeState() {
+          this.orderRequest = this.filterService.getOrderRequest();
+
+          if (this.selected !== null && this.selected.id !== undefined && this.selected.id !== null) {
+            this.orderRequest.detailId = this.selected.id;
+          } else {
+            this.orderRequest.detailId = null;
+          }
+
+          this.filterService.setOrderRequest(this.orderRequest);
+          this.onSuggest.emit(); //this.onSuggest.emit();
+        }
       }]);
 
       return DetailFilterComponent;
     }();
+
+    DetailFilterComponent.ctorParameters = function () {
+      return [{
+        type: _filter_service__WEBPACK_IMPORTED_MODULE_2__["FilterService"]
+      }, {
+        type: _Service_api_data_service_service__WEBPACK_IMPORTED_MODULE_3__["ApiDataServiceService"]
+      }];
+    };
+
+    __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(), __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])], DetailFilterComponent.prototype, "onSuggest", void 0);
+
+    __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(primeng_autocomplete__WEBPACK_IMPORTED_MODULE_1__["AutoComplete"]), __metadata("design:type", primeng_autocomplete__WEBPACK_IMPORTED_MODULE_1__["AutoComplete"] // @Output() onSuggest: EventEmitter<any> = new EventEmitter();
+    )], DetailFilterComponent.prototype, "chidFilter", void 0);
 
     DetailFilterComponent = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
       selector: 'app-detail-filter',
@@ -5157,7 +5749,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       styles: [__importDefault(__webpack_require__(
       /*! ./detail-filter.component.css */
       "./src/app/widgets/filters/detail-filter/detail-filter.component.css"))["default"]]
-    }), __metadata("design:paramtypes", [])], DetailFilterComponent);
+    }), __metadata("design:paramtypes", [_filter_service__WEBPACK_IMPORTED_MODULE_2__["FilterService"], _Service_api_data_service_service__WEBPACK_IMPORTED_MODULE_3__["ApiDataServiceService"]])], DetailFilterComponent);
     /***/
   },
 
@@ -5303,23 +5895,24 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "getCustomer",
         value: function getCustomer() {
-          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee11() {
-            return regeneratorRuntime.wrap(function _callee11$(_context11) {
+          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee16() {
+            return regeneratorRuntime.wrap(function _callee16$(_context16) {
               while (1) {
-                switch (_context11.prev = _context11.next) {
+                switch (_context16.prev = _context16.next) {
                   case 0:
-                    _context11.next = 2;
+                    this.apiService.applySubLoading = false;
+                    _context16.next = 3;
                     return this.apiService.get('getListUser');
 
-                  case 2:
-                    this.employees = _context11.sent;
-
                   case 3:
+                    this.employees = _context16.sent;
+
+                  case 4:
                   case "end":
-                    return _context11.stop();
+                    return _context16.stop();
                 }
               }
-            }, _callee11, this);
+            }, _callee16, this);
           }));
         }
       }, {
@@ -5344,7 +5937,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function changeState() {
           this.orderRequest = this.filterService.getOrderRequest();
 
-          if (this.selected.id !== undefined && this.selected.id !== null) {
+          if (this.selected !== null && this.selected.id !== undefined && this.selected.id !== null) {
             this.orderRequest.employeeId = this.selected.id;
           } else {
             this.orderRequest.employeeId = null;
@@ -5433,15 +6026,24 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           lang: null,
           state: null,
           status: null,
+          sizeResponse: null,
           payed: null,
           user: null,
+          rowStartIndex: null,
+          workId: null,
+          workStatus: null,
+          workDateTo: null,
+          workDateFrom: null,
+          detailId: null,
           closeDate: false
         };
         this.fastFilterTemp = {
           datePeriod: null,
           searchString: null,
           state: null
-        };
+        }; // this.orderRequest.dateFrom = moment().utc().format("YYYY-MM-DD")
+        // this.orderRequest.dateTo = moment().utc().format("YYYY-MM-DD")
+        // this.orderRequest.state='UNCLOSED'
       }
 
       _createClass(FilterService, [{
@@ -5563,14 +6165,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           code: ''
         };
         this.states = [{
-          name: 'Усі',
+          name: 'все',
           code: null
         }, {
-          name: 'оплачені',
-          code: false
-        }, {
-          name: 'неоплачені',
+          name: 'оплаченые',
           code: true
+        }, {
+          name: 'неоплаченые',
+          code: false
         }];
       }
 
@@ -5724,37 +6326,68 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         };
         this.isCloseDate = false;
         this.periods = [{
-          name: 'Усі',
+          name: 'все',
           code: 0
         }, {
-          name: 'Сьогодні',
+          name: 'сегодня',
           code: 1
         }, {
-          name: 'Вчора',
+          name: 'вчера',
           code: 2
         }, {
-          name: 'Поточний тиждень',
+          name: 'текущая неделя',
           code: 3
         }, {
-          name: 'Поточний місяць',
+          name: 'текущий месяц',
           code: 4
         }, {
-          name: 'Поточний квартал',
+          name: 'текущий квартал',
           code: 5
         }, {
-          name: 'Поточний рік',
+          name: 'текущий год',
           code: 6
         }, {
-          name: 'Минулий тиждень',
+          name: 'прошедшая неделя',
           code: 7
         }, {
-          name: 'Минулий місяць',
+          name: 'прошлый месяц',
           code: 8
         }, {
-          name: 'Минулий квартал',
+          name: 'прошлый квартал',
           code: 9
         }, {
-          name: 'Минулий рік',
+          name: 'прошлый год',
+          code: 10
+        }];
+        this.fastPeriods = [{
+          name: 'сегодня',
+          code: 1
+        }, {
+          name: 'вчера',
+          code: 2
+        }, {
+          name: 'текущая неделя',
+          code: 3
+        }, {
+          name: 'текущий месяц',
+          code: 4
+        }, {
+          name: 'текущий квартал',
+          code: 5
+        }, {
+          name: 'текущий год',
+          code: 6
+        }, {
+          name: 'прошедшая неделя',
+          code: 7
+        }, {
+          name: 'прошлый месяц',
+          code: 8
+        }, {
+          name: 'прошлый квартал',
+          code: 9
+        }, {
+          name: 'прошлый год',
           code: 10
         }];
       }
@@ -5782,7 +6415,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             var dateTo = null;
             var dateFrom = null;
 
-            switch (this.period.code) {
+            switch (this.filterPeriodService.periodFastFilterData.code) {
               case 0:
                 {
                   dateTo = null;
@@ -5959,6 +6592,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! moment */
+    "./node_modules/moment/moment.js");
+    /* harmony import */
+
+
+    var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+    /* harmony import */
+
+
+    var _filter_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../filter.service */
+    "./src/app/widgets/filters/filter.service.ts");
 
     var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
       var c = arguments.length,
@@ -5975,52 +6624,193 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     };
 
     var ServPeriodFilterService = /*#__PURE__*/function () {
-      function ServPeriodFilterService() {
+      function ServPeriodFilterService(filterService) {
         _classCallCheck(this, ServPeriodFilterService);
 
+        this.filterService = filterService;
         this.periodFastFilterData = {
-          name: '',
-          code: ''
+          name: 'сегодня',
+          code: 1
         };
         this.periodFilterData = {
           name: '',
-          code: ''
+          code: -1
         };
         this.periodTemp = {
           name: '',
-          code: ''
+          code: -1
         };
         this.disableFastFiled = false;
       }
 
       _createClass(ServPeriodFilterService, [{
+        key: "defaultFastFilter",
+        value: function defaultFastFilter() {
+          this.periodFastFilterData = {
+            name: 'сегодня',
+            code: 1
+          };
+        }
+      }, {
         key: "onStndFilter",
         value: function onStndFilter() {
           this.disableFastFiled = true;
-          this.periodTemp = this.periodFastFilterData;
-          this.periodFastFilterData = {
-            name: '',
-            code: ''
-          };
+          this.periodTemp.name = this.periodFastFilterData.name;
+          this.periodTemp.code = this.periodFastFilterData.code;
+          this.periodFastFilterData.name = '';
+          this.periodFastFilterData.code = -1;
         }
       }, {
         key: "onFastFilter",
         value: function onFastFilter() {
           this.disableFastFiled = false;
-          this.periodFilterData = this.periodTemp;
-          this.periodTemp = {
-            name: '',
-            code: ''
-          };
+          this.periodFastFilterData.name = this.periodTemp.name;
+          this.periodFastFilterData.code = this.periodTemp.code;
+          this.periodTemp.name = '';
+          this.periodTemp.code = -1;
+          this.changePeriod();
+        }
+      }, {
+        key: "changePeriod",
+        value: function changePeriod() {
+          this.orderRequest = this.filterService.getOrderRequest();
+          var dateTo = null;
+          var dateFrom = null;
+
+          switch (this.periodFastFilterData.code) {
+            case 0:
+              {
+                dateTo = null;
+                dateFrom = null;
+                break;
+              }
+
+            case 1:
+              {
+                dateFrom = moment__WEBPACK_IMPORTED_MODULE_1__().utc().format("YYYY-MM-DD");
+                dateTo = moment__WEBPACK_IMPORTED_MODULE_1__().utc().format("YYYY-MM-DD");
+                break;
+              }
+
+            case 2:
+              {
+                dateFrom = moment__WEBPACK_IMPORTED_MODULE_1__().subtract(1, 'days').utc().format("YYYY-MM-DD");
+                dateTo = moment__WEBPACK_IMPORTED_MODULE_1__().subtract(1, 'days').utc().format("YYYY-MM-DD");
+                break;
+              }
+
+            case 3:
+              {
+                dateFrom = moment__WEBPACK_IMPORTED_MODULE_1__().weekday(1).utc().format("YYYY-MM-DD");
+                dateTo = moment__WEBPACK_IMPORTED_MODULE_1__().weekday(7).utc().format("YYYY-MM-DD");
+                break;
+              }
+
+            case 4:
+              {
+                dateFrom = new Date();
+                dateTo = new Date();
+                dateFrom.setDate(1);
+                dateTo.setMonth(dateTo.getMonth() + 1);
+                dateTo.setDate(0);
+                dateFrom = moment__WEBPACK_IMPORTED_MODULE_1__(dateFrom).utc().format("YYYY-MM-DD");
+                dateTo = moment__WEBPACK_IMPORTED_MODULE_1__(dateTo).utc().format("YYYY-MM-DD");
+                break;
+              }
+
+            case 5:
+              {
+                dateFrom = new Date();
+                dateTo = new Date();
+                dateFrom.setMonth(0);
+                dateFrom.setDate(1);
+                dateTo.setMonth(3);
+                dateTo.setDate(0);
+                dateFrom = moment__WEBPACK_IMPORTED_MODULE_1__(dateFrom).quarter(moment__WEBPACK_IMPORTED_MODULE_1__().quarter()).utc().format("YYYY-MM-DD");
+                dateTo = moment__WEBPACK_IMPORTED_MODULE_1__(dateTo).quarter(moment__WEBPACK_IMPORTED_MODULE_1__().quarter()).utc().format("YYYY-MM-DD");
+                break;
+              }
+
+            case 6:
+              {
+                dateFrom = new Date();
+                dateTo = new Date();
+                dateFrom.setMonth(0);
+                dateFrom.setDate(1);
+                dateTo.setMonth(11);
+                dateTo.setDate(31);
+                dateFrom = moment__WEBPACK_IMPORTED_MODULE_1__(dateFrom).utc().format("YYYY-MM-DD");
+                dateTo = moment__WEBPACK_IMPORTED_MODULE_1__(dateTo).utc().format("YYYY-MM-DD");
+                break;
+              }
+
+            case 7:
+              {
+                dateFrom = moment__WEBPACK_IMPORTED_MODULE_1__().week(moment__WEBPACK_IMPORTED_MODULE_1__().week() - 1).weekday(1).utc().format("YYYY-MM-DD");
+                dateTo = moment__WEBPACK_IMPORTED_MODULE_1__().week(moment__WEBPACK_IMPORTED_MODULE_1__().week() - 1).weekday(7).utc().format("YYYY-MM-DD");
+                break;
+              }
+
+            case 8:
+              {
+                dateFrom = new Date();
+                dateTo = new Date();
+                dateFrom.setMonth(dateTo.getMonth() - 1);
+                dateFrom.setDate(1);
+                dateTo.setMonth(dateTo.getMonth());
+                dateTo.setDate(0);
+                dateFrom = moment__WEBPACK_IMPORTED_MODULE_1__(dateFrom).utc().format("YYYY-MM-DD");
+                dateTo = moment__WEBPACK_IMPORTED_MODULE_1__(dateTo).utc().format("YYYY-MM-DD");
+                break;
+              }
+
+            case 9:
+              {
+                dateFrom = new Date();
+                dateTo = new Date();
+                dateFrom.setMonth(0);
+                dateFrom.setDate(1);
+                dateTo.setMonth(3);
+                dateTo.setDate(0);
+                dateFrom = moment__WEBPACK_IMPORTED_MODULE_1__(dateFrom).quarter(moment__WEBPACK_IMPORTED_MODULE_1__().quarter() - 1).utc().format("YYYY-MM-DD");
+                dateTo = moment__WEBPACK_IMPORTED_MODULE_1__(dateTo).quarter(moment__WEBPACK_IMPORTED_MODULE_1__().quarter() - 1).utc().format("YYYY-MM-DD");
+                break;
+              }
+
+            case 10:
+              {
+                dateFrom = new Date();
+                dateTo = new Date();
+                dateFrom.setMonth(0);
+                dateFrom.setDate(1);
+                dateTo.setMonth(11);
+                dateTo.setDate(31);
+                dateFrom = moment__WEBPACK_IMPORTED_MODULE_1__(dateFrom).year(moment__WEBPACK_IMPORTED_MODULE_1__().year() - 1).utc().format("YYYY-MM-DD");
+                dateTo = moment__WEBPACK_IMPORTED_MODULE_1__(dateTo).year(moment__WEBPACK_IMPORTED_MODULE_1__().year() - 1).utc().format("YYYY-MM-DD");
+                break;
+              }
+          }
+
+          this.orderRequest.closeDate = false;
+          this.orderRequest.dateFrom = dateFrom;
+          this.orderRequest.dateTo = dateTo;
+          this.filterService.setOrderRequest(this.orderRequest);
+          console.log(this.filterService.getOrderRequest().state);
         }
       }]);
 
       return ServPeriodFilterService;
     }();
 
+    ServPeriodFilterService.ctorParameters = function () {
+      return [{
+        type: _filter_service__WEBPACK_IMPORTED_MODULE_2__["FilterService"]
+      }];
+    };
+
     ServPeriodFilterService = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
       providedIn: 'root'
-    }), __metadata("design:paramtypes", [])], ServPeriodFilterService);
+    }), __metadata("design:paramtypes", [_filter_service__WEBPACK_IMPORTED_MODULE_2__["FilterService"]])], ServPeriodFilterService);
     /***/
   },
 
@@ -6049,6 +6839,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _filter_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ../filter.service */
+    "./src/app/widgets/filters/filter.service.ts");
 
     var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
       var c = arguments.length,
@@ -6065,12 +6861,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     };
 
     var ServStateFilterService = /*#__PURE__*/function () {
-      function ServStateFilterService() {
+      function ServStateFilterService(filterService) {
         _classCallCheck(this, ServStateFilterService);
 
+        this.filterService = filterService;
         this.stateFastFilterData = {
-          name: '',
-          code: ''
+          name: 'незакрытые',
+          code: 'UNCLOSED'
         };
         this.stateFilterData = {
           name: '',
@@ -6084,34 +6881,55 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }
 
       _createClass(ServStateFilterService, [{
+        key: "defaultFastFilter",
+        value: function defaultFastFilter() {
+          this.stateFastFilterData = {
+            name: 'незакрытые',
+            code: 'UNCLOSED'
+          };
+        }
+      }, {
         key: "onStndFilter",
         value: function onStndFilter() {
           this.disableFastFiled = true;
-          this.stateTemp = this.stateFastFilterData;
-          this.stateFastFilterData = {
-            name: '',
-            code: ''
-          };
+          this.stateTemp.name = this.stateFastFilterData.name;
+          this.stateTemp.code = this.stateFastFilterData.code;
+          this.stateFastFilterData.name = '';
+          this.stateFastFilterData.code = '';
           console.log(this.stateFastFilterData);
         }
       }, {
         key: "onFastFilter",
         value: function onFastFilter() {
           this.disableFastFiled = false;
-          this.stateFastFilterData = this.stateTemp;
-          this.stateTemp = {
-            name: '',
-            code: ''
-          };
+          this.stateFastFilterData.name = this.stateTemp.name;
+          this.stateFastFilterData.code = this.stateTemp.code;
+          this.stateTemp.name = '';
+          this.stateTemp.code = '';
+          this.changeState();
+        }
+      }, {
+        key: "changeState",
+        value: function changeState() {
+          this.orderRequest = this.filterService.getOrderRequest();
+          this.orderRequest.state = this.stateFastFilterData.code;
+          this.filterService.setOrderRequest(this.orderRequest);
+          console.log(this.filterService.getOrderRequest().state);
         }
       }]);
 
       return ServStateFilterService;
     }();
 
+    ServStateFilterService.ctorParameters = function () {
+      return [{
+        type: _filter_service__WEBPACK_IMPORTED_MODULE_1__["FilterService"]
+      }];
+    };
+
     ServStateFilterService = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
       providedIn: 'root'
-    }), __metadata("design:paramtypes", [])], ServStateFilterService);
+    }), __metadata("design:paramtypes", [_filter_service__WEBPACK_IMPORTED_MODULE_1__["FilterService"]])], ServStateFilterService);
     /***/
   },
 
@@ -6200,24 +7018,34 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.stateService = stateService;
         this.filterService = filterService;
         this.state = {
-          name: '',
-          code: ''
+          name: 'незакрытые',
+          code: 'UNCLOSED'
         };
         this.onlyField = false;
         this.disabled = false;
         this.onSuggest = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.onClear = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
-        this.states = [{
-          name: 'Усі',
-          code: null
-        }, {
-          name: 'виконані',
+        this.fastStates = [{
+          name: 'выполненные',
           code: 'FINISHED'
         }, {
-          name: 'незакриті',
+          name: 'незакрытые',
           code: 'UNCLOSED'
         }, {
-          name: 'закриті',
+          name: 'закрытые',
+          code: 'CLOSED'
+        }];
+        this.states = [{
+          name: 'все',
+          code: null
+        }, {
+          name: 'выполненные',
+          code: 'FINISHED'
+        }, {
+          name: 'незакрытые',
+          code: 'UNCLOSED'
+        }, {
+          name: 'закрытые',
           code: 'CLOSED'
         }];
       }
@@ -6229,8 +7057,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         key: "clear",
         value: function clear() {
           this.state = {
-            name: 'Усе',
-            code: null
+            name: 'незакрытые',
+            code: 'UNCLOSED'
           };
           this.changeState();
           this.onClear.emit();
@@ -6288,6 +7116,102 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
   },
 
   /***/
+  "./src/app/widgets/filters/substring-filter/serv-substring-filter.service.ts":
+  /*!***********************************************************************************!*\
+    !*** ./src/app/widgets/filters/substring-filter/serv-substring-filter.service.ts ***!
+    \***********************************************************************************/
+
+  /*! exports provided: ServSubstringFilterService */
+
+  /***/
+  function srcAppWidgetsFiltersSubstringFilterServSubstringFilterServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ServSubstringFilterService", function () {
+      return ServSubstringFilterService;
+    });
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _filter_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ../filter.service */
+    "./src/app/widgets/filters/filter.service.ts");
+
+    var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+      var c = arguments.length,
+          r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+          d;
+      if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+        if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+      }
+      return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+
+    var __metadata = undefined && undefined.__metadata || function (k, v) {
+      if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
+
+    var ServSubstringFilterService = /*#__PURE__*/function () {
+      function ServSubstringFilterService(filterService) {
+        _classCallCheck(this, ServSubstringFilterService);
+
+        this.filterService = filterService;
+        this.substringFastFilterData = '';
+        this.substringFilterData = '';
+        this.substringTemp = '';
+        this.disableFastFiled = false;
+      }
+
+      _createClass(ServSubstringFilterService, [{
+        key: "onStndFilter",
+        value: function onStndFilter() {
+          this.disableFastFiled = true;
+          this.substringTemp = this.substringFastFilterData;
+          this.substringFastFilterData = '';
+        }
+      }, {
+        key: "onFastFilter",
+        value: function onFastFilter() {
+          this.disableFastFiled = false;
+          this.substringFastFilterData = this.substringTemp;
+          this.substringTemp = '';
+          this.onChang();
+        }
+      }, {
+        key: "onChang",
+        value: function onChang() {
+          this.orderRequest = this.filterService.getOrderRequest();
+          this.orderRequest.searchString = this.substringFastFilterData;
+          this.filterService.setOrderRequest(this.orderRequest);
+        }
+      }]);
+
+      return ServSubstringFilterService;
+    }();
+
+    ServSubstringFilterService.ctorParameters = function () {
+      return [{
+        type: _filter_service__WEBPACK_IMPORTED_MODULE_1__["FilterService"]
+      }];
+    };
+
+    ServSubstringFilterService = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+      providedIn: 'root'
+    }), __metadata("design:paramtypes", [_filter_service__WEBPACK_IMPORTED_MODULE_1__["FilterService"]])], ServSubstringFilterService);
+    /***/
+  },
+
+  /***/
   "./src/app/widgets/filters/substring-filter/substring-filter.component.css":
   /*!*********************************************************************************!*\
     !*** ./src/app/widgets/filters/substring-filter/substring-filter.component.css ***!
@@ -6338,6 +7262,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _filter_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
     /*! ../filter.service */
     "./src/app/widgets/filters/filter.service.ts");
+    /* harmony import */
+
+
+    var _serv_substring_filter_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ./serv-substring-filter.service */
+    "./src/app/widgets/filters/substring-filter/serv-substring-filter.service.ts");
 
     var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
       var c = arguments.length,
@@ -6360,9 +7290,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     };
 
     var SubstringFilterComponent = /*#__PURE__*/function () {
-      function SubstringFilterComponent(filterService) {
+      function SubstringFilterComponent(substringService, filterService) {
         _classCallCheck(this, SubstringFilterComponent);
 
+        this.substringService = substringService;
         this.filterService = filterService;
         this.onSuggest = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.onClear = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
@@ -6379,7 +7310,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         key: "onChang",
         value: function onChang() {
           this.orderRequest = this.filterService.getOrderRequest();
-          this.orderRequest.searchString = this.sunString;
+          this.orderRequest.searchString = this.substringService.substringFastFilterData;
           this.filterService.setOrderRequest(this.orderRequest);
           this.onSuggest.emit();
         }
@@ -6393,6 +7324,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
     SubstringFilterComponent.ctorParameters = function () {
       return [{
+        type: _serv_substring_filter_service__WEBPACK_IMPORTED_MODULE_2__["ServSubstringFilterService"]
+      }, {
         type: _filter_service__WEBPACK_IMPORTED_MODULE_1__["FilterService"]
       }];
     };
@@ -6409,7 +7342,715 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       styles: [__importDefault(__webpack_require__(
       /*! ./substring-filter.component.css */
       "./src/app/widgets/filters/substring-filter/substring-filter.component.css"))["default"]]
-    }), __metadata("design:paramtypes", [_filter_service__WEBPACK_IMPORTED_MODULE_1__["FilterService"]])], SubstringFilterComponent);
+    }), __metadata("design:paramtypes", [_serv_substring_filter_service__WEBPACK_IMPORTED_MODULE_2__["ServSubstringFilterService"], _filter_service__WEBPACK_IMPORTED_MODULE_1__["FilterService"]])], SubstringFilterComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/widgets/filters/work-filter/work-filter.component.css":
+  /*!***********************************************************************!*\
+    !*** ./src/app/widgets/filters/work-filter/work-filter.component.css ***!
+    \***********************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppWidgetsFiltersWorkFilterWorkFilterComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3dpZGdldHMvZmlsdGVycy93b3JrLWZpbHRlci93b3JrLWZpbHRlci5jb21wb25lbnQuY3NzIn0= */";
+    /***/
+  },
+
+  /***/
+  "./src/app/widgets/filters/work-filter/work-filter.component.ts":
+  /*!**********************************************************************!*\
+    !*** ./src/app/widgets/filters/work-filter/work-filter.component.ts ***!
+    \**********************************************************************/
+
+  /*! exports provided: WorkFilterComponent */
+
+  /***/
+  function srcAppWidgetsFiltersWorkFilterWorkFilterComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "WorkFilterComponent", function () {
+      return WorkFilterComponent;
+    });
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var primeng_autocomplete__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! primeng/autocomplete */
+    "./node_modules/primeng/__ivy_ngcc__/fesm2015/primeng-autocomplete.js");
+    /* harmony import */
+
+
+    var _filter_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../filter.service */
+    "./src/app/widgets/filters/filter.service.ts");
+    /* harmony import */
+
+
+    var _Service_api_data_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../../../Service/api-data-service.service */
+    "./src/app/Service/api-data-service.service.ts");
+
+    var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+      var c = arguments.length,
+          r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+          d;
+      if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+        if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+      }
+      return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+
+    var __metadata = undefined && undefined.__metadata || function (k, v) {
+      if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
+
+    var __awaiter = undefined && undefined.__awaiter || function (thisArg, _arguments, P, generator) {
+      function adopt(value) {
+        return value instanceof P ? value : new P(function (resolve) {
+          resolve(value);
+        });
+      }
+
+      return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) {
+          try {
+            step(generator.next(value));
+          } catch (e) {
+            reject(e);
+          }
+        }
+
+        function rejected(value) {
+          try {
+            step(generator["throw"](value));
+          } catch (e) {
+            reject(e);
+          }
+        }
+
+        function step(result) {
+          result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+        }
+
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+      });
+    };
+
+    var __importDefault = undefined && undefined.__importDefault || function (mod) {
+      return mod && mod.__esModule ? mod : {
+        "default": mod
+      };
+    };
+
+    var WorkFilterComponent = /*#__PURE__*/function () {
+      function WorkFilterComponent(filterService, apiService) {
+        _classCallCheck(this, WorkFilterComponent);
+
+        this.filterService = filterService;
+        this.apiService = apiService;
+        this.onSuggest = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.work = {
+          name: '',
+          id: null
+        };
+        this.works = [];
+      }
+
+      _createClass(WorkFilterComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.getCustomer('');
+        }
+      }, {
+        key: "filter",
+        value: function filter(event) {
+          //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
+          // let query = event.query;
+          // for (let i = 0; i < this.customers.length; i++) {
+          //     let stat = this.customers[i];
+          //     if (stat.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+          //         filteredTemp.push(stat);
+          //     }
+          // }
+          this.getCustomer(event.query);
+        }
+      }, {
+        key: "getCustomer",
+        value: function getCustomer(name) {
+          return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee17() {
+            return regeneratorRuntime.wrap(function _callee17$(_context17) {
+              while (1) {
+                switch (_context17.prev = _context17.next) {
+                  case 0:
+                    this.apiService.applySubLoading = false;
+                    _context17.next = 3;
+                    return this.apiService.post('getListJobs', {
+                      name: name,
+                      sizeResponse: 50
+                    }, false);
+
+                  case 3:
+                    this.works = _context17.sent;
+
+                  case 4:
+                  case "end":
+                    return _context17.stop();
+                }
+              }
+            }, _callee17, this);
+          }));
+        }
+      }, {
+        key: "clear",
+        value: function clear() {
+          this.orderRequest = this.filterService.getOrderRequest();
+          this.orderRequest.workId = null;
+          this.filterService.setOrderRequest(this.orderRequest);
+          this.onSuggest.emit();
+          this.getCustomer('');
+        }
+      }, {
+        key: "changeState",
+        value: function changeState() {
+          this.orderRequest = this.filterService.getOrderRequest();
+
+          if (this.selected !== null && this.selected.id !== undefined && this.selected.id !== null) {
+            this.orderRequest.workId = this.selected.id;
+          } else {
+            this.orderRequest.workId = null;
+          }
+
+          this.filterService.setOrderRequest(this.orderRequest);
+          this.onSuggest.emit();
+        }
+      }]);
+
+      return WorkFilterComponent;
+    }();
+
+    WorkFilterComponent.ctorParameters = function () {
+      return [{
+        type: _filter_service__WEBPACK_IMPORTED_MODULE_2__["FilterService"]
+      }, {
+        type: _Service_api_data_service_service__WEBPACK_IMPORTED_MODULE_3__["ApiDataServiceService"]
+      }];
+    };
+
+    __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(), __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])], WorkFilterComponent.prototype, "onSuggest", void 0);
+
+    __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])(primeng_autocomplete__WEBPACK_IMPORTED_MODULE_1__["AutoComplete"]), __metadata("design:type", primeng_autocomplete__WEBPACK_IMPORTED_MODULE_1__["AutoComplete"] // @Output() onSuggest: EventEmitter<any> = new EventEmitter();
+    )], WorkFilterComponent.prototype, "chidFilter", void 0);
+
+    WorkFilterComponent = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+      selector: 'app-work-filter',
+      template: __importDefault(__webpack_require__(
+      /*! raw-loader!./work-filter.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/widgets/filters/work-filter/work-filter.component.html"))["default"],
+      styles: [__importDefault(__webpack_require__(
+      /*! ./work-filter.component.css */
+      "./src/app/widgets/filters/work-filter/work-filter.component.css"))["default"]]
+    }), __metadata("design:paramtypes", [_filter_service__WEBPACK_IMPORTED_MODULE_2__["FilterService"], _Service_api_data_service_service__WEBPACK_IMPORTED_MODULE_3__["ApiDataServiceService"]])], WorkFilterComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/widgets/filters/work-period-filter/work-period-filter.component.css":
+  /*!*************************************************************************************!*\
+    !*** ./src/app/widgets/filters/work-period-filter/work-period-filter.component.css ***!
+    \*************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppWidgetsFiltersWorkPeriodFilterWorkPeriodFilterComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3dpZGdldHMvZmlsdGVycy93b3JrLXBlcmlvZC1maWx0ZXIvd29yay1wZXJpb2QtZmlsdGVyLmNvbXBvbmVudC5jc3MifQ== */";
+    /***/
+  },
+
+  /***/
+  "./src/app/widgets/filters/work-period-filter/work-period-filter.component.ts":
+  /*!************************************************************************************!*\
+    !*** ./src/app/widgets/filters/work-period-filter/work-period-filter.component.ts ***!
+    \************************************************************************************/
+
+  /*! exports provided: WorkPeriodFilterComponent */
+
+  /***/
+  function srcAppWidgetsFiltersWorkPeriodFilterWorkPeriodFilterComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "WorkPeriodFilterComponent", function () {
+      return WorkPeriodFilterComponent;
+    });
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _period_date_filter_serv_period_filter_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ../period-date-filter/serv-period-filter.service */
+    "./src/app/widgets/filters/period-date-filter/serv-period-filter.service.ts");
+    /* harmony import */
+
+
+    var _filter_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../filter.service */
+    "./src/app/widgets/filters/filter.service.ts");
+    /* harmony import */
+
+
+    var moment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! moment */
+    "./node_modules/moment/moment.js");
+    /* harmony import */
+
+
+    var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
+
+    var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+      var c = arguments.length,
+          r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+          d;
+      if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+        if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+      }
+      return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+
+    var __metadata = undefined && undefined.__metadata || function (k, v) {
+      if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
+
+    var __importDefault = undefined && undefined.__importDefault || function (mod) {
+      return mod && mod.__esModule ? mod : {
+        "default": mod
+      };
+    };
+
+    var WorkPeriodFilterComponent = /*#__PURE__*/function () {
+      function WorkPeriodFilterComponent(filterPeriodService, filterService) {
+        _classCallCheck(this, WorkPeriodFilterComponent);
+
+        this.filterPeriodService = filterPeriodService;
+        this.filterService = filterService;
+        this.onSuggest = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.onClear = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.onlyField = false;
+        this.period = {
+          name: '',
+          code: -1
+        };
+        this.isCloseDate = false;
+        this.periods = [{
+          name: 'все',
+          code: 0
+        }, {
+          name: 'сегодня',
+          code: 1
+        }, {
+          name: 'вчера',
+          code: 2
+        }, {
+          name: 'текущая неделя',
+          code: 3
+        }, {
+          name: 'текущий месяц',
+          code: 4
+        }, {
+          name: 'текущий квартал',
+          code: 5
+        }, {
+          name: 'текущий год',
+          code: 6
+        }, {
+          name: 'прошедшая неделя',
+          code: 7
+        }, {
+          name: 'прошлый месяц',
+          code: 8
+        }, {
+          name: 'прошлый квартал',
+          code: 9
+        }, {
+          name: 'прошлый год',
+          code: 10
+        }];
+      }
+
+      _createClass(WorkPeriodFilterComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "clear",
+        value: function clear() {
+          this.period = {
+            name: 'Усе',
+            code: 0
+          };
+          this.changePeriod();
+          this.onClear.emit();
+        }
+      }, {
+        key: "changePeriod",
+        value: function changePeriod() {
+          if (this.period === null) {
+            this.clear();
+          } else {
+            this.orderRequest = this.filterService.getOrderRequest();
+            var dateTo = null;
+            var dateFrom = null;
+
+            switch (this.period.code) {
+              case 0:
+                {
+                  dateTo = null;
+                  dateFrom = null;
+                  break;
+                }
+
+              case 1:
+                {
+                  dateFrom = moment__WEBPACK_IMPORTED_MODULE_3__().utc().format("YYYY-MM-DD");
+                  dateTo = moment__WEBPACK_IMPORTED_MODULE_3__().utc().format("YYYY-MM-DD");
+                  break;
+                }
+
+              case 2:
+                {
+                  dateFrom = moment__WEBPACK_IMPORTED_MODULE_3__().subtract(1, 'days').utc().format("YYYY-MM-DD");
+                  dateTo = moment__WEBPACK_IMPORTED_MODULE_3__().subtract(1, 'days').utc().format("YYYY-MM-DD");
+                  break;
+                }
+
+              case 3:
+                {
+                  dateFrom = moment__WEBPACK_IMPORTED_MODULE_3__().weekday(1).utc().format("YYYY-MM-DD");
+                  dateTo = moment__WEBPACK_IMPORTED_MODULE_3__().weekday(7).utc().format("YYYY-MM-DD");
+                  break;
+                }
+
+              case 4:
+                {
+                  dateFrom = new Date();
+                  dateTo = new Date();
+                  dateFrom.setDate(1);
+                  dateTo.setMonth(dateTo.getMonth() + 1);
+                  dateTo.setDate(0);
+                  dateFrom = moment__WEBPACK_IMPORTED_MODULE_3__(dateFrom).utc().format("YYYY-MM-DD");
+                  dateTo = moment__WEBPACK_IMPORTED_MODULE_3__(dateTo).utc().format("YYYY-MM-DD");
+                  break;
+                }
+
+              case 5:
+                {
+                  dateFrom = new Date();
+                  dateTo = new Date();
+                  dateFrom.setMonth(0);
+                  dateFrom.setDate(1);
+                  dateTo.setMonth(3);
+                  dateTo.setDate(0);
+                  dateFrom = moment__WEBPACK_IMPORTED_MODULE_3__(dateFrom).quarter(moment__WEBPACK_IMPORTED_MODULE_3__().quarter()).utc().format("YYYY-MM-DD");
+                  dateTo = moment__WEBPACK_IMPORTED_MODULE_3__(dateTo).quarter(moment__WEBPACK_IMPORTED_MODULE_3__().quarter()).utc().format("YYYY-MM-DD");
+                  break;
+                }
+
+              case 6:
+                {
+                  dateFrom = new Date();
+                  dateTo = new Date();
+                  dateFrom.setMonth(0);
+                  dateFrom.setDate(1);
+                  dateTo.setMonth(11);
+                  dateTo.setDate(31);
+                  dateFrom = moment__WEBPACK_IMPORTED_MODULE_3__(dateFrom).utc().format("YYYY-MM-DD");
+                  dateTo = moment__WEBPACK_IMPORTED_MODULE_3__(dateTo).utc().format("YYYY-MM-DD");
+                  break;
+                }
+
+              case 7:
+                {
+                  dateFrom = moment__WEBPACK_IMPORTED_MODULE_3__().week(moment__WEBPACK_IMPORTED_MODULE_3__().week() - 1).weekday(1).utc().format("YYYY-MM-DD");
+                  dateTo = moment__WEBPACK_IMPORTED_MODULE_3__().week(moment__WEBPACK_IMPORTED_MODULE_3__().week() - 1).weekday(7).utc().format("YYYY-MM-DD");
+                  break;
+                }
+
+              case 8:
+                {
+                  dateFrom = new Date();
+                  dateTo = new Date();
+                  dateFrom.setMonth(dateTo.getMonth() - 1);
+                  dateFrom.setDate(1);
+                  dateTo.setMonth(dateTo.getMonth());
+                  dateTo.setDate(0);
+                  dateFrom = moment__WEBPACK_IMPORTED_MODULE_3__(dateFrom).utc().format("YYYY-MM-DD");
+                  dateTo = moment__WEBPACK_IMPORTED_MODULE_3__(dateTo).utc().format("YYYY-MM-DD");
+                  break;
+                }
+
+              case 9:
+                {
+                  dateFrom = new Date();
+                  dateTo = new Date();
+                  dateFrom.setMonth(0);
+                  dateFrom.setDate(1);
+                  dateTo.setMonth(3);
+                  dateTo.setDate(0);
+                  dateFrom = moment__WEBPACK_IMPORTED_MODULE_3__(dateFrom).quarter(moment__WEBPACK_IMPORTED_MODULE_3__().quarter() - 1).utc().format("YYYY-MM-DD");
+                  dateTo = moment__WEBPACK_IMPORTED_MODULE_3__(dateTo).quarter(moment__WEBPACK_IMPORTED_MODULE_3__().quarter() - 1).utc().format("YYYY-MM-DD");
+                  break;
+                }
+
+              case 10:
+                {
+                  dateFrom = new Date();
+                  dateTo = new Date();
+                  dateFrom.setMonth(0);
+                  dateFrom.setDate(1);
+                  dateTo.setMonth(11);
+                  dateTo.setDate(31);
+                  dateFrom = moment__WEBPACK_IMPORTED_MODULE_3__(dateFrom).year(moment__WEBPACK_IMPORTED_MODULE_3__().year() - 1).utc().format("YYYY-MM-DD");
+                  dateTo = moment__WEBPACK_IMPORTED_MODULE_3__(dateTo).year(moment__WEBPACK_IMPORTED_MODULE_3__().year() - 1).utc().format("YYYY-MM-DD");
+                  break;
+                }
+            }
+
+            this.orderRequest.closeDate = this.isCloseDate;
+            this.orderRequest.workDateFrom = dateFrom;
+            this.orderRequest.workDateTo = dateTo;
+            this.filterService.setOrderRequest(this.orderRequest);
+            this.onSuggest.emit();
+          }
+        }
+      }]);
+
+      return WorkPeriodFilterComponent;
+    }();
+
+    WorkPeriodFilterComponent.ctorParameters = function () {
+      return [{
+        type: _period_date_filter_serv_period_filter_service__WEBPACK_IMPORTED_MODULE_1__["ServPeriodFilterService"]
+      }, {
+        type: _filter_service__WEBPACK_IMPORTED_MODULE_2__["FilterService"]
+      }];
+    };
+
+    __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(), __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])], WorkPeriodFilterComponent.prototype, "onSuggest", void 0);
+
+    __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(), __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])], WorkPeriodFilterComponent.prototype, "onClear", void 0);
+
+    __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(), __metadata("design:type", Boolean)], WorkPeriodFilterComponent.prototype, "onlyField", void 0);
+
+    WorkPeriodFilterComponent = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+      selector: 'app-work-period-filter',
+      template: __importDefault(__webpack_require__(
+      /*! raw-loader!./work-period-filter.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/widgets/filters/work-period-filter/work-period-filter.component.html"))["default"],
+      styles: [__importDefault(__webpack_require__(
+      /*! ./work-period-filter.component.css */
+      "./src/app/widgets/filters/work-period-filter/work-period-filter.component.css"))["default"]]
+    }), __metadata("design:paramtypes", [_period_date_filter_serv_period_filter_service__WEBPACK_IMPORTED_MODULE_1__["ServPeriodFilterService"], _filter_service__WEBPACK_IMPORTED_MODULE_2__["FilterService"]])], WorkPeriodFilterComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/widgets/filters/work-status-filter/work-status-filter.component.css":
+  /*!*************************************************************************************!*\
+    !*** ./src/app/widgets/filters/work-status-filter/work-status-filter.component.css ***!
+    \*************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppWidgetsFiltersWorkStatusFilterWorkStatusFilterComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3dpZGdldHMvZmlsdGVycy93b3JrLXN0YXR1cy1maWx0ZXIvd29yay1zdGF0dXMtZmlsdGVyLmNvbXBvbmVudC5jc3MifQ== */";
+    /***/
+  },
+
+  /***/
+  "./src/app/widgets/filters/work-status-filter/work-status-filter.component.ts":
+  /*!************************************************************************************!*\
+    !*** ./src/app/widgets/filters/work-status-filter/work-status-filter.component.ts ***!
+    \************************************************************************************/
+
+  /*! exports provided: WorkStatusFilterComponent */
+
+  /***/
+  function srcAppWidgetsFiltersWorkStatusFilterWorkStatusFilterComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "WorkStatusFilterComponent", function () {
+      return WorkStatusFilterComponent;
+    });
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _state_filter_serv_state_filter_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ../state-filter/serv-state-filter.service */
+    "./src/app/widgets/filters/state-filter/serv-state-filter.service.ts");
+    /* harmony import */
+
+
+    var _filter_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! ../filter.service */
+    "./src/app/widgets/filters/filter.service.ts");
+
+    var __decorate = undefined && undefined.__decorate || function (decorators, target, key, desc) {
+      var c = arguments.length,
+          r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc,
+          d;
+      if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);else for (var i = decorators.length - 1; i >= 0; i--) {
+        if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+      }
+      return c > 3 && r && Object.defineProperty(target, key, r), r;
+    };
+
+    var __metadata = undefined && undefined.__metadata || function (k, v) {
+      if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+    };
+
+    var __importDefault = undefined && undefined.__importDefault || function (mod) {
+      return mod && mod.__esModule ? mod : {
+        "default": mod
+      };
+    };
+
+    var WorkStatusFilterComponent = /*#__PURE__*/function () {
+      function WorkStatusFilterComponent(stateService, filterService) {
+        _classCallCheck(this, WorkStatusFilterComponent);
+
+        this.stateService = stateService;
+        this.filterService = filterService;
+        this.state = {
+          name: 'не выполнена',
+          code: 0
+        };
+        this.onlyField = false;
+        this.disabled = false;
+        this.onSuggest = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.onClear = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.states = [{
+          name: 'все',
+          code: null
+        }, {
+          name: 'не выполнена',
+          code: 0
+        }, {
+          name: 'выполнена',
+          code: 1
+        }, {
+          name: 'выполняется',
+          code: 2
+        }, {
+          name: 'пауза',
+          code: 3
+        }];
+      }
+
+      _createClass(WorkStatusFilterComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }, {
+        key: "clear",
+        value: function clear() {
+          this.state = {
+            name: 'все',
+            code: null
+          };
+          this.changeState();
+          this.onClear.emit();
+        }
+      }, {
+        key: "changeState",
+        value: function changeState() {
+          if (this.state === null) {
+            this.clear();
+          } else {
+            this.orderRequest = this.filterService.getOrderRequest();
+            this.orderRequest.workStatus = this.state.code;
+            this.filterService.setOrderRequest(this.orderRequest);
+            this.onSuggest.emit();
+          }
+        }
+      }]);
+
+      return WorkStatusFilterComponent;
+    }();
+
+    WorkStatusFilterComponent.ctorParameters = function () {
+      return [{
+        type: _state_filter_serv_state_filter_service__WEBPACK_IMPORTED_MODULE_1__["ServStateFilterService"]
+      }, {
+        type: _filter_service__WEBPACK_IMPORTED_MODULE_2__["FilterService"]
+      }];
+    };
+
+    __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(), __metadata("design:type", Boolean)], WorkStatusFilterComponent.prototype, "onlyField", void 0);
+
+    __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(), __metadata("design:type", Boolean)], WorkStatusFilterComponent.prototype, "disabled", void 0);
+
+    __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(), __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])], WorkStatusFilterComponent.prototype, "onSuggest", void 0);
+
+    __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(), __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"])], WorkStatusFilterComponent.prototype, "onClear", void 0);
+
+    WorkStatusFilterComponent = __decorate([Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+      selector: 'app-work-status-filter',
+      template: __importDefault(__webpack_require__(
+      /*! raw-loader!./work-status-filter.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/widgets/filters/work-status-filter/work-status-filter.component.html"))["default"],
+      styles: [__importDefault(__webpack_require__(
+      /*! ./work-status-filter.component.css */
+      "./src/app/widgets/filters/work-status-filter/work-status-filter.component.css"))["default"]]
+    }), __metadata("design:paramtypes", [_state_filter_serv_state_filter_service__WEBPACK_IMPORTED_MODULE_1__["ServStateFilterService"], _filter_service__WEBPACK_IMPORTED_MODULE_2__["FilterService"]])], WorkStatusFilterComponent);
     /***/
   },
 

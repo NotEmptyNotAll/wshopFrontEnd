@@ -38,7 +38,7 @@ export class StateFilterComponent implements OnInit {
     }
 
     clear() {
-        this.state = {name: 'незакрытые', code: 'UNCLOSED'}
+        this.stateService.stateFilterData = {name: 'незакрытые', code: 'UNCLOSED'}
         this.changeState()
         this.onClear.emit()
     }
@@ -47,7 +47,7 @@ export class StateFilterComponent implements OnInit {
 
     changeState() {
 
-        if (this.state === null) {
+        if (this.stateService.stateFilterData === null) {
             this.clear()
         } else {
             if(this.onlyField){
@@ -57,7 +57,7 @@ export class StateFilterComponent implements OnInit {
                 this.onSuggest.emit();
             }else {
                 this.orderRequest = this.filterService.getOrderRequest()
-                this.orderRequest.state = this.state.code
+                this.orderRequest.state = this.stateService.stateFilterData.code
                 this.filterService.setOrderRequest(this.orderRequest)
                 this.onSuggest.emit();
             }

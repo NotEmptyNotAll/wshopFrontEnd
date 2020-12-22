@@ -183,16 +183,17 @@ export class OrdersComponent implements OnInit {
 
     async updateData() {
         this.apiService.startIndex = 0;
-        console.log('////////////////')
-        console.log(this.filterService.getOrderRequest())
+        let request = this.filterService.getOrderRequest()
+        request.sizeResponse = 100
+        this.filterService.setOrderRequest(request)
         this.data = await this.apiService.post<TableOrderResponse>(
             'getCroppedOrders', this.filterService.getOrderRequest(), false
         );
         this.apiService.startIndex += this.apiService.sizeDataResponse
 
-        if (this.data.sizeTwoPartData > 0) {
-            this.twoDownload()
-        }
+        // if (this.data.sizeTwoPartData > 0) {
+        //     this.twoDownload()
+        // }
         let mainColumn = [];
         this.data.columnTables.map(elem => {
             mainColumn.push(
