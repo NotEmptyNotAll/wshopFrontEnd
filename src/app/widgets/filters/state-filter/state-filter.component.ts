@@ -38,7 +38,7 @@ export class StateFilterComponent implements OnInit {
     }
 
     clear() {
-        this.stateService.stateFilterData = {name: 'незакрытые', code: 'UNCLOSED'}
+        this.stateService.stateFilterData = {name: 'все', code: null}
         this.changeState()
         this.onClear.emit()
     }
