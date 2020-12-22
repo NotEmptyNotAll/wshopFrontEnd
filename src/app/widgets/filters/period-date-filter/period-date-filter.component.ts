@@ -44,7 +44,7 @@ export class PeriodDateFilterComponent implements OnInit {
     ]
 
     constructor(
-        public filterPeriodService:ServPeriodFilterService,
+        public filterPeriodService: ServPeriodFilterService,
         public filterService: FilterService) {
     }
 
@@ -65,7 +65,13 @@ export class PeriodDateFilterComponent implements OnInit {
             this.orderRequest = this.filterService.getOrderRequest()
             let dateTo = null;
             let dateFrom = null;
-            switch (this.filterPeriodService.periodFastFilterData.code) {
+            let index = 0;
+            if (this.onlyField) {
+                index = this.filterPeriodService.periodFastFilterData.code
+            } else {
+                index = this.period.code
+            }
+            switch (index) {
                 case 0: {
                     dateTo = null
                     dateFrom = null
