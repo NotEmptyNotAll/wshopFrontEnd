@@ -145,8 +145,6 @@ export class OrdersComponent implements OnInit {
 
 
     async twoDownload() {
-        console.log('////////////////2222')
-        console.log(this.filterService.getOrderRequest())
         let sizeResponse = this.apiService.sizeDataResponse
         this.apiService.barLoading = true
         let request = this.filterService.getOrderRequest()
@@ -184,7 +182,7 @@ export class OrdersComponent implements OnInit {
     async updateData() {
         this.apiService.startIndex = 0;
         let request = this.filterService.getOrderRequest()
-        request.sizeResponse = 3000
+        request.sizeResponse = 5000
         this.filterService.setOrderRequest(request)
         this.data = await this.apiService.post<TableOrderResponse>(
             'getCroppedOrders', this.filterService.getOrderRequest(), false
@@ -206,7 +204,7 @@ export class OrdersComponent implements OnInit {
         })
         this.apiService.sizeNextRequest = this.data.sizeTwoPartData
         let regexp = new RegExp('^[1-9]\d{0,2}$');
-        let tableBody = []
+          this.tableDataService.mainData = []
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
             row.rowData.map(cell => {
@@ -222,8 +220,12 @@ export class OrdersComponent implements OnInit {
                     tableRow[cell.cellName] = cell.cellData
                 }
             })
-            tableBody.push(tableRow)
+            this.tableDataService.mainData.push(tableRow)
         })
+
+        this.apiService.isLoadingData=false
+        console.log(this.tableDataService.mainData)
+
         // let tableRowPattern: any = {}
 
         // console.log(this.data)
@@ -241,8 +243,8 @@ export class OrdersComponent implements OnInit {
         // }
 
 
-        this.tableDataService.setMainData(tableBody)
-        // this.tableDataService.setTablePatternRow(tableRowPattern)
+         // this.tableDataService.setMainData(this.tableDataService.mainData)
+        //this.tableDataService.setTablePatternRow(tableRowPattern)
 
         this.tableDataService.setStartData(this.data)
         return true;

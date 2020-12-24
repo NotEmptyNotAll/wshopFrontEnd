@@ -349,7 +349,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "\n<app-master-start-window *ngIf=\"!apiService.isLoading\"\n                         [display]=\"masterWindowVisible\"\n                         (onCancelAction)=\"quit()\"\n                         (onConfirm)=\"moveToMasterSelectWindows()\"\n                         title=\"НАЧАТЬ ЗМІНУ\" textOnConfirm=\"ПОЧАТИ\" textOnCancel=\"СКАСУВАТИ\"\n></app-master-start-window>\n<div class=\"login-page\" *ngIf=\"!masterWindowVisible\">\n    <div class=\"login-form shadow  \">\n        <!--<img src=\"assets/image/login-images.png\"/>\n        <hr width=\"100%\"/>-->\n        <div class=\"login-row\">\n\n            <span style=\"width: 90%\">\n            <p-dropdown\n                    autoWidth=\"false\" [style]=\"{'minWidth':'100%'}\"\n                    [showClear]=\"true\" [placeholder]=\"'loginPage.SelectName' | translate\"\n                    [options]=\"users\" [(ngModel)]=\"selectedUser\"\n                    [filter]=\"true\" optionLabel=\"name\"></p-dropdown>\n            </span>\n        </div>\n\n\n        <div class=\"login-row\">\n            <span style=\"width: 90%\">\n            <input type=\"password\" [(ngModel)]=\"password\"\n                   (keydown.enter)=\"login()\"\n                   [disabled]=\"selectedUser===null || selectedUser===undefined\"\n                   [style]=\"{'minWidth':'100%'}\"\n                   [placeholder]=\"'loginPage.password' | translate\"\n                   [feedback]=\"false\" pPassword/>\n            </span>\n        </div>\n        <div class=\"login-row\">\n\n            <button pRipple pButton type=\"button\" (click)=\"cancel()\"\n                    class=\" p-button-danger\"\n                    style=\"min-width: 8rem\"\n                    [label]=\"'loginPage.cancel' | translate\" icon=\"pi pi-times\"></button>\n\n            <button pRipple pButton type=\"button\" (click)=\"login()\"\n                    class=\" p-button-success\"\n                    style=\"min-width: 8rem\"\n                    [disabled]=\"selectedUser===null || selectedUser===undefined\"\n                    [label]=\"'loginPage.login' | translate\" icon=\"pi pi-check\"></button>\n\n        </div>\n    </div>\n</div>";
+    __webpack_exports__["default"] = "\n<app-master-start-window *ngIf=\"!apiService.isLoading\"\n                         [display]=\"masterWindowVisible\"\n                         (onCancelAction)=\"quit()\"\n                         (onConfirm)=\"moveToMasterSelectWindows()\"\n                         title=\"НАЧАТЬ ЗМІНУ\" textOnConfirm=\"ПОЧАТИ\" textOnCancel=\"СКАСУВАТИ\"\n></app-master-start-window>\n<div class=\"login-page\" *ngIf=\"!masterWindowVisible\">\n    <div class=\"login-form shadow  \">\n        <!--<img src=\"assets/image/login-images.png\"/>\n        <hr width=\"100%\"/>-->\n        <div class=\"login-row\">\n\n            <span style=\"width: 90%\">\n            <p-dropdown\n                    autoWidth=\"false\" [style]=\"{'minWidth':'100%'}\"\n                    [showClear]=\"true\" [placeholder]=\"'page.SelectName' | translate\"\n                    [options]=\"users\" [(ngModel)]=\"selectedUser\"\n                    [filter]=\"true\" optionLabel=\"name\"></p-dropdown>\n            </span>\n        </div>\n\n\n        <div class=\"login-row\">\n            <span style=\"width: 90%\">\n            <input type=\"password\" [(ngModel)]=\"password\"\n                   (keydown.enter)=\"login()\"\n                   [disabled]=\"selectedUser===null || selectedUser===undefined\"\n                   [style]=\"{'minWidth':'100%'}\"\n                   [placeholder]=\"'page.password' | translate\"\n                   [feedback]=\"false\" pPassword/>\n            </span>\n        </div>\n\n        <div class=\"login-row\">\n\n            <button pRipple pButton type=\"button\" (click)=\"cancel()\"\n                    class=\" p-button-danger\"\n                    style=\"min-width: 8rem\"\n                    [label]=\"'page.cancel' | translate\" icon=\"pi pi-times\"></button>\n\n            <button pRipple pButton type=\"button\" (click)=\"login()\"\n                    class=\" p-button-success\"\n                    style=\"min-width: 8rem\"\n                    [disabled]=\"selectedUser===null || selectedUser===undefined\"\n                    [label]=\"'page.login' | translate\" icon=\"pi pi-check\"></button>\n\n        </div>\n    </div>\n</div>";
     /***/
   },
 
@@ -409,7 +409,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<p-menubar id=\"openNav\" [model]=\"(apiService.getUserData()!==null && apiService.getUserData()!==undefined)?items:itemsNoLogin\"\n           [style]=\"{zIndex:'999',background:'#f4f4f4',\nminWidth:'100%', height:'53px',position:'fixed',left:'0px',top:'0px'} \"\n>\n    <p-button *ngIf=\"apiService.getUserData()!==null && apiService.getUserData()!==undefined\"\n              type=\"text\" [style]=\"{minWidth:'40px',minHeight:'40px',\n                  background:'#DC143C', borderColor:'#DC143C'}\"\n              (click)=\"quit()\" icon=\"pi pi-fw  pi-power-off\"\n              class=\"p-button-success p-button-text\"\n              [label]=\"\"></p-button>\n    <p-button *ngIf=\"apiService.getUserData()===null || apiService.getUserData()===undefined\"\n              type=\"text\" [style]=\"{minWidth:'40px',minHeight:'40px'}\"\n              (click)=\"quit()\" icon=\"pi pi-fw pi-user\"\n              class=\"p-button-success p-button-text\"\n              [label]=\"\"></p-button>\n</p-menubar>\n\n\n<!--<p-sidebar [modal]=\"false\" [(visible)]=\"display\">\n    <h2>{{'loginPage.menu' | translate}}</h2>\n    <hr class=\"hr-style\"/>\n    <p-listbox\n\n            [style]=\"{minWidth:'100%',borderColor:'white',\n            position:'absolute',left:'0px',fontSize:'1.5em'}\"\n            [options]=\" [ {name:  'loginPage.listOrders' | translate, code: 'NY'}]\" [(ngModel)]=\"cities1\"\n            optionLabel=\"name\"></p-listbox>\n\n</p-sidebar>-->\n\n<div class=\"side-menu\" style=\"display:none;\" id=\"mySidebar\">\n\n    <h3 style=\"position: relative; left: 10px\">{{'loginPage.menu' | translate}}</h3>\n    <hr class=\"hr-style\" style=\"    z-index: 2;\"/>\n    <p-listbox\n            id=\"mySidebarList\"\n            [style]=\"{minWidth:'100%',borderColor:'white',zIndex:'2',width:'100%',\n\n            position:'absolute',left:'0px',fontSize:'1.5em'}\"\n            [options]=\" [ {name:  'loginPage.listOrders' | translate, code: 'NY'}]\" [(ngModel)]=\"cities1\"\n            optionLabel=\"name\"></p-listbox>\n</div>\n\n<br/>\n<br/>";
+    __webpack_exports__["default"] = "<p-menubar id=\"openNav\" [model]=\"(apiService.getUserData()!==null && apiService.getUserData()!==undefined)?items:itemsNoLogin\"\n           [style]=\"{zIndex:'999',background:'#f4f4f4',\nminWidth:'100%', height:'53px',position:'fixed',left:'0px',top:'0px'} \"\n>\n    <p-button *ngIf=\"apiService.getUserData()!==null && apiService.getUserData()!==undefined\"\n              type=\"text\" [style]=\"{minWidth:'40px',minHeight:'40px',\n                  background:'#DC143C', borderColor:'#DC143C'}\"\n              (click)=\"quit()\" icon=\"pi pi-fw  pi-power-off\"\n              class=\"p-button-success p-button-text\"\n              [label]=\"\"></p-button>\n    <p-button *ngIf=\"apiService.getUserData()===null || apiService.getUserData()===undefined\"\n              type=\"text\" [style]=\"{minWidth:'40px',minHeight:'40px'}\"\n              (click)=\"quit()\" icon=\"pi pi-fw pi-user\"\n              class=\"p-button-success p-button-text\"\n              [label]=\"\"></p-button>\n</p-menubar>\n\n\n<!--<p-sidebar [modal]=\"false\" [(visible)]=\"display\">\n    <h2>{{'page.menu' | translate}}</h2>\n    <hr class=\"hr-style\"/>\n    <p-listbox\n\n            [style]=\"{minWidth:'100%',borderColor:'white',\n            position:'absolute',left:'0px',fontSize:'1.5em'}\"\n            [options]=\" [ {name:  'page.listOrders' | translate, code: 'NY'}]\" [(ngModel)]=\"cities1\"\n            optionLabel=\"name\"></p-listbox>\n\n</p-sidebar>-->\n\n<div class=\"side-menu\" style=\"display:none;\" id=\"mySidebar\">\n\n    <h3 style=\"position: relative; left: 10px\">{{'page.menu' | translate}}</h3>\n    <hr class=\"hr-style\" style=\"    z-index: 2;\"/>\n    <p-listbox\n            id=\"mySidebarList\"\n            [style]=\"{minWidth:'100%',borderColor:'white',zIndex:'2',width:'100%',\n\n            position:'absolute',left:'0px',fontSize:'1.5em'}\"\n            [options]=\" [ {name:  'page.listOrders' | translate, code: 'NY'}]\" [(ngModel)]=\"cities1\"\n            optionLabel=\"name\"></p-listbox>\n</div>\n\n<br/>\n<br/>";
     /***/
   },
 
@@ -449,7 +449,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<app-table-page [startData]=\"data\" [title]=\" 'loginPage.listOrders' | translate\"\n                [mainColumn]=\"mainColumn\"\n                (onUpdateData)=\"updateData()\"\n                (onLazyLoad)=\"twoDownload()\"\n                [buttonActionDisable]=\"false\"\n                [buttonItems]=\"[]\"\n                [stateFilterDisable]=\"false\"  *ngIf=\"data!=null\"></app-table-page>";
+    __webpack_exports__["default"] = "<app-table-page [startData]=\"data\" [title]=\" 'page.listOrders' | translate\"\n                [mainColumn]=\"mainColumn\"\n                (onUpdateData)=\"updateData()\"\n                (onLazyLoad)=\"twoDownload()\"\n                [buttonActionDisable]=\"false\"\n                [buttonItems]=\"[]\"\n                [stateFilterDisable]=\"false\"  *ngIf=\"data!=null\"></app-table-page>";
     /***/
   },
 
@@ -509,7 +509,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"content-body\" id='mian' *ngIf=\"!tableDataService.showUpdatePage\">\n    <!--<div class=\"input-form\">\n        <input placeholder=\"input columns size\" type=\"text\"\n               [ngClass]=\"{'err-input':inputErr,'input-text':!inputErr}\"\n               [(ngModel)]=\"tableDataService.addColumnText\" (input)=\"setColumn()\"/>\n        <input type=\"text\" class=\"input-text\" [(ngModel)]=\"tableDataService.search\"\n               (keydown.enter)=\"onSearch()\"/>\n        <button class=\"button button-search\" (click)=\"onSearch()\">search</button>\n    </div>\n\n        <div class=\"box\">\n        <app-filter-box></app-filter-box>\n        <div class=\"shadow box-item \">\n            <p-multiSelect [options]=\"columns\" [(ngModel)]=\"_selectedColumns\" optionLabel=\"header\"\n                           selectedItemsLabel=\" {0} columns selected\"\n                           [style]=\"{minWidth:'200px'}\"\n                           placeholder=\"Choose Columns\"></p-multiSelect>\n        </div>\n\n    </div>\n    -->\n    <p-dialog header=\"{{'loginPage.filters' | translate}}\"\n              [style]=\"{minWidth:'400px',minHeight:'500px',width:'600px'}\"\n              [(visible)]=\"display\" [resizable]=\"true\" responsive=\"false\">\n        <div class=\"filter-panel\">\n            <app-date-filter class=\"filter\"></app-date-filter>\n            <app-customer-filter class=\"filter\"></app-customer-filter>\n            <app-employee-filter class=\"filter\"></app-employee-filter>\n            <app-payed-filter class=\"filter\"></app-payed-filter>\n            <app-state-filter class=\"filter\" [onlyField]=\"false\"></app-state-filter>\n\n        </div>\n\n\n        <p-footer class=\"footer-dialog\">\n            <button pRipple type=\"button\" (click)=\"cancelFilter()\" style=\"margin-right: 15%;margin-left:10%\" pButton\n                    class=\"p-button-danger\"\n                    [label]=\"'loginPage.cancel' | translate\" icon=\"pi pi-times\" label=\"delete\"></button>\n            <button pRipple type=\"button\" (click)=\"updateData()\" style=\"margin-left:15%;margin-right:10% \" pButton\n                    icon=\"pi pi-check\"\n                    [label]=\"'loginPage.confirm' | translate\"></button>\n\n        </p-footer>\n    </p-dialog>\n    <p-confirmPopup [visible]=\"confirmDisplay\"></p-confirmPopup>\n    <p-contextMenu #cm [model]=\"items\"></p-contextMenu>\n\n    <!--  currentPageReportTemplate=\"{{'loginPage.TableNumLabel' | translate}}\"\n               [rows]=\"100\" [showCurrentPageReport]=\"true\" [rowsPerPageOptions]=\"[20,30,50,100]\"\n              [paginator]=\"true\" -->\n    <div style=\"height: 88vh;background: #f4f4f4;width: 100%\">\n        <p-table\n                [rows]=\"20\"\n                [virtualScroll]=\"true\" [virtualRowHeight]=\"15\"\n                [reorderableColumns]=\"true\"\n                class=\"table-style\"\n                [loading]=\"apiService.isLoadingData\"\n                [columns]=\"_selectedColumns\" [value]=\"tableDataService.mainData\" [scrollable]=\"true\"\n                scrollHeight=\"flex\"\n                [contextMenu]=\"cm\"\n                columnResizeMode=\"expand\"\n                style=\"border-color: #f4f4f4\"\n                (sortFunction)=\"customSort($event)\" [customSort]=\"true\"\n                [style]=\"{borderColor:'#f4f4f4',zIndex:'0'}\"\n                [resizableColumns]=\"true\" selectionMode=\"single\"\n                dataKey=\"id\">\n\n            <ng-template pTemplate=\"caption\" style=\"border-color: #f4f4f4\">\n                <div class=\"table-header\" style=\"height: 35px\" [style]=\"{borderColor:'#f4f4f4'}\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row\">\n                        <div class=\"p-mb-4 p-mr-4\" style=\"width: 20%\">\n                            <h3> {{ title }}</h3>\n                        </div>\n                        <div class=\"p-mb-6 p-mr-6\" style=\"width: 40%\">\n                        </div>\n                        <div *ngIf=\"!standardFilterDisable\" class=\"p-mb-2 p-mr-2\" style=\" position: relative;top:-2px\">\n                            <button pButton type=\"button\" (click)=\"showDialog()\"\n                                    class=\"p-button-secondary\"\n                                    pRipple\n                                    icon=\"pi pi-filter size-icon-table\"\n                            >\n                            </button>\n                        </div>\n\n                        <div *ngIf=\"standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n                            <app-work-period-filter (onSuggest)=\"updateData()\"\n                                                    (click)=\"confirmOnFilter($event)\"\n                            ></app-work-period-filter>\n                        </div>\n                        <div *ngIf=\"standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n                            <app-detail-filter (onSuggest)=\"updateData()\"\n                                               (click)=\"confirmOnFilter($event)\"\n                            ></app-detail-filter>\n                        </div>\n                        <div *ngIf=\"standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n                            <app-work-filter (onSuggest)=\"updateData()\"\n                                             (click)=\"confirmOnFilter($event)\"\n                            ></app-work-filter>\n                        </div>\n\n                        <div *ngIf=\"standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n                            <app-work-status-filter\n                                    [disabled]=\"stateFilterDisable\" [onlyField]=\"true\"\n                                    (onSuggest)=\"updateData()\"\n                                    (onClear)=\"updateData()\"\n                                    (click)=\"confirmOnFilter($event)\"\n                            ></app-work-status-filter>\n                        </div>\n                        <div *ngIf=\"!standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n                            <app-period-date-filter [onlyField]=\"true\" (onSuggest)=\"updateData()\"\n                                                    (onClear)=\"updateData()\"\n                                                    (click)=\"confirmOnFilter($event)\"\n                            ></app-period-date-filter>\n                        </div>\n                        <div *ngIf=\"!standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n                            <app-state-filter\n                                    [disabled]=\"stateFilterDisable\" [onlyField]=\"true\"\n                                    (onSuggest)=\"updateData()\"\n                                    (onClear)=\"updateData()\"\n                                    (click)=\"confirmOnFilter($event)\"\n                            ></app-state-filter>\n                        </div>\n                        <div *ngIf=\"!standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n\n                            <app-substring-filter (click)=\"confirmOnFilter($event)\"\n                                                  (onSuggest)=\"updateData()\"\n                            ></app-substring-filter>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 100px; position: relative;top:-2px\">\n                            <button pButton type=\"button\" (click)=\"downloadExel()\"\n                                    class=\"p-button-secondary\"\n                                    pRipple\n                                    icon=\"pi pi-file-excel size-icon-table \"\n                            >\n                            </button>\n\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\"\n                             style=\" position: relative;top:-2px;\">\n                            <p-multiSelect [options]=\"columns\" [(ngModel)]=\"_selectedColumns\"\n                                           optionLabel=\"header\"\n                                           [showHeader]=\"false\"\n                                           id=\"multisect\"\n                                           selectedItemsLabel=\"\"\n                                           defaultLabel=\"\"\n                                           (onClick)=\"chooseColumn()\"\n                                           dropdownIcon=\"pi pi-microsoft size-icon\"\n                                           scrollHeight=\"700px\"\n                                           [style]=\"{width:'38px',height:'40px',position:'relative',background:'#f4f4f4',borderColor:'#f4f4f4'}\"\n                                           placeholder=\"\"></p-multiSelect>\n                        </div>\n                    </div>\n\n\n                </div>\n            </ng-template>\n            <ng-template pTemplate=\"colgroup\">\n                <colgroup>\n                    <col style=\"width:30px\">\n                    <col style=\"width:30px\">\n                    <col *ngFor=\"let col of columns\" style=\"{{'width:'+col.width+'px'}}\">\n                    <!--                    <col *ngIf=\"buttonActionDisable\" style=\"width:150px\">-->\n\n                </colgroup>\n            </ng-template>\n            <ng-template pTemplate=\"header\" let-columns>\n                <tr style=\"border-color: #f4f4f4\" [style]=\"{borderColor:'#f4f4f4'}\">\n                    <th style=\"width:2rem;border-color: #f4f4f4\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>\n                    <th style=\"width:2rem;border-color: #f4f4f4\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'15px'}\"></th>\n\n                    <th *ngFor=\"let col of columns\" pResizableColumn [pSortableColumn]=\"col.header\"\n                        style=\"border-color: #f4f4f4\" [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\">\n                        {{col.header}}\n                        <p-sortIcon [field]=\"col.header\"></p-sortIcon>\n                    </th>\n                    <!--                    <th style=\"width:2rem;border-color: #f4f4f4\" *ngIf=\"buttonActionDisable\"-->\n                    <!--                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>-->\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"loadingbody\" let-columns=\"columns\">\n                <tr style=\"height:34px\">\n                    <td *ngFor=\"let col of columns\">\n                        <div class=\"loading-text\"></div>\n                    </td>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-rowData let-columns=\"columns\" let-index=\"rowIndex\">\n                <tr [pReorderableRow]=\"index\" [pContextMenuRow]=\"rowData\">\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'12px'}\">\n                        <span class=\"pi pi-bars\" pReorderableRowHandle></span>\n                    </td>\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'14px'}\">\n                        <span *ngIf=\"rowData.Comment!==''\" class=\"pi pi-info-circle\" pReorderableRowHandle\n                              (click)=\"confirm($event,rowData)\"></span>\n                    </td>\n                    <td *ngFor=\"let col of columns\" class=\"ui-resizable-column\" pResizableColumn\n                        [style]=\"{borderColor:'#f4f4f4' , fontSize:'12px'}\">\n                        <span *ngIf=\"buttonActionDisable\">\n                                                                        {{rowData[col.field]}}\n\n                        </span>\n                        <span *ngIf=\"!buttonActionDisable\">\n                    <span *ngIf=\"(rowData[col.field]==='yes' || rowData[col.field]==='1') \">\n                        <i class=\"pi pi-check\"></i>\n                        </span>\n                        <span *ngIf=\"rowData[col.field]==='no' || rowData[col.field]==='0'\"></span>\n                        <span *ngIf=\"col.field==='Долг' || col.field==='Раб.' || col.field==='З/ч' || col.field==='Всего'\"\n                              style=\"padding-left: 50%\"> </span>\n                        <span *ngIf=\"!(rowData[col.field]==='yes' || rowData[col.field]==='1') && !(rowData[col.field]==='no' || rowData[col.field]==='0')\">\n                                            {{rowData[col.field]}}\n                    </span>\n                        </span>\n                    </td>\n                    <!--                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'14px',zIndex:'2'}\" *ngIf=\"buttonActionDisable\">-->\n\n                    <!--                        <app-button-list-action></app-button-list-action>-->\n\n                    <!--                    </td>-->\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"emptymessage\">\n                <tr>\n                    <td [colSpan]=\"_selectedColumns.length\">No customers found.</td>\n                </tr>\n            </ng-template>\n        </p-table>\n    </div>\n    <!--\n    <p-confirmDialog [style]=\"{width: '30vw'}\" [baseZIndex]=\"10000\"></p-confirmDialog>\n    <div class=\"button-panel\">\n        <button type=\"button\" (click)=\"deleteData()\" pButton class=\"ui-button-danger\"\n                icon=\"pi pi-trash\" [disabled]=\"selectRow.id<=startData.length\" label=\"delete\"></button>\n        <button (click)=\"tableDataService.showUpdatePage=true\" type=\"button\" pButton icon=\"pi pi-plus\"\n                label=\"create\"></button>\n        <button type=\"button\" [disabled]=\"selectRow.id<=startData.length\" pButton icon=\"pi pi-pencil\"\n                class=\"ui-button-success\" (click)=\"changeData()\" label=\"change\"></button>\n    </div>-->\n\n</div>\n<app-create-add *ngIf=\"tableDataService.showUpdatePage\"></app-create-add>";
+    __webpack_exports__["default"] = "<div class=\"content-body\" id='mian' *ngIf=\"!tableDataService.showUpdatePage\">\n    <!--<div class=\"input-form\">\n        <input placeholder=\"input columns size\" type=\"text\"\n               [ngClass]=\"{'err-input':inputErr,'input-text':!inputErr}\"\n               [(ngModel)]=\"tableDataService.addColumnText\" (input)=\"setColumn()\"/>\n        <input type=\"text\" class=\"input-text\" [(ngModel)]=\"tableDataService.search\"\n               (keydown.enter)=\"onSearch()\"/>\n        <button class=\"button button-search\" (click)=\"onSearch()\">search</button>\n    </div>\n\n        <div class=\"box\">\n        <app-filter-box></app-filter-box>\n        <div class=\"shadow box-item \">\n            <p-multiSelect [options]=\"columns\" [(ngModel)]=\"_selectedColumns\" optionLabel=\"header\"\n                           selectedItemsLabel=\" {0} columns selected\"\n                           [style]=\"{minWidth:'200px'}\"\n                           placeholder=\"Choose Columns\"></p-multiSelect>\n        </div>\n\n    </div>\n    -->\n    <p-dialog header=\"{{'page.filters' | translate}}\"\n              [style]=\"{minWidth:'400px',minHeight:'500px',width:'600px'}\"\n              [(visible)]=\"display\" [resizable]=\"true\" responsive=\"false\">\n        <div class=\"filter-panel\">\n            <app-date-filter class=\"filter\"></app-date-filter>\n            <app-customer-filter class=\"filter\"></app-customer-filter>\n            <app-employee-filter class=\"filter\"></app-employee-filter>\n            <app-payed-filter class=\"filter\"></app-payed-filter>\n            <app-state-filter class=\"filter\" [onlyField]=\"false\"></app-state-filter>\n\n        </div>\n\n\n        <p-footer class=\"footer-dialog\">\n            <button pRipple type=\"button\" (click)=\"cancelFilter()\" style=\"margin-right: 15%;margin-left:10%\" pButton\n                    class=\"p-button-danger\"\n                    [label]=\"'page.clear' | translate\" icon=\"pi pi-times\" label=\"delete\"></button>\n            <button pRipple type=\"button\" (click)=\"updateData()\" style=\"margin-left:15%;margin-right:10% \" pButton\n                    icon=\"pi pi-check\"\n                    [label]=\"'page.confirm' | translate\"></button>\n\n        </p-footer>\n    </p-dialog>\n    <p-confirmPopup [visible]=\"confirmDisplay\"></p-confirmPopup>\n    <p-contextMenu #cm [model]=\"items\"></p-contextMenu>\n\n    <!--  currentPageReportTemplate=\"{{'page.TableNumLabel' | translate}}\"\n               [rows]=\"100\" [showCurrentPageReport]=\"true\" [rowsPerPageOptions]=\"[20,30,50,100]\"\n              [paginator]=\"true\" -->\n    <div style=\"height: 88vh;background: #f4f4f4;width: 100%\">\n        <p-table\n                [virtualScroll]=\"true\"\n                [virtualRowHeight]=\"1\"\n                [rows]=\"200\"\n                [reorderableColumns]=\"true\"\n                class=\"table-style\"\n                [loading]=\"apiService.isLoadingData\"\n                [columns]=\"_selectedColumns\" [value]=\"tableDataService.mainData\" [scrollable]=\"true\"\n                scrollHeight=\"flex\"\n                [contextMenu]=\"cm\"\n                columnResizeMode=\"expand\"\n                style=\"border-color: #f4f4f4\"\n                (sortFunction)=\"customSort($event)\" [customSort]=\"true\"\n                [style]=\"{borderColor:'#f4f4f4',zIndex:'0'}\"\n                [resizableColumns]=\"true\" selectionMode=\"single\"\n                dataKey=\"id\">\n\n            <ng-template pTemplate=\"caption\" style=\"border-color: #f4f4f4\">\n                <div class=\"table-header\" style=\"height: 35px\" [style]=\"{borderColor:'#f4f4f4'}\">\n                    <div class=\"p-d-flex p-flex-column p-flex-md-row\">\n                        <div class=\"p-mb-4 p-mr-4\" style=\"width: 20%\">\n                            <h3> {{ title }}</h3>\n                        </div>\n                        <div class=\"p-mb-6 p-mr-6\" style=\"width: 40%\">\n                        </div>\n                        <div *ngIf=\"!standardFilterDisable\" class=\"p-mb-2 p-mr-2\" style=\" position: relative;top:-2px\">\n                            <button pButton type=\"button\" (click)=\"showDialog()\"\n                                    class=\"p-button-secondary\"\n                                    pRipple\n                                    icon=\"pi pi-filter size-icon-table\"\n                            >\n                            </button>\n                        </div>\n\n                        <div *ngIf=\"standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n                            <app-work-period-filter (onSuggest)=\"updateData()\"\n                                                    (click)=\"confirmOnFilter($event)\"\n                            ></app-work-period-filter>\n                        </div>\n                        <div *ngIf=\"standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n                            <app-detail-filter (onSuggest)=\"updateData()\"\n                                               (click)=\"confirmOnFilter($event)\"\n                            ></app-detail-filter>\n                        </div>\n                        <div *ngIf=\"standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n                            <app-work-filter (onSuggest)=\"updateData()\"\n                                             (click)=\"confirmOnFilter($event)\"\n                            ></app-work-filter>\n                        </div>\n\n                        <div *ngIf=\"standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n                            <app-work-status-filter\n                                    [disabled]=\"stateFilterDisable\" [onlyField]=\"true\"\n                                    (onSuggest)=\"updateData()\"\n                                    (onClear)=\"updateData()\"\n                                    (click)=\"confirmOnFilter($event)\"\n                            ></app-work-status-filter>\n                        </div>\n                        <div *ngIf=\"!standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n                            <app-period-date-filter [onlyField]=\"true\" (onSuggest)=\"updateData()\"\n                                                    (onClear)=\"updateData()\"\n                                                    (click)=\"confirmOnFilter($event)\"\n                            ></app-period-date-filter>\n                        </div>\n                        <div *ngIf=\"!standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n                            <app-state-filter\n                                    [disabled]=\"stateFilterDisable\" [onlyField]=\"true\"\n                                    (onSuggest)=\"updateData()\"\n                                    (onClear)=\"updateData()\"\n                                    (click)=\"confirmOnFilter($event)\"\n                            ></app-state-filter>\n                        </div>\n                        <div *ngIf=\"!standardFilterDisable\" class=\"p-mb-2 p-mr-2\"\n                             style=\"width: 300px; position: relative;top:-10px\">\n\n                            <app-substring-filter (click)=\"confirmOnFilter($event)\"\n                                                  (onSuggest)=\"updateData()\"\n                            ></app-substring-filter>\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\" style=\"width: 100px; position: relative;top:-2px\">\n                            <button pButton type=\"button\" (click)=\"downloadExel()\"\n                                    class=\"p-button-secondary\"\n                                    pRipple\n                                    icon=\"pi pi-file-excel size-icon-table \"\n                            >\n                            </button>\n\n                        </div>\n                        <div class=\"p-mb-2 p-mr-2\"\n                             style=\" position: relative;top:-2px;\">\n                            <p-multiSelect [options]=\"columns\" [(ngModel)]=\"_selectedColumns\"\n                                           optionLabel=\"header\"\n                                           [showHeader]=\"false\"\n                                           id=\"multisect\"\n                                           selectedItemsLabel=\"\"\n                                           defaultLabel=\"\"\n                                           (onClick)=\"chooseColumn()\"\n                                           dropdownIcon=\"pi pi-microsoft size-icon\"\n                                           scrollHeight=\"700px\"\n                                           [style]=\"{width:'38px',height:'40px',position:'relative',background:'#f4f4f4',borderColor:'#f4f4f4'}\"\n                                           placeholder=\"\"></p-multiSelect>\n                        </div>\n                    </div>\n\n\n                </div>\n            </ng-template>\n            <ng-template pTemplate=\"colgroup\">\n                <colgroup>\n                    <col style=\"width:30px\">\n                    <col style=\"width:30px\">\n                    <col *ngFor=\"let col of columns\" style=\"{{'width:'+col.width+'px'}}\">\n                    <!--                    <col *ngIf=\"buttonActionDisable\" style=\"width:150px\">-->\n\n                </colgroup>\n            </ng-template>\n            <ng-template pTemplate=\"header\" let-columns>\n                <tr style=\"border-color: #f4f4f4\" [style]=\"{borderColor:'#f4f4f4'}\">\n                    <th style=\"width:2rem;border-color: #f4f4f4\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>\n                    <th style=\"width:2rem;border-color: #f4f4f4\"\n                        [style]=\"{borderColor:'#f4f4f4', fontSize:'15px'}\"></th>\n\n                    <th *ngFor=\"let col of columns\" pResizableColumn [pSortableColumn]=\"col.header\"\n                        style=\"border-color: #f4f4f4\" [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\">\n                        {{col.header}}\n                        <p-sortIcon [field]=\"col.header\"></p-sortIcon>\n                    </th>\n                    <!--                    <th style=\"width:2rem;border-color: #f4f4f4\" *ngIf=\"buttonActionDisable\"-->\n                    <!--                        [style]=\"{borderColor:'#f4f4f4', fontSize:'12px'}\"></th>-->\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"loadingbody\" let-columns=\"columns\">\n                <tr style=\"height:34px\">\n                    <td *ngFor=\"let col of columns\">\n                        <div class=\"loading-text\"></div>\n                    </td>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-rowData let-columns=\"columns\" let-index=\"rowIndex\">\n                <tr [pReorderableRow]=\"index\" [pContextMenuRow]=\"rowData\">\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'12px'}\">\n                        <span class=\"pi pi-bars\" pReorderableRowHandle></span>\n                    </td>\n                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'14px'}\">\n                        <span *ngIf=\"rowData.Comment!==''\" class=\"pi pi-info-circle\" pReorderableRowHandle\n                              (click)=\"confirm($event,rowData)\"></span>\n                    </td>\n                    <td *ngFor=\"let col of columns\" class=\"ui-resizable-column\" pResizableColumn\n                        [style]=\"{borderColor:'#f4f4f4' , fontSize:'12px'}\">\n                        <span *ngIf=\"buttonActionDisable\">\n                                                                        {{rowData[col.field]}}\n\n                        </span>\n                        <span *ngIf=\"!buttonActionDisable\">\n                    <span *ngIf=\"(rowData[col.field]==='yes' || rowData[col.field]==='1') \">\n                        <i class=\"pi pi-check\"></i>\n                        </span>\n                        <span *ngIf=\"rowData[col.field]==='no' || rowData[col.field]==='0'\"></span>\n                        <span *ngIf=\"col.field==='Долг' || col.field==='Раб.' || col.field==='З/ч' || col.field==='Всего'\"\n                              style=\"padding-left: 50%\"> </span>\n                        <span *ngIf=\"!(rowData[col.field]==='yes' || rowData[col.field]==='1') && !(rowData[col.field]==='no' || rowData[col.field]==='0')\">\n                                            {{rowData[col.field]}}\n                    </span>\n                        </span>\n                    </td>\n                    <!--                    <td [style]=\"{borderColor:'#f4f4f4' , fontSize:'14px',zIndex:'2'}\" *ngIf=\"buttonActionDisable\">-->\n\n                    <!--                        <app-button-list-action></app-button-list-action>-->\n\n                    <!--                    </td>-->\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"emptymessage\">\n                <tr>\n                    <td [colSpan]=\"_selectedColumns.length\">No customers found.</td>\n                </tr>\n            </ng-template>\n        </p-table>\n    </div>\n    <!--\n    <p-confirmDialog [style]=\"{width: '30vw'}\" [baseZIndex]=\"10000\"></p-confirmDialog>\n    <div class=\"button-panel\">\n        <button type=\"button\" (click)=\"deleteData()\" pButton class=\"ui-button-danger\"\n                icon=\"pi pi-trash\" [disabled]=\"selectRow.id<=startData.length\" label=\"delete\"></button>\n        <button (click)=\"tableDataService.showUpdatePage=true\" type=\"button\" pButton icon=\"pi pi-plus\"\n                label=\"create\"></button>\n        <button type=\"button\" [disabled]=\"selectRow.id<=startData.length\" pButton icon=\"pi pi-pencil\"\n                class=\"ui-button-success\" (click)=\"changeData()\" label=\"change\"></button>\n    </div>-->\n\n</div>\n<app-create-add *ngIf=\"tableDataService.showUpdatePage\"></app-create-add>";
     /***/
   },
 
@@ -689,7 +689,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<!--<div class=\"filter-component\">-->\n<!--    <p class=\"title\" >{{'loginPage.datePeriod' | translate}}</p>-->\n<!--    <p-dropdown  style=\"margin: 5px 5px 10px;position: relative;bottom: 20px\"-->\n<!--            (onChange)=\"changeState()\"  [options]=\"states\" [(ngModel)]=\"state\" optionLabel=\"name\"></p-dropdown>-->\n\n\n\n<!--</div>-->\n<div class=\"p-fluid  p-grid p-formgrid\">\n    <div class=\"p-field p-col-36 p-md-12\">\n<p-dropdown *ngIf=\"onlyField\"\n            [disabled]=\"stateService.disableFastFiled\"\n             (onChange)=\"changeState()\"  style=\"width: 300px\"\n             [options]=\"fastStates\"\n            placeholder=\"статус\"\n            [(ngModel)]=\"stateService.stateFastFilterData\" optionLabel=\"name\"></p-dropdown>\n    </div>\n</div>\n\n\n<div *ngIf=\"!onlyField\" class=\"filter-component\">\n    <div class=\"white-line\"></div>\n    <p class=\"title\" >статус</p>\n    <div class=\"filter-body\">\n\n    <div class=\" p-fluid  p-grid p-formgrid\" >\n        <div class=\"p-field p-col-36 p-md-12\">\n            <p-dropdown            [disabled]=\"disabled\"\n                                   (onChange)=\"changeState()\"\n\n                                   placeholder=\"статус\"\n                        [options]=\"states\" [(ngModel)]=\"state\" optionLabel=\"name\"></p-dropdown>\n\n        </div>\n    </div>\n</div>\n\n\n\n\n</div>";
+    __webpack_exports__["default"] = "<!--<div class=\"filter-component\">-->\n<!--    <p class=\"title\" >{{'loginPage.datePeriod' | translate}}</p>-->\n<!--    <p-dropdown  style=\"margin: 5px 5px 10px;position: relative;bottom: 20px\"-->\n<!--            (onChange)=\"changeState()\"  [options]=\"states\" [(ngModel)]=\"state\" optionLabel=\"name\"></p-dropdown>-->\n\n\n\n<!--</div>-->\n<div class=\"p-fluid  p-grid p-formgrid\">\n    <div class=\"p-field p-col-36 p-md-12\">\n<p-dropdown *ngIf=\"onlyField\"\n            [disabled]=\"stateService.disableFastFiled\"\n             (onChange)=\"changeState()\"  style=\"width: 300px\"\n             [options]=\"fastStates\"\n            placeholder=\"статус\"\n            [(ngModel)]=\"stateService.stateFastFilterData\" optionLabel=\"name\"></p-dropdown>\n    </div>\n</div>\n\n\n<div *ngIf=\"!onlyField\" class=\"filter-component\">\n    <div class=\"white-line\"></div>\n    <p class=\"title\" >статус</p>\n    <div class=\"filter-body\">\n\n    <div class=\" p-fluid  p-grid p-formgrid\" >\n        <div class=\"p-field p-col-36 p-md-12\">\n            <p-dropdown            [disabled]=\"disabled\"\n                                   (onChange)=\"changeState()\"\n\n                                   placeholder=\"статус\"\n                        [options]=\"states\" [(ngModel)]=\"stateService.stateFilterData\" optionLabel=\"name\"></p-dropdown>\n\n        </div>\n    </div>\n</div>\n\n\n\n\n</div>";
     /***/
   },
 
@@ -3649,8 +3649,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               while (1) {
                 switch (_context11.prev = _context11.next) {
                   case 0:
-                    console.log('////////////////2222');
-                    console.log(this.filterService.getOrderRequest());
                     sizeResponse = this.apiService.sizeDataResponse;
                     this.apiService.barLoading = true;
                     request = this.filterService.getOrderRequest();
@@ -3659,10 +3657,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     request.rowStartIndex = this.apiService.startIndex;
                     this.filterService.setOrderRequest(request);
                     this.apiService.applySubLoading = false;
-                    _context11.next = 12;
+                    _context11.next = 10;
                     return this.apiService.post('getCroppedOrders', this.filterService.getOrderRequest(), false);
 
-                  case 12:
+                  case 10:
                     this.data = _context11.sent;
                     this.apiService.startIndex += this.apiService.sizeDataResponse;
                     this.apiService.sizeNextRequest = this.data.sizeTwoPartData;
@@ -3685,7 +3683,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     });
                     this.tableDataService.setMainData(this.tableDataService.getMainData().concat(tableBody));
 
-                  case 18:
+                  case 16:
                   case "end":
                     return _context11.stop();
                 }
@@ -3697,14 +3695,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         key: "updateData",
         value: function updateData() {
           return __awaiter(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee12() {
-            var request, mainColumn, regexp, tableBody;
+            var _this8 = this;
+
+            var request, mainColumn, regexp, tableRowPattern;
             return regeneratorRuntime.wrap(function _callee12$(_context12) {
               while (1) {
                 switch (_context12.prev = _context12.next) {
                   case 0:
                     this.apiService.startIndex = 0;
                     request = this.filterService.getOrderRequest();
-                    request.sizeResponse = 100;
+                    request.sizeResponse = 3000;
                     this.filterService.setOrderRequest(request);
                     _context12.next = 6;
                     return this.apiService.post('getCroppedOrders', this.filterService.getOrderRequest(), false);
@@ -3725,7 +3725,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     });
                     this.apiService.sizeNextRequest = this.data.sizeTwoPartData;
                     regexp = new RegExp('^[1-9]\d{0,2}$');
-                    tableBody = [];
+                    this.tableDataService.mainData = [];
                     this.data.ordersTableBody.map(function (row) {
                       var tableRow = {};
                       row.rowData.map(function (cell) {
@@ -3740,28 +3740,30 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                           tableRow[cell.cellName] = cell.cellData;
                         }
                       });
-                      tableBody.push(tableRow);
-                    }); // let tableRowPattern: any = {}
-                    // console.log(this.data)
-                    // if (this.data.ordersTableBody.length !== 0) {
-                    //     this.data.ordersTableBody[0].rowData.map(
-                    //         cell => {
-                    //             if (cell.cellName === 'Close') {
-                    //                 tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3)
-                    //
-                    //             } else {
-                    //                 tableRowPattern[cell.cellName] = cell.cellData;
-                    //             }
-                    //         }
-                    //     )
-                    // }
 
-                    this.tableDataService.setMainData(tableBody); // this.tableDataService.setTablePatternRow(tableRowPattern)
+                      _this8.tableDataService.mainData.push(tableRow);
+                    });
+                    this.apiService.isLoadingData = false;
+                    console.log(this.tableDataService.mainData);
+                    tableRowPattern = {};
+                    console.log(this.data);
 
+                    if (this.data.ordersTableBody.length !== 0) {
+                      this.data.ordersTableBody[0].rowData.map(function (cell) {
+                        if (cell.cellName === 'Close') {
+                          tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3);
+                        } else {
+                          tableRowPattern[cell.cellName] = cell.cellData;
+                        }
+                      });
+                    } // this.tableDataService.setMainData(this.tableDataService.mainData)
+
+
+                    this.tableDataService.setTablePatternRow(tableRowPattern);
                     this.tableDataService.setStartData(this.data);
                     return _context12.abrupt("return", true);
 
-                  case 17:
+                  case 22:
                   case "end":
                     return _context12.stop();
                 }
@@ -4112,10 +4114,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this8 = this;
+          var _this9 = this;
 
           this.tableDataService.getChangeRow().subscribe(function (month) {
-            return _this8.inputValue = month.orderName;
+            return _this9.inputValue = month.orderName;
           });
         }
       }]);
@@ -4400,7 +4402,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(TablePageComponent, [{
         key: "confirmOnFilter",
         value: function confirmOnFilter(event) {
-          var _this9 = this;
+          var _this10 = this;
 
           if (this.serviceStateFiler.disableFastFiled || this.filterPeriodService.disableFastFiled) {
             this.confirmationService.confirm({
@@ -4411,20 +4413,20 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               acceptLabel: 'да',
               rejectLabel: 'нет',
               accept: function accept() {
-                _this9.cancelFilter();
+                _this10.cancelFilter();
 
-                _this9.serviceStateFiler.onFastFilter();
+                _this10.serviceStateFiler.onFastFilter();
 
-                _this9.filterPeriodService.onFastFilter();
+                _this10.filterPeriodService.onFastFilter();
 
-                _this9.serviceSubstring.onFastFilter();
+                _this10.serviceSubstring.onFastFilter();
 
-                _this9.confirmDisplay = false;
+                _this10.confirmDisplay = false;
 
-                _this9.updateData();
+                _this10.updateData();
               },
               reject: function reject() {
-                _this9.confirmDisplay = false;
+                _this10.confirmDisplay = false;
               }
             });
           }
@@ -4448,7 +4450,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "confirm",
         value: function confirm(event, rowData) {
-          var _this10 = this;
+          var _this11 = this;
 
           if (this.confirmDisplay) {
             this.confirmDisplay = false;
@@ -4464,10 +4466,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             acceptVisible: false,
             acceptLabel: 'да',
             accept: function accept() {
-              _this10.confirmDisplay = false;
+              _this11.confirmDisplay = false;
             },
             reject: function reject() {
-              _this10.confirmDisplay = false;
+              _this11.confirmDisplay = false;
             }
           });
         }
@@ -4511,18 +4513,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "deleteData",
         value: function deleteData() {
-          var _this11 = this;
+          var _this12 = this;
 
           this.confirmationService.confirm({
             message: 'Are you sure that you want delete: ' + this.selectRow.orderName,
             header: 'Confirmation',
             icon: 'pi pi-exclamation-triangle',
             accept: function accept() {
-              _this11.tableDataService.deleteData(_this11.selectRow.id);
+              _this12.tableDataService.deleteData(_this12.selectRow.id);
 
-              _this11.onSearch();
+              _this12.onSearch();
 
-              _this11.selectRow = {
+              _this12.selectRow = {
                 id: -1,
                 orderName: '',
                 customerId: null,
@@ -4542,11 +4544,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "chooseColumn",
         value: function chooseColumn() {
-          var _this12 = this;
+          var _this13 = this;
 
           var tempArr = [];
           this.columns.forEach(function (elem) {
-            var temp = _this12._selectedColumns.find(function (e) {
+            var temp = _this13._selectedColumns.find(function (e) {
               return e.field === elem.field;
             });
 
@@ -4578,7 +4580,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "setColumn",
         value: function setColumn() {
-          var _this13 = this;
+          var _this14 = this;
 
           if (this.tableDataService.addColumnText.match(/[^0-9,]/) === null) {
             var sizeArr = this.tableDataService.addColumnText.split(',');
@@ -4588,15 +4590,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             } else {
               sizeArr.forEach(function (item, index) {
                 if (item !== '') {
-                  if (index >= _this13.cols.length - 2) {
-                    _this13.cols.push({
+                  if (index >= _this14.cols.length - 2) {
+                    _this14.cols.push({
                       field: 'temp' + item,
                       header: item,
                       width: item
                     });
-                  } else if (_this13.cols[index + 2].width !== item) {
-                    _this13.cols[index + 2].width = item;
-                    _this13.cols[index + 2].header = item;
+                  } else if (_this14.cols[index + 2].width !== item) {
+                    _this14.cols[index + 2].width = item;
+                    _this14.cols[index + 2].header = item;
                   }
                 }
               });
@@ -4807,7 +4809,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "addData",
         value: function addData(name) {
-          var _this14 = this;
+          var _this15 = this;
 
           if (this.selectData === null) {
             var data = {
@@ -4821,7 +4823,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             this.tempData.push(data);
           } else {
             this.tempData.find(function (elem) {
-              return elem.id === _this14.selectData.id;
+              return elem.id === _this15.selectData.id;
             }).orderName = name;
           }
 
@@ -4831,10 +4833,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "searchData",
         value: function searchData() {
-          var _this15 = this;
+          var _this16 = this;
 
           this.mainData = this.startData.concat(this.tempData).filter(function (item) {
-            return item.orderName.toLowerCase().indexOf(_this15.search.toLowerCase()) > -1 || item.id.toString().indexOf(_this15.search) > -1;
+            return item.orderName.toLowerCase().indexOf(_this16.search.toLowerCase()) > -1 || item.id.toString().indexOf(_this16.search) > -1;
           });
         }
       }, {
@@ -5472,7 +5474,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           if (this.dateFromMonth != null || this.dateToMonth != null) {
             if (this.dateFromMonth != null) {
-              this.orderRequest.dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__(this.dateFromMonth).utc().format("YYYY-MM-DD");
+              var dat = this.dateFromMonth;
+              this.orderRequest.dateFrom = moment__WEBPACK_IMPORTED_MODULE_2__(dat).dayOfYear(moment__WEBPACK_IMPORTED_MODULE_2__(dat).dayOfYear() + 1).utc().format("YYYY-MM-DD");
             }
 
             if (this.dateToMonth == null) {
@@ -6414,8 +6417,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             this.orderRequest = this.filterService.getOrderRequest();
             var dateTo = null;
             var dateFrom = null;
+            var index = 0;
 
-            switch (this.filterPeriodService.periodFastFilterData.code) {
+            if (this.onlyField) {
+              index = this.filterPeriodService.periodFastFilterData.code;
+            } else {
+              index = this.period.code;
+            }
+
+            switch (index) {
               case 0:
                 {
                   dateTo = null;
@@ -6655,15 +6665,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         key: "onStndFilter",
         value: function onStndFilter() {
           this.disableFastFiled = true;
+          this.orderRequest = this.filterService.getOrderRequest();
+          this.orderRequest.dateFrom = null;
+          this.orderRequest.dateTo = null;
+          this.filterService.setOrderRequest(this.orderRequest);
           this.periodTemp.name = this.periodFastFilterData.name;
           this.periodTemp.code = this.periodFastFilterData.code;
-          this.periodFastFilterData.name = '';
-          this.periodFastFilterData.code = -1;
+          this.periodFastFilterData = null;
         }
       }, {
         key: "onFastFilter",
         value: function onFastFilter() {
           this.disableFastFiled = false;
+          this.periodFastFilterData = {
+            name: '',
+            code: -1
+          };
           this.periodFastFilterData.name = this.periodTemp.name;
           this.periodFastFilterData.code = this.periodTemp.code;
           this.periodTemp.name = '';
@@ -6870,12 +6887,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           code: 'UNCLOSED'
         };
         this.stateFilterData = {
-          name: '',
-          code: ''
+          name: 'незакрытые',
+          code: 'UNCLOSED'
         };
         this.stateTemp = {
           name: '',
           code: ''
+        };
+        this.stateStndTemp = {
+          name: 'незакрытые',
+          code: 'UNCLOSED'
         };
         this.disableFastFiled = false;
       }
@@ -6892,20 +6913,23 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         key: "onStndFilter",
         value: function onStndFilter() {
           this.disableFastFiled = true;
+          this.orderRequest = this.filterService.getOrderRequest();
+          this.orderRequest.state = this.stateFilterData.code;
+          this.filterService.setOrderRequest(this.orderRequest);
           this.stateTemp.name = this.stateFastFilterData.name;
           this.stateTemp.code = this.stateFastFilterData.code;
-          this.stateFastFilterData.name = '';
-          this.stateFastFilterData.code = '';
-          console.log(this.stateFastFilterData);
+          this.stateFastFilterData = null;
         }
       }, {
         key: "onFastFilter",
         value: function onFastFilter() {
           this.disableFastFiled = false;
+          this.stateFastFilterData = {
+            name: '',
+            code: ''
+          };
           this.stateFastFilterData.name = this.stateTemp.name;
           this.stateFastFilterData.code = this.stateTemp.code;
-          this.stateTemp.name = '';
-          this.stateTemp.code = '';
           this.changeState();
         }
       }, {
@@ -7056,9 +7080,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "clear",
         value: function clear() {
-          this.state = {
-            name: 'незакрытые',
-            code: 'UNCLOSED'
+          this.stateService.stateFilterData = {
+            name: 'все',
+            code: null
           };
           this.changeState();
           this.onClear.emit();
@@ -7066,7 +7090,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "changeState",
         value: function changeState() {
-          if (this.state === null) {
+          if (this.stateService.stateFilterData === null) {
             this.clear();
           } else {
             if (this.onlyField) {
@@ -7076,7 +7100,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               this.onSuggest.emit();
             } else {
               this.orderRequest = this.filterService.getOrderRequest();
-              this.orderRequest.state = this.state.code;
+              this.orderRequest.state = this.stateService.stateFilterData.code;
               this.filterService.setOrderRequest(this.orderRequest);
               this.onSuggest.emit();
             }

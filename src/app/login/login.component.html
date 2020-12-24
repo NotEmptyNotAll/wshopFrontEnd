@@ -14,7 +14,7 @@
             <span style="width: 90%">
             <p-dropdown
                     autoWidth="false" [style]="{'minWidth':'100%'}"
-                    [showClear]="true" [placeholder]="'loginPage.SelectName' | translate"
+                    [showClear]="true" [placeholder]="'page.SelectName' | translate"
                     [options]="users" [(ngModel)]="selectedUser"
                     [filter]="true" optionLabel="name"></p-dropdown>
             </span>
@@ -27,23 +27,24 @@
                    (keydown.enter)="login()"
                    [disabled]="selectedUser===null || selectedUser===undefined"
                    [style]="{'minWidth':'100%'}"
-                   [placeholder]="'loginPage.password' | translate"
+                   [placeholder]="'page.password' | translate"
                    [feedback]="false" pPassword/>
             </span>
         </div>
 
         <div class="login-row">
 
+
             <button pRipple pButton type="button" (click)="cancel()"
                     class=" p-button-danger"
                     style="min-width: 8rem"
-                    [label]="'loginPage.cancel' | translate" icon="pi pi-times"></button>
+                    [label]="'page.cancel' | translate" icon="pi pi-times"></button>
 
             <button pRipple pButton type="button" (click)="login()"
                     class=" p-button-success"
                     style="min-width: 8rem"
                     [disabled]="selectedUser===null || selectedUser===undefined"
-                    [label]="'loginPage.login' | translate" icon="pi pi-check"></button>
+                    [label]="'page.login' | translate" icon="pi pi-check"></button>
 
         </div>
     </div>

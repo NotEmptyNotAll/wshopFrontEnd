@@ -83,6 +83,7 @@ export class LoginComponent implements OnInit {
         this.selectedUser.password = this.password;
         this.apiService.setUserData(this.selectedUser)
         this.orderRequest.lang = this.apiService.getLang();
+
         this.orderRequest.user = this.selectedUser
         this.orderRequest.sizeResponse = 15;
         let dateFrom = moment().utc().format("YYYY-MM-DD")

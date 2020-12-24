@@ -1,7 +1,14 @@
 {
   "language": "язык",
-  "loginPage": {
+  "page": {
     "language": "язык",
+    "status": "статус",
+    "employee": "сотрудник",
+    "payment": "оплата",
+    "period": "период",
+    "search": "поиск",
+    "start": "почати",
+    "clear": "очистить",
     "cancel": "отменить",
     "SelectName": "выберите имя",
     "listOrders": "заказы",
@@ -9,7 +16,7 @@
     "filters": "фильтры",
     "datePeriod": "период",
     "login": "войти",
-    "confirm": "подтвердить",
+    "confirm": "применить",
     "quit": "выйти",
     "ChooseColumns": "Выбрать столбцы",
     "password": "пароль",

@@ -1,8 +1,15 @@
 {
   "language": "язык",
-  "loginPage": {
+  "page": {
     "language": "язык",
-    "cancel": "очистить",
+    "status": "статус",
+    "employee": "сотрудник",
+    "payment": "оплата",
+    "period": "период",
+    "search": "поиск",
+    "start": "почати",
+    "clear": "очистить",
+    "cancel": "отменить",
     "SelectName": "выберите имя",
     "listOrders": "заказы",
     "FastFilterModal": "быстрые фильтры",

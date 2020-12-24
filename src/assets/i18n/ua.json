@@ -1,6 +1,13 @@
 {
   "language": "мова",
-  "loginPage": {
+  "page": {
+    "status": "статус",
+    "employee": "співробітник",
+    "payment": "оплата",
+    "period": "період",
+    "search": "пошук",
+    "start": "почати",
+    "clear": "очистити",
     "language": "мова",
     "cancel": "скасувати",
     "SelectName": "виберіть ім'я",

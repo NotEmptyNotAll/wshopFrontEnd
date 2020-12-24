@@ -19,7 +19,7 @@
 
     </div>
     -->
-    <p-dialog header="{{'loginPage.filters' | translate}}"
+    <p-dialog header="{{'page.filters' | translate}}"
               [style]="{minWidth:'400px',minHeight:'500px',width:'600px'}"
               [(visible)]="display" [resizable]="true" responsive="false">
         <div class="filter-panel">
@@ -35,17 +35,17 @@
         <p-footer class="footer-dialog">
             <button pRipple type="button" (click)="cancelFilter()" style="margin-right: 15%;margin-left:10%" pButton
                     class="p-button-danger"
-                    [label]="'loginPage.cancel' | translate" icon="pi pi-times" label="delete"></button>
+                    [label]="'page.clear' | translate" icon="pi pi-times" label="delete"></button>
             <button pRipple type="button" (click)="updateData()" style="margin-left:15%;margin-right:10% " pButton
                     icon="pi pi-check"
-                    [label]="'loginPage.confirm' | translate"></button>
+                    [label]="'page.confirm' | translate"></button>
 
         </p-footer>
     </p-dialog>
     <p-confirmPopup [visible]="confirmDisplay"></p-confirmPopup>
     <p-contextMenu #cm [model]="items"></p-contextMenu>
 
-    <!--  currentPageReportTemplate="{{'loginPage.TableNumLabel' | translate}}"
+    <!--  currentPageReportTemplate="{{'page.TableNumLabel' | translate}}"
                [rows]="100" [showCurrentPageReport]="true" [rowsPerPageOptions]="[20,30,50,100]"
               [paginator]="true" -->
     <div style="height: 88vh;background: #f4f4f4;width: 100%">

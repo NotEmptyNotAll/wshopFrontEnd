@@ -1,6 +1,13 @@
 {
   "language": "język",
-  "loginPage": {
+  "page": {
+    "status": "status",
+    "employee": "pracownik",
+    "payment": "płatność",
+    "period": "period",
+    "search": "szukaj",
+    "start": "start",
+    "clear": "wyczyść",
     "language": "język",
     "cancel": "anuluj",
     "SelectName": "wybierz nazwę",

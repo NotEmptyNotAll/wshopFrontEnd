@@ -17,27 +17,27 @@ minWidth:'100%', height:'53px',position:'fixed',left:'0px',top:'0px'} "
 
 
 <!--<p-sidebar [modal]="false" [(visible)]="display">
-    <h2>{{'loginPage.menu' | translate}}</h2>
+    <h2>{{'page.menu' | translate}}</h2>
     <hr class="hr-style"/>
     <p-listbox
 
             [style]="{minWidth:'100%',borderColor:'white',
             position:'absolute',left:'0px',fontSize:'1.5em'}"
-            [options]=" [ {name:  'loginPage.listOrders' | translate, code: 'NY'}]" [(ngModel)]="cities1"
+            [options]=" [ {name:  'page.listOrders' | translate, code: 'NY'}]" [(ngModel)]="cities1"
             optionLabel="name"></p-listbox>
 
 </p-sidebar>-->
 
 <div class="side-menu" style="display:none;" id="mySidebar">
 
-    <h3 style="position: relative; left: 10px">{{'loginPage.menu' | translate}}</h3>
+    <h3 style="position: relative; left: 10px">{{'page.menu' | translate}}</h3>
     <hr class="hr-style" style="    z-index: 2;"/>
     <p-listbox
             id="mySidebarList"
             [style]="{minWidth:'100%',borderColor:'white',zIndex:'2',width:'100%',
 
             position:'absolute',left:'0px',fontSize:'1.5em'}"
-            [options]=" [ {name:  'loginPage.listOrders' | translate, code: 'NY'}]" [(ngModel)]="cities1"
+            [options]=" [ {name:  'page.listOrders' | translate, code: 'NY'}]" [(ngModel)]="cities1"
             optionLabel="name"></p-listbox>
 </div>
 

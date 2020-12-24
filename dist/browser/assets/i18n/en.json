@@ -1,6 +1,13 @@
 {
   "log.language": "language1",
-  "loginPage": {
+  "page": {
+    "status": "status",
+    "employee": "employee",
+    "payment": "payment",
+    "period": "period",
+    "search": "search",
+    "start": "start",
+    "clear": "clear",
     "language": "language",
     "cancel": "cancel",
     "SelectName": "select a name",
