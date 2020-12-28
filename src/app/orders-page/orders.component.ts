@@ -67,7 +67,7 @@ export class OrdersComponent implements OnInit {
         this.sec = 0
         setInterval(() => {
             this.sec++
-            console.log( this.sec)
+            console.log(this.sec)
             if (this.sec == 300) {
                 this.stateFilterService.defaultFastFilter()
                 this.periodFilterService.defaultFastFilter()
@@ -145,19 +145,13 @@ export class OrdersComponent implements OnInit {
 
 
     async twoDownload() {
-        let sizeResponse = this.apiService.sizeDataResponse
-        this.apiService.barLoading = true
         let request = this.filterService.getOrderRequest()
-        request.sizeResponse = sizeResponse
-        request.sizeResponse = this.apiService.startIndex + this.apiService.sizeDataResponse
+        request.sizeResponse = this.data.sizeTwoPartData
         request.rowStartIndex = this.apiService.startIndex
         this.filterService.setOrderRequest(request)
-        this.apiService.applySubLoading = false
         this.data = await this.apiService.post<TableOrderResponse>(
             'getCroppedOrders', this.filterService.getOrderRequest(), false
         );
-        this.apiService.startIndex += this.apiService.sizeDataResponse
-        this.apiService.sizeNextRequest = this.data.sizeTwoPartData
         let tableBody = []
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
@@ -176,35 +170,30 @@ export class OrdersComponent implements OnInit {
             })
             tableBody.push(tableRow)
         })
-        this.tableDataService.setMainData(this.tableDataService.getMainData().concat(tableBody))
+        // this.tableDataService.mainData=this.tableDataService.mainData.slice(0,this.tableDataService.mainData.length-this.apiService.sizeNextRequest)
+        this.tableDataService.mainData = Array.prototype
+            .concat(this.tableDataService.mainData,
+                tableBody)
+        alert( this.tableDataService.mainData.length)
+
+
     }
 
     async updateData() {
         this.apiService.startIndex = 0;
         let request = this.filterService.getOrderRequest()
-        request.sizeResponse = 5000
+        request.sizeResponse = 50
+        request.rowStartIndex = 0
         this.filterService.setOrderRequest(request)
+        this.tableDataService.mainData = []
+        this.apiService.applySubLoading = true;
         this.data = await this.apiService.post<TableOrderResponse>(
             'getCroppedOrders', this.filterService.getOrderRequest(), false
         );
         this.apiService.startIndex += this.apiService.sizeDataResponse
-
-        // if (this.data.sizeTwoPartData > 0) {
-        //     this.twoDownload()
-        // }
-        let mainColumn = [];
-        this.data.columnTables.map(elem => {
-            mainColumn.push(
-                {
-                    field: elem.nameColumn,
-                    header: elem.nameColumn,
-                    width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
-                }
-            )
-        })
         this.apiService.sizeNextRequest = this.data.sizeTwoPartData
-        let regexp = new RegExp('^[1-9]\d{0,2}$');
-          this.tableDataService.mainData = []
+        this.tableDataService.mainData = []
+        let tabData = []
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
             row.rowData.map(cell => {
@@ -220,11 +209,24 @@ export class OrdersComponent implements OnInit {
                     tableRow[cell.cellName] = cell.cellData
                 }
             })
-            this.tableDataService.mainData.push(tableRow)
+            tabData.push(tableRow)
+            // this.tableDataService.mainData.push(tableRow)
         })
 
-        this.apiService.isLoadingData=false
-        console.log(this.tableDataService.mainData)
+        //     if(this.data.sizeTwoPartData >0){
+        //     this.tableDataService.mainData = Array.prototype
+        //         .concat(this.tableDataService.mainData,
+        //             Array.from({length: this.data.sizeTwoPartData > 50 ? 50 : this.data.sizeTwoPartData}))
+        // }
+        if (this.data.sizeTwoPartData > 0) {
+            this.tableDataService.mainData = tabData
+            // this.tableDataService.mainData = Array.prototype.concat(tabData,
+            //     Array.from({length: this.data.sizeTwoPartData}))
+            this.twoDownload()
+        } else {
+            this.tableDataService.mainData = tabData
+        }
+        this.apiService.isLoadingData = false
 
         // let tableRowPattern: any = {}
 
@@ -243,7 +245,7 @@ export class OrdersComponent implements OnInit {
         // }
 
 
-         // this.tableDataService.setMainData(this.tableDataService.mainData)
+        // this.tableDataService.setMainData(this.tableDataService.mainData)
         //this.tableDataService.setTablePatternRow(tableRowPattern)
 
         this.tableDataService.setStartData(this.data)

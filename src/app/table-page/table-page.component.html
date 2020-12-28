@@ -21,7 +21,7 @@
     -->
     <p-dialog header="{{'page.filters' | translate}}"
               [style]="{minWidth:'400px',minHeight:'500px',width:'600px'}"
-              [(visible)]="display" [resizable]="true" responsive="false">
+              [(visible)]="display" [resizable]="false" responsive="false">
         <div class="filter-panel">
             <app-date-filter class="filter"></app-date-filter>
             <app-customer-filter class="filter"></app-customer-filter>
@@ -50,15 +50,16 @@
               [paginator]="true" -->
     <div style="height: 88vh;background: #f4f4f4;width: 100%">
         <p-table
+                [totalRecords]="80"
                 [virtualScroll]="true"
-                [virtualRowHeight]="1"
-                [rows]="200"
+                [rows]="20"
+                [virtualRowHeight]="'35px'"
                 [reorderableColumns]="true"
                 class="table-style"
-                [loading]="apiService.isLoadingData"
                 [columns]="_selectedColumns" [value]="tableDataService.mainData" [scrollable]="true"
                 scrollHeight="flex"
                 [contextMenu]="cm"
+                [loading]="apiService.isLoadingData"
                 columnResizeMode="expand"
                 style="border-color: #f4f4f4"
                 (sortFunction)="customSort($event)" [customSort]="true"
@@ -82,7 +83,6 @@
                             >
                             </button>
                         </div>
-
                         <div *ngIf="standardFilterDisable" class="p-mb-2 p-mr-2"
                              style="width: 300px; position: relative;top:-10px">
                             <app-work-period-filter (onSuggest)="updateData()"
@@ -165,7 +165,7 @@
             <ng-template pTemplate="colgroup">
                 <colgroup>
                     <col style="width:30px">
-                    <col style="width:30px">
+<!--                    <col style="width:30px">-->
                     <col *ngFor="let col of columns" style="{{'width:'+col.width+'px'}}">
                     <!--                    <col *ngIf="buttonActionDisable" style="width:150px">-->
 
@@ -175,8 +175,8 @@
                 <tr style="border-color: #f4f4f4" [style]="{borderColor:'#f4f4f4'}">
                     <th style="width:2rem;border-color: #f4f4f4"
                         [style]="{borderColor:'#f4f4f4', fontSize:'12px'}"></th>
-                    <th style="width:2rem;border-color: #f4f4f4"
-                        [style]="{borderColor:'#f4f4f4', fontSize:'15px'}"></th>
+<!--                    <th style="width:2rem;border-color: #f4f4f4"-->
+<!--                        [style]="{borderColor:'#f4f4f4', fontSize:'15px'}"></th>-->
 
                     <th *ngFor="let col of columns" pResizableColumn [pSortableColumn]="col.header"
                         style="border-color: #f4f4f4" [style]="{borderColor:'#f4f4f4', fontSize:'12px'}">
@@ -190,7 +190,11 @@
             <ng-template pTemplate="loadingbody" let-columns="columns">
                 <tr style="height:34px">
                     <td *ngFor="let col of columns">
-                        <div class="loading-text"></div>
+                        <p-skeleton></p-skeleton>
+                    </td>
+                    <td>
+                        <p-skeleton></p-skeleton>
+
                     </td>
                 </tr>
             </ng-template>
@@ -199,10 +203,10 @@
                     <td [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
                         <span class="pi pi-bars" pReorderableRowHandle></span>
                     </td>
-                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px'}">
-                        <span *ngIf="rowData.Comment!==''" class="pi pi-info-circle" pReorderableRowHandle
-                              (click)="confirm($event,rowData)"></span>
-                    </td>
+<!--                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px'}">-->
+<!--                        <span *ngIf="rowData.Comment!==''" class="pi pi-info-circle" pReorderableRowHandle-->
+<!--                              (click)="confirm($event,rowData)"></span>-->
+<!--                    </td>-->
                     <td *ngFor="let col of columns" class="ui-resizable-column" pResizableColumn
                         [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
                         <span *ngIf="buttonActionDisable">

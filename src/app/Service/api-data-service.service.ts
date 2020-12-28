@@ -16,13 +16,14 @@ export class ApiDataServiceService {
     testUrl: string = 'https://localhost:5051/'
     private axiosClient: AxiosInstance;
     public sizeNextRequest:number=0
-    public sizeDataResponse:number=15
+    public sizeDataResponse:number=100
     private errorHandler: ErrorHandler;
     private ordersResp: Order[];
     private users: User[];
     private userData: User;
     private lang: string = 'ru'
     public startIndex: number = 0
+    public sizeResponse: number = 0
     private errorNumber: number = 0
     public barLoading: boolean = false
     public isLoading: boolean = false

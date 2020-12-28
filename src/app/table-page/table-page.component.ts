@@ -300,14 +300,25 @@ export class TablePageComponent implements OnInit {
         });
     }
 
-    loadDataLazy(event: LazyLoadEvent) {
-        console.log(this.apiService.sizeNextRequest)
-        if (this.apiService.sizeNextRequest>0  ) {
-            // let loadedCars = this.tableDataService.mainData.slice(event.first, (event.first + event.rows));
-            // Array.prototype.splice.apply( this.tableDataService.mainData, [...[event.first, event.rows], ...loadedCars]);
+   async loadDataLazy(event: LazyLoadEvent) {
 
-            this.onLazyLoad.emit()
-        }
+       alert(1);
+
+        // let loadedCars = this.cars.slice(event.first, (event.first + event.rows));
+        //
+        // //populate page of virtual cars
+        // Array.prototype.splice.apply(this.virtualCars, [...[event.first, event.rows], ...loadedCars]);
+        //
+        // //trigger change detection
+        // this.tableDataService.mainData = [...this.tableDataService.mainData];
+
+alert(event.first+' '+event.rows);
+        // if (this.apiService.sizeNextRequest>0  ) {
+        //     // let loadedCars = this.tableDataService.mainData.slice(event.first, (event.first + event.rows));
+        //     // Array.prototype.splice.apply( this.tableDataService.mainData, [...[event.first, event.rows], ...loadedCars]);
+        //
+        //     this.onLazyLoad.emit()
+        // }
     }
 }
 

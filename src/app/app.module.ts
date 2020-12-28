@@ -59,6 +59,7 @@ import { WorkFilterComponent } from './widgets/filters/work-filter/work-filter.c
 import { WorkStatusFilterComponent } from './widgets/filters/work-status-filter/work-status-filter.component';
 import { WorkPeriodFilterComponent } from './widgets/filters/work-period-filter/work-period-filter.component';
 import {ProgressBarModule} from "primeng/progressbar";
+import { SkeletonModule } from "primeng/skeleton";
 
 // @ts-ignore
 // @ts-ignore
@@ -68,6 +69,7 @@ import {ProgressBarModule} from "primeng/progressbar";
         NgtUniversalModule,
         ToastModule,
         DialogModule,
+        SkeletonModule,
         SplitButtonModule,
         TranslateModule.forChild(),
         TransferHttpCacheModule,
