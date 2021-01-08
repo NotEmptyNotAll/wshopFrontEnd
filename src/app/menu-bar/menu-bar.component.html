@@ -34,10 +34,10 @@ minWidth:'100%', height:'53px',position:'fixed',left:'0px',top:'0px'} "
     <hr class="hr-style" style="    z-index: 2;"/>
     <p-listbox
             id="mySidebarList"
+            (onClick)="onItemMenu($event)"
             [style]="{minWidth:'100%',borderColor:'white',zIndex:'2',width:'100%',
-
             position:'absolute',left:'0px',fontSize:'1.5em'}"
-            [options]=" [ {name:  'page.listOrders' | translate, code: 'NY'}]" [(ngModel)]="cities1"
+            [options]=" options" [(ngModel)]="cities1"
             optionLabel="name"></p-listbox>
 </div>
 

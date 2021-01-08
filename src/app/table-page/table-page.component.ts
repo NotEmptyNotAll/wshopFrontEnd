@@ -25,6 +25,8 @@ import {SubstringFilterComponent} from "../widgets/filters/substring-filter/subs
 import {ServStateFilterService} from "../widgets/filters/state-filter/serv-state-filter.service";
 import {ServPeriodFilterService} from "../widgets/filters/period-date-filter/serv-period-filter.service";
 import {ServSubstringFilterService} from "../widgets/filters/substring-filter/serv-substring-filter.service";
+import {stringify} from "querystring";
+import {User} from "../Service/User";
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
@@ -48,26 +50,27 @@ export class TablePageComponent implements OnInit {
     @Input() startData: TableData[]
     @Output() onUpdateData: EventEmitter<any> = new EventEmitter();
     @Output() onLazyLoad: EventEmitter<any> = new EventEmitter();
+    @Output() contextMenuActionUpdateData: EventEmitter<any> = new EventEmitter();
     @Input() mainColumn: any[]
     @Input() stateFilterDisable: boolean = false
-    @Input() buttonActionDisable: boolean = false
+    @Input() hideButtonBar: boolean = false
+    @Input() contextMenuActionDisable: boolean = false
+    @Input() masterWindowsSelectDisable: boolean = false
     @Input() standardFilterDisable: boolean = false
     @Input() title: string
     @Input() dynamicColumns: string = ''
     @Input() buttonItems: MenuItem[]
-    lazyLoadFix:boolean=true
+    lazyLoadFix: boolean = true
     cols: any[];
+    contextSelectItem: any = {}
     selectRow: any = {}
     inputErr = false
     data: TableOrderResponse
     columns: any[];
     confirmDisplay: boolean = false;
     loading: boolean = false;
-    items: MenuItem[] = [
-        {label: 'action', icon: 'pi pi-fw pi-search'},
-        {label: 'action', icon: 'pi pi-fw pi-times'}
-    ];
 
+    items: MenuItem[] = []
     _selectedColumns: any[];
     ordersResponse = null
     contextItems: MenuItem[] = [
@@ -176,6 +179,7 @@ export class TablePageComponent implements OnInit {
     constructor(public tableDataService: TableDataService,
                 public orderService: OrderService,
                 public filterService: FilterService,
+                private router: Router,
                 public filterPeriodService: ServPeriodFilterService,
                 public apiService: ApiDataServiceService,
                 public serviceSubstring: ServSubstringFilterService,
@@ -232,7 +236,36 @@ export class TablePageComponent implements OnInit {
         this.tableDataService.showUpdatePage = true
     }
 
+
+    updateContextMenu() {
+        if (this.contextMenuActionDisable) {
+            if (this.masterWindowsSelectDisable) {
+                this.items = [{
+                    label: 'завершить', icon: 'pi pi-fw pi-times',
+                    command: () => {
+                        this.contextActionEnd(this.contextSelectItem['ID работы'])
+                        // this.masterWindowsSelectDisable = true
+                        // this.updateContextMenu()
+                    }
+                },
+                    {label: 'пауза', icon: 'pi pi-fw pi-pause'}]
+            } else {
+                this.items = [{
+                    label: 'начать', icon: 'pi pi-fw pi-play',
+                    command: () => {
+                        this.contextAction(this.contextSelectItem['ID работы'])
+                        // this.masterWindowsSelectDisable = true
+                        // this.hideButtonBar=true
+                        // this.title='работы на выполнении'
+                        // this.updateContextMenu()
+                    }
+                }]
+            }
+        }
+    }
+
     ngOnInit() {
+        this.updateContextMenu()
         this.tableDataService.setStartData(this.startData)
         this.cols = this.mainColumn.slice()
         this.columns = this.cols
@@ -244,6 +277,32 @@ export class TablePageComponent implements OnInit {
         }
 
     }
+
+    async contextAction(userId: number) {
+        let data = await this.apiService.post<TableOrderResponse>(
+            'startWork', {
+                id: userId, date: '',
+                user: this.apiService.getUserData()
+            }, false
+        );
+        console.log(data)
+        this.orderService.setOrderResponse(data)
+        this.router.navigate(['/workPage']);
+        // this.contextMenuActionUpdateData.emit()
+    }
+
+    async contextActionEnd(userId: number) {
+        let data = await this.apiService.post<TableOrderResponse>(
+            'endWork', {
+                id: userId, date: '',
+                user: this.apiService.getUserData()
+            }, false
+        );
+        console.log(data)
+        this.orderService.setOrderResponse(data)
+        this.contextMenuActionUpdateData.emit()
+    }
+
 
     setColumn(): void {
         if (this.tableDataService.addColumnText.match(/[^0-9,]/) === null) {
@@ -300,9 +359,8 @@ export class TablePageComponent implements OnInit {
         });
     }
 
-   async loadDataLazy(event: LazyLoadEvent) {
+    async loadDataLazy(event: LazyLoadEvent) {
 
-       alert(1);
 
         // let loadedCars = this.cars.slice(event.first, (event.first + event.rows));
         //
@@ -312,7 +370,7 @@ export class TablePageComponent implements OnInit {
         // //trigger change detection
         // this.tableDataService.mainData = [...this.tableDataService.mainData];
 
-alert(event.first+' '+event.rows);
+        alert(event.first + ' ' + event.rows);
         // if (this.apiService.sizeNextRequest>0  ) {
         //     // let loadedCars = this.tableDataService.mainData.slice(event.first, (event.first + event.rows));
         //     // Array.prototype.splice.apply( this.tableDataService.mainData, [...[event.first, event.rows], ...loadedCars]);

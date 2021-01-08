@@ -1,10 +1,11 @@
 <div style="background: #F56C6C">
     <p>ЗНАХОДИТЬСЯ В РОЗРОБЦІ</p>
 </div>
-<app-table-page [startData]="data" title="вибір замовлення"
+<app-table-page [startData]="data" title="работы на выполнении"
                 [mainColumn]="mainColumn" [stateFilterDisable]="true"
                 (onUpdateData)="onUpdate()"
+                [hideButtonBar]="true"
                 (contextMenuActionUpdateData)="updateData()"
-                [masterWindowsSelectDisable]="false"
+                [masterWindowsSelectDisable]="true"
                 [buttonItems]="buttItem" [standardFilterDisable]="true"
                 [contextMenuActionDisable]="true" *ngIf="data!=null"></app-table-page>

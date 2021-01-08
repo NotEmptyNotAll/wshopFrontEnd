@@ -67,7 +67,6 @@ export class OrdersComponent implements OnInit {
         this.sec = 0
         setInterval(() => {
             this.sec++
-            console.log(this.sec)
             if (this.sec == 300) {
                 this.stateFilterService.defaultFastFilter()
                 this.periodFilterService.defaultFastFilter()
@@ -230,7 +229,6 @@ export class OrdersComponent implements OnInit {
 
         // let tableRowPattern: any = {}
 
-        // console.log(this.data)
         // if (this.data.ordersTableBody.length !== 0) {
         //     this.data.ordersTableBody[0].rowData.map(
         //         cell => {

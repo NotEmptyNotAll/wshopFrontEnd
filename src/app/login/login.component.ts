@@ -89,58 +89,61 @@ export class LoginComponent implements OnInit {
         let dateFrom = moment().utc().format("YYYY-MM-DD")
         let dateTo = moment().utc().format("YYYY-MM-DD")
         this.orderRequest.dateTo = dateTo
-        this.orderRequest.rowStartIndex=0
+        this.orderRequest.rowStartIndex = 0
         this.orderRequest.dateFrom = dateFrom
         this.orderRequest.state = 'UNCLOSED'
         this.filterService.setOrderRequest(this.orderRequest)
-        // if (this.selectedUser.role !== 2) {
-        //     // this.orderRequest = this.filterService.getOrderRequest()
-        //     // //this.orderRequest.state = 'UNCLOSED'
-        //     // // this.orderRequest.user.id=0
-        //     // // this.orderRequest.user.password='12345'
-        //     // this.orderRequest.detailId=1
-        //     // this.orderRequest.workStatus=0
-        //     //
-        //     // this.filterService.setOrderRequest(this.orderRequest)
-        //     // this.ordersResponse = await this.apiService.post<TableOrderResponse>(
-        //     //     'getListOFWork', this.filterService.getOrderRequest(),
-        //     //     true
-        //     // );
-        //     // if (this.ordersResponse.status !== -1) {
-        //     //     this.orderService.setUserValidate(true)
-        //     //     this.masterWindowVisible = true
-        //     //     this.orderService.setOrderResponse(this.ordersResponse)
-        //     // } else {
-        //     //     this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
-        //     //
-        //     // }
-        // } else {
-        //
-        //     this.ordersResponse = await this.apiService.post<TableOrderResponse>(
-        //         'getCroppedOrders', this.filterService.getOrderRequest(), true
-        //     );
-        //
-        //     if (this.ordersResponse.status !== -1) {
-        //         this.orderService.setOrderResponse(this.ordersResponse)
-        //         this.orderService.setUserValidate(true)
-        //         this.showSuccess('пользователь авторизтрован')
-        //         this.router.navigate(['/order']);
-        //     } else {
-        //         this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
-        //     }
-        // }
-        this.ordersResponse = await this.apiService.post<TableOrderResponse>(
-            'getCroppedOrders', this.filterService.getOrderRequest(), true
-        );
-
-        if (this.ordersResponse.status !== -1) {
-            this.orderService.setOrderResponse(this.ordersResponse)
-            this.orderService.setUserValidate(true)
-            this.showSuccess('пользователь авторизтрован')
-            this.router.navigate(['/order']);
+        if (this.selectedUser.role !== 2 ) {
+            this.orderRequest = this.filterService.getOrderRequest()
+            //this.orderRequest.state = 'UNCLOSED'
+            // this.orderRequest.user.id=0
+            // this.orderRequest.user.password='12345'
+            this.orderRequest.detailId = null
+            this.orderRequest.workStatus = 0
+            this.filterService.setOrderRequest(this.orderRequest)
+            this.ordersResponse = await this.apiService.post<TableOrderResponse>(
+                'getListOFWork', this.filterService.getOrderRequest(),
+                true
+            );
+            if (this.ordersResponse.status == 1) {
+                this.orderService.setUserValidate(true)
+                // this.masterWindowVisible = true
+                this.orderService.setOrderResponse(this.ordersResponse)
+                this.router.navigate(['/workPage'])
+            } else if (this.ordersResponse.status == -1) {
+                this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
+            }else {
+                this.orderService.setUserValidate(true)
+                // this.masterWindowVisible = true
+                this.orderService.setOrderResponse(this.ordersResponse)
+                this.router.navigate(['/selectWork'])
+            }
         } else {
-            this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
+            this.ordersResponse = await this.apiService.post<TableOrderResponse>(
+                'getCroppedOrders', this.filterService.getOrderRequest(), true
+            );
+
+            if (this.ordersResponse.status !== -1) {
+                this.orderService.setOrderResponse(this.ordersResponse)
+                this.orderService.setUserValidate(true)
+                this.showSuccess('пользователь авторизтрован')
+                this.router.navigate(['/order']);
+            } else {
+                this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
+            }
         }
+        // this.ordersResponse = await this.apiService.post<TableOrderResponse>(
+        //     'getCroppedOrders', this.filterService.getOrderRequest(), true
+        // );
+        //
+        // if (this.ordersResponse.status !== -1) {
+        //     this.orderService.setOrderResponse(this.ordersResponse)
+        //     this.orderService.setUserValidate(true)
+        //     this.showSuccess('пользователь авторизтрован')
+        //     this.router.navigate(['/order']);
+        // } else {
+        //     this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
+        // }
     }
 
     ngOnInit(): void {

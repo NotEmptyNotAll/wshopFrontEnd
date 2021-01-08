@@ -8,6 +8,8 @@ import {SelectItem} from 'primeng/api';
 import {TranslateService} from "@ngx-translate/core";
 import {TableOrderResponse} from "../Service/table-order-response";
 import {OrdersComponent} from "../orders-page/orders.component";
+import {FilterService} from "../widgets/filters/filter.service";
+import {OrderRequest} from "../widgets/filters/order.request";
 
 
 @Component({
@@ -17,11 +19,14 @@ import {OrdersComponent} from "../orders-page/orders.component";
 })
 export class MenuBarComponent implements OnInit {
     ordersResponse: TableOrderResponse
-    private langTitle:string
+    private langTitle: string
+    orderRequest: OrderRequest
+
     constructor(public apiService: ApiDataServiceService,
                 public orderService: OrderService,
                 private router: Router,
-             //   private ordersComponent:OrdersComponent,
+                public filterService: FilterService,
+                //   private ordersComponent:OrdersComponent,
                 private translate: TranslateService) {
 
     }
@@ -55,6 +60,61 @@ export class MenuBarComponent implements OnInit {
     langLabel: string = "";
     cities2: any[];
     cities1: SelectItem[];
+    options = [{
+        name: 'заказы', code: 'NY', command: () => {
+            this.router.navigate(['/'])
+        }
+    },
+        {
+            name: 'вибір замовлення', code: 'NY', command: () => {
+                this.toSelectWork()
+            }
+        },
+        {
+            name: 'работы на выполнении', code: 'NY', command: () => {
+                this.toListOfWork()
+            }
+        }
+    ];
+
+
+    async toListOfWork() {
+        this.orderRequest = this.filterService.getOrderRequest()
+        this.orderRequest.workStatus = 2
+        this.orderRequest.detailId = null
+
+        this.filterService.setOrderRequest(this.orderRequest)
+        this.ordersResponse = await this.apiService.post<TableOrderResponse>(
+            'getListOFWork', this.filterService.getOrderRequest(),
+            true
+        );
+        if (this.ordersResponse.status !== -1) {
+            this.orderService.setOrderResponse(this.ordersResponse)
+            this.router.navigate(['/workPage'])
+        } else  {
+            this.apiService.normalizeError('')
+        }
+    }
+
+
+    async toSelectWork() {
+        this.orderRequest = this.filterService.getOrderRequest()
+        this.orderRequest.workStatus = 0
+        this.orderRequest.autoDetectionExecutor =true
+        this.orderRequest.detailId = null
+
+        this.filterService.setOrderRequest(this.orderRequest)
+        this.ordersResponse = await this.apiService.post<TableOrderResponse>(
+            'getListOFWork', this.filterService.getOrderRequest(),
+            true
+        );
+        if (this.ordersResponse.status !==-1) {
+            this.orderService.setOrderResponse(this.ordersResponse)
+            this.router.navigate(['/selectWork'])
+        } else {
+            this.apiService.normalizeError('')
+        }
+    }
 
     ngOnInit() {
         this.setDefaultTranslation();
@@ -64,14 +124,14 @@ export class MenuBarComponent implements OnInit {
         this.itemsNoLogin = [
             {
                 icon: 'pi pi-fw pi-globe',
-                label:'ru',
+                label: 'ru',
                 style: {fontSize: '1.2em'},
                 items: [
                     {
                         icon: 'pi pi-fw pi-chevron-right',
                         label: 'русский',
                         style: {fontSize: '1.2em'},
-                        styleClass:'myClass',
+                        styleClass: 'myClass',
                         command: (event: Event) => {
                             this.switchLanguage('ru')
                             this.apiService.setLang('ru')
@@ -184,8 +244,8 @@ export class MenuBarComponent implements OnInit {
 
     public switchLanguage(lang: string): void {
         this.translate.use(lang);
-        this.items[1].label=lang
-        this.itemsNoLogin[0].label=lang
+        this.items[1].label = lang
+        this.itemsNoLogin[0].label = lang
 
         //this.translate.setDefaultLang(lang);
     }
@@ -196,11 +256,11 @@ export class MenuBarComponent implements OnInit {
                 'getCroppedOrders', {
                     user: this.apiService.getUserData(),
                     lang: this.apiService.getLang()
-                },true
+                }, true
             )
 
             this.orderService.setOrderResponse(this.ordersResponse)
-                //this.router.navigate(['/'])
+            //this.router.navigate(['/'])
             //this.router.navigate(['/order'])
             //this.ordersComponent.getOrd()
         }
@@ -213,4 +273,7 @@ export class MenuBarComponent implements OnInit {
         this.router.navigate(['/'])
     }
 
+    onItemMenu(event) {
+        event.value.command()
+    }
 }

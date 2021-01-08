@@ -3,6 +3,7 @@
         <p-autoComplete (onSelect)="changeState()" [(ngModel)]="selected" [suggestions]="works"
                         (completeMethod)="filter($event)" panelStyle="panel-style"
                         field="name"
+                        placeholder="выберете работу"
                         (onClear)="clear()"
                         [dropdown]="true">
             <ng-template let-country pTemplate="item">

@@ -43,7 +43,10 @@
         </p-footer>
     </p-dialog>
     <p-confirmPopup [visible]="confirmDisplay"></p-confirmPopup>
-    <p-contextMenu #cm [model]="items"></p-contextMenu>
+    <p-contextMenu
+        #cm
+        [hidden]="!contextMenuActionDisable"
+                   [model]="items"></p-contextMenu>
 
     <!--  currentPageReportTemplate="{{'page.TableNumLabel' | translate}}"
                [rows]="100" [showCurrentPageReport]="true" [rowsPerPageOptions]="[20,30,50,100]"
@@ -56,6 +59,7 @@
                 [virtualRowHeight]="'35px'"
                 [reorderableColumns]="true"
                 class="table-style"
+                [(contextMenuSelection)]="contextSelectItem"
                 [columns]="_selectedColumns" [value]="tableDataService.mainData" [scrollable]="true"
                 scrollHeight="flex"
                 [contextMenu]="cm"
@@ -75,7 +79,7 @@
                         </div>
                         <div class="p-mb-6 p-mr-6" style="width: 40%">
                         </div>
-                        <div *ngIf="!standardFilterDisable" class="p-mb-2 p-mr-2" style=" position: relative;top:-2px">
+                        <div *ngIf="!standardFilterDisable && !hideButtonBar" class="p-mb-2 p-mr-2" style=" position: relative;top:-2px">
                             <button pButton type="button" (click)="showDialog()"
                                     class="p-button-secondary"
                                     pRipple
@@ -83,26 +87,26 @@
                             >
                             </button>
                         </div>
-                        <div *ngIf="standardFilterDisable" class="p-mb-2 p-mr-2"
+                        <div *ngIf="standardFilterDisable && !hideButtonBar" class="p-mb-2 p-mr-2"
                              style="width: 300px; position: relative;top:-10px">
                             <app-work-period-filter (onSuggest)="updateData()"
                                                     (click)="confirmOnFilter($event)"
                             ></app-work-period-filter>
                         </div>
-                        <div *ngIf="standardFilterDisable" class="p-mb-2 p-mr-2"
+                        <div *ngIf="standardFilterDisable && !hideButtonBar" class="p-mb-2 p-mr-2"
                              style="width: 300px; position: relative;top:-10px">
                             <app-detail-filter (onSuggest)="updateData()"
                                                (click)="confirmOnFilter($event)"
                             ></app-detail-filter>
                         </div>
-                        <div *ngIf="standardFilterDisable" class="p-mb-2 p-mr-2"
+                        <div *ngIf="standardFilterDisable && !hideButtonBar" class="p-mb-2 p-mr-2"
                              style="width: 300px; position: relative;top:-10px">
                             <app-work-filter (onSuggest)="updateData()"
                                              (click)="confirmOnFilter($event)"
                             ></app-work-filter>
                         </div>
 
-                        <div *ngIf="standardFilterDisable" class="p-mb-2 p-mr-2"
+                        <div *ngIf="standardFilterDisable && !hideButtonBar" class="p-mb-2 p-mr-2"
                              style="width: 300px; position: relative;top:-10px">
                             <app-work-status-filter
                                     [disabled]="stateFilterDisable" [onlyField]="true"
@@ -111,14 +115,14 @@
                                     (click)="confirmOnFilter($event)"
                             ></app-work-status-filter>
                         </div>
-                        <div *ngIf="!standardFilterDisable" class="p-mb-2 p-mr-2"
+                        <div *ngIf="!standardFilterDisable && !hideButtonBar" class="p-mb-2 p-mr-2"
                              style="width: 300px; position: relative;top:-10px">
                             <app-period-date-filter [onlyField]="true" (onSuggest)="updateData()"
                                                     (onClear)="updateData()"
                                                     (click)="confirmOnFilter($event)"
                             ></app-period-date-filter>
                         </div>
-                        <div *ngIf="!standardFilterDisable" class="p-mb-2 p-mr-2"
+                        <div *ngIf="!standardFilterDisable && !hideButtonBar" class="p-mb-2 p-mr-2"
                              style="width: 300px; position: relative;top:-10px">
                             <app-state-filter
                                     [disabled]="stateFilterDisable" [onlyField]="true"
@@ -127,14 +131,14 @@
                                     (click)="confirmOnFilter($event)"
                             ></app-state-filter>
                         </div>
-                        <div *ngIf="!standardFilterDisable" class="p-mb-2 p-mr-2"
+                        <div *ngIf="!standardFilterDisable && !hideButtonBar" class="p-mb-2 p-mr-2"
                              style="width: 300px; position: relative;top:-10px">
 
                             <app-substring-filter (click)="confirmOnFilter($event)"
                                                   (onSuggest)="updateData()"
                             ></app-substring-filter>
                         </div>
-                        <div class="p-mb-2 p-mr-2" style="width: 100px; position: relative;top:-2px">
+                        <div *ngIf="!hideButtonBar" class="p-mb-2 p-mr-2" style="width: 100px; position: relative;top:-2px">
                             <button pButton type="button" (click)="downloadExel()"
                                     class="p-button-secondary"
                                     pRipple
@@ -143,7 +147,7 @@
                             </button>
 
                         </div>
-                        <div class="p-mb-2 p-mr-2"
+                        <div *ngIf="  !hideButtonBar" class="p-mb-2 p-mr-2"
                              style=" position: relative;top:-2px;">
                             <p-multiSelect [options]="columns" [(ngModel)]="_selectedColumns"
                                            optionLabel="header"
@@ -207,11 +211,11 @@
 <!--                    </td>-->
                     <td *ngFor="let col of columns" class="ui-resizable-column" pResizableColumn
                         [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
-                        <span *ngIf="buttonActionDisable">
+                        <span *ngIf="contextMenuActionDisable">
                                                                         {{rowData[col.field]}}
 
                         </span>
-                        <span *ngIf="!buttonActionDisable">
+                        <span *ngIf="!contextMenuActionDisable">
                     <span *ngIf="(rowData[col.field]==='yes' || rowData[col.field]==='1') ">
                         <i class="pi pi-check"></i>
                         </span>

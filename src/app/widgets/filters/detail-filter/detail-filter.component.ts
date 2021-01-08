@@ -14,7 +14,7 @@ import {SimpleData} from "../SimpleData";
 export class DetailFilterComponent implements OnInit {
     @Output() onSuggest: EventEmitter<any> = new EventEmitter();
 
-    private detail = {name: 'ГБЦ', id: 1}
+    private detail = {}
     @ViewChild(AutoComplete) chidFilter: AutoComplete
 
     // @Output() onSuggest: EventEmitter<any> = new EventEmitter();
@@ -30,6 +30,7 @@ export class DetailFilterComponent implements OnInit {
 
     ngOnInit(): void {
         this.getCustomer('');
+
     }
 
     filter(event) {

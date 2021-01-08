@@ -26,7 +26,7 @@ export class MasterSelectWindowComponent implements OnInit {
     temp: any;
     buttItem: MenuItem[];
     private user: User;
-  private orderRequest: OrderRequest
+    private orderRequest: OrderRequest
 
     constructor(public tableService: TableDataService,
                 public orderService: OrderService,
@@ -57,64 +57,22 @@ export class MasterSelectWindowComponent implements OnInit {
 
     ngOnInit(): void {
         this.buttItem = [
-            {label: 'Update', icon: 'pi pi-refresh', command: () => {
-                }},
-            {label: 'Delete', icon: 'pi pi-times', command: () => {
-                }},
+            {
+                label: 'Update', icon: 'pi pi-refresh', command: () => {
+                }
+            },
+            {
+                label: 'Delete', icon: 'pi pi-times', command: () => {
+                }
+            },
             {label: 'Angular.io', icon: 'pi pi-info'},
-            {separator: true},
             {label: 'Setup', icon: 'pi pi-cog'}
         ];
+
     }
 
     async getOrd() {
-
-        // this.data = await this.apiService.get<Order[]>('getCroppedOrders')
-        this.data = this.orderService.getOrderResponse()
-        this.mainColumn = []
-        this.data.columnTables.map(elem => {
-                this.mainColumn.push(
-                    {
-                        field: elem.nameColumn,
-                        header: elem.nameColumn,
-                        width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
-                    }
-                )
-
-        })
-        let regexp = new RegExp('^[1-9]\d{0,2}$');
-        let tableBody = []
-        this.data.ordersTableBody.map(row => {
-            let tableRow: any = {}
-            row.rowData.map(cell => {
-              if (cell.cellName === 'Код' || cell.cellName === 'Борг' || cell.cellName === 'Разом'
-                    || cell.cellName === 'З/ч' || cell.cellName === 'Роб.') {
-                    tableRow[cell.cellName] = Number(cell.cellData)
-                } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
-                    let data = new Date(cell.cellData)
-                    tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth() + '.' + data.getFullYear();
-                } else {
-                    tableRow[cell.cellName] = cell.cellData
-                }
-            })
-            tableBody.push(tableRow)
-        })
-        let tableRowPattern: any = {}
-
-        // this.data.ordersTableBody[0].rowData.map(
-        //     cell => {
-        //         if (cell.cellName === 'Close') {
-        //             tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3)
-        //
-        //         } else {
-        //             tableRowPattern[cell.cellName] = cell.cellData;
-        //         }
-        //     }
-        // )
-        //
-
-        this.tableService.setMainData(tableBody)
-        this.tableService.setTablePatternRow(tableRowPattern)
+        this.updateData()
     }
 
     start() {
@@ -126,17 +84,66 @@ export class MasterSelectWindowComponent implements OnInit {
             if (this.sec == 300) {
                 this.router.navigate(['/'])
             }
-            console.log(this.sec)
         }, 1000);
     }
 
-   async onUpdate() {
+
+    updateData() {
+        this.data = this.orderService.getOrderResponse()
+        this.mainColumn = []
+
+        this.data.columnTables.map(elem => {
+            this.mainColumn.push(
+                {
+                    field: elem.nameColumn,
+                    header: elem.nameColumn,
+                    width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
+                }
+            )
+
+        })
+        let tableBody = []
+        this.data.ordersTableBody.map(row => {
+            let tableRow: any = {}
+            row.rowData.map(cell => {
+                if (cell.cellName === 'номер заказа' || cell.cellName === 'ID работы' || cell.cellName === 'кол-во') {
+                    tableRow[cell.cellName] = Number(cell.cellData)
+                } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
+                    let data = new Date(cell.cellData)
+                    tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth() + '.' + data.getFullYear();
+                } else {
+                    tableRow[cell.cellName] = cell.cellData
+                }
+            })
+            tableBody.push(tableRow)
+        })
+
+        let tableRowPattern: any = {}
+
+        if (this.data.ordersTableBody.length !== 0) {
+            this.data.ordersTableBody[0].rowData.map(
+                cell => {
+                    if (cell.cellName === 'Close') {
+                        tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3)
+
+                    } else {
+                        tableRowPattern[cell.cellName] = cell.cellData;
+                    }
+                }
+            )
+        }        this.tableService.setMainData(tableBody)
+        this.tableService.setTablePatternRow(tableRowPattern)
+        console.log(tableBody)
+        this.tableDataService.setStartData(this.data)
+
+    }
+
+    async onUpdate() {
         this.data = await this.apiService.post<TableOrderResponse>(
             'getListOFWork', this.filterService.getOrderRequest(), false
         );
 
         let mainColumn = [];
-        console.log(this.data.ordersTableBody)
         this.data.columnTables.map(elem => {
             mainColumn.push(
                 {
@@ -146,12 +153,11 @@ export class MasterSelectWindowComponent implements OnInit {
                 }
             )
         })
-        let regexp = new RegExp('^[1-9]\d{0,2}$');
         let tableBody = []
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
             row.rowData.map(cell => {
-               if (cell.cellName === 'Код' || cell.cellName === 'Долг' || cell.cellName === 'Всего'
+                if (cell.cellName === 'Код' || cell.cellName === 'Долг' || cell.cellName === 'Всего'
                     || cell.cellName === 'З/ч' || cell.cellName === 'Раб.') {
                     tableRow[cell.cellName] = Number(cell.cellData)
                 } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
@@ -165,7 +171,6 @@ export class MasterSelectWindowComponent implements OnInit {
         })
         let tableRowPattern: any = {}
 
-        console.log(this.data)
         if (this.data.ordersTableBody.length !== 0) {
             this.data.ordersTableBody[0].rowData.map(
                 cell => {

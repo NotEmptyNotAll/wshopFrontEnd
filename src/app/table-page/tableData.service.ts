@@ -16,7 +16,6 @@ export class TableDataService {
     addColumnText: string = ''
     showUpdatePage = false
     patternTableRow: any = {}
-
     constructor() {
 
     }

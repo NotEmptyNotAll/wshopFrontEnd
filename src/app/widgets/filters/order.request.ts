@@ -15,6 +15,7 @@ export interface OrderRequest {
     status: boolean;
     rowStartIndex: number;
     payed: boolean;
+    autoDetectionExecutor: boolean;
     user: User;
     workStatus: number;
     workId: number;

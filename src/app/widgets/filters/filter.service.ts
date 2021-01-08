@@ -28,6 +28,7 @@ export class FilterService {
         workDateTo: null,
         workDateFrom: null,
         detailId: null,
+        autoDetectionExecutor:true,
         closeDate: false
     }
 
