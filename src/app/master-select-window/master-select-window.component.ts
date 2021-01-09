@@ -93,13 +93,15 @@ export class MasterSelectWindowComponent implements OnInit {
         this.mainColumn = []
 
         this.data.columnTables.map(elem => {
-            this.mainColumn.push(
-                {
-                    field: elem.nameColumn,
-                    header: elem.nameColumn,
-                    width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
-                }
-            )
+            if (elem.nameColumn !== 'ID работы') {
+                this.mainColumn.push(
+                    {
+                        field: elem.nameColumn,
+                        header: elem.nameColumn,
+                        width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
+                    }
+                )
+            }
 
         })
         let tableBody = []
@@ -131,7 +133,8 @@ export class MasterSelectWindowComponent implements OnInit {
                     }
                 }
             )
-        }        this.tableService.setMainData(tableBody)
+        }
+        this.tableService.setMainData(tableBody)
         this.tableService.setTablePatternRow(tableRowPattern)
         console.log(tableBody)
         this.tableDataService.setStartData(this.data)
@@ -145,13 +148,17 @@ export class MasterSelectWindowComponent implements OnInit {
 
         let mainColumn = [];
         this.data.columnTables.map(elem => {
-            mainColumn.push(
-                {
-                    field: elem.nameColumn,
-                    header: elem.nameColumn,
-                    width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
-                }
-            )
+            if (elem.nameColumn !== 'ID работы') {
+
+                mainColumn.push(
+                    {
+                        field: elem.nameColumn,
+                        header: elem.nameColumn,
+                        width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
+                    }
+                )
+            }
+
         })
         let tableBody = []
         this.data.ordersTableBody.map(row => {

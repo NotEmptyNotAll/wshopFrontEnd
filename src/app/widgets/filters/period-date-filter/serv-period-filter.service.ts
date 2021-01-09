@@ -7,14 +7,14 @@ import {FilterService} from "../filter.service";
     providedIn: 'root'
 })
 export class ServPeriodFilterService {
-    public periodFastFilterData = {name: 'сегодня', code: 1}
+    public periodFastFilterData =    {name: 'последние семь дней', code: 11}
     public periodFilterData = {name: '', code: -1}
     public periodTemp = {name: '', code: -1}
     public disableFastFiled = false
     private orderRequest: OrderRequest
 
     defaultFastFilter() {
-        this.periodFastFilterData = {name: 'сегодня', code: 1}
+        this.periodFastFilterData =    {name: 'последние семь дней', code: 11}
     }
 
     public onStndFilter() {
@@ -90,6 +90,12 @@ export class ServPeriodFilterService {
                 dateTo.setDate(0)
                 dateFrom = moment(dateFrom).quarter(moment().quarter()).utc().format("YYYY-MM-DD")
                 dateTo = moment(dateTo).quarter(moment().quarter()).utc().format("YYYY-MM-DD")
+                break;
+            }
+            case 11: {
+                dateTo = new Date()
+                dateFrom = moment().dayOfYear(moment().dayOfYear() - 7).utc().format("YYYY-MM-DD")
+                dateTo = moment(dateTo).utc().format("YYYY-MM-DD")
                 break;
             }
             case 6: {

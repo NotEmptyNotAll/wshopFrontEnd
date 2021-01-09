@@ -5,6 +5,7 @@
                         field="name"
                         placeholder="выберете работу"
                         (onClear)="clear()"
+                        [type]="'search'"
                         [dropdown]="true">
             <ng-template let-country pTemplate="item">
                 <div class="country-item">

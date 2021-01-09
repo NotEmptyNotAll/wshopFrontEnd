@@ -19,6 +19,7 @@ export class PeriodDateFilterComponent implements OnInit {
     private periods: any[] = [
         {name: 'все', code: 0},
         {name: 'сегодня', code: 1},
+        {name: 'последние семь дней', code: 11},
         {name: 'вчера', code: 2},
         {name: 'текущая неделя', code: 3},
         {name: 'текущий месяц', code: 4},
@@ -32,6 +33,7 @@ export class PeriodDateFilterComponent implements OnInit {
 
     private fastPeriods: any[] = [
         {name: 'сегодня', code: 1},
+        {name: 'последние семь дней', code: 11},
         {name: 'вчера', code: 2},
         {name: 'текущая неделя', code: 3},
         {name: 'текущий месяц', code: 4},
@@ -162,6 +164,12 @@ export class PeriodDateFilterComponent implements OnInit {
                     dateTo.setDate(31)
                     dateFrom = moment(dateFrom).year(moment().year() - 1).utc().format("YYYY-MM-DD")
                     dateTo = moment(dateTo).year(moment().year() - 1).utc().format("YYYY-MM-DD")
+                    break;
+                }
+                case 11: {
+                    dateTo = new Date()
+                    dateFrom = moment().dayOfYear(moment().dayOfYear() - 7).utc().format("YYYY-MM-DD")
+                    dateTo = moment(dateTo).utc().format("YYYY-MM-DD")
                     break;
                 }
 

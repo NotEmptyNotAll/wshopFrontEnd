@@ -10,6 +10,7 @@ import {TableOrderResponse} from "../Service/table-order-response";
 import {OrdersComponent} from "../orders-page/orders.component";
 import {FilterService} from "../widgets/filters/filter.service";
 import {OrderRequest} from "../widgets/filters/order.request";
+import {TableDataService} from "../table-page/tableData.service";
 
 
 @Component({
@@ -22,9 +23,11 @@ export class MenuBarComponent implements OnInit {
     private langTitle: string
     orderRequest: OrderRequest
 
+
     constructor(public apiService: ApiDataServiceService,
                 public orderService: OrderService,
                 private router: Router,
+                public tableDataService: TableDataService,
                 public filterService: FilterService,
                 //   private ordersComponent:OrdersComponent,
                 private translate: TranslateService) {
@@ -60,13 +63,27 @@ export class MenuBarComponent implements OnInit {
     langLabel: string = "";
     cities2: any[];
     cities1: SelectItem[];
-    options = [{
-        name: 'заказы', code: 'NY', command: () => {
-            this.router.navigate(['/'])
-        }
-    },
+    optionsAdmin = [
         {
-            name: 'вибір замовлення', code: 'NY', command: () => {
+            name: 'заказы', code: 'NY', command: () => {
+                this.router.navigate(['/order'])
+            }
+        },
+        {
+            name: 'работы', code: 'NY', command: () => {
+                this.toSelectWork()
+            }
+        },
+        {
+            name: 'работы на выполнении', code: 'NY', command: () => {
+                this.toListOfWork()
+            }
+        }
+    ];
+    optionsUser = [
+
+        {
+            name: 'работы', code: 'NY', command: () => {
                 this.toSelectWork()
             }
         },
@@ -91,7 +108,7 @@ export class MenuBarComponent implements OnInit {
         if (this.ordersResponse.status !== -1) {
             this.orderService.setOrderResponse(this.ordersResponse)
             this.router.navigate(['/workPage'])
-        } else  {
+        } else {
             this.apiService.normalizeError('')
         }
     }
@@ -100,7 +117,7 @@ export class MenuBarComponent implements OnInit {
     async toSelectWork() {
         this.orderRequest = this.filterService.getOrderRequest()
         this.orderRequest.workStatus = 0
-        this.orderRequest.autoDetectionExecutor =true
+        this.orderRequest.autoDetectionExecutor = true
         this.orderRequest.detailId = null
 
         this.filterService.setOrderRequest(this.orderRequest)
@@ -108,7 +125,7 @@ export class MenuBarComponent implements OnInit {
             'getListOFWork', this.filterService.getOrderRequest(),
             true
         );
-        if (this.ordersResponse.status !==-1) {
+        if (this.ordersResponse.status !== -1) {
             this.orderService.setOrderResponse(this.ordersResponse)
             this.router.navigate(['/selectWork'])
         } else {
@@ -172,7 +189,6 @@ export class MenuBarComponent implements OnInit {
 
         this.items = [
             {
-
                 icon: 'pi pi-fw pi-bars',
                 style: {fontSize: '1.2em'},
                 command: (event: Event) => {
@@ -267,6 +283,11 @@ export class MenuBarComponent implements OnInit {
     }
 
     quit() {
+        let ordersTableResponse = this.orderService.getOrderResponse()
+        this.close()
+        ordersTableResponse.ordersTableBody = []
+        this.orderService.setOrderResponse(ordersTableResponse)
+        this.tableDataService.setMainData([])
         this.user = null
         this.apiService.setUserData(this.user)
         this.orderService.setUserValidate(false)

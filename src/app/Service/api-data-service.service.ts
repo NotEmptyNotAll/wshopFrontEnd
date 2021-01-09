@@ -27,6 +27,7 @@ export class ApiDataServiceService {
     private errorNumber: number = 0
     public barLoading: boolean = false
     public isLoading: boolean = false
+    public adminMode:boolean=false
     public isLoadingData: boolean = false
     public applySubLoading: boolean = true
     public applySubLoadingBar: boolean = true

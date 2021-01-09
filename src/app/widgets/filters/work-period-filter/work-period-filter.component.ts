@@ -21,6 +21,7 @@ export class WorkPeriodFilterComponent implements OnInit {
         {name: 'все', code: 0},
         {name: 'сегодня', code: 1},
         {name: 'вчера', code: 2},
+        {name: 'последние семь дней', code: 11},
         {name: 'текущая неделя', code: 3},
         {name: 'текущий месяц', code: 4},
         {name: 'текущий квартал', code: 5},
@@ -73,6 +74,12 @@ export class WorkPeriodFilterComponent implements OnInit {
                 case 3: {
                     dateFrom = moment().weekday(1).utc().format("YYYY-MM-DD")
                     dateTo = moment().weekday(7).utc().format("YYYY-MM-DD")
+                    break;
+                }
+                case 11: {
+                    dateTo = new Date()
+                    dateFrom = moment().dayOfYear(moment().dayOfYear() - 7).utc().format("YYYY-MM-DD")
+                    dateTo = moment(dateTo).utc().format("YYYY-MM-DD")
                     break;
                 }
                 case 4: {

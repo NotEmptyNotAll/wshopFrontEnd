@@ -152,24 +152,17 @@ export class TablePageComponent implements OnInit {
     }
 
     cancelFilter() {
-        // this.serviceStateFiler.onFastFilter()
-        // this.filterPeriodService.onFastFilter()
-        // this.serviceSubstring.onFastFilter()
         this.filterService.clearFilter()
         this.childCustomerFilter.clear()
         this.childEmployeeFilter.clear()
         this.childPayedFilter.clear()
         this.childStateFilter.clear()
         this.childDateFilter.clear()
-        //  this.childPeriodDateFilter.clear()
     }
 
     async updateData() {
         this.display = false
-
         this.onUpdateData.emit()
-
-
         if (this.dynamicColumns !== '') {
             this.tableDataService.addColumnText = this.dynamicColumns
             this.setColumn()
@@ -238,6 +231,7 @@ export class TablePageComponent implements OnInit {
 
 
     updateContextMenu() {
+
         if (this.contextMenuActionDisable) {
             if (this.masterWindowsSelectDisable) {
                 this.items = [{

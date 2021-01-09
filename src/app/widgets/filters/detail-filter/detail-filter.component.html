@@ -3,6 +3,7 @@
         <p-autoComplete (onSelect)="changeState()" [(ngModel)]="selected" [suggestions]="details"
                         (completeMethod)="filter($event)" panelStyle="panel-style"
                         field="name"
+                        [type]="'search'"
                         placeholder="выберете деталь"
                         (onClear)="clear()"
                         [dropdown]="true">
@@ -12,5 +13,6 @@
                 </div>
             </ng-template>
         </p-autoComplete>
+
     </div>
 </div>

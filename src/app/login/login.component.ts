@@ -78,6 +78,7 @@ export class LoginComponent implements OnInit {
         this.masterWindowVisible = false
     }
 
+
     async login() {
         this.name = this.selectedUser.name
         this.selectedUser.password = this.password;
@@ -86,18 +87,15 @@ export class LoginComponent implements OnInit {
 
         this.orderRequest.user = this.selectedUser
         this.orderRequest.sizeResponse = 15;
-        let dateFrom = moment().utc().format("YYYY-MM-DD")
-        let dateTo = moment().utc().format("YYYY-MM-DD")
+        let dateFrom = moment().dayOfYear(moment().dayOfYear() - 7).utc().format("YYYY-MM-DD")
+        let dateTo = moment(new Date()).utc().format("YYYY-MM-DD")
         this.orderRequest.dateTo = dateTo
         this.orderRequest.rowStartIndex = 0
         this.orderRequest.dateFrom = dateFrom
         this.orderRequest.state = 'UNCLOSED'
         this.filterService.setOrderRequest(this.orderRequest)
-        if (this.selectedUser.role !== 2 ) {
+        if (this.selectedUser.role !== 2) {
             this.orderRequest = this.filterService.getOrderRequest()
-            //this.orderRequest.state = 'UNCLOSED'
-            // this.orderRequest.user.id=0
-            // this.orderRequest.user.password='12345'
             this.orderRequest.detailId = null
             this.orderRequest.workStatus = 0
             this.filterService.setOrderRequest(this.orderRequest)
@@ -105,6 +103,7 @@ export class LoginComponent implements OnInit {
                 'getListOFWork', this.filterService.getOrderRequest(),
                 true
             );
+            this.apiService.adminMode = false
             if (this.ordersResponse.status == 1) {
                 this.orderService.setUserValidate(true)
                 // this.masterWindowVisible = true
@@ -112,7 +111,7 @@ export class LoginComponent implements OnInit {
                 this.router.navigate(['/workPage'])
             } else if (this.ordersResponse.status == -1) {
                 this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
-            }else {
+            } else {
                 this.orderService.setUserValidate(true)
                 // this.masterWindowVisible = true
                 this.orderService.setOrderResponse(this.ordersResponse)
@@ -122,7 +121,7 @@ export class LoginComponent implements OnInit {
             this.ordersResponse = await this.apiService.post<TableOrderResponse>(
                 'getCroppedOrders', this.filterService.getOrderRequest(), true
             );
-
+            this.apiService.adminMode = true
             if (this.ordersResponse.status !== -1) {
                 this.orderService.setOrderResponse(this.ordersResponse)
                 this.orderService.setUserValidate(true)

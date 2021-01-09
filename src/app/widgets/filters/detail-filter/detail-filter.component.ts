@@ -56,11 +56,9 @@ export class DetailFilterComponent implements OnInit {
 
     clear() {
         this.orderRequest = this.filterService.getOrderRequest()
-        this.orderRequest.detailId = 1
+        this.orderRequest.detailId = null
         this.filterService.setOrderRequest(this.orderRequest)
-
         this.onSuggest.emit();
-
         this.getCustomer('')
 
     }
