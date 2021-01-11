@@ -84,62 +84,65 @@ export class OrdersComponent implements OnInit {
             this.apiService.setUserData(this.user)
             this.orderService.setUserValidate(false)
             this.router.navigate(['/'])
-            this.router.navigate(['/'])
         }
     }
 
     async getOrd() {
-
+        this.data = await this.apiService.post<TableOrderResponse>(
+            'getCroppedOrders', this.filterService.getOrderRequest(), true
+        );
         // this.data = await this.apiService.get<Order[]>('getCroppedOrders')
-        this.data = this.orderService.getOrderResponse()
-        this.mainColumn = []
-        this.apiService.startIndex = 0;
-        this.data.columnTables.map(elem => {
-            this.mainColumn.push(
-                {
-                    field: elem.nameColumn,
-                    header: elem.nameColumn,
-                    width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
+        // this.data = this.orderService.getOrderResponse()
+        if (this.data.status !== -1) {
+            this.mainColumn = []
+            this.apiService.startIndex = 0;
+            this.data.columnTables.map(elem => {
+                this.mainColumn.push(
+                    {
+                        field: elem.nameColumn,
+                        header: elem.nameColumn,
+                        width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
+                    }
+                )
+            })
+            this.apiService.startIndex += this.apiService.sizeDataResponse
+
+            let tableBody = []
+            this.data.ordersTableBody.map(row => {
+                let tableRow: any = {}
+                row.rowData.map(cell => {
+                    if (cell.cellData.indexOf('thWOrders.orderClosed') !== -1) {
+                        tableRow[cell.cellName] = cell.cellData.substr(22, 3)
+                    } else if (cell.cellName === 'Код' || cell.cellName === 'Долг' || cell.cellName === 'Всего'
+                        || cell.cellName === 'З/ч' || cell.cellName === 'Раб.') {
+                        tableRow[cell.cellName] = Number(cell.cellData)
+                    } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
+                        let data = new Date(cell.cellData)
+                        tableRow[cell.cellName] = moment(data.getTime()).utc().format("YYYY-MM-DD");
+                    } else {
+                        tableRow[cell.cellName] = cell.cellData
+                    }
+                })
+                tableBody.push(tableRow)
+            })
+            let tableRowPattern: any = {}
+
+            this.data.ordersTableBody[0].rowData.map(
+                cell => {
+                    if (cell.cellName === 'Close') {
+                        tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3)
+
+                    } else {
+                        tableRowPattern[cell.cellName] = cell.cellData;
+                    }
                 }
             )
-        })
-        this.apiService.startIndex += this.apiService.sizeDataResponse
+            this.tableService.setMainData(tableBody)
+            this.tableService.setTablePatternRow(tableRowPattern)
+        }else {
+            this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
 
-        let regexp = new RegExp('^[1-9]\d{0,2}$');
-        let tableBody = []
-        this.data.ordersTableBody.map(row => {
-            let tableRow: any = {}
-            row.rowData.map(cell => {
-                if (cell.cellData.indexOf('thWOrders.orderClosed') !== -1) {
-                    tableRow[cell.cellName] = cell.cellData.substr(22, 3)
-                } else if (cell.cellName === 'Код' || cell.cellName === 'Долг' || cell.cellName === 'Всего'
-                    || cell.cellName === 'З/ч' || cell.cellName === 'Раб.') {
-                    tableRow[cell.cellName] = Number(cell.cellData)
-                } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
-                    let data = new Date(cell.cellData)
-                    tableRow[cell.cellName] = moment(data.getTime()).utc().format("YYYY-MM-DD");
-                } else {
-                    tableRow[cell.cellName] = cell.cellData
-                }
-            })
-            tableBody.push(tableRow)
-        })
-        let tableRowPattern: any = {}
-
-        this.data.ordersTableBody[0].rowData.map(
-            cell => {
-                if (cell.cellName === 'Close') {
-                    tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3)
-
-                } else {
-                    tableRowPattern[cell.cellName] = cell.cellData;
-                }
-            }
-        )
-
-
-        this.tableService.setMainData(tableBody)
-        this.tableService.setTablePatternRow(tableRowPattern)
+        }
     }
 
 
@@ -173,7 +176,7 @@ export class OrdersComponent implements OnInit {
         this.tableDataService.mainData = Array.prototype
             .concat(this.tableDataService.mainData,
                 tableBody)
-        alert( this.tableDataService.mainData.length)
+        alert(this.tableDataService.mainData.length)
 
 
     }

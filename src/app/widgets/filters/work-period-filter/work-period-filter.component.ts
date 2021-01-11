@@ -21,7 +21,7 @@ export class WorkPeriodFilterComponent implements OnInit {
         {name: 'все', code: 0},
         {name: 'сегодня', code: 1},
         {name: 'вчера', code: 2},
-        {name: 'последние семь дней', code: 11},
+        {name: 'последние 7 дней', code: 11},
         {name: 'текущая неделя', code: 3},
         {name: 'текущий месяц', code: 4},
         {name: 'текущий квартал', code: 5},

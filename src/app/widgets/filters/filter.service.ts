@@ -19,17 +19,28 @@ export class FilterService {
         lang: null,
         state: null,
         status: null,
-        sizeResponse:null,
+        sizeResponse: null,
         payed: null,
         user: null,
-        rowStartIndex:null,
+        rowStartIndex: null,
         workId: null,
         workStatus: null,
         workDateTo: null,
         workDateFrom: null,
         detailId: null,
-        autoDetectionExecutor:true,
+        autoDetectionExecutor: true,
         closeDate: false
+    }
+
+
+    public onDefaultValue() {
+        let dateFrom = moment().dayOfYear(moment().dayOfYear() - 7).utc().format("YYYY-MM-DD")
+        let dateTo = moment(new Date()).utc().format("YYYY-MM-DD")
+        this.orderRequest.dateTo = dateTo
+        this.orderRequest.rowStartIndex = 0
+        this.orderRequest.dateFrom = dateFrom
+        this.orderRequest.state = 'UNCLOSED'
+        this.orderRequest.sizeResponse = 15;
     }
 
     fastFilterTemp = {

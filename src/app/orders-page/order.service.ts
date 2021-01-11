@@ -10,6 +10,7 @@ export class OrderService {
     private orders: Order[]
     private ordersTableResponse: TableOrderResponse
     private userValidate: boolean = false
+    public dataIsExist: boolean = false
 
     constructor() {
     }

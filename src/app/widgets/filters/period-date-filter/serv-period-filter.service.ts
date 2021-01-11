@@ -7,14 +7,14 @@ import {FilterService} from "../filter.service";
     providedIn: 'root'
 })
 export class ServPeriodFilterService {
-    public periodFastFilterData =    {name: 'последние семь дней', code: 11}
+    public periodFastFilterData =    {name: 'последние 7 дней', code: 11}
     public periodFilterData = {name: '', code: -1}
     public periodTemp = {name: '', code: -1}
     public disableFastFiled = false
     private orderRequest: OrderRequest
 
     defaultFastFilter() {
-        this.periodFastFilterData =    {name: 'последние семь дней', code: 11}
+        this.periodFastFilterData =    {name: 'последние 7 дней', code: 11}
     }
 
     public onStndFilter() {

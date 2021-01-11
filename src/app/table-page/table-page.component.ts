@@ -279,8 +279,8 @@ export class TablePageComponent implements OnInit {
                 user: this.apiService.getUserData()
             }, false
         );
-        console.log(data)
         this.orderService.setOrderResponse(data)
+        this.orderService.dataIsExist=true
         this.router.navigate(['/workPage']);
         // this.contextMenuActionUpdateData.emit()
     }

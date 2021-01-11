@@ -72,7 +72,22 @@ export class MasterSelectWindowComponent implements OnInit {
     }
 
     async getOrd() {
-        this.updateData()
+        this.orderRequest = this.filterService.getOrderRequest()
+        this.orderRequest.detailId = null
+        this.orderRequest.workStatus = 0
+        this.filterService.setOrderRequest(this.orderRequest)
+        let ordersResponse = await this.apiService.post<TableOrderResponse>(
+            'getListOFWork', this.filterService.getOrderRequest(),
+            true
+        );
+        if (ordersResponse.status !== undefined &&
+            ordersResponse.status !== -1) {
+            this.orderService.setOrderResponse(ordersResponse)
+            this.updateData()
+        } else {
+            this.apiService.normalizeError('')
+            this.router.navigate(['/'])
+        }
     }
 
     start() {

@@ -19,7 +19,7 @@ export class PeriodDateFilterComponent implements OnInit {
     private periods: any[] = [
         {name: 'все', code: 0},
         {name: 'сегодня', code: 1},
-        {name: 'последние семь дней', code: 11},
+        {name: 'последние 7 дней', code: 11},
         {name: 'вчера', code: 2},
         {name: 'текущая неделя', code: 3},
         {name: 'текущий месяц', code: 4},
@@ -33,7 +33,7 @@ export class PeriodDateFilterComponent implements OnInit {
 
     private fastPeriods: any[] = [
         {name: 'сегодня', code: 1},
-        {name: 'последние семь дней', code: 11},
+        {name: 'последние 7 дней', code: 11},
         {name: 'вчера', code: 2},
         {name: 'текущая неделя', code: 3},
         {name: 'текущий месяц', code: 4},

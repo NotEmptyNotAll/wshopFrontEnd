@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
     }
 
     showSuccess(msg: string) {
-        this.messageService.add({severity: 'success', summary: this.name, detail: msg});
+        this.messageService.add({severity: 'success', summary: this.selectedUser.name, detail: msg});
     }
 
     moveToMasterSelectWindows() {
@@ -80,69 +80,34 @@ export class LoginComponent implements OnInit {
 
 
     async login() {
-        this.name = this.selectedUser.name
         this.selectedUser.password = this.password;
         this.apiService.setUserData(this.selectedUser)
         this.orderRequest.lang = this.apiService.getLang();
 
+        this.filterService.onDefaultValue()
+        this.orderRequest = this.filterService.getOrderRequest()
         this.orderRequest.user = this.selectedUser
-        this.orderRequest.sizeResponse = 15;
-        let dateFrom = moment().dayOfYear(moment().dayOfYear() - 7).utc().format("YYYY-MM-DD")
-        let dateTo = moment(new Date()).utc().format("YYYY-MM-DD")
-        this.orderRequest.dateTo = dateTo
-        this.orderRequest.rowStartIndex = 0
-        this.orderRequest.dateFrom = dateFrom
-        this.orderRequest.state = 'UNCLOSED'
         this.filterService.setOrderRequest(this.orderRequest)
-        if (this.selectedUser.role !== 2) {
-            this.orderRequest = this.filterService.getOrderRequest()
-            this.orderRequest.detailId = null
-            this.orderRequest.workStatus = 0
-            this.filterService.setOrderRequest(this.orderRequest)
-            this.ordersResponse = await this.apiService.post<TableOrderResponse>(
-                'getListOFWork', this.filterService.getOrderRequest(),
-                true
-            );
-            this.apiService.adminMode = false
-            if (this.ordersResponse.status == 1) {
-                this.orderService.setUserValidate(true)
-                // this.masterWindowVisible = true
-                this.orderService.setOrderResponse(this.ordersResponse)
-                this.router.navigate(['/workPage'])
-            } else if (this.ordersResponse.status == -1) {
-                this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
-            } else {
-                this.orderService.setUserValidate(true)
-                // this.masterWindowVisible = true
-                this.orderService.setOrderResponse(this.ordersResponse)
+
+        let validate = await this.apiService.post<TableOrderResponse>(
+            'login', this.selectedUser,
+            true
+        );
+
+        if (validate) {
+            this.orderService.setUserValidate(true)
+            this.showSuccess('пользователь авторизтрован')
+            if (this.selectedUser.role !== 2 && validate) {
+                this.apiService.adminMode = false
                 this.router.navigate(['/selectWork'])
+            } else if (validate) {
+                this.apiService.adminMode = true
+                this.router.navigate(['/order']);
             }
         } else {
-            this.ordersResponse = await this.apiService.post<TableOrderResponse>(
-                'getCroppedOrders', this.filterService.getOrderRequest(), true
-            );
-            this.apiService.adminMode = true
-            if (this.ordersResponse.status !== -1) {
-                this.orderService.setOrderResponse(this.ordersResponse)
-                this.orderService.setUserValidate(true)
-                this.showSuccess('пользователь авторизтрован')
-                this.router.navigate(['/order']);
-            } else {
-                this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
-            }
+            this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
         }
-        // this.ordersResponse = await this.apiService.post<TableOrderResponse>(
-        //     'getCroppedOrders', this.filterService.getOrderRequest(), true
-        // );
-        //
-        // if (this.ordersResponse.status !== -1) {
-        //     this.orderService.setOrderResponse(this.ordersResponse)
-        //     this.orderService.setUserValidate(true)
-        //     this.showSuccess('пользователь авторизтрован')
-        //     this.router.navigate(['/order']);
-        // } else {
-        //     this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
-        // }
+
     }
 
     ngOnInit(): void {
