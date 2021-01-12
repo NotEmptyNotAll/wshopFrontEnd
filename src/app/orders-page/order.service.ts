@@ -9,7 +9,6 @@ export class OrderService {
 
     private orders: Order[]
     private ordersTableResponse: TableOrderResponse
-    private workTableResponse: TableOrderResponse
     private userValidate: boolean = false
     public dataIsExist: boolean = false
 
@@ -24,14 +23,6 @@ export class OrderService {
         this.orders = ordrs
     }
 
-
-    getWorkResponse(): TableOrderResponse {
-        return this.workTableResponse
-    }
-
-    setWorkResponse(resp: TableOrderResponse) {
-        this.workTableResponse = resp
-    }
 
     getOrderResponse(): TableOrderResponse {
         return this.ordersTableResponse

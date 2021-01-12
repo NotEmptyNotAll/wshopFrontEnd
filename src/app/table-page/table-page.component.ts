@@ -292,8 +292,14 @@ export class TablePageComponent implements OnInit {
                 user: this.apiService.getUserData()
             }, false
         );
-        console.log(data)
+
         this.orderService.setOrderResponse(data)
+        let reqst =this.filterService.getOrderRequest()
+        reqst.workStatus=2
+        this.filterService.setOrderRequest(reqst)
+        this.onUpdateData.emit()
+
+        // this.onUpdateData.emit()
         this.contextMenuActionUpdateData.emit()
     }
 

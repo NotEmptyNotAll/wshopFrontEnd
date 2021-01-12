@@ -103,7 +103,7 @@ export class AppNavigateService {
             true
         );
         if (this.ordersResponse.status !== -1) {
-            this.orderService.setWorkResponse(this.ordersResponse)
+            this.orderService.setOrderResponse(this.ordersResponse)
             this.router.navigate(['/workPage'])
         } else {
             this.apiService.normalizeError('')
@@ -123,7 +123,7 @@ export class AppNavigateService {
             true
         );
         if (this.ordersResponse.status !== -1) {
-            this.orderService.setWorkResponse(this.ordersResponse)
+            this.orderService.setOrderResponse(this.ordersResponse)
             this.router.navigate(['/selectWork'])
         } else {
             this.apiService.normalizeError('')

@@ -104,7 +104,7 @@ export class MasterSelectWindowComponent implements OnInit {
 
 
     updateData() {
-        this.data = this.orderService.getWorkResponse()
+        this.data = this.orderService.getOrderResponse()
         this.mainColumn = []
 
         this.data.columnTables.map(elem => {
@@ -151,7 +151,6 @@ export class MasterSelectWindowComponent implements OnInit {
         }
         this.tableService.setMainData(tableBody)
         this.tableService.setTablePatternRow(tableRowPattern)
-        console.log(tableBody)
         this.tableDataService.setStartData(this.data)
 
     }
