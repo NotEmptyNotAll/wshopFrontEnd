@@ -22,6 +22,7 @@ export class DetailFilterComponent implements OnInit {
     private details: any[] = []
     filtered: any[];
     selected: SimpleData;
+    fixDataString:String='работа с фикс. цен.'
 
     constructor(public filterService: FilterService,
                 public apiService: ApiDataServiceService,
@@ -44,13 +45,17 @@ export class DetailFilterComponent implements OnInit {
         // }
 
 
-            this.getCustomer(event.query)
+        this.getCustomer(event.query)
     }
 
     async getCustomer(name) {
-        this.apiService.applySubLoading=false
-        this.details = await this.apiService.post<SimpleData[]>('getListDetails'
+        this.apiService.applySubLoading = false
+        let data = await this.apiService.post<SimpleData[]>('getListDetails'
             , {name: name, sizeResponse: 50}, false)
+        if (this.fixDataString.indexOf(name.toLowerCase())!==-1) {
+            data.unshift({id: null, name: 'работа с фикс. цен.'})
+        }
+        this.details = data
     }
 
 
@@ -66,15 +71,20 @@ export class DetailFilterComponent implements OnInit {
 
     changeState() {
 
-        this.orderRequest = this.filterService.getOrderRequest()
-        if (this.selected !== null && this.selected.id !== undefined && this.selected.id !== null) {
-            this.orderRequest.detailId = this.selected.id
+        if(this.selected.id!==null){
+            this.orderRequest = this.filterService.getOrderRequest()
+            if (this.selected !== null && this.selected.id !== undefined && this.selected.id !== null) {
+                this.orderRequest.detailId = this.selected.id
 
-        } else {
-            this.orderRequest.detailId = null
+            } else {
+                this.orderRequest.detailId = null
+            }
+            this.filterService.setOrderRequest(this.orderRequest)
+            this.filterService.fixDataSelect=false
+            this.onSuggest.emit()
+        }else {
+            this.filterService.fixDataSelect=true
         }
-        this.filterService.setOrderRequest(this.orderRequest)
-        this.onSuggest.emit()
         //this.onSuggest.emit();
 
     }

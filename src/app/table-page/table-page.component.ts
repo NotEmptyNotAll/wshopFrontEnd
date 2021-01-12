@@ -27,6 +27,7 @@ import {ServPeriodFilterService} from "../widgets/filters/period-date-filter/ser
 import {ServSubstringFilterService} from "../widgets/filters/substring-filter/serv-substring-filter.service";
 import {stringify} from "querystring";
 import {User} from "../Service/User";
+import {AppNavigateService} from "../Service/app-navigate.service";
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
@@ -60,6 +61,8 @@ export class TablePageComponent implements OnInit {
     @Input() title: string
     @Input() dynamicColumns: string = ''
     @Input() buttonItems: MenuItem[]
+    @Input() confirmDisplay: boolean = false;
+    @Input() confirmDialog: boolean = false;
     lazyLoadFix: boolean = true
     cols: any[];
     contextSelectItem: any = {}
@@ -67,7 +70,6 @@ export class TablePageComponent implements OnInit {
     inputErr = false
     data: TableOrderResponse
     columns: any[];
-    confirmDisplay: boolean = false;
     loading: boolean = false;
 
     items: MenuItem[] = []
@@ -80,7 +82,7 @@ export class TablePageComponent implements OnInit {
     display: boolean = false;
 
     confirmOnFilter(event) {
-        if (this.serviceStateFiler.disableFastFiled || this.filterPeriodService.disableFastFiled) {
+        if ((this.serviceStateFiler.disableFastFiled || this.filterPeriodService.disableFastFiled) && this.confirmDialog ) {
             this.confirmationService.confirm({
                 target: event.target,
                 // message: 'стандартнi фiльтри будуть очищені. Продовжити?',
@@ -173,12 +175,14 @@ export class TablePageComponent implements OnInit {
                 public orderService: OrderService,
                 public filterService: FilterService,
                 private router: Router,
+                private appNavigate: AppNavigateService,
                 public filterPeriodService: ServPeriodFilterService,
                 public apiService: ApiDataServiceService,
                 public serviceSubstring: ServSubstringFilterService,
                 public serviceStateFiler: ServStateFilterService,
                 private confirmationService: ConfirmationService,
                 private _router: Router) {
+
         this.selectRow = this.tableDataService.getTablePatternRow()
 
     }
@@ -238,8 +242,6 @@ export class TablePageComponent implements OnInit {
                     label: 'завершить', icon: 'pi pi-fw pi-times',
                     command: () => {
                         this.contextActionEnd(this.contextSelectItem['ID работы'])
-                        // this.masterWindowsSelectDisable = true
-                        // this.updateContextMenu()
                     }
                 },
                     {label: 'пауза', icon: 'pi pi-fw pi-pause'}]
@@ -248,10 +250,6 @@ export class TablePageComponent implements OnInit {
                     label: 'начать', icon: 'pi pi-fw pi-play',
                     command: () => {
                         this.contextAction(this.contextSelectItem['ID работы'])
-                        // this.masterWindowsSelectDisable = true
-                        // this.hideButtonBar=true
-                        // this.title='работы на выполнении'
-                        // this.updateContextMenu()
                     }
                 }]
             }
@@ -264,6 +262,7 @@ export class TablePageComponent implements OnInit {
         this.cols = this.mainColumn.slice()
         this.columns = this.cols
         this._selectedColumns = this.cols;
+        this.display=false
 
         if (this.dynamicColumns !== '') {
             this.tableDataService.addColumnText = this.dynamicColumns
@@ -281,7 +280,8 @@ export class TablePageComponent implements OnInit {
         );
         this.orderService.setOrderResponse(data)
         this.orderService.dataIsExist=true
-        this.router.navigate(['/workPage']);
+        this.appNavigate.toListOfWork()
+        // this.router.navigate(['/workPage']);
         // this.contextMenuActionUpdateData.emit()
     }
 

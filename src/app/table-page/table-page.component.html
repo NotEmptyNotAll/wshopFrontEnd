@@ -43,10 +43,10 @@
         </p-footer>
     </p-dialog>
     <p-confirmPopup [visible]="confirmDisplay"></p-confirmPopup>
-    <p-contextMenu
-        #cm
-        [hidden]="!contextMenuActionDisable"
-                   [model]="items"></p-contextMenu>
+<!--    <p-contextMenu-->
+<!--        #cm-->
+<!--        [hidden]="!contextMenuActionDisable"-->
+<!--        [model]="items"></p-contextMenu>-->
 
     <!--  currentPageReportTemplate="{{'page.TableNumLabel' | translate}}"
                [rows]="100" [showCurrentPageReport]="true" [rowsPerPageOptions]="[20,30,50,100]"
@@ -62,11 +62,9 @@
                 [(contextMenuSelection)]="contextSelectItem"
                 [columns]="_selectedColumns" [value]="tableDataService.mainData" [scrollable]="true"
                 scrollHeight="flex"
-                [contextMenu]="cm"
                 [loading]="apiService.isLoadingData"
                 columnResizeMode="expand"
                 style="border-color: #f4f4f4"
-                (sortFunction)="customSort($event)" [customSort]="true"
                 [style]="{borderColor:'#f4f4f4',zIndex:'0'}"
                 [resizableColumns]="true" selectionMode="single"
                 dataKey="id">
@@ -79,7 +77,8 @@
                         </div>
                         <div class="p-mb-6 p-mr-6" style="width: 20%">
                         </div>
-                        <div *ngIf="!standardFilterDisable && !hideButtonBar" class="p-mb-2 p-mr-2" style=" position: relative;top:-2px">
+                        <div *ngIf="!standardFilterDisable && !hideButtonBar" class="p-mb-2 p-mr-2"
+                             style=" position: relative;top:-2px">
                             <button pButton type="button" (click)="showDialog()"
                                     class="p-button-secondary"
                                     pRipple
@@ -99,13 +98,15 @@
                                                (click)="confirmOnFilter($event)"
                             ></app-detail-filter>
                         </div>
-                        <div *ngIf="standardFilterDisable && !hideButtonBar" class="p-mb-2 p-mr-2"
+                        <div *ngIf="standardFilterDisable && !hideButtonBar && filterService.fixDataSelect"
+                             class="p-mb-2 p-mr-2"
                              style="width: 300px; position: relative;top:-10px">
                             <app-work-item-filter-page (onSuggest)="updateData()"
-                                               (click)="confirmOnFilter($event)"
+                                                       (click)="confirmOnFilter($event)"
                             ></app-work-item-filter-page>
                         </div>
-                        <div *ngIf="standardFilterDisable && !hideButtonBar" class="p-mb-2 p-mr-2"
+                        <div *ngIf="standardFilterDisable && !hideButtonBar && !filterService.fixDataSelect"
+                             class="p-mb-2 p-mr-2"
                              style="width: 300px; position: relative;top:-10px">
                             <app-work-filter (onSuggest)="updateData()"
                                              (click)="confirmOnFilter($event)"
@@ -144,7 +145,8 @@
                                                   (onSuggest)="updateData()"
                             ></app-substring-filter>
                         </div>
-                        <div *ngIf="!hideButtonBar" class="p-mb-2 p-mr-2" style="width: 100px; position: relative;top:-2px">
+                        <div *ngIf="!hideButtonBar" class="p-mb-2 p-mr-2"
+                             style="width: 100px; position: relative;top:-2px">
                             <button pButton type="button" (click)="downloadExel()"
                                     class="p-button-secondary"
                                     pRipple
@@ -175,9 +177,10 @@
             <ng-template pTemplate="colgroup">
                 <colgroup>
                     <col style="width:30px">
-<!--                    <col style="width:30px">-->
+                    <!--                    <col style="width:30px">-->
                     <col *ngFor="let col of columns" style="{{'width:'+col.width+'px'}}">
                     <!--                    <col *ngIf="buttonActionDisable" style="width:150px">-->
+                    <col *ngIf="contextMenuActionDisable" style="width:100px">
 
                 </colgroup>
             </ng-template>
@@ -185,14 +188,16 @@
                 <tr style="border-color: #f4f4f4" [style]="{borderColor:'#f4f4f4'}">
                     <th style="width:2rem;border-color: #f4f4f4"
                         [style]="{borderColor:'#f4f4f4', fontSize:'12px'}"></th>
-<!--                    <th style="width:2rem;border-color: #f4f4f4"-->
-<!--                        [style]="{borderColor:'#f4f4f4', fontSize:'15px'}"></th>-->
+                    <!--                    <th style="width:2rem;border-color: #f4f4f4"-->
+                    <!--                        [style]="{borderColor:'#f4f4f4', fontSize:'15px'}"></th>-->
 
                     <th *ngFor="let col of columns" pResizableColumn [pSortableColumn]="col.header"
                         style="border-color: #f4f4f4" [style]="{borderColor:'#f4f4f4', fontSize:'12px'}">
                         {{col.header}}
                         <p-sortIcon [field]="col.header"></p-sortIcon>
                     </th>
+                    <th *ngIf="contextMenuActionDisable" style="width:2rem;border-color: #f4f4f4"
+                        [style]="{borderColor:'#f4f4f4', fontSize:'12px'}"></th>
                     <!--                    <th style="width:2rem;border-color: #f4f4f4" *ngIf="buttonActionDisable"-->
                     <!--                        [style]="{borderColor:'#f4f4f4', fontSize:'12px'}"></th>-->
                 </tr>
@@ -204,6 +209,9 @@
                     <td>
 
                     </td>
+                    <td *ngIf="contextMenuActionDisable">
+
+                    </td>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
@@ -211,10 +219,10 @@
                     <td [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
                         <span class="pi pi-bars" pReorderableRowHandle></span>
                     </td>
-<!--                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px'}">-->
-<!--                        <span *ngIf="rowData.Comment!==''" class="pi pi-info-circle" pReorderableRowHandle-->
-<!--                              (click)="confirm($event,rowData)"></span>-->
-<!--                    </td>-->
+                    <!--                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px'}">-->
+                    <!--                        <span *ngIf="rowData.Comment!==''" class="pi pi-info-circle" pReorderableRowHandle-->
+                    <!--                              (click)="confirm($event,rowData)"></span>-->
+                    <!--                    </td>-->
                     <td *ngFor="let col of columns" class="ui-resizable-column" pResizableColumn
                         [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
                         <span *ngIf="contextMenuActionDisable">
@@ -232,6 +240,20 @@
                                             {{rowData[col.field]}}
                     </span>
                         </span>
+                    </td>
+                    <td *ngIf="contextMenuActionDisable && !masterWindowsSelectDisable" [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
+                        <button pRipple pButton type="button"
+                                class=" p-button-success"
+                                (click)="contextAction(rowData['ID работы'])"
+                                style="min-width: 8rem"
+                                label="начать" icon="pi pi-play"></button>
+                    </td>
+                    <td *ngIf="contextMenuActionDisable && masterWindowsSelectDisable" [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
+                        <button pRipple pButton type="button"
+                                class=" p-button-danger"
+                                (click)="contextActionEnd(rowData['ID работы'])"
+                                style="min-width: 8rem"
+                                label="завершить"></button>
                     </td>
                     <!--                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px',zIndex:'2'}" *ngIf="buttonActionDisable">-->
 

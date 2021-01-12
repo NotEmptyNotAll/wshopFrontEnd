@@ -1,0 +1,37 @@
+ul {
+    position: relative;
+    left: -10px;
+    list-style: none;
+    width: 203px;
+    height: auto;
+    display: inline-block;
+    padding: 5px;
+    overflow: auto;
+}
+select{
+    width: 100%;
+    background: lightgray;
+
+}
+unselect{
+    width: 100%;
+    background: white;
+
+}
+ul > li {
+
+    cursor:pointer;
+    background: white;
+    color: #404040;
+    margin: 5px;
+    padding: 8px;
+    transition: 0.1s;
+}
+
+ul >li:hover {
+    cursor:pointer;
+    background: lightcyan;
+    color: black;
+    margin: 5px;
+    padding: 8px;
+}

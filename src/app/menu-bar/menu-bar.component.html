@@ -1,5 +1,5 @@
 <p-menubar id="openNav"
-           [model]="(apiService.getUserData()!==null && apiService.getUserData()!==undefined)?items:itemsNoLogin"
+           [model]="(orderService.getUserValidate() && apiService.getUserData()!==null && apiService.getUserData()!==undefined)?items:itemsNoLogin"
            [style]="{zIndex:'999',background:'#f4f4f4',
 minWidth:'100%', height:'53px',position:'fixed',left:'0px',top:'0px'} "
 >
@@ -17,32 +17,19 @@ minWidth:'100%', height:'53px',position:'fixed',left:'0px',top:'0px'} "
 </p-menubar>
 
 
-<!--<p-sidebar [modal]="false" [(visible)]="display">
-    <h2>{{'page.menu' | translate}}</h2>
-    <hr class="hr-style"/>
-    <p-listbox
-
-            [style]="{minWidth:'100%',borderColor:'white',
-            position:'absolute',left:'0px',fontSize:'1.5em'}"
-            [options]=" [ {name:  'page.listOrders' | translate, code: 'NY'}]" [(ngModel)]="cities1"
-            optionLabel="name"></p-listbox>
-
-</p-sidebar>-->
 
 <div class="side-menu" style="display:none;" id="mySidebar">
 
     <h3 style="position: relative; left: 10px">{{'page.menu' | translate}}</h3>
-    <hr class="hr-style" style="    z-index: 2;"/>
-    <p-listbox
+    <hr class="hr-style" style="z-index: 2;"/>
+
+    <app-listbox
             id="mySidebarList"
-            (onClick)="onItemMenu($event)"
-            [style]="{minWidth:'100%',borderColor:'white',zIndex:'2',width:'100%',
-            position:'absolute',left:'0px',fontSize:'1.1em'}"
-            [options]=" apiService.adminMode?optionsAdmin:optionsUser" [(ngModel)]="cities1"
-            optionLabel="name">
+            style="position:relative;top:-20px; z-index: 9999"
+            [options]="apiService.adminMode?appNavigate.optionsAdmin:appNavigate.optionsUser"
+            [selected]="cities1"
+    ></app-listbox>
 
-
-    </p-listbox>
 </div>
 
 <br/>

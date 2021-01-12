@@ -88,9 +88,7 @@ export class OrdersComponent implements OnInit {
     }
 
     async getOrd() {
-        this.data = await this.apiService.post<TableOrderResponse>(
-            'getCroppedOrders', this.filterService.getOrderRequest(), true
-        );
+        this.data=this.orderService.getOrderResponse()
         // this.data = await this.apiService.get<Order[]>('getCroppedOrders')
         // this.data = this.orderService.getOrderResponse()
         if (this.data.status !== -1) {

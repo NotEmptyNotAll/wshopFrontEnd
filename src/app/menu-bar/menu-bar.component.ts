@@ -11,6 +11,8 @@ import {OrdersComponent} from "../orders-page/orders.component";
 import {FilterService} from "../widgets/filters/filter.service";
 import {OrderRequest} from "../widgets/filters/order.request";
 import {TableDataService} from "../table-page/tableData.service";
+import {ListOption} from "../widgets/listbox/ListOption";
+import {AppNavigateService} from "../Service/app-navigate.service";
 
 
 @Component({
@@ -22,11 +24,13 @@ export class MenuBarComponent implements OnInit {
     ordersResponse: TableOrderResponse
     private langTitle: string
     orderRequest: OrderRequest
+    indexSelect: number = -1
 
 
     constructor(public apiService: ApiDataServiceService,
                 public orderService: OrderService,
                 private router: Router,
+                public appNavigate: AppNavigateService,
                 public tableDataService: TableDataService,
                 public filterService: FilterService,
                 //   private ordersComponent:OrdersComponent,
@@ -62,44 +66,75 @@ export class MenuBarComponent implements OnInit {
     private user: User;
     langLabel: string = "";
     cities2: any[];
-    cities1: SelectItem[];
-    optionsAdmin = [
-        {
-            name: 'заказы', code: 'NY', command: () => {
-                this.router.navigate(['/order'])
+    cities1: ListOption = {
+        id: 0,
+        name: '',
+        command: null,
+        selected: false
+    };
+
+        public optionsAdmin = [
+            {
+                id: 1,
+                name: 'заказы',
+                command: () => {
+                    this.toOrders()
+                }, selected: false
+            },
+            {
+                id: 2,
+                name: 'работы', command: () => {
+                    this.toSelectWork()
+                }, selected: true
+            },
+            {
+                id: 3,
+                name: 'работы на выполнении', command: () => {
+                    this.toListOfWork()
+                }, selected: false
             }
-        },
-        {
-            name: 'работы', code: 'NY', command: () => {
-                this.toSelectWork()
+        ];
+        public optionsUser = [
+
+            {
+                id: 2,
+                name: 'работы', command: () => {
+                    this.toSelectWork()
+                }, selected: false
+            },
+            {
+                id: 3,
+                name: 'работы на выполнении', command: () => {
+                    this.toListOfWork()
+                }, selected: false
             }
-        },
-        {
-            name: 'работы на выполнении', code: 'NY', command: () => {
-                this.toListOfWork()
-            }
+        ];
+
+    public updateOptions(index) {
+        if ( this.indexSelect === -1) {
+            this.indexSelect=index
         }
-    ];
-    optionsUser = [
 
-        {
-            name: 'работы', code: 'NY', command: () => {
-                this.toSelectWork()
-            }
-        },
-        {
-            name: 'работы на выполнении', code: 'NY', command: () => {
-                this.toListOfWork()
-            }
-        }
-    ];
+       this.optionsAdmin.find(elem =>
+            elem.id === this.indexSelect).selected=false
 
+        this.optionsUser.find(elem =>
+            elem.id === this.indexSelect
+        ).selected = false
+        this.optionsAdmin.find(elem =>
+            elem.id === index
+        ).selected = true
+        this.optionsUser.find(elem =>
+            elem.id === index
+        ).selected = true
+        this.indexSelect=index
+    }
 
-    async toListOfWork() {
+    public async toListOfWork() {
         this.orderRequest = this.filterService.getOrderRequest()
         this.orderRequest.workStatus = 2
         this.orderRequest.detailId = null
-
+        this.updateOptions(3)
         this.filterService.setOrderRequest(this.orderRequest)
         this.ordersResponse = await this.apiService.post<TableOrderResponse>(
             'getListOFWork', this.filterService.getOrderRequest(),
@@ -113,8 +148,8 @@ export class MenuBarComponent implements OnInit {
         }
     }
 
-
-    async toSelectWork() {
+    public async toSelectWork() {
+        this.updateOptions(2)
         this.orderRequest = this.filterService.getOrderRequest()
         this.orderRequest.workStatus = 0
         this.orderRequest.autoDetectionExecutor = true
@@ -131,6 +166,13 @@ export class MenuBarComponent implements OnInit {
         } else {
             this.apiService.normalizeError('')
         }
+    }
+
+
+    toOrders() {
+        this.updateOptions(1)
+        this.router.navigate(['/order'])
+
     }
 
     ngOnInit() {

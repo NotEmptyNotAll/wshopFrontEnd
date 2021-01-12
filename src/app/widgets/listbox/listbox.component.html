@@ -1,0 +1,6 @@
+<ul>
+    <li *ngFor="let option of options" (click)="onItemMenu(option)"
+        [style]="option.selected?{background:'lightcyan'}:''" >
+        {{option.name}}
+    </li>
+</ul>

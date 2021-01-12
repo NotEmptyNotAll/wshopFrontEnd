@@ -31,6 +31,7 @@ export class FilterService {
         autoDetectionExecutor: true,
         closeDate: false
     }
+    public fixDataSelect:boolean=false
 
 
     public onDefaultValue() {

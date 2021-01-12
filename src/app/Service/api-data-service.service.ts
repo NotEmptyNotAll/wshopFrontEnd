@@ -116,6 +116,7 @@ export class ApiDataServiceService {
                 url: this.mainURL + url,
             });
             this.errorNumber = 0;
+            console.log(axiosResponse.data)
             return (axiosResponse.data);
 
         } catch (error) {

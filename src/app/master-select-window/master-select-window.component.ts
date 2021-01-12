@@ -104,7 +104,7 @@ export class MasterSelectWindowComponent implements OnInit {
 
 
     updateData() {
-        this.data = this.orderService.getOrderResponse()
+        this.data = this.orderService.getWorkResponse()
         this.mainColumn = []
 
         this.data.columnTables.map(elem => {

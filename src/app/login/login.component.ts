@@ -9,6 +9,7 @@ import {TableOrderResponse} from "../Service/table-order-response";
 import {FilterService} from "../widgets/filters/filter.service";
 import {OrderRequest} from "../widgets/filters/order.request";
 import * as moment from 'moment';
+import {AppNavigateService} from "../Service/app-navigate.service";
 
 interface City {
     name: string,
@@ -42,6 +43,7 @@ export class LoginComponent implements OnInit {
     constructor(public apiService: ApiDataServiceService,
                 public orderService: OrderService,
                 public filterService: FilterService,
+                public appNavigate:AppNavigateService,
                 private messageService: MessageService,
                 private router: Router) {
         this.getUsers()
@@ -83,7 +85,7 @@ export class LoginComponent implements OnInit {
         this.selectedUser.password = this.password;
         this.apiService.setUserData(this.selectedUser)
         this.orderRequest.lang = this.apiService.getLang();
-
+        this.appNavigate.indexSelect=2
         this.filterService.onDefaultValue()
         this.orderRequest = this.filterService.getOrderRequest()
         this.orderRequest.user = this.selectedUser
@@ -93,18 +95,21 @@ export class LoginComponent implements OnInit {
             'login', this.selectedUser,
             true
         );
-
         if (validate) {
+
             this.orderService.setUserValidate(true)
             this.showSuccess('пользователь авторизтрован')
             if (this.selectedUser.role !== 2 && validate) {
                 this.apiService.adminMode = false
-                this.router.navigate(['/selectWork'])
+                this.appNavigate.toSelectWork()
+                // this.router.navigate(['/selectWork'])
             } else if (validate) {
                 this.apiService.adminMode = true
-                this.router.navigate(['/order']);
+                this.appNavigate.toOrders()
+                // this.router.navigate(['/order']);
             }
         } else {
+            this.orderService.setUserValidate(false)
             this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
         }
 

@@ -1,6 +1,7 @@
 <app-table-page [startData]="data" [title]=" 'page.listOrders' | translate"
                 [mainColumn]="mainColumn"
                 (onUpdateData)="updateData()"
+                [confirmDialog]="true"
                 (onLazyLoad)="twoDownload()"
                 [contextMenuActionDisable]="false"
                 [buttonItems]="[]"

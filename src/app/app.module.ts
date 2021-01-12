@@ -61,6 +61,7 @@ import { WorkPeriodFilterComponent } from './widgets/filters/work-period-filter/
 import {ProgressBarModule} from "primeng/progressbar";
 import { WorkMasterPageComponent } from './work-master-page/work-master-page.component';
 import { WorkItemFilterPageComponent } from './widgets/filters/work-item-filter-page/work-item-filter-page.component';
+import { ListboxComponent } from './widgets/listbox/listbox.component';
 
 // @ts-ignore
 // @ts-ignore
@@ -126,7 +127,8 @@ import { WorkItemFilterPageComponent } from './widgets/filters/work-item-filter-
         WorkStatusFilterComponent,
         WorkPeriodFilterComponent,
         WorkMasterPageComponent,
-        WorkItemFilterPageComponent],
+        WorkItemFilterPageComponent,
+        ListboxComponent],
     providers: [ConfirmationService, MessageService]
 })
 
