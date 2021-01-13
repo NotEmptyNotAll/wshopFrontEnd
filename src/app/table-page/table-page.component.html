@@ -243,7 +243,7 @@
                     <td *ngIf="contextMenuActionDisable && !masterWindowsSelectDisable" [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
 
                         <button pRipple pButton type="button"
-                                [disabled]="rowData['статус']!=='выполняется'"
+                                [disabled]="rowData['статус']==='выполняется'"
                                 class=" p-button-success"
                                 (click)="contextAction(rowData['ID работы'])"
                                 style="min-width: 8rem"
