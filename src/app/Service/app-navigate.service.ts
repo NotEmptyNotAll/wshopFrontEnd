@@ -56,19 +56,17 @@ export class AppNavigateService {
     ];
 
     public updateOptions(index) {
-        if (this.indexSelect === -1) {
-            this.indexSelect = index
-        }
 
         if(this.apiService.adminMode){
-            this.optionsAdmin.find(elem =>
-                elem.id === this.indexSelect).selected = false
+            this.optionsAdmin.map(elem=>{
+                elem.selected=false
+            })
         }else {
-            this.optionsUser.find(elem =>
-                elem.id === this.indexSelect
-            ).selected = false
-        }
+            this.optionsUser.map(elem=>{
+                elem.selected=false
+            })
 
+        }
         if(this.apiService.adminMode){
             this.optionsAdmin.find(elem =>
                 elem.id === index

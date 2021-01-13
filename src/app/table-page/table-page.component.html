@@ -51,20 +51,17 @@
     <!--  currentPageReportTemplate="{{'page.TableNumLabel' | translate}}"
                [rows]="100" [showCurrentPageReport]="true" [rowsPerPageOptions]="[20,30,50,100]"
               [paginator]="true" -->
-    <div style="height: 88vh;background: #f4f4f4;width: 100%">
+    <div [style]="{height: tableDataService.mainData.length>20?'79vh':'88vh',background: '#f4f4f4',width: '100%'}">
         <p-table
-                [totalRecords]="80"
-                [virtualScroll]="true"
-                [rows]="20"
-                [virtualRowHeight]="'35px'"
-                [reorderableColumns]="true"
-                class="table-style"
+                styleClass="{{!contextMenuActionDisable?'p-datatable-sm':''}}"
                 [(contextMenuSelection)]="contextSelectItem"
                 [columns]="_selectedColumns" [value]="tableDataService.mainData" [scrollable]="true"
                 scrollHeight="flex"
                 [loading]="apiService.isLoadingData"
                 columnResizeMode="expand"
-                style="border-color: #f4f4f4"
+                [paginator]="true" [rows]="50" [showCurrentPageReport]="true"
+                currentPageReportTemplate="Показано с {first} до {last} из {totalRecords}" [rowsPerPageOptions]="[30,50,75,100]"
+                style="border-color: #f4f4f4;"
                 [style]="{borderColor:'#f4f4f4',zIndex:'0'}"
                 [resizableColumns]="true" selectionMode="single"
                 dataKey="id">
@@ -177,7 +174,7 @@
             <ng-template pTemplate="colgroup">
                 <colgroup>
                     <col style="width:30px">
-                    <!--                    <col style="width:30px">-->
+                                        <col style="width:30px">
                     <col *ngFor="let col of columns" style="{{'width:'+col.width+'px'}}">
                     <!--                    <col *ngIf="buttonActionDisable" style="width:150px">-->
                     <col *ngIf="contextMenuActionDisable" style="width:100px">
@@ -188,8 +185,8 @@
                 <tr style="border-color: #f4f4f4" [style]="{borderColor:'#f4f4f4'}">
                     <th style="width:2rem;border-color: #f4f4f4"
                         [style]="{borderColor:'#f4f4f4', fontSize:'12px'}"></th>
-                    <!--                    <th style="width:2rem;border-color: #f4f4f4"-->
-                    <!--                        [style]="{borderColor:'#f4f4f4', fontSize:'15px'}"></th>-->
+                                        <th style="width:2rem;border-color: #f4f4f4"
+                                            [style]="{borderColor:'#f4f4f4', fontSize:'15px'}"></th>
 
                     <th *ngFor="let col of columns" pResizableColumn [pSortableColumn]="col.header"
                         style="border-color: #f4f4f4" [style]="{borderColor:'#f4f4f4', fontSize:'12px'}">
@@ -219,10 +216,11 @@
                     <td [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
                         <span class="pi pi-bars" pReorderableRowHandle></span>
                     </td>
-                    <!--                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px'}">-->
-                    <!--                        <span *ngIf="rowData.Comment!==''" class="pi pi-info-circle" pReorderableRowHandle-->
-                    <!--                              (click)="confirm($event,rowData)"></span>-->
-                    <!--                    </td>-->
+
+                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px'}">
+                                            <span style="cursor: pointer !important;" *ngIf="rowData.Comment!==''" class="pi pi-info-circle" pReorderableRowHandle
+                                                  (click)="confirm($event,rowData)"></span>
+                    </td>
                     <td *ngFor="let col of columns" class="ui-resizable-column" pResizableColumn
                         [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
                         <span *ngIf="contextMenuActionDisable">
@@ -243,6 +241,7 @@
                     </td>
                     <td *ngIf="contextMenuActionDisable && !masterWindowsSelectDisable" [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
                         <button pRipple pButton type="button"
+                                *ngIf="rowData['статус']!=='выполняется' && rowData['статус']!=='пауза' && rowData['статус']!=='выполнена'"
                                 class=" p-button-success"
                                 (click)="contextAction(rowData['ID работы'])"
                                 style="min-width: 8rem"
@@ -263,9 +262,11 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage">
+
                 <tr>
                     <td [colSpan]="_selectedColumns.length">No records found</td>
                 </tr>
+                <div style="height: 680px"></div>
             </ng-template>
         </p-table>
     </div>
