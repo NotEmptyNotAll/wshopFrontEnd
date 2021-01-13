@@ -43,15 +43,15 @@
         </p-footer>
     </p-dialog>
     <p-confirmPopup [visible]="confirmDisplay"></p-confirmPopup>
-<!--    <p-contextMenu-->
-<!--        #cm-->
-<!--        [hidden]="!contextMenuActionDisable"-->
-<!--        [model]="items"></p-contextMenu>-->
+    <!--    <p-contextMenu-->
+    <!--        #cm-->
+    <!--        [hidden]="!contextMenuActionDisable"-->
+    <!--        [model]="items"></p-contextMenu>-->
 
     <!--  currentPageReportTemplate="{{'page.TableNumLabel' | translate}}"
                [rows]="100" [showCurrentPageReport]="true" [rowsPerPageOptions]="[20,30,50,100]"
               [paginator]="true" -->
-    <div [style]="{height: tableDataService.mainData.length>20?'79vh':'88vh',background: '#f4f4f4',width: '100%'}">
+    <div [style]="{height: '88vh',background: '#f4f4f4',width: '100%'}">
         <p-table
                 styleClass="p-datatable-sm"
                 [(contextMenuSelection)]="contextSelectItem"
@@ -59,8 +59,8 @@
                 scrollHeight="flex"
                 [loading]="apiService.isLoadingData"
                 columnResizeMode="expand"
-                [paginator]="true" [rows]="50" [showCurrentPageReport]="true"
-                currentPageReportTemplate="Показано с {first} до {last} из {totalRecords}" [rowsPerPageOptions]="[30,50,75,100]"
+                [virtualScroll]="true"
+                virtualRowHeight="5"
                 style="border-color: #f4f4f4;"
                 [style]="{borderColor:'#f4f4f4',zIndex:'0'}"
                 [resizableColumns]="true" selectionMode="single"
@@ -174,7 +174,7 @@
             <ng-template pTemplate="colgroup">
                 <colgroup>
                     <col style="width:30px">
-                                        <col style="width:30px">
+                    <col style="width:30px">
                     <col *ngFor="let col of columns" style="{{'width:'+col.width+'px'}}">
                     <!--                    <col *ngIf="buttonActionDisable" style="width:150px">-->
                     <col *ngIf="contextMenuActionDisable" style="width:100px">
@@ -185,8 +185,8 @@
                 <tr style="border-color: #f4f4f4" [style]="{borderColor:'#f4f4f4'}">
                     <th style="width:2rem;border-color: #f4f4f4"
                         [style]="{borderColor:'#f4f4f4', fontSize:'12px'}"></th>
-                                        <th style="width:2rem;border-color: #f4f4f4"
-                                            [style]="{borderColor:'#f4f4f4', fontSize:'15px'}"></th>
+                    <th style="width:2rem;border-color: #f4f4f4"
+                        [style]="{borderColor:'#f4f4f4', fontSize:'15px'}"></th>
 
                     <th *ngFor="let col of columns" pResizableColumn [pSortableColumn]="col.header"
                         style="border-color: #f4f4f4" [style]="{borderColor:'#f4f4f4', fontSize:'12px'}">
