@@ -3,7 +3,7 @@
         <p-autoComplete (onSelect)="changeState()" [(ngModel)]="selected" [suggestions]="works"
                         (completeMethod)="filter($event)" panelStyle="panel-style"
                         field="name"
-                        placeholder="работа c фик. ц."
+                        placeholder="работа"
                         (onClear)="clear()"
                         [type]="'search'"
                         [dropdown]="true">

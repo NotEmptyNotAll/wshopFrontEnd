@@ -95,14 +95,14 @@
                                                (click)="confirmOnFilter($event)"
                             ></app-detail-filter>
                         </div>
-                        <div *ngIf="standardFilterDisable && !hideButtonBar && filterService.fixDataSelect"
+                        <div *ngIf="standardFilterDisable && !hideButtonBar && !filterService.fixDataSelect"
                              class="p-mb-2 p-mr-2"
                              style="width: 300px; position: relative;top:-10px">
                             <app-work-item-filter-page (onSuggest)="updateData()"
                                                        (click)="confirmOnFilter($event)"
                             ></app-work-item-filter-page>
                         </div>
-                        <div *ngIf="standardFilterDisable && !hideButtonBar && !filterService.fixDataSelect"
+                        <div *ngIf="standardFilterDisable && !hideButtonBar && filterService.fixDataSelect"
                              class="p-mb-2 p-mr-2"
                              style="width: 300px; position: relative;top:-10px">
                             <app-work-filter (onSuggest)="updateData()"
@@ -241,8 +241,9 @@
                         </span>
                     </td>
                     <td *ngIf="contextMenuActionDisable && !masterWindowsSelectDisable" [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
+
                         <button pRipple pButton type="button"
-                                *ngIf="rowData['статус']!=='выполняется' && rowData['статус']!=='пауза' && rowData['статус']!=='выполнена'"
+                                [disabled]="rowData['статус']!=='выполняется'"
                                 class=" p-button-success"
                                 (click)="contextAction(rowData['ID работы'])"
                                 style="min-width: 8rem"
