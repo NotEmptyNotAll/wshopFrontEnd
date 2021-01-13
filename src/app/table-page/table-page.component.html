@@ -174,7 +174,7 @@
             <ng-template pTemplate="colgroup">
                 <colgroup>
                     <col style="width:30px">
-                    <col style="width:30px">
+                    <col style="width:30px" *ngIf="!contextMenuActionDisable">
                     <col *ngFor="let col of columns" style="{{'width:'+col.width+'px'}}">
                     <!--                    <col *ngIf="buttonActionDisable" style="width:150px">-->
                     <col *ngIf="contextMenuActionDisable" style="width:100px">
@@ -186,6 +186,7 @@
                     <th style="width:2rem;border-color: #f4f4f4"
                         [style]="{borderColor:'#f4f4f4', fontSize:'12px'}"></th>
                     <th style="width:2rem;border-color: #f4f4f4"
+                        *ngIf="!contextMenuActionDisable"
                         [style]="{borderColor:'#f4f4f4', fontSize:'15px'}"></th>
 
                     <th *ngFor="let col of columns" pResizableColumn [pSortableColumn]="col.header"
@@ -201,23 +202,23 @@
             </ng-template>
             <ng-template pTemplate="loadingbody" let-columns="columns">
                 <tr style="height:34px">
-                    <td *ngFor="let col of columns">
+                    <td *ngFor="let col of columns" >
                     </td>
                     <td>
 
                     </td>
-                    <td *ngIf="contextMenuActionDisable">
+                    <td *ngIf="!contextMenuActionDisable">
 
                     </td>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
                 <tr [pReorderableRow]="index" [pContextMenuRow]="rowData">
-                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
+                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}" >
                         <span class="pi pi-bars" pReorderableRowHandle></span>
                     </td>
 
-                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px'}">
+                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px'}" *ngIf="!contextMenuActionDisable">
                                             <span style="cursor: pointer !important;" *ngIf="rowData.Comment!==''" class="pi pi-info-circle" pReorderableRowHandle
                                                   (click)="confirm($event,rowData)"></span>
                     </td>
