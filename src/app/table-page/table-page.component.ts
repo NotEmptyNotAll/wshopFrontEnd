@@ -280,7 +280,6 @@ export class TablePageComponent implements OnInit {
             }, false
         );
         if(data.status!==-1){
-            alert(JSON.stringify(data))
             this.orderService.setOrderResponse(data)
             this.orderService.dataIsExist = true
             this.appNavigate.toListOfWork()
