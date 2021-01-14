@@ -27,6 +27,7 @@ export class FilterService {
         workStatus: null,
         workDateTo: null,
         workDateFrom: null,
+        onlyUser:false,
         detailId: null,
         autoDetectionExecutor: true,
         closeDate: false
@@ -40,6 +41,7 @@ export class FilterService {
         this.orderRequest.dateTo = dateTo
         this.orderRequest.rowStartIndex = 0
         this.orderRequest.dateFrom = dateFrom
+        this.orderRequest.onlyUser=false
         this.orderRequest.state = 'UNCLOSED'
         this.orderRequest.sizeResponse = 15;
     }

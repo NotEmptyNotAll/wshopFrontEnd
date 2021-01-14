@@ -279,9 +279,11 @@ export class TablePageComponent implements OnInit {
                 user: this.apiService.getUserData()
             }, false
         );
+
+
         if(data.status!==-1){
-            this.orderService.setOrderResponse(data)
-            this.orderService.dataIsExist = true
+            // this.orderService.setOrderResponse(data)
+            // this.orderService.dataIsExist = true
             this.appNavigate.toListOfWork()
         }else {
             this.apiService.normalizeError('работа уже была начата')

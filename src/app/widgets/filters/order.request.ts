@@ -21,4 +21,5 @@ export interface OrderRequest {
     workId: number;
     sizeResponse: number;
     detailId: number;
+    onlyUser: boolean;
 }

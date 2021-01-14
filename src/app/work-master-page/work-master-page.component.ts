@@ -79,11 +79,14 @@ export class WorkMasterPageComponent implements OnInit {
             this.orderRequest = this.filterService.getOrderRequest()
             this.orderRequest.detailId = null
             this.orderRequest.workStatus =2
+            this.orderRequest.onlyUser=true
             this.filterService.setOrderRequest(this.orderRequest)
             let ordersResponse = await this.apiService.post<TableOrderResponse>(
                 'getListOFWork', this.filterService.getOrderRequest(),
                 true
             );
+
+
             if (ordersResponse.status !== undefined &&
                 ordersResponse.status !== -1) {
                 this.orderService.setOrderResponse(ordersResponse)
@@ -112,7 +115,7 @@ export class WorkMasterPageComponent implements OnInit {
         this.data = this.orderService.getOrderResponse()
         this.mainColumn = []
         this.data.columnTables.map(elem => {
-            if (elem.nameColumn !== 'ID работы') {
+            // if (elem.nameColumn !== 'ID работы') {
                 this.mainColumn.push(
                     {
                         field: elem.nameColumn,
@@ -120,7 +123,7 @@ export class WorkMasterPageComponent implements OnInit {
                         width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
                     }
                 )
-            }
+            // }
         })
         let tableBody = []
         this.data.ordersTableBody.map(row => {

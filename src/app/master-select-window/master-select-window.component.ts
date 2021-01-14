@@ -75,6 +75,7 @@ export class MasterSelectWindowComponent implements OnInit {
         this.orderRequest = this.filterService.getOrderRequest()
         this.orderRequest.detailId = null
         this.orderRequest.workStatus = 0
+        this.orderRequest.onlyUser = false
         this.filterService.setOrderRequest(this.orderRequest)
         let ordersResponse = await this.apiService.post<TableOrderResponse>(
             'getListOFWork', this.filterService.getOrderRequest(),
