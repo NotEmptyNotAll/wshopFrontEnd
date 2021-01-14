@@ -82,7 +82,7 @@ export class TablePageComponent implements OnInit {
     display: boolean = false;
 
     confirmOnFilter(event) {
-        if ((this.serviceStateFiler.disableFastFiled || this.filterPeriodService.disableFastFiled) && this.confirmDialog ) {
+        if ((this.serviceStateFiler.disableFastFiled || this.filterPeriodService.disableFastFiled) && this.confirmDialog) {
             this.confirmationService.confirm({
                 target: event.target,
                 // message: 'стандартнi фiльтри будуть очищені. Продовжити?',
@@ -234,6 +234,7 @@ export class TablePageComponent implements OnInit {
     }
 
 
+
     updateContextMenu() {
 
         if (this.contextMenuActionDisable) {
@@ -241,7 +242,7 @@ export class TablePageComponent implements OnInit {
                 this.items = [{
                     label: 'завершить', icon: 'pi pi-fw pi-times',
                     command: () => {
-                        this.contextActionEnd(this.contextSelectItem['ID работы'])
+                        // this.contextActionEnd(this.contextSelectItem['ID работы'])
                     }
                 },
                     {label: 'пауза', icon: 'pi pi-fw pi-pause'}]
@@ -249,7 +250,7 @@ export class TablePageComponent implements OnInit {
                 this.items = [{
                     label: 'начать', icon: 'pi pi-fw pi-play',
                     command: () => {
-                        this.contextAction(this.contextSelectItem['ID работы'])
+                        // this.contextAction(this.contextSelectItem['ID работы'])
                     }
                 }]
             }
@@ -262,7 +263,7 @@ export class TablePageComponent implements OnInit {
         this.cols = this.mainColumn.slice()
         this.columns = this.cols
         this._selectedColumns = this.cols;
-        this.display=false
+        this.display = false
 
         if (this.dynamicColumns !== '') {
             this.tableDataService.addColumnText = this.dynamicColumns
@@ -271,16 +272,22 @@ export class TablePageComponent implements OnInit {
 
     }
 
-    async contextAction(userId: number) {
+    async contextAction(userId: number, status: string) {
         let data = await this.apiService.post<TableOrderResponse>(
             'startWork', {
-                id: userId, date: '',
+                id: userId, date: status,
                 user: this.apiService.getUserData()
             }, false
         );
-        this.orderService.setOrderResponse(data)
-        this.orderService.dataIsExist=true
-        this.appNavigate.toListOfWork()
+        if(data.status!==-1){
+            alert(JSON.stringify(data))
+            this.orderService.setOrderResponse(data)
+            this.orderService.dataIsExist = true
+            this.appNavigate.toListOfWork()
+        }else {
+            this.apiService.normalizeError('работа уже была начата')
+        }
+
         // this.router.navigate(['/workPage']);
         // this.contextMenuActionUpdateData.emit()
     }
@@ -294,8 +301,8 @@ export class TablePageComponent implements OnInit {
         );
 
         this.orderService.setOrderResponse(data)
-        let reqst =this.filterService.getOrderRequest()
-        reqst.workStatus=2
+        let reqst = this.filterService.getOrderRequest()
+        reqst.workStatus = 2
         this.filterService.setOrderRequest(reqst)
         this.onUpdateData.emit()
 
@@ -340,11 +347,7 @@ export class TablePageComponent implements OnInit {
             let value2 = data2[event.field];
             let result = null;
 
-            let dat1 = Date.parse(value1)
-            let dat2 = Date.parse(value2)
-            if (dat1 != null) {
-                result = (dat1 < dat2) ? -1 : (dat1 > dat2) ? 1 : 0;
-            } else if (value1 == null && value2 != null)
+            if (value1 == null && value2 != null)
                 result = -1;
             else if (value1 != null && value2 == null)
                 result = 1;
@@ -370,7 +373,7 @@ export class TablePageComponent implements OnInit {
         // //trigger change detection
         // this.tableDataService.mainData = [...this.tableDataService.mainData];
 
-        alert(event.first + ' ' + event.rows);
+        // alert(event.first + ' ' + event.rows);
         // if (this.apiService.sizeNextRequest>0  ) {
         //     // let loadedCars = this.tableDataService.mainData.slice(event.first, (event.first + event.rows));
         //     // Array.prototype.splice.apply( this.tableDataService.mainData, [...[event.first, event.rows], ...loadedCars]);

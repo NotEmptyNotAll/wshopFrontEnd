@@ -56,11 +56,11 @@
                 styleClass="p-datatable-sm"
                 [(contextMenuSelection)]="contextSelectItem"
                 [columns]="_selectedColumns" [value]="tableDataService.mainData" [scrollable]="true"
-                scrollHeight="flex"
                 [loading]="apiService.isLoadingData"
                 columnResizeMode="expand"
+                [rows]="100" scrollHeight="flex"
                 [virtualScroll]="true"
-                virtualRowHeight="5"
+                [virtualRowHeight]="contextMenuActionDisable?50:5"
                 style="border-color: #f4f4f4;"
                 [style]="{borderColor:'#f4f4f4',zIndex:'0'}"
                 [resizableColumns]="true" selectionMode="single"
@@ -213,22 +213,22 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
-                <tr [pReorderableRow]="index" [pContextMenuRow]="rowData">
-                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}" >
-                        <span class="pi pi-bars" pReorderableRowHandle></span>
-                    </td>
+                    <tr [pReorderableRow]="index" [pContextMenuRow]="rowData">
+                        <td [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}" >
+                            <span class="pi pi-bars" pReorderableRowHandle></span>
+                        </td>
 
-                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px'}" *ngIf="!contextMenuActionDisable">
+                        <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px'}" *ngIf="!contextMenuActionDisable">
                                             <span style="cursor: pointer !important;" *ngIf="rowData.Comment!==''" class="pi pi-info-circle" pReorderableRowHandle
                                                   (click)="confirm($event,rowData)"></span>
-                    </td>
-                    <td *ngFor="let col of columns" class="ui-resizable-column" pResizableColumn
-                        [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
+                        </td>
+                        <td *ngFor="let col of columns" class="ui-resizable-column" pResizableColumn
+                            [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
                         <span *ngIf="contextMenuActionDisable">
                                                                         {{rowData[col.field]}}
 
                         </span>
-                        <span *ngIf="!contextMenuActionDisable">
+                            <span *ngIf="!contextMenuActionDisable">
                     <span *ngIf="(rowData[col.field]==='yes' || rowData[col.field]==='1') ">
                         <i class="pi pi-check"></i>
                         </span>
@@ -239,29 +239,30 @@
                                             {{rowData[col.field]}}
                     </span>
                         </span>
-                    </td>
-                    <td *ngIf="contextMenuActionDisable && !masterWindowsSelectDisable" [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
+                        </td>
+                        <td *ngIf="contextMenuActionDisable && !masterWindowsSelectDisable" [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
 
-                        <button pRipple pButton type="button"
-                                [disabled]="rowData['статус']==='выполняется'"
-                                class=" p-button-success"
-                                (click)="contextAction(rowData['ID работы'])"
-                                style="min-width: 8rem"
-                                label="начать" icon="pi pi-play"></button>
-                    </td>
-                    <td *ngIf="contextMenuActionDisable && masterWindowsSelectDisable" [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
-                        <button pRipple pButton type="button"
-                                class=" p-button-danger"
-                                (click)="contextActionEnd(rowData['ID работы'])"
-                                style="min-width: 8rem"
-                                label="завершить"></button>
-                    </td>
-                    <!--                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px',zIndex:'2'}" *ngIf="buttonActionDisable">-->
+                            <button pRipple pButton type="button"
+                                    [disabled]="rowData['статус']==='выполняется'"
+                                    class=" p-button-success"
+                                    (click)="contextAction(rowData['ID работы'],rowData['статус'])"
+                                    style="min-width: 8rem"
+                                    label="начать" icon="pi pi-play"></button>
+                        </td>
+                        <td *ngIf="contextMenuActionDisable && masterWindowsSelectDisable" [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
+                            <button pRipple pButton type="button"
+                                    class=" p-button-danger"
+                                    (click)="contextActionEnd(rowData['ID работы'])"
+                                    style="min-width: 8rem"
+                                    label="завершить"></button>
+                        </td>
+                        <!--                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px',zIndex:'2'}" *ngIf="buttonActionDisable">-->
 
-                    <!--                        <app-button-list-action></app-button-list-action>-->
+                        <!--                        <app-button-list-action></app-button-list-action>-->
 
-                    <!--                    </td>-->
-                </tr>
+                        <!--                    </td>-->
+                    </tr>
+
             </ng-template>
             <ng-template pTemplate="emptymessage">
 
