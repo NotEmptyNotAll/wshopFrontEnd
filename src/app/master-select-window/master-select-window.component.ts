@@ -25,6 +25,7 @@ export class MasterSelectWindowComponent implements OnInit {
     secIncr: number = 1
     temp: any;
     buttItem: MenuItem[];
+    private intervalUpdate: any
     private user: User;
     private orderRequest: OrderRequest
 
@@ -53,9 +54,12 @@ export class MasterSelectWindowComponent implements OnInit {
         } else {
             this.router.navigate(['/'])
         }
+
     }
 
     ngOnInit(): void {
+
+        this.updateInfoOnSite()
         this.buttItem = [
             {
                 label: 'Update', icon: 'pi pi-refresh', command: () => {
@@ -179,8 +183,7 @@ export class MasterSelectWindowComponent implements OnInit {
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
             row.rowData.map(cell => {
-                if (cell.cellName === 'Код' || cell.cellName === 'Долг' || cell.cellName === 'Всего'
-                    || cell.cellName === 'З/ч' || cell.cellName === 'Раб.') {
+                if (cell.cellName === 'номер заказа' || cell.cellName === 'ID работы' || cell.cellName === 'кол-во') {
                     tableRow[cell.cellName] = Number(cell.cellData)
                 } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
                     let data = new Date(cell.cellData)
@@ -212,4 +215,24 @@ export class MasterSelectWindowComponent implements OnInit {
 
         this.tableDataService.setStartData(this.data)
     }
+
+
+    updateInfoOnSite() {
+
+        let sec = 0
+        this.intervalUpdate = setInterval(() => {
+            sec++
+            if (sec === 3) {
+                this.apiService.applySubLoading = false
+                this.onUpdate()
+                sec = 0
+            }
+        }, 1000);
+    }
+
+    ngOnDestroy() {
+        clearInterval(this.intervalUpdate);
+    }
+
+
 }

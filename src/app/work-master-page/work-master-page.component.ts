@@ -9,6 +9,7 @@ import {ApiDataServiceService} from "../Service/api-data-service.service";
 import {FilterService} from "../widgets/filters/filter.service";
 import {Router} from "@angular/router";
 import * as moment from "moment";
+import {AppNavigateService} from "../Service/app-navigate.service";
 
 @Component({
     selector: 'app-work-master-page',
@@ -33,6 +34,7 @@ export class WorkMasterPageComponent implements OnInit {
                 public orderService: OrderService,
                 public renderer2: Renderer2,
                 public tableDataService: TableDataService,
+                private appNavigate: AppNavigateService,
                 public apiService: ApiDataServiceService,
                 public filterService: FilterService,
                 private router: Router) {
@@ -78,8 +80,8 @@ export class WorkMasterPageComponent implements OnInit {
         } else {
             this.orderRequest = this.filterService.getOrderRequest()
             this.orderRequest.detailId = null
-            this.orderRequest.workStatus =2
-            this.orderRequest.onlyUser=true
+            this.orderRequest.workStatus = 2
+            this.orderRequest.onlyUser = true
             this.filterService.setOrderRequest(this.orderRequest)
             let ordersResponse = await this.apiService.post<TableOrderResponse>(
                 'getListOFWork', this.filterService.getOrderRequest(),
@@ -113,53 +115,61 @@ export class WorkMasterPageComponent implements OnInit {
 
     updateData() {
         this.data = this.orderService.getOrderResponse()
-        this.mainColumn = []
-        this.data.columnTables.map(elem => {
-            // if (elem.nameColumn !== 'ID работы') {
-                this.mainColumn.push(
-                    {
-                        field: elem.nameColumn,
-                        header: elem.nameColumn,
-                        width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
-                    }
-                )
-            // }
-        })
-        let tableBody = []
-        this.data.ordersTableBody.map(row => {
-            let tableRow: any = {}
-            row.rowData.map(cell => {
-                if (cell.cellName === 'номер заказа' || cell.cellName === 'ID работы' || cell.cellName === 'кол-во') {
-                    tableRow[cell.cellName] = Number(cell.cellData)
-                } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
-                    let data = new Date(cell.cellData)
-                    tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth() + '.' + data.getFullYear();
-                } else {
-                    tableRow[cell.cellName] = cell.cellData
+        if (this.data.ordersTableBody !== undefined &&
+            this.data.ordersTableBody !== null && this.data.ordersTableBody.length === 0) {
+            this.appNavigate.toSelectWork();
+        } else {
+            this.mainColumn = []
+            this.data.columnTables.map(elem => {
+                if (elem.nameColumn !== 'ID работы' &&
+                    elem.nameColumn !== 'статус' &&
+                    elem.nameColumn !== 'исполнители' &&
+                    elem.nameColumn !== 'выполн.до' &&
+                    elem.nameColumn !== 'автомобиль' &&
+                    elem.nameColumn !== 'деталь') {
+                    this.mainColumn.push(
+                        {
+                            field: elem.nameColumn,
+                            header: elem.nameColumn,
+                            width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
+                        }
+                    )
                 }
             })
-            tableBody.push(tableRow)
-        })
-
-        let tableRowPattern: any = {}
-
-        if (this.data.ordersTableBody.length !== 0) {
-            this.data.ordersTableBody[0].rowData.map(
-                cell => {
-                    if (cell.cellName === 'Close') {
-                        tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3)
-
+            let tableBody = []
+            this.data.ordersTableBody.map(row => {
+                let tableRow: any = {}
+                row.rowData.map(cell => {
+                    if (cell.cellName === 'номер заказа' || cell.cellName === 'ID работы' || cell.cellName === 'кол-во') {
+                        tableRow[cell.cellName] = Number(cell.cellData)
+                    } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
+                        let data = new Date(cell.cellData)
+                        tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth() + '.' + data.getFullYear();
                     } else {
-                        tableRowPattern[cell.cellName] = cell.cellData;
+                        tableRow[cell.cellName] = cell.cellData
                     }
-                }
-            )
-        }
-        this.tableService.setMainData(tableBody)
-        this.tableService.setTablePatternRow(tableRowPattern)
-        console.log(tableBody)
-        this.tableDataService.setStartData(this.data)
+                })
+                tableBody.push(tableRow)
+            })
 
+            let tableRowPattern: any = {}
+
+            if (this.data.ordersTableBody.length !== 0) {
+                this.data.ordersTableBody[0].rowData.map(
+                    cell => {
+                        if (cell.cellName === 'Close') {
+                            tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3)
+
+                        } else {
+                            tableRowPattern[cell.cellName] = cell.cellData;
+                        }
+                    }
+                )
+            }
+            this.tableService.setMainData(tableBody)
+            this.tableService.setTablePatternRow(tableRowPattern)
+            this.tableDataService.setStartData(this.data)
+        }
     }
 
     async onUpdate() {
@@ -181,8 +191,7 @@ export class WorkMasterPageComponent implements OnInit {
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
             row.rowData.map(cell => {
-                if (cell.cellName === 'Код' || cell.cellName === 'Долг' || cell.cellName === 'Всего'
-                    || cell.cellName === 'З/ч' || cell.cellName === 'Раб.') {
+                if (cell.cellName === 'номер заказа' || cell.cellName === 'ID работы' || cell.cellName === 'кол-во') {
                     tableRow[cell.cellName] = Number(cell.cellData)
                 } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
                     let data = new Date(cell.cellData)

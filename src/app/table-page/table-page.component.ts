@@ -234,7 +234,6 @@ export class TablePageComponent implements OnInit {
     }
 
 
-
     updateContextMenu() {
 
         if (this.contextMenuActionDisable) {
@@ -275,17 +274,17 @@ export class TablePageComponent implements OnInit {
     async contextAction(userId: number, status: string) {
         let data = await this.apiService.post<TableOrderResponse>(
             'startWork', {
-                id: userId, date: status,
+                id: userId, data: status,
+                date: moment().utc().format("YYYY-MM-DD"),
                 user: this.apiService.getUserData()
             }, false
         );
 
-
-        if(data.status!==-1){
+        if (data.status !== -1) {
             // this.orderService.setOrderResponse(data)
             // this.orderService.dataIsExist = true
             this.appNavigate.toListOfWork()
-        }else {
+        } else {
             this.apiService.normalizeError('работа уже была начата')
         }
 
@@ -296,7 +295,8 @@ export class TablePageComponent implements OnInit {
     async contextActionEnd(userId: number) {
         let data = await this.apiService.post<TableOrderResponse>(
             'endWork', {
-                id: userId, date: '',
+                id: userId, data: '',
+                date: moment().utc().format("YYYY-MM-DD"),
                 user: this.apiService.getUserData()
             }, false
         );
@@ -305,7 +305,7 @@ export class TablePageComponent implements OnInit {
         let reqst = this.filterService.getOrderRequest()
         reqst.workStatus = 2
         this.filterService.setOrderRequest(reqst)
-        this.onUpdateData.emit()
+        // this.onUpdateData.emit()
 
         // this.onUpdateData.emit()
         this.contextMenuActionUpdateData.emit()
