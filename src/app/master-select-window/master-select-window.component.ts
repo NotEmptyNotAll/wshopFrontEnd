@@ -102,7 +102,7 @@ export class MasterSelectWindowComponent implements OnInit {
         this.sec = 0
         setInterval(() => {
             this.sec++
-            if (this.sec == 300) {
+            if (this.sec == 1500) {
                 this.router.navigate(['/'])
             }
         }, 1000);
