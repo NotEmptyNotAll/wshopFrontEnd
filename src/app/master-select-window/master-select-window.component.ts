@@ -24,6 +24,7 @@ export class MasterSelectWindowComponent implements OnInit {
     sec: number
     secIncr: number = 1
     temp: any;
+    secUpdate: number = 0
     buttItem: MenuItem[];
     private intervalUpdate: any
     private user: User;
@@ -161,6 +162,7 @@ export class MasterSelectWindowComponent implements OnInit {
     }
 
     async onUpdate() {
+        this.secUpdate = 0
         this.data = await this.apiService.post<TableOrderResponse>(
             'getListOFWork', this.filterService.getOrderRequest(), false
         );
@@ -218,14 +220,11 @@ export class MasterSelectWindowComponent implements OnInit {
 
 
     updateInfoOnSite() {
-
-        let sec = 0
         this.intervalUpdate = setInterval(() => {
-            sec++
-            if (sec === 3) {
+            this.secUpdate++
+            if (this.secUpdate === 5) {
                 this.apiService.applySubLoading = false
                 this.onUpdate()
-                sec = 0
             }
         }, 1000);
     }
