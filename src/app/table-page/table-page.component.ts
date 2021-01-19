@@ -277,7 +277,7 @@ export class TablePageComponent implements OnInit {
                 id: userId, data: status,
                 date: moment().utc().format("YYYY-MM-DD"),
                 user: this.apiService.getUserData()
-            }, false
+            }, false,true
         );
 
         if (data.status !== -1) {
@@ -298,7 +298,7 @@ export class TablePageComponent implements OnInit {
                 id: userId, data: '',
                 date: moment().utc().format("YYYY-MM-DD"),
                 user: this.apiService.getUserData()
-            }, false
+            }, false,true
         );
 
         this.tableDataService.setMainData(this.tableDataService.mainData.filter((elem)=>elem['ID работы']!==userId))

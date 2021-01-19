@@ -99,7 +99,7 @@ export class AppNavigateService {
         this.filterService.setOrderRequest(this.orderRequest)
         this.ordersResponse = await this.apiService.post<TableOrderResponse>(
             'getListOFWork', this.filterService.getOrderRequest(),
-            true
+            true,true
         );
 
         if (this.ordersResponse.status !== -1) {
@@ -121,7 +121,7 @@ export class AppNavigateService {
         this.filterService.setOrderRequest(this.orderRequest)
         this.ordersResponse = await this.apiService.post<TableOrderResponse>(
             'getListOFWork', this.filterService.getOrderRequest(),
-            true
+            true,true
         );
         if (this.ordersResponse.status !== -1) {
             this.orderService.setOrderResponse(this.ordersResponse)
@@ -135,7 +135,7 @@ export class AppNavigateService {
     async toOrders() {
         this.filterService.onDefaultValue()
         let data = await this.apiService.post<TableOrderResponse>(
-            'getCroppedOrders', this.filterService.getOrderRequest(), true
+            'getCroppedOrders', this.filterService.getOrderRequest(), true,true
         );
         this.tableService.setMainData([])
         this.orderService.setOrderResponse(data)
