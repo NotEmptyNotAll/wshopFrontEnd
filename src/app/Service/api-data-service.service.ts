@@ -104,9 +104,10 @@ export class ApiDataServiceService {
 
     }
 
-    public async post<T>(url: string, data: any, applyLoading: boolean): Promise<T> {
+    public async post<T>(url: string, data: any, applyLoading: boolean,applySubLoading:boolean): Promise<T> {
         // this.barLoading = this.applySubLoadingBar
         this.isLoading = applyLoading
+        this.applySubLoading=applySubLoading
         this.isLoadingData = this.applySubLoading
         try {
 

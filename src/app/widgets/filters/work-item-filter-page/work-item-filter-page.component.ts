@@ -48,7 +48,7 @@ export class WorkItemFilterPageComponent implements OnInit {
   async getCustomer(name) {
     this.apiService.applySubLoading=false
     this.works = await this.apiService.post<SimpleData[]>('getWorkItems'
-        , {name: name, sizeResponse: 50}, false)
+        , {name: name, sizeResponse: 50}, false,false)
   }
 
   clear() {

@@ -29,6 +29,10 @@ export class OrdersComponent implements OnInit {
     temp: any;
     twoDownloadLoad: boolean = false
     private user: User;
+    private enableLoading:boolean=true
+
+    private intervalUpdate: any
+    secUpdate: number = 0
 
     constructor(@Inject(WINDOW) private window: Window,
                 public apiService: ApiDataServiceService,
@@ -88,7 +92,7 @@ export class OrdersComponent implements OnInit {
     }
 
     async getOrd() {
-        this.data=this.orderService.getOrderResponse()
+        this.data = this.orderService.getOrderResponse()
         // this.data = await this.apiService.get<Order[]>('getCroppedOrders')
         // this.data = this.orderService.getOrderResponse()
         if (this.data.status !== -1) {
@@ -137,7 +141,7 @@ export class OrdersComponent implements OnInit {
             )
             this.tableService.setMainData(tableBody)
             this.tableService.setTablePatternRow(tableRowPattern)
-        }else {
+        } else {
             this.apiService.normalizeError('Произашла ошибка. Неправильный пароль')
 
         }
@@ -151,7 +155,7 @@ export class OrdersComponent implements OnInit {
         this.filterService.setOrderRequest(request)
         this.data = await this.apiService.post<TableOrderResponse>(
             'getCroppedOrders', this.filterService.getOrderRequest(), false
-        );
+        ,true);
         let tableBody = []
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
@@ -180,19 +184,21 @@ export class OrdersComponent implements OnInit {
     }
 
     async updateData() {
+        this.secUpdate=0
         this.apiService.startIndex = 0;
         let request = this.filterService.getOrderRequest()
         request.sizeResponse = 50
         request.rowStartIndex = 0
         this.filterService.setOrderRequest(request)
-        this.tableDataService.mainData = []
-        this.apiService.applySubLoading = true;
+        this.apiService.applySubLoading=true
         this.data = await this.apiService.post<TableOrderResponse>(
             'getCroppedOrders', this.filterService.getOrderRequest(), false
-        );
+        ,this.enableLoading);
+        this.enableLoading=true
         this.apiService.startIndex += this.apiService.sizeDataResponse
         this.apiService.sizeNextRequest = this.data.sizeTwoPartData
-        this.tableDataService.mainData = []
+        // this.tableDataService.mainData = []
+
         let tabData = []
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
@@ -213,19 +219,18 @@ export class OrdersComponent implements OnInit {
             // this.tableDataService.mainData.push(tableRow)
         })
 
+
         //     if(this.data.sizeTwoPartData >0){
         //     this.tableDataService.mainData = Array.prototype
         //         .concat(this.tableDataService.mainData,
         //             Array.from({length: this.data.sizeTwoPartData > 50 ? 50 : this.data.sizeTwoPartData}))
         // }
         if (this.data.sizeTwoPartData > 0) {
-            this.tableDataService.mainData = tabData
             // this.tableDataService.mainData = Array.prototype.concat(tabData,
             //     Array.from({length: this.data.sizeTwoPartData}))
             this.twoDownload()
-        } else {
-            this.tableDataService.mainData = tabData
         }
+        this.tableDataService.setMainData(tabData)
         this.apiService.isLoadingData = false
 
         // let tableRowPattern: any = {}
@@ -244,7 +249,6 @@ export class OrdersComponent implements OnInit {
         // }
 
 
-        // this.tableDataService.setMainData(this.tableDataService.mainData)
         //this.tableDataService.setTablePatternRow(tableRowPattern)
 
         this.tableDataService.setStartData(this.data)
@@ -252,7 +256,23 @@ export class OrdersComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.updateInfoOnSite()
+    }
 
+
+    updateInfoOnSite() {
+        this.intervalUpdate = setInterval(() => {
+            this.secUpdate++
+            if (this.secUpdate === 5) {
+                this.enableLoading=false
+                this.apiService.applySubLoading = false
+                this.updateData()
+            }
+        }, 1000);
+    }
+
+    ngOnDestroy() {
+        clearInterval(this.intervalUpdate);
     }
 
 }

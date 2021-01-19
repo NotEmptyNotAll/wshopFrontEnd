@@ -28,6 +28,7 @@ export class WorkMasterPageComponent implements OnInit {
     temp: any;
     buttItem: MenuItem[];
     private user: User;
+   private enableLoading:boolean=true
     private orderRequest: OrderRequest
 
     constructor(public tableService: TableDataService,
@@ -85,7 +86,7 @@ export class WorkMasterPageComponent implements OnInit {
             this.filterService.setOrderRequest(this.orderRequest)
             let ordersResponse = await this.apiService.post<TableOrderResponse>(
                 'getListOFWork', this.filterService.getOrderRequest(),
-                true
+                true,true
             );
 
 
@@ -175,7 +176,7 @@ export class WorkMasterPageComponent implements OnInit {
     async onUpdate() {
         this.data = await this.apiService.post<TableOrderResponse>(
             'getListOFWork', this.filterService.getOrderRequest(), false
-        );
+       ,this.enableLoading );
 
         let mainColumn = [];
         this.data.columnTables.map(elem => {
@@ -187,6 +188,8 @@ export class WorkMasterPageComponent implements OnInit {
                 }
             )
         })
+
+
         let tableBody = []
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
@@ -219,6 +222,7 @@ export class WorkMasterPageComponent implements OnInit {
 
 
         this.tableDataService.setMainData(tableBody)
+
         this.tableDataService.setTablePatternRow(tableRowPattern)
 
         this.tableDataService.setStartData(this.data)

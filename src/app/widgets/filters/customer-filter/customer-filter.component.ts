@@ -44,7 +44,7 @@ export class CustomerFilterComponent implements OnInit {
     async getCustomer(nameCustomer) {
         this.apiService.applySubLoading=false
         this.customers = await this.apiService.post<User[]>('getListCustomer'
-            , {name: nameCustomer, sizeResponse: 50},false)
+            , {name: nameCustomer, sizeResponse: 50},false,false)
     }
 
     clear() {

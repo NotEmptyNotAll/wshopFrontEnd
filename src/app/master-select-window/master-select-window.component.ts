@@ -29,6 +29,7 @@ export class MasterSelectWindowComponent implements OnInit {
     private intervalUpdate: any
     private user: User;
     private orderRequest: OrderRequest
+    private enableLoading:boolean=true
 
     constructor(public tableService: TableDataService,
                 public orderService: OrderService,
@@ -84,7 +85,7 @@ export class MasterSelectWindowComponent implements OnInit {
         this.filterService.setOrderRequest(this.orderRequest)
         let ordersResponse = await this.apiService.post<TableOrderResponse>(
             'getListOFWork', this.filterService.getOrderRequest(),
-            true
+            true,true
         );
         if (ordersResponse.status !== undefined &&
             ordersResponse.status !== -1) {
@@ -165,7 +166,8 @@ export class MasterSelectWindowComponent implements OnInit {
         this.secUpdate = 0
         this.data = await this.apiService.post<TableOrderResponse>(
             'getListOFWork', this.filterService.getOrderRequest(), false
-        );
+       ,this.enableLoading );
+        this.enableLoading=true
 
         let mainColumn = [];
         this.data.columnTables.map(elem => {
@@ -223,7 +225,9 @@ export class MasterSelectWindowComponent implements OnInit {
         this.intervalUpdate = setInterval(() => {
             this.secUpdate++
             if (this.secUpdate === 5) {
+
                 this.apiService.applySubLoading = false
+                this.enableLoading=false
                 this.onUpdate()
             }
         }, 1000);

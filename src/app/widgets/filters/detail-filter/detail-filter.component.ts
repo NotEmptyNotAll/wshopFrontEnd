@@ -52,7 +52,7 @@ export class DetailFilterComponent implements OnInit {
     async getCustomer(name) {
         this.apiService.applySubLoading = false
         let data = await this.apiService.post<SimpleData[]>('getListDetails'
-            , {name: name, sizeResponse: 50}, false)
+            , {name: name, sizeResponse: 50}, false,false)
         if (this.fixDataString.indexOf(name.toLowerCase())!==-1) {
             data.unshift({id: null, name: 'работа с фикс. цен.'})
         }
@@ -71,23 +71,15 @@ export class DetailFilterComponent implements OnInit {
 
 
     changeState() {
-
         if(this.selected.id!==null){
-            this.orderRequest = this.filterService.getOrderRequest()
-            if (this.selected !== null && this.selected.id !== undefined && this.selected.id !== null) {
-                this.orderRequest.detailId = this.selected.id
-
-            } else {
-                this.orderRequest.detailId = null
-            }
-            this.filterService.setOrderRequest(this.orderRequest)
             this.filterService.fixDataSelect=false
-            this.onSuggest.emit()
         }else {
             this.filterService.fixDataSelect=true
         }
-        //this.onSuggest.emit();
-
+        let orderRequest = this.filterService.getOrderRequest()
+        orderRequest.detailId = this.selected.id
+        this.filterService.setOrderRequest(orderRequest)
+        this.onSuggest.emit()
     }
 
     change() {

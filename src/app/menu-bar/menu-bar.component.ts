@@ -138,7 +138,7 @@ export class MenuBarComponent implements OnInit {
         this.filterService.setOrderRequest(this.orderRequest)
         this.ordersResponse = await this.apiService.post<TableOrderResponse>(
             'getListOFWork', this.filterService.getOrderRequest(),
-            true
+            true,true
         );
         if (this.ordersResponse.status !== -1) {
             this.orderService.setOrderResponse(this.ordersResponse)
@@ -158,7 +158,7 @@ export class MenuBarComponent implements OnInit {
         this.filterService.setOrderRequest(this.orderRequest)
         this.ordersResponse = await this.apiService.post<TableOrderResponse>(
             'getListOFWork', this.filterService.getOrderRequest(),
-            true
+            true,true
         );
         if (this.ordersResponse.status !== -1) {
             this.orderService.setOrderResponse(this.ordersResponse)
@@ -226,7 +226,8 @@ export class MenuBarComponent implements OnInit {
                         }
                     }
                 ]
-            }
+            },            {label:"Beta 1.03"}
+
         ];
 
         this.items = [
@@ -287,7 +288,8 @@ export class MenuBarComponent implements OnInit {
                         }
                     }
                 ]
-            }
+            },
+            {label:"Beta 1.03"}
         ];
     }
 
@@ -314,7 +316,7 @@ export class MenuBarComponent implements OnInit {
                 'getCroppedOrders', {
                     user: this.apiService.getUserData(),
                     lang: this.apiService.getLang()
-                }, true
+                }, true,true
             )
 
             this.orderService.setOrderResponse(this.ordersResponse)
