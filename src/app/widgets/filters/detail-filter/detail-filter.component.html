@@ -4,6 +4,7 @@
                         (completeMethod)="filter($event)" panelStyle="panel-style"
                         field="name"
                         [type]="'search'"
+                        (ngModelChange)="change()"
                         placeholder="выберете деталь"
                         (onClear)="clear()"
                         [dropdown]="true">

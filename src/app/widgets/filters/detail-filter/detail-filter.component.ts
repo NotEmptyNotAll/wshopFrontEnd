@@ -44,6 +44,7 @@ export class DetailFilterComponent implements OnInit {
         //     }
         // }
 
+        console.log(this.selected)
 
         this.getCustomer(event.query)
     }
@@ -89,4 +90,12 @@ export class DetailFilterComponent implements OnInit {
 
     }
 
+    change() {
+        if(this.selected.id!==undefined){
+            this.filterService.workFilterEnable=false
+        }else {
+            this.filterService.workFilterEnable=true
+
+        }
+    }
 }

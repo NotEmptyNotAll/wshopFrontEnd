@@ -14,7 +14,7 @@ export class WorkPeriodFilterComponent implements OnInit {
     @Output() onSuggest: EventEmitter<any> = new EventEmitter();
     @Output() onClear: EventEmitter<any> = new EventEmitter();
     @Input() onlyField: boolean = false
-    private period = {name: '', code: -1}
+    private period =  {name: 'последние 7 дней', code: 11}
     private orderRequest: OrderRequest
     private isCloseDate: boolean = false
     private periods: any[] = [

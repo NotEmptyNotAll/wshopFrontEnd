@@ -111,6 +111,7 @@ export class AppNavigateService {
     }
 
     public async toSelectWork() {
+        this.filterService.onDefaultValue()
         this.updateOptions(2)
         this.orderRequest = this.filterService.getOrderRequest()
         this.orderRequest.workStatus = 0

@@ -33,11 +33,13 @@ export class FilterService {
         closeDate: false
     }
     public fixDataSelect:boolean=false
-
+    public workFilterEnable:boolean=true
 
     public onDefaultValue() {
         let dateFrom = moment().dayOfYear(moment().dayOfYear() - 7).utc().format("YYYY-MM-DD")
         let dateTo = moment(new Date()).utc().format("YYYY-MM-DD")
+        this.orderRequest.workDateFrom=moment().dayOfYear(moment().dayOfYear() - 7).utc().format("YYYY-MM-DD")
+        this.orderRequest.workDateTo=moment(new Date()).utc().format("YYYY-MM-DD")
         this.orderRequest.dateTo = dateTo
         this.orderRequest.rowStartIndex = 0
         this.orderRequest.dateFrom = dateFrom
