@@ -301,14 +301,19 @@ export class TablePageComponent implements OnInit {
             }, false
         );
 
-        this.orderService.setOrderResponse(data)
-        let reqst = this.filterService.getOrderRequest()
-        reqst.workStatus = 2
-        this.filterService.setOrderRequest(reqst)
+        this.tableDataService.setMainData(this.tableDataService.mainData.filter((elem)=>elem['ID работы']!==userId))
+        if (this.tableDataService.mainData.length === 0) {
+            this.appNavigate.toSelectWork();
+        }
+
+        // this.orderService.setOrderResponse(data)
+        // let reqst = this.filterService.getOrderRequest()
+        // reqst.workStatus = 2
+        // this.filterService.setOrderRequest(reqst)
         // this.onUpdateData.emit()
 
         // this.onUpdateData.emit()
-        this.contextMenuActionUpdateData.emit()
+        // this.contextMenuActionUpdateData.emit()
     }
 
 

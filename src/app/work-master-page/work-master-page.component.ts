@@ -115,10 +115,10 @@ export class WorkMasterPageComponent implements OnInit {
 
     updateData() {
         this.data = this.orderService.getOrderResponse()
-        if (this.data.ordersTableBody !== undefined &&
-            this.data.ordersTableBody !== null && this.data.ordersTableBody.length === 0) {
-            this.appNavigate.toSelectWork();
-        } else {
+        // if (this.data.ordersTableBody !== undefined &&
+        //     this.data.ordersTableBody !== null && this.data.ordersTableBody.length === 0) {
+        //     this.appNavigate.toSelectWork();
+        // } else {
             this.mainColumn = []
             this.data.columnTables.map(elem => {
                 if (elem.nameColumn !== 'ID работы' &&
@@ -169,7 +169,7 @@ export class WorkMasterPageComponent implements OnInit {
             this.tableService.setMainData(tableBody)
             this.tableService.setTablePatternRow(tableRowPattern)
             this.tableDataService.setStartData(this.data)
-        }
+        // }
     }
 
     async onUpdate() {

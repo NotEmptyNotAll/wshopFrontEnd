@@ -95,11 +95,13 @@ export class AppNavigateService {
         this.orderRequest.workStatus = 2
         this.orderRequest.detailId = null
         this.updateOptions(3)
+        this.tableDataService.setMainData([])
         this.filterService.setOrderRequest(this.orderRequest)
         this.ordersResponse = await this.apiService.post<TableOrderResponse>(
             'getListOFWork', this.filterService.getOrderRequest(),
             true
         );
+
         if (this.ordersResponse.status !== -1) {
             this.orderService.setOrderResponse(this.ordersResponse)
             this.router.navigate(['/workPage'])
