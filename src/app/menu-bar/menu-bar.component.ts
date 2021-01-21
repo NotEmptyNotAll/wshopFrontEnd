@@ -39,13 +39,13 @@ export class MenuBarComponent implements OnInit {
         {
             style: {fontSize: '1.2em'},
             label: 'работы', command: () => {
-                this.appNavigate.toSelectWork()
+                this.toSelectWork()
             },
         },
         {
             style: {fontSize: '1.2em'},
             label: 'работы на выполнении', command: () => {
-                this.appNavigate.toListOfWork()
+                this.toListOfWork()
             }
         }
     ];
@@ -53,7 +53,7 @@ export class MenuBarComponent implements OnInit {
         {
             style: {fontSize: '1.2em'},
             label: 'работы', command: () => {
-                this.appNavigate.toSelectWork()
+                this.toSelectWork()
             },
         },
         {
