@@ -33,19 +33,19 @@ export class MenuBarComponent implements OnInit {
             style: {fontSize: '1.2em'},
             label: 'заказы',
             command: () => {
-                this.toOrders()
+                this.appNavigate.toOrders()
             }
         },
         {
             style: {fontSize: '1.2em'},
             label: 'работы', command: () => {
-                this.toSelectWork()
+                this.appNavigate.toSelectWork()
             },
         },
         {
             style: {fontSize: '1.2em'},
             label: 'работы на выполнении', command: () => {
-                this.toListOfWork()
+                this.appNavigate.toListOfWork()
             }
         }
     ];
@@ -221,6 +221,7 @@ export class MenuBarComponent implements OnInit {
 
     toOrders() {
         this.updateOptions(1)
+        this.setDefaultTranslation()
         this.router.navigate(['/order'])
 
     }
