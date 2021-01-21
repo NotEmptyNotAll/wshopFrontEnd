@@ -20,6 +20,56 @@
     </div>
     -->
     <p-dialog header="{{'page.filters' | translate}}"
+              [style]="{minWidth:'300px',minHeight:'500px',width:'400px'}"
+              [(visible)]="displayMinSizeDialog" [resizable]="false" responsive="false">
+        <div class="filter-panel">
+            <app-work-period-filter
+                    class="minHeightFilter"
+                    (onSuggest)="updateData()"
+                    (click)="confirmOnFilter($event)"
+            ></app-work-period-filter>
+
+            <app-detail-filter (onSuggest)="updateData()"
+                               (click)="confirmOnFilter($event)"
+                               class="minHeightFilter"
+            ></app-detail-filter>
+
+            <app-work-item-filter-page (onSuggest)="updateData()"
+                                       class="minHeightFilter"
+                                       (click)="confirmOnFilter($event)"
+                                       *ngIf="!filterService.fixDataSelect"
+            ></app-work-item-filter-page>
+
+            <app-work-filter
+                    class="minHeightFilter"
+                    *ngIf="filterService.fixDataSelect"
+                    (onSuggest)="updateData()"
+                    (click)="confirmOnFilter($event)"
+            ></app-work-filter>
+
+
+            <app-work-status-filter class="minHeightFilter"
+
+                                    [disabled]="stateFilterDisable" [onlyField]="true"
+                                    (onSuggest)="updateData()"
+                                    (onClear)="updateData()"
+                                    (click)="confirmOnFilter($event)"
+            ></app-work-status-filter>
+
+        </div>
+
+
+        <!--        <p-footer class="footer-dialog">-->
+        <!--            <button pRipple type="button" (click)="cancelFilter()" style="margin-right: 15%;margin-left:10%" pButton-->
+        <!--                    class="p-button-danger"-->
+        <!--                    [label]="'page.clear' | translate" icon="pi pi-times" label="delete"></button>-->
+        <!--            <button pRipple type="button" (click)="updateData()" style="margin-left:15%;margin-right:10% " pButton-->
+        <!--                    icon="pi pi-check"-->
+        <!--                    [label]="'page.confirm' | translate"></button>-->
+
+        <!--        </p-footer>-->
+    </p-dialog>
+    <p-dialog header="{{'page.filters' | translate}}"
               [style]="{minWidth:'400px',minHeight:'500px',width:'600px'}"
               [(visible)]="display" [resizable]="false" responsive="false">
         <div class="filter-panel">
@@ -51,7 +101,7 @@
     <!--  currentPageReportTemplate="{{'page.TableNumLabel' | translate}}"
                [rows]="100" [showCurrentPageReport]="true" [rowsPerPageOptions]="[20,30,50,100]"
               [paginator]="true" -->
-<!--    [virtualRowHeight]="contextMenuActionDisable?50:5"-->
+    <!--    [virtualRowHeight]="contextMenuActionDisable?50:5"-->
 
     <div [style]="{height: '88vh',background: '#f4f4f4',width: '100%'}">
         <p-table
@@ -68,13 +118,23 @@
                 dataKey="id">
 
             <ng-template pTemplate="caption" style="border-color: #f4f4f4">
-                <div class="table-header"  [style]="{borderColor:'#f4f4f4',height:screenWidth<800?'15px':'35px'}">
-                    <div class="p-d-flex p-flex-column p-flex-md-row">
+                <div class="table-header" [style]="{borderColor:'#f4f4f4',height:screenWidth<800?'15px':'35px'}">
+                    <div class="p-d-flex  p-flex-md-row">
                         <div class="p-mb-4 p-mr-4" [style]="{width:screenWidth<800?'70%':'20%'}">
                             <h3 *ngIf="screenWidth>800"> {{ title }}</h3>
-                            <h5  style="position: relative;top:-10px" *ngIf="screenWidth<800"> {{ title }}</h5>
+                            <h5 style="position: relative;top:-10px" *ngIf="screenWidth<800"> {{ title }}</h5>
                         </div>
-                        <div   *ngIf="screenWidth>800" class="p-mb-6 p-mr-6" style="width: 20%">
+                        <div *ngIf="screenWidth>800" class="p-mb-6 p-mr-6" style="width: 20%">
+                        </div>
+                        <div *ngIf="standardFilterDisable && !hideButtonBar && screenWidth<800" style="width: 20%"
+                             class="p-mb-1 p-mr-1"
+                             style=" position: relative;top:-13px">
+                            <button pButton type="button" (click)="showDialogMinSize()"
+                                    class="p-button-secondary"
+                                    pRipple
+                                    icon="pi pi-filter size-icon-table"
+                            >
+                            </button>
                         </div>
                         <div *ngIf="!standardFilterDisable && !hideButtonBar" class="p-mb-2 p-mr-2"
                              style=" position: relative;top:-2px">
@@ -175,8 +235,8 @@
             </ng-template>
             <ng-template pTemplate="colgroup">
                 <colgroup>
-                    <col *ngIf="screenWidth>800"  style="width:30px">
-                    <col   style="width:30px" *ngIf="!contextMenuActionDisable && screenWidth>800">
+                    <col *ngIf="screenWidth>800" style="width:30px">
+                    <col style="width:30px" *ngIf="!contextMenuActionDisable && screenWidth>800">
                     <col *ngIf=" screenWidth<800" style="width:350px">
                     <col *ngFor="let col of columns" style="{{'width:'+(screenWidth>800?col.width:1)+'px'}}">
                     <!--                    <col *ngIf="buttonActionDisable" style="width:150px">-->
@@ -186,9 +246,9 @@
             </ng-template>
             <ng-template pTemplate="header" let-columns>
                 <tr style="border-color: #f4f4f4" [style]="{borderColor:'#f4f4f4'}">
-                    <th  *ngIf="screenWidth>800" class="icon" style="width:2rem;border-color: #f4f4f4"
+                    <th *ngIf="screenWidth>800" class="icon" style="width:2rem;border-color: #f4f4f4"
                         [style]="{borderColor:'#f4f4f4', fontSize:'12px'}"></th>
-                    <th  class="icon" style="width:2rem;border-color: #f4f4f4"
+                    <th class="icon" style="width:2rem;border-color: #f4f4f4"
                         *ngIf="!contextMenuActionDisable && screenWidth>800"
                         [style]="{borderColor:'#f4f4f4', fontSize:'15px'}"></th>
 
@@ -221,7 +281,8 @@
                     <td class="icon" [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
                         <span class=" pi pi-bars" pReorderableRowHandle></span>
                     </td>
-                    <td class="icon" [style]="{borderColor:'#f4f4f4' , fontSize:'14px'}" *ngIf="!contextMenuActionDisable">
+                    <td class="icon" [style]="{borderColor:'#f4f4f4' , fontSize:'14px'}"
+                        *ngIf="!contextMenuActionDisable">
                                             <span style="cursor: pointer !important;" *ngIf="rowData.Comment!==''"
                                                   class="pi pi-info-circle" pReorderableRowHandle
                                                   (click)="confirm($event,rowData)"></span>

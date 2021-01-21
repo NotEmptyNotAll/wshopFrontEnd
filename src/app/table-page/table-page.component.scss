@@ -4,7 +4,9 @@
     display: none;
   }
 }
-
+.minHeightFilter{
+  height: 35px!important;
+}
 @media screen and (max-width: 40rem) {
 .icon{
   display: none!important;

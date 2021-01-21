@@ -68,6 +68,7 @@ export class TablePageComponent implements OnInit {
     contextSelectItem: any = {}
     selectRow: any = {}
     inputErr = false
+    displayMinSizeDialog = false
     data: TableOrderResponse
     columns: any[];
     loading: boolean = false;
@@ -397,6 +398,10 @@ export class TablePageComponent implements OnInit {
         //
         //     this.onLazyLoad.emit()
         // }
+    }
+
+    showDialogMinSize() {
+        this.displayMinSizeDialog=true
     }
 }
 
