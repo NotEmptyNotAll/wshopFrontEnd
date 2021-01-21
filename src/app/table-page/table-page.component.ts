@@ -28,14 +28,14 @@ import {ServSubstringFilterService} from "../widgets/filters/substring-filter/se
 import {stringify} from "querystring";
 import {User} from "../Service/User";
 import {AppNavigateService} from "../Service/app-navigate.service";
-
+import { HostListener } from "@angular/core";
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
 
 @Component({
     selector: 'app-table-page',
     templateUrl: './table-page.component.html',
-    styleUrls: ['./table-page.component.css'],
+    styleUrls: ['./table-page.component.scss'],
     providers: [ConfirmationService, CreateAddComponent]
 
 })
@@ -79,6 +79,8 @@ export class TablePageComponent implements OnInit {
         {label: 'View', icon: 'pi pi-fw pi-search'},
         {label: 'Delete', icon: 'pi pi-fw pi-times'}
     ];
+    screenHeight:number=1920
+    screenWidth:number=1080
     display: boolean = false;
 
     confirmOnFilter(event) {
@@ -171,6 +173,13 @@ export class TablePageComponent implements OnInit {
         }
     }
 
+    @HostListener('window:resize', ['$event'])
+    onResize(event?) {
+        this.screenHeight = window.innerHeight;
+        this.screenWidth = window.innerWidth;
+
+    }
+
     constructor(public tableDataService: TableDataService,
                 public orderService: OrderService,
                 public filterService: FilterService,
@@ -257,6 +266,8 @@ export class TablePageComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.screenHeight = window.innerHeight;
+        this.screenWidth = window.innerWidth;
         this.updateContextMenu()
         this.tableDataService.setStartData(this.startData)
         this.cols = this.mainColumn.slice()

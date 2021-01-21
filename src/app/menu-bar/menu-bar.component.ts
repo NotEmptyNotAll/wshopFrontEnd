@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {MenuItem} from "primeng/api";
 import {OrderService} from "../orders-page/order.service";
 import {Router} from "@angular/router";
@@ -13,6 +13,7 @@ import {OrderRequest} from "../widgets/filters/order.request";
 import {TableDataService} from "../table-page/tableData.service";
 import {ListOption} from "../widgets/listbox/ListOption";
 import {AppNavigateService} from "../Service/app-navigate.service";
+import alasql from "alasql";
 
 
 @Component({
@@ -25,7 +26,43 @@ export class MenuBarComponent implements OnInit {
     private langTitle: string
     orderRequest: OrderRequest
     indexSelect: number = -1
-
+    screenHeight: number = 1920
+    screenWidth: number = 1080
+    itemsMinSizeAdmin=[
+        {
+            style: {fontSize: '1.2em'},
+            label: 'заказы',
+            command: () => {
+                this.toOrders()
+            }
+        },
+        {
+            style: {fontSize: '1.2em'},
+            label: 'работы', command: () => {
+                this.appNavigate.toSelectWork()
+            },
+        },
+        {
+            style: {fontSize: '1.2em'},
+            label: 'работы на выполнении', command: () => {
+                this.appNavigate.toListOfWork()
+            }
+        }
+    ];
+    itemsMinSizeUser=[
+        {
+            style: {fontSize: '1.2em'},
+            label: 'работы', command: () => {
+                this.appNavigate.toSelectWork()
+            },
+        },
+        {
+            style: {fontSize: '1.2em'},
+            label: 'работы на выполнении', command: () => {
+                this.appNavigate.toListOfWork()
+            }
+        }
+    ];
 
     constructor(public apiService: ApiDataServiceService,
                 public orderService: OrderService,
@@ -36,6 +73,16 @@ export class MenuBarComponent implements OnInit {
                 //   private ordersComponent:OrdersComponent,
                 private translate: TranslateService) {
 
+    }
+
+    setSize() {
+
+    }
+
+    @HostListener('window:resize', ['$event'])
+    onResize(event?) {
+        this.screenHeight = window.innerHeight;
+        this.screenWidth = window.innerWidth;
     }
 
     open() {
@@ -73,50 +120,50 @@ export class MenuBarComponent implements OnInit {
         selected: false
     };
 
-        public optionsAdmin = [
-            {
-                id: 1,
-                name: 'заказы',
-                command: () => {
-                    this.toOrders()
-                }, selected: false
-            },
-            {
-                id: 2,
-                name: 'работы', command: () => {
-                    this.toSelectWork()
-                }, selected: true
-            },
-            {
-                id: 3,
-                name: 'работы на выполнении', command: () => {
-                    this.toListOfWork()
-                }, selected: false
-            }
-        ];
-        public optionsUser = [
+    public optionsAdmin = [
+        {
+            id: 1,
+            name: 'заказы',
+            command: () => {
+                this.toOrders()
+            }, selected: false
+        },
+        {
+            id: 2,
+            name: 'работы', command: () => {
+                this.toSelectWork()
+            }, selected: true
+        },
+        {
+            id: 3,
+            name: 'работы на выполнении', command: () => {
+                this.toListOfWork()
+            }, selected: false
+        }
+    ];
+    public optionsUser = [
 
-            {
-                id: 2,
-                name: 'работы', command: () => {
-                    this.toSelectWork()
-                }, selected: false
-            },
-            {
-                id: 3,
-                name: 'работы на выполнении', command: () => {
-                    this.toListOfWork()
-                }, selected: false
-            }
-        ];
+        {
+            id: 2,
+            name: 'работы', command: () => {
+                this.toSelectWork()
+            }, selected: false
+        },
+        {
+            id: 3,
+            name: 'работы на выполнении', command: () => {
+                this.toListOfWork()
+            }, selected: false
+        }
+    ];
 
     public updateOptions(index) {
-        if ( this.indexSelect === -1) {
-            this.indexSelect=index
+        if (this.indexSelect === -1) {
+            this.indexSelect = index
         }
 
-       this.optionsAdmin.find(elem =>
-            elem.id === this.indexSelect).selected=false
+        this.optionsAdmin.find(elem =>
+            elem.id === this.indexSelect).selected = false
 
         this.optionsUser.find(elem =>
             elem.id === this.indexSelect
@@ -127,7 +174,7 @@ export class MenuBarComponent implements OnInit {
         this.optionsUser.find(elem =>
             elem.id === index
         ).selected = true
-        this.indexSelect=index
+        this.indexSelect = index
     }
 
     public async toListOfWork() {
@@ -138,7 +185,7 @@ export class MenuBarComponent implements OnInit {
         this.filterService.setOrderRequest(this.orderRequest)
         this.ordersResponse = await this.apiService.post<TableOrderResponse>(
             'getListOFWork', this.filterService.getOrderRequest(),
-            true,true
+            true, true
         );
         if (this.ordersResponse.status !== -1) {
             this.orderService.setOrderResponse(this.ordersResponse)
@@ -158,7 +205,7 @@ export class MenuBarComponent implements OnInit {
         this.filterService.setOrderRequest(this.orderRequest)
         this.ordersResponse = await this.apiService.post<TableOrderResponse>(
             'getListOFWork', this.filterService.getOrderRequest(),
-            true,true
+            true, true
         );
         if (this.ordersResponse.status !== -1) {
             this.orderService.setOrderResponse(this.ordersResponse)
@@ -176,6 +223,8 @@ export class MenuBarComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.screenHeight = window.innerHeight;
+        this.screenWidth = window.innerWidth;
         this.setDefaultTranslation();
         this.cities2 = [
             {name: 'List of orders', code: 'NY'}
@@ -226,7 +275,7 @@ export class MenuBarComponent implements OnInit {
                         }
                     }
                 ]
-            },            {label:"Beta 1.03"}
+            }, {label: "Beta 1.03"}
 
         ];
 
@@ -289,7 +338,7 @@ export class MenuBarComponent implements OnInit {
                     }
                 ]
             },
-            {label:"Beta 1.03"}
+            {label: "Beta 1.03"}
         ];
     }
 
@@ -316,7 +365,7 @@ export class MenuBarComponent implements OnInit {
                 'getCroppedOrders', {
                     user: this.apiService.getUserData(),
                     lang: this.apiService.getLang()
-                }, true,true
+                }, true, true
             )
 
             this.orderService.setOrderResponse(this.ordersResponse)

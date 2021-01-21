@@ -51,28 +51,30 @@
     <!--  currentPageReportTemplate="{{'page.TableNumLabel' | translate}}"
                [rows]="100" [showCurrentPageReport]="true" [rowsPerPageOptions]="[20,30,50,100]"
               [paginator]="true" -->
+<!--    [virtualRowHeight]="contextMenuActionDisable?50:5"-->
+
     <div [style]="{height: '88vh',background: '#f4f4f4',width: '100%'}">
         <p-table
-                styleClass="p-datatable-sm"
-                [(contextMenuSelection)]="contextSelectItem"
+                styleClass="p-datatable-responsive-demo" [(contextMenuSelection)]="contextSelectItem"
                 [columns]="_selectedColumns" [value]="tableDataService.mainData" [scrollable]="true"
                 [loading]="apiService.isLoadingData"
                 columnResizeMode="expand"
                 [rows]="100" scrollHeight="flex"
                 [virtualScroll]="true"
-                [virtualRowHeight]="contextMenuActionDisable?50:5"
+                [virtualRowHeight]="contextMenuActionDisable?(screenWidth>800?50:500):5"
                 style="border-color: #f4f4f4;"
                 [style]="{borderColor:'#f4f4f4',zIndex:'0'}"
                 [resizableColumns]="true" selectionMode="single"
                 dataKey="id">
 
             <ng-template pTemplate="caption" style="border-color: #f4f4f4">
-                <div class="table-header" style="height: 35px" [style]="{borderColor:'#f4f4f4'}">
+                <div class="table-header"  [style]="{borderColor:'#f4f4f4',height:screenWidth<800?'15px':'35px'}">
                     <div class="p-d-flex p-flex-column p-flex-md-row">
-                        <div class="p-mb-4 p-mr-4" style="width: 20%">
-                            <h3> {{ title }}</h3>
+                        <div class="p-mb-4 p-mr-4" [style]="{width:screenWidth<800?'70%':'20%'}">
+                            <h3 *ngIf="screenWidth>800"> {{ title }}</h3>
+                            <h5  style="position: relative;top:-10px" *ngIf="screenWidth<800"> {{ title }}</h5>
                         </div>
-                        <div class="p-mb-6 p-mr-6" style="width: 20%">
+                        <div   *ngIf="screenWidth>800" class="p-mb-6 p-mr-6" style="width: 20%">
                         </div>
                         <div *ngIf="!standardFilterDisable && !hideButtonBar" class="p-mb-2 p-mr-2"
                              style=" position: relative;top:-2px">
@@ -173,20 +175,21 @@
             </ng-template>
             <ng-template pTemplate="colgroup">
                 <colgroup>
-                    <col style="width:30px">
-                    <col style="width:30px" *ngIf="!contextMenuActionDisable">
-                    <col *ngFor="let col of columns" style="{{'width:'+col.width+'px'}}">
+                    <col *ngIf="screenWidth>800"  style="width:30px">
+                    <col   style="width:30px" *ngIf="!contextMenuActionDisable && screenWidth>800">
+                    <col *ngIf=" screenWidth<800" style="width:350px">
+                    <col *ngFor="let col of columns" style="{{'width:'+(screenWidth>800?col.width:1)+'px'}}">
                     <!--                    <col *ngIf="buttonActionDisable" style="width:150px">-->
-                    <col *ngIf="contextMenuActionDisable" style="width:100px">
+                    <col *ngIf="contextMenuActionDisable " style="width:100px">
 
                 </colgroup>
             </ng-template>
             <ng-template pTemplate="header" let-columns>
                 <tr style="border-color: #f4f4f4" [style]="{borderColor:'#f4f4f4'}">
-                    <th style="width:2rem;border-color: #f4f4f4"
+                    <th  *ngIf="screenWidth>800" class="icon" style="width:2rem;border-color: #f4f4f4"
                         [style]="{borderColor:'#f4f4f4', fontSize:'12px'}"></th>
-                    <th style="width:2rem;border-color: #f4f4f4"
-                        *ngIf="!contextMenuActionDisable"
+                    <th  class="icon" style="width:2rem;border-color: #f4f4f4"
+                        *ngIf="!contextMenuActionDisable && screenWidth>800"
                         [style]="{borderColor:'#f4f4f4', fontSize:'15px'}"></th>
 
                     <th *ngFor="let col of columns" pResizableColumn [pSortableColumn]="col.header"
@@ -202,7 +205,7 @@
             </ng-template>
             <ng-template pTemplate="loadingbody" let-columns="columns">
                 <tr style="height:34px">
-                    <td *ngFor="let col of columns" >
+                    <td *ngFor="let col of columns">
                     </td>
                     <td>
 
@@ -213,22 +216,23 @@
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
-                    <tr [pReorderableRow]="index" [pContextMenuRow]="rowData">
-                        <td [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}" >
-                            <span class="pi pi-bars" pReorderableRowHandle></span>
-                        </td>
 
-                        <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px'}" *ngIf="!contextMenuActionDisable">
-                                            <span style="cursor: pointer !important;" *ngIf="rowData.Comment!==''" class="pi pi-info-circle" pReorderableRowHandle
+                <tr [pReorderableRow]="index" [pContextMenuRow]="rowData">
+                    <td class="icon" [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
+                        <span class=" pi pi-bars" pReorderableRowHandle></span>
+                    </td>
+                    <td class="icon" [style]="{borderColor:'#f4f4f4' , fontSize:'14px'}" *ngIf="!contextMenuActionDisable">
+                                            <span style="cursor: pointer !important;" *ngIf="rowData.Comment!==''"
+                                                  class="pi pi-info-circle" pReorderableRowHandle
                                                   (click)="confirm($event,rowData)"></span>
-                        </td>
-                        <td *ngFor="let col of columns" class="ui-resizable-column" pResizableColumn
-                            [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
+                    </td>
+                    <td *ngFor="let col of columns" class="ui-resizable-column" pResizableColumn
+                        [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
+                        <span class="p-column-title">{{col.header}}</span>
                         <span *ngIf="contextMenuActionDisable">
-                                                                        {{rowData[col.field]}}
-
+                            {{rowData[col.field]}}
                         </span>
-                            <span *ngIf="!contextMenuActionDisable">
+                        <span *ngIf="!contextMenuActionDisable">
                     <span *ngIf="(rowData[col.field]==='yes' || rowData[col.field]==='1') ">
                         <i class="pi pi-check"></i>
                         </span>
@@ -239,29 +243,31 @@
                                             {{rowData[col.field]}}
                     </span>
                         </span>
-                        </td>
-                        <td *ngIf="contextMenuActionDisable && !masterWindowsSelectDisable" [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
+                    </td>
+                    <td *ngIf="contextMenuActionDisable && !masterWindowsSelectDisable"
+                        [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
 
-                            <button pRipple pButton type="button"
-                                    [disabled]="rowData['статус']==='выполняется'"
-                                    class=" p-button-success"
-                                    (click)="contextAction(rowData['ID работы'],rowData['статус'])"
-                                    style="min-width: 8rem"
-                                    label="начать" icon="pi pi-play"></button>
-                        </td>
-                        <td *ngIf="contextMenuActionDisable && masterWindowsSelectDisable" [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
-                            <button pRipple pButton type="button"
-                                    class=" p-button-danger"
-                                    (click)="contextActionEnd(rowData['ID работы'])"
-                                    style="min-width: 8rem"
-                                    label="завершить"></button>
-                        </td>
-                        <!--                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px',zIndex:'2'}" *ngIf="buttonActionDisable">-->
+                        <button pRipple pButton type="button"
+                                [disabled]="rowData['статус']==='выполняется'"
+                                class=" p-button-success"
+                                (click)="contextAction(rowData['ID работы'],rowData['статус'])"
+                                style="min-width: 8rem"
+                                label="начать" icon="pi pi-play"></button>
+                    </td>
+                    <td *ngIf="contextMenuActionDisable && masterWindowsSelectDisable"
+                        [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
+                        <button pRipple pButton type="button"
+                                class=" p-button-danger"
+                                (click)="contextActionEnd(rowData['ID работы'])"
+                                style="min-width: 8rem"
+                                label="завершить"></button>
+                    </td>
+                    <!--                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px',zIndex:'2'}" *ngIf="buttonActionDisable">-->
 
-                        <!--                        <app-button-list-action></app-button-list-action>-->
+                    <!--                        <app-button-list-action></app-button-list-action>-->
 
-                        <!--                    </td>-->
-                    </tr>
+                    <!--                    </td>-->
+                </tr>
 
             </ng-template>
             <ng-template pTemplate="emptymessage">
