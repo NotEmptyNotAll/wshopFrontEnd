@@ -24,6 +24,7 @@
               [(visible)]="displayMinSizeDialog" [resizable]="false" responsive="false">
         <div class="filter-panel">
             <app-work-period-filter
+                     style="position: relative;left: 50px"
                     class="minHeightFilter"
                     (onSuggest)="updateData()"
                     (click)="confirmOnFilter($event)"
@@ -41,6 +42,7 @@
             ></app-work-item-filter-page>
 
             <app-work-filter
+
                     class="minHeightFilter"
                     *ngIf="filterService.fixDataSelect"
                     (onSuggest)="updateData()"
@@ -49,6 +51,7 @@
 
 
             <app-work-status-filter class="minHeightFilter"
+                                    style="position: relative;left: 50px"
 
                                     [disabled]="stateFilterDisable" [onlyField]="true"
                                     (onSuggest)="updateData()"
@@ -146,34 +149,34 @@
                             </button>
                         </div>
                         <div *ngIf="standardFilterDisable && !hideButtonBar" class="p-mb-2 p-mr-2"
-                             style="width: 300px; position: relative;top:-10px">
+                             style="width: 300px;">
                             <app-work-period-filter (onSuggest)="updateData()"
                                                     (click)="confirmOnFilter($event)"
                             ></app-work-period-filter>
                         </div>
                         <div *ngIf="standardFilterDisable && !hideButtonBar" class="p-mb-2 p-mr-2"
-                             style="width: 300px; position: relative;top:-10px">
+                             style="width: 300px; ">
                             <app-detail-filter (onSuggest)="updateData()"
                                                (click)="confirmOnFilter($event)"
                             ></app-detail-filter>
                         </div>
                         <div *ngIf="standardFilterDisable && !hideButtonBar && !filterService.fixDataSelect"
                              class="p-mb-2 p-mr-2"
-                             style="width: 300px; position: relative;top:-10px">
+                             style="width: 300px; p">
                             <app-work-item-filter-page (onSuggest)="updateData()"
                                                        (click)="confirmOnFilter($event)"
                             ></app-work-item-filter-page>
                         </div>
                         <div *ngIf="standardFilterDisable && !hideButtonBar && filterService.fixDataSelect"
                              class="p-mb-2 p-mr-2"
-                             style="width: 300px; position: relative;top:-10px">
+                             style="width: 300px;">
                             <app-work-filter (onSuggest)="updateData()"
                                              (click)="confirmOnFilter($event)"
                             ></app-work-filter>
                         </div>
 
                         <div *ngIf="standardFilterDisable && !hideButtonBar" class="p-mb-2 p-mr-2"
-                             style="width: 300px; position: relative;top:-10px">
+                             style="width: 300px; ">
                             <app-work-status-filter
                                     [disabled]="stateFilterDisable" [onlyField]="true"
                                     (onSuggest)="updateData()"

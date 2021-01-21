@@ -83,6 +83,9 @@ export class MenuBarComponent implements OnInit {
     onResize(event?) {
         this.screenHeight = window.innerHeight;
         this.screenWidth = window.innerWidth;
+        if(this.screenWidth<800){
+            this.close()
+        }
     }
 
     open() {
@@ -275,7 +278,7 @@ export class MenuBarComponent implements OnInit {
                         }
                     }
                 ]
-            }, {label: "Beta 1.03"}
+            },
 
         ];
 
@@ -337,8 +340,7 @@ export class MenuBarComponent implements OnInit {
                         }
                     }
                 ]
-            },
-            {label: "Beta 1.03"}
+            }
         ];
     }
 
