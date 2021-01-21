@@ -221,7 +221,9 @@ export class MenuBarComponent implements OnInit {
 
     toOrders() {
         this.updateOptions(1)
+        this.tableDataService.setMainData([])
         this.setDefaultTranslation()
+
         this.router.navigate(['/order'])
 
     }

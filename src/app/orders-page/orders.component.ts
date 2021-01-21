@@ -256,6 +256,7 @@ export class OrdersComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.updateData()
         this.updateInfoOnSite()
     }
 
