@@ -4,38 +4,37 @@
 <!--            (onChange)="changeState()"  [options]="states" [(ngModel)]="state" optionLabel="name"></p-dropdown>-->
 
 
-
 <!--</div>-->
 <div class="p-fluid  p-grid p-formgrid">
     <div class="p-field p-col-36 p-md-12">
-<p-dropdown *ngIf="onlyField"
-            [disabled]="stateService.disableFastFiled"
-             (onChange)="changeState()"  style="width: 300px"
-             [options]="fastStates"
-            placeholder="статус"
-            [(ngModel)]="stateService.stateFastFilterData" optionLabel="name"></p-dropdown>
+        <p-dropdown
+                *ngIf="onlyField"
+                [disabled]="stateService.disableFastFiled"
+                (onChange)="changeState()" style="width: 300px"
+                [options]="fastStates"
+                placeholder="{{'page.status' | translate}}"
+                [(ngModel)]="stateService.stateFastFilterData" optionLabel="name">
+        </p-dropdown>
     </div>
 </div>
-
 
 <div *ngIf="!onlyField" class="filter-component">
     <div class="white-line"></div>
-    <p class="title" >статус</p>
+    <p class="title">{{'page.status' | translate}}</p>
     <div class="filter-body">
 
-    <div class=" p-fluid  p-grid p-formgrid" >
-        <div class="p-field p-col-36 p-md-12">
-            <p-dropdown            [disabled]="disabled"
-                                   (onChange)="changeState()"
-
-                                   placeholder="статус"
-                        [options]="states" [(ngModel)]="stateService.stateFilterData" optionLabel="name"></p-dropdown>
-
+        <div class=" p-fluid  p-grid p-formgrid">
+            <div class="p-field p-col-36 p-md-12">
+                <p-dropdown
+                        [disabled]="disabled"
+                        (onChange)="changeState()"
+                        placeholder="{{'page.status' | translate}}"
+                        [options]="states"
+                        [(ngModel)]="stateService.stateFilterData" optionLabel="name">
+                </p-dropdown>
+            </div>
         </div>
     </div>
-</div>
-
-
 
 
 </div>

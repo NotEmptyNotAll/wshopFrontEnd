@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {AutoComplete} from "primeng/autocomplete";
 import {OrderRequest} from "../order.request";
 import {User} from "../../../Service/User";
@@ -16,6 +16,7 @@ export class DetailFilterComponent implements OnInit {
 
     private detail = {}
     @ViewChild(AutoComplete) chidFilter: AutoComplete
+    @Input() minSizeResolution: boolean = false
 
     // @Output() onSuggest: EventEmitter<any> = new EventEmitter();
     private orderRequest: OrderRequest

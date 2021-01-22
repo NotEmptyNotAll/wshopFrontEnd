@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 import {ApiDataServiceService} from "../Service/api-data-service.service";
 import {User} from "../Service/User";
 import {SelectItem} from 'primeng/api';
-import {TranslateService} from "@ngx-translate/core";
+import {LangChangeEvent, TranslateService} from "@ngx-translate/core";
 import {TableOrderResponse} from "../Service/table-order-response";
 import {OrdersComponent} from "../orders-page/orders.component";
 import {FilterService} from "../widgets/filters/filter.service";
@@ -28,7 +28,7 @@ export class MenuBarComponent implements OnInit {
     indexSelect: number = -1
     screenHeight: number = 1920
     screenWidth: number = 1080
-    itemsMinSizeAdmin=[
+    itemsMinSizeAdmin = [
         {
             style: {fontSize: '1.2em'},
             label: 'заказы',
@@ -49,7 +49,7 @@ export class MenuBarComponent implements OnInit {
             }
         }
     ];
-    itemsMinSizeUser=[
+    itemsMinSizeUser = [
         {
             style: {fontSize: '1.2em'},
             label: 'работы', command: () => {
@@ -83,7 +83,7 @@ export class MenuBarComponent implements OnInit {
     onResize(event?) {
         this.screenHeight = window.innerHeight;
         this.screenWidth = window.innerWidth;
-        if(this.screenWidth<800){
+        if (this.screenWidth < 800) {
             this.close()
         }
     }
@@ -229,6 +229,19 @@ export class MenuBarComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+            this.translate.get('page.listOrders').subscribe((res: string) => {
+                this.appNavigate.optionsAdmin[0].name = res
+            });
+            this.translate.get('page.work').subscribe((res: string) => {
+                this.appNavigate.optionsAdmin[1].name = res
+                this.langTitle = res
+            });
+            this.translate.get('page.workOnExecution').subscribe((res: string) => {
+                this.appNavigate.optionsAdmin[2].name = res
+                this.langTitle = res
+            });
+        });
         this.screenHeight = window.innerHeight;
         this.screenWidth = window.innerWidth;
         this.setDefaultTranslation();

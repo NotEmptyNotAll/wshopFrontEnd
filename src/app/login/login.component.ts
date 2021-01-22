@@ -10,6 +10,7 @@ import {FilterService} from "../widgets/filters/filter.service";
 import {OrderRequest} from "../widgets/filters/order.request";
 import * as moment from 'moment';
 import {AppNavigateService} from "../Service/app-navigate.service";
+import {LangChangeEvent, TranslateService} from "@ngx-translate/core";
 
 interface City {
     name: string,
@@ -43,7 +44,8 @@ export class LoginComponent implements OnInit {
     constructor(public apiService: ApiDataServiceService,
                 public orderService: OrderService,
                 public filterService: FilterService,
-                public appNavigate:AppNavigateService,
+                public appNavigate: AppNavigateService,
+                private translate: TranslateService,
                 private messageService: MessageService,
                 private router: Router) {
         this.getUsers()
@@ -85,7 +87,7 @@ export class LoginComponent implements OnInit {
         this.selectedUser.password = this.password;
         this.apiService.setUserData(this.selectedUser)
         this.orderRequest.lang = this.apiService.getLang();
-        this.appNavigate.indexSelect=2
+        this.appNavigate.indexSelect = 2
         this.filterService.onDefaultValue()
         this.orderRequest = this.filterService.getOrderRequest()
         this.orderRequest.user = this.selectedUser
@@ -93,7 +95,7 @@ export class LoginComponent implements OnInit {
 
         let validate = await this.apiService.post<TableOrderResponse>(
             'login', this.selectedUser,
-            true,true
+            true, true
         );
         if (validate) {
 

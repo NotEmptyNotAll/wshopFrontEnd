@@ -1,15 +1,15 @@
-<div class=" p-fluid  p-grid p-form grid">
+<div *ngIf="!minSizeResolution" class=" p-fluid  p-grid p-form grid">
     <div class="p-field p-col-36 p-md-12">
 
         <p-autoComplete
                 (onSelect)="changeState()" [(ngModel)]="selected" [suggestions]="works"
-                        (completeMethod)="filter($event)" panelStyle="panel-style"
-                        field="name"
-                        placeholder="работа"
-                        [disabled]="this.filterService.workFilterEnable"
-                        (onClear)="clear()"
-                        [type]="'search'"
-                        [dropdown]="true">
+                (completeMethod)="filter($event)" panelStyle="panel-style"
+                field="name"
+                placeholder="{{'page.work' | translate}}"
+                [disabled]="this.filterService.workFilterEnable"
+                (onClear)="clear()"
+                [type]="'search'"
+                [dropdown]="true">
             <ng-template let-country pTemplate="item">
                 <div class="country-item">
                     <div>{{country.name}}</div>
@@ -18,3 +18,21 @@
         </p-autoComplete>
     </div>
 </div>
+
+<p-autoComplete
+        *ngIf="minSizeResolution"
+        (onSelect)="changeState()" [(ngModel)]="selected" [suggestions]="works"
+        (completeMethod)="filter($event)" panelStyle="panel-style"
+        field="name"
+        placeholder="{{'page.work' | translate}}"
+        class="min-size-input"
+        [disabled]="this.filterService.workFilterEnable"
+        (onClear)="clear()"
+        [type]="'search'"
+        [dropdown]="true">
+    <ng-template let-country pTemplate="item">
+        <div class="country-item">
+            <div>{{country.name}}</div>
+        </div>
+    </ng-template>
+</p-autoComplete>

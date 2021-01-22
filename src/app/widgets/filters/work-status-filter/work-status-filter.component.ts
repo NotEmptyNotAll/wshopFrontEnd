@@ -9,6 +9,7 @@ import {FilterService} from "../filter.service";
     styleUrls: ['./work-status-filter.component.css']
 })
 export class WorkStatusFilterComponent implements OnInit {
+    @Input() minSizeResolution: boolean = false
 
    public state = {name: 'не выполнена', code: 0}
     @Input() onlyField: boolean = false

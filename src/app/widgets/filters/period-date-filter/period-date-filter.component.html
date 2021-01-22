@@ -19,7 +19,7 @@
     <div class="p-field p-col-36 p-md-12">
         <p-dropdown (onChange)="changePeriod()"
                     [disabled]="filterPeriodService.disableFastFiled"
-                    placeholder="период"
+                    placeholder="{{'page.period' | translate}}"
                     [options]="fastPeriods" [(ngModel)]="filterPeriodService.periodFastFilterData"
                     optionLabel="name"  >
     </p-dropdown>
@@ -28,7 +28,7 @@
 <div   *ngIf="!onlyField"   class="p-fluid  p-grid p-formgrid" style="width: 270px">
     <div class="p-field p-col-36 p-md-12">
         <p-dropdown (onChange)="changePeriod()"
-                    placeholder="период"
+                    placeholder="{{'page.period' | translate}}"
                     [options]="periods" [(ngModel)]="period"
                     optionLabel="name"  >
         </p-dropdown>

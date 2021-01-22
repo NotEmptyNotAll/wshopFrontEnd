@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {AutoComplete} from "primeng/autocomplete";
 import {OrderRequest} from "../order.request";
 import {User} from "../../../Service/User";
@@ -13,6 +13,7 @@ import {SimpleData} from "../SimpleData";
 })
 export class WorkFilterComponent implements OnInit {
     @Output() onSuggest: EventEmitter<any> = new EventEmitter();
+    @Input() minSizeResolution: boolean = false
 
     private work = {name: '', id: null}
     @ViewChild(AutoComplete) chidFilter: AutoComplete
@@ -42,13 +43,13 @@ export class WorkFilterComponent implements OnInit {
         //     }
         // }
 
-            this.getCustomer(event.query)
+        this.getCustomer(event.query)
     }
 
     async getCustomer(name) {
-        this.apiService.applySubLoading=false
+        this.apiService.applySubLoading = false
         this.works = await this.apiService.post<SimpleData[]>('getListJobs'
-            , {name: name, sizeResponse: 50}, false,false)
+            , {name: name, sizeResponse: 50}, false, false)
     }
 
     clear() {

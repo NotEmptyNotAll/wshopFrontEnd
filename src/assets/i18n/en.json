@@ -1,5 +1,5 @@
 {
-  "log.language": "language1",
+  "language": "language1",
   "page": {
     "status": "status",
     "employee": "employee",
@@ -12,6 +12,7 @@
     "cancel": "cancel",
     "SelectName": "select a name",
     "listOrders": "orders",
+    "customer": "customer",
     "FastFilterModal": "quick filters",
     "filters": "filters",
     "datePeriod": "period",
@@ -19,9 +20,19 @@
     "confirm": "confirm",
     "ChooseColumns": "Choose Columns",
     "quit": "quit",
+    "work": "work",
     "menu": "menu",
     "columnsSelected": "{0} columns selected",
     "password": "password",
-    "TableNumLabel": "Showing {first} to {last} of {totalRecords} entries"
+    "chooseDetails": "choose details",
+    "TableNumLabel": "Showing {first} to {last} of {totalRecords} entries",
+    "dateTo": "date to",
+    "date": "date",
+    "dateFrom": "date from",
+    "days": "days",
+    "openCropped": "open",
+    "closeCropped": "close",
+    "workOnExecution": "work on execution",
+    "months": "months"
   }
 }

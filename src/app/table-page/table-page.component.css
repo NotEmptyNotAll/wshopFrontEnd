@@ -138,6 +138,20 @@ p-table {
     display: flex;
     flex-direction: column;
 }
+.filter-panel-min-size{
+    display: flex;
+    flex-direction: column;
+    min-height: 600px;
+    min-width: 200px;
+    height: auto;
+
+}
+.filter-button-min-size-resolution{
+
+    position: absolute;
+    right: -20px;
+    top:5px;
+}
 .filter-panel {
     display: inline-flex;
     flex-wrap: wrap;

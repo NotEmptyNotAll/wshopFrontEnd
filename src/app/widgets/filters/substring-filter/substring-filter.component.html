@@ -11,7 +11,8 @@
         <span class="p-input-icon-left">
 
 <input type="text"
-       (change)="onChang()"  placeholder="поиск"
+       (change)="onChang()"
+       placeholder="{{'page.search' | translate}}"
        [disabled]="substringService.disableFastFiled"
        [(ngModel)]="substringService.substringFastFilterData" pInputText/>
     </span>

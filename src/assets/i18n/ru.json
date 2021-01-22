@@ -12,6 +12,7 @@
     "cancel": "отменить",
     "SelectName": "выберите имя",
     "listOrders": "заказы",
+    "customer": "заказчик",
     "FastFilterModal": "быстрые фильтры",
     "filters": "фильтры",
     "datePeriod": "период",
@@ -20,8 +21,18 @@
     "quit": "выйти",
     "ChooseColumns": "Выбрать столбцы",
     "password": "пароль",
+    "work": "работы",
     "columnsSelected": "{0} столбцы выбраны",
     "TableNumLabel": "Показаны записи с {first} по {last} из {totalRecords}",
-    "menu": "меню"
+    "menu": "меню",
+    "chooseDetails": "выберите деталь",
+    "dateTo": "дата до",
+    "date": "дата",
+    "dateFrom": "дата от",
+    "days": "дни",
+    "openCropped": "откр.",
+    "closeCropped": "закр.",
+    "workOnExecution": "работы на выполнении",
+    "months": "месяцы"
   }
 }
