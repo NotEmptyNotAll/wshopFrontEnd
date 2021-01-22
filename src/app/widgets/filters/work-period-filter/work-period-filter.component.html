@@ -11,7 +11,7 @@
 
 <p-dropdown  *ngIf="minSizeResolution"  (onChange)="changePeriod()"
              placeholder="{{'page.period' | translate}}"
-             [style]="{width:'355px'}"
+             [style]="{width: '100%'}"
             [options]="periods" [(ngModel)]="period"
             optionLabel="name"  >
 </p-dropdown>
