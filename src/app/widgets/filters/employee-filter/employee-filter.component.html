@@ -1,21 +1,42 @@
-<div class="filter-component">
-    <div class="white-line"></div>
-    <p class="title">   {{'page.employee' | translate}}</p>
-    <div class="filter-body">
+<!--<div class="filter-component">-->
+<!--    <div class="white-line"></div>-->
+<!--    <p class="title">   {{'page.employee' | translate}}</p>-->
+<!--    <div class="filter-body">-->
 
-    <div class=" p-fluid  p-grid p-formgrid" >
-        <div class="p-field p-col-36 p-md-12">
-            <p-autoComplete [(ngModel)]="selected" [suggestions]="filtered"
-                            (onSelect)="changeState()" (completeMethod)="filter($event)"
-                            field="name"
-                            [dropdown]="true">
-                <ng-template let-country pTemplate="item">
-                    <div class="country-item">
-                        <div>{{country.name}}</div>
-                    </div>
-                </ng-template>
-            </p-autoComplete>
-        </div>
-    </div>
+<!--    <div class=" p-fluid  p-grid p-formgrid" >-->
+<!--        <div class="p-field p-col-36 p-md-12">-->
+<!--            <p-autoComplete [(ngModel)]="selected" [suggestions]="filtered"-->
+<!--                            (onSelect)="changeState()" (completeMethod)="filter($event)"-->
+<!--                            field="name"-->
+<!--                            [dropdown]="true">-->
+<!--                <ng-template let-country pTemplate="item">-->
+<!--                    <div class="country-item">-->
+<!--                        <div>{{country.name}}</div>-->
+<!--                    </div>-->
+<!--                </ng-template>-->
+<!--            </p-autoComplete>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="standard-filter">
+    <div class="p-field p-col-12 p-md-12  ">
+
+<span class="p-float-label ">
+
+  <p-autoComplete (onSelect)="changeState()" [(ngModel)]="selected" [suggestions]="filtered"
+                  (completeMethod)="filter($event)"
+                  field="name"
+                  inputId="autocomplete"
+                  [dropdown]="true">
+                    <ng-template let-country pTemplate="item">
+                        <div class="country-item">
+                            <div>{{country.name}}</div>
+                        </div>
+                    </ng-template>
+                </p-autoComplete>
+    <label for="autocomplete">{{'page.employee' | translate}}</label>
+        </span>
     </div>
 </div>

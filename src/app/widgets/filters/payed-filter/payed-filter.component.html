@@ -1,18 +1,31 @@
-<div class="filter-component">
-    <div class="white-line"></div>
-    <p class="title" >{{'page.payment' | translate}}
-    </p>
-    <div class="filter-body">
+<!--<div class="filter-component">-->
+<!--    <div class="white-line"></div>-->
+<!--    <p class="title" >{{'page.payment' | translate}}-->
+<!--    </p>-->
+<!--    <div class="filter-body">-->
 
-    <div class=" p-fluid  p-grid p-formgrid" >
-        <div class="p-field p-col-36 p-md-12" >
-            <p-dropdown
+<!--    <div class=" p-fluid  p-grid p-formgrid" >-->
+<!--        <div class="p-field p-col-36 p-md-12" >-->
+<!--            <p-dropdown-->
+<!--                        (onChange)="changeState()"  [showClear]="true"-->
+<!--                         [options]="states" [(ngModel)]="payed" optionLabel="name"></p-dropdown>-->
+<!--        </div>-->
+
+<!--    </div>-->
+
+
+<!--</div>-->
+<!--</div>-->
+<div class="standard-filter">
+    <div class="p-field p-col-12 p-md-12  ">
+
+<span class="p-float-label ">
+     <p-dropdown   inputId="autocomplete" [autoDisplayFirst]="false"
+                   class="standard-filter-dropdown"
                         (onChange)="changeState()"  [showClear]="true"
-                         [options]="states" [(ngModel)]="payed" optionLabel="name"></p-dropdown>
-        </div>
+                                  [options]="states" [(ngModel)]="payed" optionLabel="name"></p-dropdown>
 
+    <label for="autocomplete">{{'page.payment' | translate}}</label>
+        </span>
     </div>
-
-
-</div>
 </div>

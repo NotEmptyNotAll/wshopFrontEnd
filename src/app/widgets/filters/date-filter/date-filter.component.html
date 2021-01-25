@@ -1,50 +1,141 @@
-<div class="filter-component">
-    <p class="title">    {{'page.date' | translate}}</p>
-    <div class="white-line"></div>
-    <div style="position: relative;top:10px">
-        <div style="margin-bottom:3%; display: flex;flex-direction: column;justify-content: center;align-content: center">
-            <div style="display: flex;flex-direction: row;justify-content: center;align-content: center">
-                <p-radioButton name="groupname1" inputId="val4" [value]="1"
-                               [(ngModel)]="menuChange" (onClick)="changeInputField()"
-                               style="margin-right:5%;margin-left:5%;"></p-radioButton>
-                <label for="val4"> {{'page.days' | translate}}</label>
-                <p-radioButton name="groupname1" [value]="2" inputId="val5"
-                               [(ngModel)]="menuChange" (onClick)="changeInputField()"
-                               style="margin-right:5%;margin-left:5%;"></p-radioButton>
-                <label for="val5"> {{'page.months' | translate}}</label>
-                <p-radioButton name="groupname1" [value]="3" inputId="val6"
-                               [(ngModel)]="menuChange" (onClick)="changeInputField()"
-                               style="margin-right:5%;margin-left:5%;"></p-radioButton>
-                <label for="val6">                {{'page.period' | translate}}
-                </label>
-            </div>
-        </div>
+<!--<div class="standard-filter">-->
+<!--&lt;!&ndash;    <p class="title">    {{'page.date' | translate}}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;    <div class="white-line"></div>&ndash;&gt;-->
+<!--    <div >-->
+<!--&lt;!&ndash;        <div style="margin-bottom:3%; display: flex;flex-direction: column;justify-content: center;align-content: center">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div style="display: flex;flex-direction: row;justify-content: center;align-content: center">&ndash;&gt;-->
 
-        <div style="position:relative;left:22px;display: flex; flex-direction: column;justify-content: center;width: 100%;align-content: center">
-            <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder=" {{'page.dateFrom' | translate}}"
-                        (click)="changePeriod()" [(ngModel)]="dateFrom" *ngIf="menuChange===1" dateFormat="yy-mm-dd"
-            ></p-calendar>
-            <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder=" {{'page.dateTo' | translate}}"
-                        (click)="changePeriod()" [(ngModel)]="dateTo" *ngIf="menuChange===1" dateFormat="yy-mm-dd"
-            ></p-calendar>
-            <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder=" {{'page.dateFrom' | translate}}"
-                        (click)="changeMonthPeriodDateFrom()" [(ngModel)]="dateFromMonth" *ngIf="menuChange===2"
-                        view="month"
-                        dateFormat="yy-mm-dd"></p-calendar>
-            <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder=" {{'page.dateTo' | translate}}"
-                        (click)="changeMonthPeriodDateTo()" [(ngModel)]="dateToMonth" *ngIf="menuChange===2"
-                        view="month"
-                        dateFormat="yy-mm-dd"></p-calendar>
-            <app-period-date-filter style="margin-bottom:3%;" [onlyField]="false"
-                                    *ngIf="menuChange===3"></app-period-date-filter>
+<!--        <p-selectButton [options]="stateOptions" [(ngModel)]="value1" optionLabel="label" optionValue="value"></p-selectButton>-->
+
+<!--        <p-radioButton name="groupname1" inputId="val4" [value]="1"-->
+<!--                               [(ngModel)]="menuChange" (onClick)="changeInputField()"-->
+<!--                               style="margin-right:5%;margin-left:5%;"></p-radioButton>-->
+<!--                <label for="val4"> {{'page.days' | translate}}</label>-->
+<!--                <p-radioButton name="groupname1" [value]="2" inputId="val5"-->
+<!--                               [(ngModel)]="menuChange" (onClick)="changeInputField()"-->
+<!--                               style="margin-right:5%;margin-left:5%;"></p-radioButton>-->
+<!--                <label for="val5"> {{'page.months' | translate}}</label>-->
+<!--                <p-radioButton name="groupname1" [value]="3" inputId="val6"-->
+<!--                               [(ngModel)]="menuChange" (onClick)="changeInputField()"-->
+<!--                               style="margin-right:5%;margin-left:5%;"></p-radioButton>-->
+<!--                <label for="val6">                {{'page.period' | translate}}-->
+<!--                </label>-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--<p-divider></p-divider>-->
+<!--        <div style="position:relative;left:22px;display: flex; flex-direction: column;justify-content: center;width: 100%;align-content: center">-->
+<!--            <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder=" {{'page.dateFrom' | translate}}"-->
+<!--                        (click)="changePeriod()" [(ngModel)]="dateFrom" *ngIf="menuChange===1" dateFormat="yy-mm-dd"-->
+<!--            ></p-calendar>-->
+<!--            <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder=" {{'page.dateTo' | translate}}"-->
+<!--                        (click)="changePeriod()" [(ngModel)]="dateTo" *ngIf="menuChange===1" dateFormat="yy-mm-dd"-->
+<!--            ></p-calendar>-->
+<!--            <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder=" {{'page.dateFrom' | translate}}"-->
+<!--                        (click)="changeMonthPeriodDateFrom()" [(ngModel)]="dateFromMonth" *ngIf="menuChange===2"-->
+<!--                        view="month"-->
+<!--                        dateFormat="yy-mm-dd"></p-calendar>-->
+<!--            <p-calendar style="margin-bottom:3%;" [showIcon]="true" placeholder=" {{'page.dateTo' | translate}}"-->
+<!--                        (click)="changeMonthPeriodDateTo()" [(ngModel)]="dateToMonth" *ngIf="menuChange===2"-->
+<!--                        view="month"-->
+<!--                        dateFormat="yy-mm-dd"></p-calendar>-->
+<!--            <app-period-date-filter style="margin-bottom:3%;" [onlyField]="false"-->
+<!--                                    *ngIf="menuChange===3"></app-period-date-filter>-->
+<!--        </div>-->
+<!--        <div style="margin-bottom:3%;display: flex;flex-direction: row;justify-content: center;align-content: center">-->
+<!--            <p-radioButton name="groupname" inputId="val1" [value]="false"-->
+<!--                           [(ngModel)]="isCloseDate" style="margin-right:5%;margin-left:5%"></p-radioButton>-->
+<!--            <label for="val1"> {{'page.openCropped' | translate}}</label>-->
+<!--            <p-radioButton name="groupname" [value]="true" inputId="val2"-->
+<!--                           [(ngModel)]="isCloseDate" style="margin-right:5%;margin-left:5%"></p-radioButton>-->
+<!--            <label for="val2"> {{'page.closeCropped' | translate}}</label>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<div class="standard-filter">
+    <br/>
+    <div style="padding: 0.4rem">
+        <p-selectButton
+                [options]=" [{label: 'page.days' | translate, value: 1}, {label:'page.months' | translate, value: 2}, {label:'page.period' | translate, value: 3}]"
+                [(ngModel)]="menuChange" optionLabel="label"
+                style="text-align: center;  "
+                optionValue="value">
+
+        </p-selectButton>
+
+        <p-divider></p-divider>
+
+        <div class="p-fluid p-grid p-formgrid ">
+
+            <div class="p-field p-col-12 p-md-12 calendar-stl" *ngIf="menuChange===1">
+                <span class="p-float-label">
+                    <p-calendar
+                            [showIcon]="true"
+                            inputId="calendar0"
+                            (click)="changePeriod()" [(ngModel)]="dateFrom"
+                            dateFormat="yy-mm-dd">
+                    </p-calendar>
+                <label for="calendar0">{{'page.dateFrom' | translate}}</label>
+                </span>
+            </div>
+            <div class="p-field p-col-12 p-md-12 calendar-stl " *ngIf="menuChange===1">
+                <span class="p-float-label">
+                    <p-calendar inputId="calendar1" [showIcon]="true"
+                                (click)="changePeriod()" [(ngModel)]="dateTo"
+                                dateFormat="yy-mm-dd">
+                    </p-calendar>
+                    <label for="calendar1">{{'page.dateTo' | translate}}</label>
+                </span>
+            </div>
+
+            <div class="p-field p-col-12 p-md-12 calendar-stl" *ngIf="menuChange===2">
+                <span class="p-float-label">
+                    <p-calendar [showIcon]="true"
+                                (click)="changeMonthPeriodDateFrom()" [(ngModel)]="dateFromMonth"
+                                view="month"
+                                inputId="calendar2"
+                                dateFormat="yy-mm-dd">
+                    </p-calendar>
+                    <label for="calendar2">{{'page.dateFrom' | translate}}</label>
+                </span>
+            </div>
+            <div class="p-field p-col-12 p-md-12 calendar-stl" *ngIf="menuChange===2">
+                <span class="p-float-label">
+                    <p-calendar [showIcon]="true"
+                                (click)="changeMonthPeriodDateTo()" [(ngModel)]="dateToMonth"
+                                view="month"
+                                inputId="calendar3"
+                                dateFormat="yy-mm-dd"></p-calendar>
+                    <label for="calendar3">{{'page.dateTo' | translate}}</label>
+                </span>
+            </div>
+
+            <div class="p-field p-col-12 p-md-12 calendar-stl" *ngIf="menuChange===3">
+
+                    <app-period-date-filter [onlyField]="false"></app-period-date-filter>
+
+            </div>
+
+            <!--            <div style="margin-bottom:3%;display: flex;flex-direction: row;justify-content: center;align-content: center">-->
+            <!--                <p-radioButton name="groupname" inputId="val1" [value]="false"-->
+            <!--                               [(ngModel)]="isCloseDate" style="margin-right:5%;margin-left:5%"></p-radioButton>-->
+            <!--                <label for="val1"> {{'page.openCropped' | translate}}</label>-->
+            <!--                <p-radioButton name="groupname" [value]="true" inputId="val2"-->
+            <!--                               [(ngModel)]="isCloseDate" style="margin-right:5%;margin-left:5%"></p-radioButton>-->
+            <!--                <label for="val2"> {{'page.closeCropped' | translate}}</label>-->
+            <!--            </div>-->
         </div>
-        <div style="margin-bottom:3%;display: flex;flex-direction: row;justify-content: center;align-content: center">
-            <p-radioButton name="groupname" inputId="val1" [value]="false"
-                           [(ngModel)]="isCloseDate" style="margin-right:5%;margin-left:5%"></p-radioButton>
-            <label for="val1"> {{'page.openCropped' | translate}}</label>
-            <p-radioButton name="groupname" [value]="true" inputId="val2"
-                           [(ngModel)]="isCloseDate" style="margin-right:5%;margin-left:5%"></p-radioButton>
-            <label for="val2"> {{'page.closeCropped' | translate}}</label>
-        </div>
+        <p-divider></p-divider>
+<!--        <div class="data-type-stl" >-->
+<!--            <h3>тип даты</h3>-->
+        <p-selectButton
+                [options]=" [{label: 'page.openCropped' | translate, value: false},
+                     {label:'page.closeCropped' | translate, value: true}]"
+                [(ngModel)]="isCloseDate" optionLabel="label"
+                style="text-align: center;"
+                optionValue="value">
+        </p-selectButton>
+<!--        </div>-->
     </div>
 </div>

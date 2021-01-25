@@ -55,7 +55,7 @@ export class DetailFilterComponent implements OnInit {
         let data = await this.apiService.post<SimpleData[]>('getListDetails'
             , {name: name, sizeResponse: 50}, false,false)
         if (this.fixDataString.indexOf(name.toLowerCase())!==-1) {
-            data.unshift({id: null, name: 'работа с фикс. цен.'})
+            data.unshift({id: -1, name: 'работа с фикс. цен.'})
         }
         this.details = data
     }

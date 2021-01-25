@@ -15,24 +15,29 @@
 
 <!--    </div>-->
 <!--</div>-->
-<div   *ngIf="onlyField"   class="p-fluid  p-grid p-formgrid" style="width: 270px">
+<div *ngIf="onlyField" class="p-fluid  p-grid p-form grid"  >
     <div class="p-field p-col-36 p-md-12">
         <p-dropdown (onChange)="changePeriod()"
                     [disabled]="filterPeriodService.disableFastFiled"
                     placeholder="{{'page.period' | translate}}"
                     [options]="fastPeriods" [(ngModel)]="filterPeriodService.periodFastFilterData"
-                    optionLabel="name"  >
-    </p-dropdown>
-    </div>
-</div>
-<div   *ngIf="!onlyField"   class="p-fluid  p-grid p-formgrid" style="width: 270px">
-    <div class="p-field p-col-36 p-md-12">
-        <p-dropdown (onChange)="changePeriod()"
-                    placeholder="{{'page.period' | translate}}"
-                    [options]="periods" [(ngModel)]="period"
-                    optionLabel="name"  >
+                    optionLabel="name">
         </p-dropdown>
     </div>
+</div>
+<div class="p-field p-col-12 p-md-12  " style="width: 25rem"   *ngIf="!onlyField"
+>
+
+<span class="p-float-label ">
+
+            <p-dropdown (onChange)="changePeriod()"
+                        class="standard-filter-dropdown"
+                        inputId="{{'page.period' | translate}}"
+                        [options]="periods" [(ngModel)]="period"
+                        optionLabel="name">
+            </p-dropdown>
+    <label for="dropdown">{{'page.period' | translate}}</label>
+            </span>
 </div>
 <!--<div *ngIf="!onlyField" class="filter-component">
     <div class="white-line"></div>
@@ -48,8 +53,4 @@
         </div>
     </div>
     </div>
-
-
-
-
 </div>-->

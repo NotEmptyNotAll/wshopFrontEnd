@@ -112,6 +112,7 @@ export class AppNavigateService {
 
     public async toSelectWork() {
         this.filterService.onDefaultValue()
+        this.tableDataService.setMainData([])
         this.updateOptions(2)
         this.orderRequest = this.filterService.getOrderRequest()
         this.orderRequest.workStatus = 0
@@ -134,10 +135,10 @@ export class AppNavigateService {
 
     async toOrders() {
         this.filterService.onDefaultValue()
+        this.tableService.setMainData([])
         let data = await this.apiService.post<TableOrderResponse>(
             'getCroppedOrders', this.filterService.getOrderRequest(), true,true
         );
-        this.tableService.setMainData([])
         this.orderService.setOrderResponse(data)
         this.updateOptions(1)
         this.router.navigate(['/order'])

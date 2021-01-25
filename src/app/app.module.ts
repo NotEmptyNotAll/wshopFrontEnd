@@ -62,6 +62,10 @@ import {ProgressBarModule} from "primeng/progressbar";
 import { WorkMasterPageComponent } from './work-master-page/work-master-page.component';
 import { WorkItemFilterPageComponent } from './widgets/filters/work-item-filter-page/work-item-filter-page.component';
 import { ListboxComponent } from './widgets/listbox/listbox.component';
+import {ScrollPanelModule} from "primeng/scrollpanel";
+import {TabViewModule} from "primeng/tabview";
+import {DividerModule} from "primeng/divider";
+import {SelectButtonModule} from "primeng/selectbutton";
 
 // @ts-ignore
 // @ts-ignore
@@ -98,7 +102,11 @@ import { ListboxComponent } from './widgets/listbox/listbox.component';
         RippleModule,
         ContextMenuModule,
         ProgressSpinnerModule,
-        ProgressBarModule
+        ProgressBarModule,
+        ScrollPanelModule,
+        TabViewModule,
+        DividerModule,
+        SelectButtonModule
 
     ],
 

@@ -3,6 +3,7 @@ import {OrderRequest} from "../order.request";
 import {FilterService} from "../filter.service";
 import * as moment from "moment";
 import {PeriodDateFilterComponent} from "../period-date-filter/period-date-filter.component";
+import {LangChangeEvent, TranslateService} from "@ngx-translate/core";
 
 @Component({
     selector: 'app-date-filter',
@@ -15,11 +16,16 @@ export class DateFilterComponent implements OnInit {
     private dateToMonth = null;
     private dateFromMonth = null;
     private orderRequest: OrderRequest
+    private dayString: String
+    private index: number=0
+    private menuItem:any=[{label:''},
+        {label:''},{label:''}]
     private isCloseDate: boolean = false
     @ViewChild(PeriodDateFilterComponent) childPeriodDateFilter: PeriodDateFilterComponent
     menuChange: number = 1
 
-    constructor(public filterService: FilterService) {
+    constructor(public filterService: FilterService,
+                private translate: TranslateService) {
     }
 
     changeInputField() {
@@ -40,6 +46,17 @@ export class DateFilterComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+            this.translate.get('page.days').subscribe((res: string) => {
+                this.menuItem[0].label = res
+            });
+            this.translate.get('page.months').subscribe((res: string) => {
+                this.menuItem[1].label = res
+            });
+            this.translate.get('page.period').subscribe((res: string) => {
+                this.menuItem[2].label = res
+            });
+        });
         this.orderRequest = this.filterService.getOrderRequest()
 
     }
@@ -54,7 +71,6 @@ export class DateFilterComponent implements OnInit {
 
         }
     }
-
     changePeriod() {
         this.orderRequest.closeDate = this.isCloseDate
 

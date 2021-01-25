@@ -72,25 +72,25 @@
         <!--        </p-footer>-->
     </p-dialog>
     <p-dialog header="{{'page.filters' | translate}}"
-              [style]="{minWidth:'400px',minHeight:'500px',width:'600px'}"
+              [style]="{minWidth:'29rem',minHeight:'500px',width:'25rem'}"
               [(visible)]="display" [resizable]="false" responsive="false">
         <div class="filter-panel">
+
             <app-date-filter class="filter"></app-date-filter>
             <app-customer-filter class="filter"></app-customer-filter>
             <app-employee-filter class="filter"></app-employee-filter>
             <app-payed-filter class="filter"></app-payed-filter>
             <app-state-filter class="filter" [onlyField]="false"></app-state-filter>
-
         </div>
         <p-footer class="footer-dialog">
             <button
                     pRipple type="button"
-                    (click)="cancelFilter()" style="margin-right: 15%;margin-left:10%" pButton
+                    (click)="cancelFilter()"  pButton
                     class="p-button-danger"
                     [label]="'page.clear' | translate" icon="pi pi-times" label="delete"></button>
             <button
                     pRipple type="button"
-                    (click)="updateData()" style="margin-left:15%;margin-right:10% " pButton
+                    (click)="updateData()"  pButton
                     icon="pi pi-check"
                     [label]="'page.confirm' | translate"></button>
         </p-footer>
@@ -128,11 +128,22 @@
                         </div>
                         <div *ngIf="screenWidth>800" class="p-mb-6 p-mr-6" style="width: 20%">
                         </div>
-                        <div *ngIf="standardFilterDisable && !hideButtonBar && screenWidth<800" style="width: 20%"
+                        <div *ngIf="!hideButtonBar && screenWidth<800" style="width: 20%"
                              class="filter-button-min-size-resolution" >
                             <button
+                                    *ngIf="standardFilterDisable"
                                     pButton type="button"
                                     (click)="showDialogMinSize()"
+                                    class="p-button-secondary"
+                                    pRipple
+                                    icon="pi pi-filter size-icon-table"
+                            >
+                            </button>
+
+                            <button
+                                    *ngIf="!standardFilterDisable"
+                                    pButton type="button"
+                                    (click)="showDialog()"
                                     class="p-button-secondary"
                                     pRipple
                                     icon="pi pi-filter size-icon-table"
@@ -195,7 +206,7 @@
                         </div>
                         <div *ngIf="!standardFilterDisable && !hideButtonBar"
                              class="p-mb-2 p-mr-2"
-                             style="width: 300px; position: relative;top:-10px">
+                             style="width: 300px; ">
                             <app-period-date-filter
                                     [onlyField]="true" (onSuggest)="updateData()"
                                     (onClear)="updateData()"
@@ -204,7 +215,7 @@
                         </div>
                         <div *ngIf="!standardFilterDisable && !hideButtonBar"
                              class="p-mb-2 p-mr-2"
-                             style="width: 300px; position: relative;top:-10px">
+                             style="width: 300px;">
                             <app-state-filter
                                     [disabled]="stateFilterDisable"
                                     [onlyField]="true"
@@ -216,7 +227,7 @@
                         <div
                                 *ngIf="!standardFilterDisable && !hideButtonBar"
                                 class="p-mb-2 p-mr-2"
-                                style="width: 300px; position: relative;top:-10px">
+                                style="width: 300px; ">
 
                             <app-substring-filter
                                     (click)="confirmOnFilter($event)"
