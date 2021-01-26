@@ -13,7 +13,7 @@ import {MessageService} from "primeng/api";
 export class ApiDataServiceService {
 
     mainURL: string = 'https://10.102.200.11:5052/'
-    testUrl: string = 'https://localhost:5052/'
+    testUrl: string = 'https://wshop.24x7tools.com:5052/'
     private axiosClient: AxiosInstance;
     public sizeNextRequest:number=0
     public sizeDataResponse:number=100
