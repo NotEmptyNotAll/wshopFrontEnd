@@ -29,13 +29,14 @@
                   (completeMethod)="filter($event)"
                   field="name"
                   inputId="autocomplete"
+                  (onClear)="clear()"
                   [dropdown]="true">
                     <ng-template let-country pTemplate="item">
                         <div class="country-item">
                             <div>{{country.name}}</div>
                         </div>
                     </ng-template>
-                </p-autoComplete>
+  </p-autoComplete>
     <label for="autocomplete">{{'page.employee' | translate}}</label>
         </span>
     </div>

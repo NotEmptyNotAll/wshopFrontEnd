@@ -26,6 +26,7 @@
                   (completeMethod)="filter($event)"
                   field="name"
                   inputId="autocomplete"
+                  (onClear)="clear()"
                   [dropdown]="true">
                     <ng-template let-country pTemplate="item">
                         <div class="country-item">
