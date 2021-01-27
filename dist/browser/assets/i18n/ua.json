@@ -20,8 +20,19 @@
     "FastFilterModal": "швидкі фільтри",
     "ChooseColumns": "Виберіть Стовпці",
     "password": "пароль",
+    "work": "роботи",
+    "chooseDetails": "вибирати деталі",
     "columnsSelected": "{0} вибрані стовпці",
     "TableNumLabel": "Показ записів від {first} до {last} з {totalRecords}",
-    "menu": "меню"
+    "menu": "меню",
+    "customer": "замовника",
+    "dateTo": "дата до",
+    "date": "дата",
+    "dateFrom": "дата від ",
+    "days": "дні",
+    "openCropped": "відкр.",
+    "closeCropped": "закр.",
+    "workOnExecution": "робота над виконанням",
+    "months": "місяці"
   }
 }

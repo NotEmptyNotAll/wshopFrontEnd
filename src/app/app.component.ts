@@ -32,7 +32,6 @@ export class AppComponent implements OnInit {
 
 
     ngOnInit() {
-        this.translateService.use(environment.defaultLocale);
         this.items = [
             {label: 'moths', url: '/'},
             {label: 'region', url: '/region'}
