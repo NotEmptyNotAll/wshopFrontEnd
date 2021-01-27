@@ -51,8 +51,8 @@ export class CustomerFilterComponent implements OnInit {
         this.orderRequest = this.filterService.getOrderRequest()
         this.orderRequest.customerId = null
         this.filterService.setOrderRequest(this.orderRequest)
-        // this.filtered = []
-        // this.chidFilter.selectItem(null)
+        this.filtered = []
+        this.chidFilter.selectItem(null)
     }
 
 

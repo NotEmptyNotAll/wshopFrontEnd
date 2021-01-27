@@ -224,7 +224,7 @@ export class MasterSelectWindowComponent implements OnInit {
     updateInfoOnSite() {
         this.intervalUpdate = setInterval(() => {
             this.secUpdate++
-            if (this.secUpdate === 5) {
+            if (this.secUpdate === 7) {
 
                 this.apiService.applySubLoading = false
                 this.enableLoading=false

@@ -32,8 +32,8 @@ export class EmployeeFilterComponent implements OnInit {
     this.orderRequest = this.filterService.getOrderRequest()
     this.orderRequest.employeeId = null
     this.filterService.setOrderRequest(this.orderRequest)
-    // this.filtered=[]
-    // this.chidFilter.selectItem(null)
+    this.filtered=[]
+    this.chidFilter.selectItem(null)
   }
   async getCustomer() {
     this.apiService.applySubLoading=false

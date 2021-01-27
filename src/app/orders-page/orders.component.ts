@@ -149,6 +149,7 @@ export class OrdersComponent implements OnInit {
 
 
     async twoDownload() {
+        this.secUpdate=0
         let request = this.filterService.getOrderRequest()
         request.sizeResponse = this.data.sizeTwoPartData
         request.rowStartIndex = this.apiService.startIndex
@@ -264,7 +265,7 @@ export class OrdersComponent implements OnInit {
     updateInfoOnSite() {
         this.intervalUpdate = setInterval(() => {
             this.secUpdate++
-            if (this.secUpdate === 5) {
+            if (this.secUpdate === 10) {
                 this.enableLoading=false
                 this.apiService.applySubLoading = false
                 this.updateData()
