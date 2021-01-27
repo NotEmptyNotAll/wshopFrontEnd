@@ -14,6 +14,7 @@ import {TableDataService} from "../table-page/tableData.service";
 import {ListOption} from "../widgets/listbox/ListOption";
 import {AppNavigateService} from "../Service/app-navigate.service";
 import alasql from "alasql";
+import {CellType} from "../table-page/CellType";
 
 
 @Component({

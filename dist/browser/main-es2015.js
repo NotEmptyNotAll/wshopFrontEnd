@@ -1857,7 +1857,7 @@ let MasterSelectWindowComponent = class MasterSelectWindowComponent {
     updateInfoOnSite() {
         this.intervalUpdate = setInterval(() => {
             this.secUpdate++;
-            if (this.secUpdate === 5) {
+            if (this.secUpdate === 7) {
                 this.apiService.applySubLoading = false;
                 this.enableLoading = false;
                 this.onUpdate();
@@ -2787,6 +2787,7 @@ let OrdersComponent = class OrdersComponent {
     }
     twoDownload() {
         return __awaiter(this, void 0, void 0, function* () {
+            this.secUpdate = 0;
             let request = this.filterService.getOrderRequest();
             request.sizeResponse = this.data.sizeTwoPartData;
             request.rowStartIndex = this.apiService.startIndex;
@@ -2892,7 +2893,7 @@ let OrdersComponent = class OrdersComponent {
     updateInfoOnSite() {
         this.intervalUpdate = setInterval(() => {
             this.secUpdate++;
-            if (this.secUpdate === 5) {
+            if (this.secUpdate === 10) {
                 this.enableLoading = false;
                 this.apiService.applySubLoading = false;
                 this.updateData();
@@ -4028,8 +4029,8 @@ let CustomerFilterComponent = class CustomerFilterComponent {
         this.orderRequest = this.filterService.getOrderRequest();
         this.orderRequest.customerId = null;
         this.filterService.setOrderRequest(this.orderRequest);
-        // this.filtered = []
-        // this.chidFilter.selectItem(null)
+        this.filtered = [];
+        this.chidFilter.selectItem(null);
     }
     changeState() {
         this.orderRequest = this.filterService.getOrderRequest();
@@ -4445,8 +4446,8 @@ let EmployeeFilterComponent = class EmployeeFilterComponent {
         this.orderRequest = this.filterService.getOrderRequest();
         this.orderRequest.employeeId = null;
         this.filterService.setOrderRequest(this.orderRequest);
-        // this.filtered=[]
-        // this.chidFilter.selectItem(null)
+        this.filtered = [];
+        this.chidFilter.selectItem(null);
     }
     getCustomer() {
         return __awaiter(this, void 0, void 0, function* () {

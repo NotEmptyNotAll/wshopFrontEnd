@@ -2987,7 +2987,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.intervalUpdate = setInterval(function () {
             _this5.secUpdate++;
 
-            if (_this5.secUpdate === 5) {
+            if (_this5.secUpdate === 7) {
               _this5.apiService.applySubLoading = false;
               _this5.enableLoading = false;
 
@@ -4367,14 +4367,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               while (1) {
                 switch (_context16.prev = _context16.next) {
                   case 0:
+                    this.secUpdate = 0;
                     request = this.filterService.getOrderRequest();
                     request.sizeResponse = this.data.sizeTwoPartData;
                     request.rowStartIndex = this.apiService.startIndex;
                     this.filterService.setOrderRequest(request);
-                    _context16.next = 6;
+                    _context16.next = 7;
                     return this.apiService.post('getCroppedOrders', this.filterService.getOrderRequest(), false, true);
 
-                  case 6:
+                  case 7:
                     this.data = _context16.sent;
                     tableBody = [];
                     this.data.ordersTableBody.map(function (row) {
@@ -4397,7 +4398,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     this.tableDataService.mainData = Array.prototype.concat(this.tableDataService.mainData, tableBody);
                     alert(this.tableDataService.mainData.length);
 
-                  case 11:
+                  case 12:
                   case "end":
                     return _context16.stop();
                 }
@@ -4499,7 +4500,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.intervalUpdate = setInterval(function () {
             _this12.secUpdate++;
 
-            if (_this12.secUpdate === 5) {
+            if (_this12.secUpdate === 10) {
               _this12.enableLoading = false;
               _this12.apiService.applySubLoading = false;
 
@@ -6157,8 +6158,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function clear() {
           this.orderRequest = this.filterService.getOrderRequest();
           this.orderRequest.customerId = null;
-          this.filterService.setOrderRequest(this.orderRequest); // this.filtered = []
-          // this.chidFilter.selectItem(null)
+          this.filterService.setOrderRequest(this.orderRequest);
+          this.filtered = [];
+          this.chidFilter.selectItem(null);
         }
       }, {
         key: "changeState",
@@ -6836,8 +6838,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function clear() {
           this.orderRequest = this.filterService.getOrderRequest();
           this.orderRequest.employeeId = null;
-          this.filterService.setOrderRequest(this.orderRequest); // this.filtered=[]
-          // this.chidFilter.selectItem(null)
+          this.filterService.setOrderRequest(this.orderRequest);
+          this.filtered = [];
+          this.chidFilter.selectItem(null);
         }
       }, {
         key: "getCustomer",
