@@ -21,6 +21,6 @@ ts файл нахотить по расположению `src/app/Service/api-
 
 `projects.primeng-issue-template.architect.serve.options.ssl`-логическое значение, включает или выключает защищенное соединение
 
-`projects.primeng-issue-template.architect.serve.options.sslKey`-укажите расположение лежит ключа .key
+`projects.primeng-issue-template.architect.serve.options.sslKey`-укажите расположение ключа .key
 
-`projects.primeng-issue-template.architect.serve.options.sslCert`-укажите расположение лежит сертификата .crt
+`projects.primeng-issue-template.architect.serve.options.sslCert`-укажите расположение сертификата .crt
