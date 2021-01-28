@@ -18,6 +18,7 @@ ts файл нахотить по расположению `src/app/Service/api-
 
 ### настройка https
 в корневой папке проекта откройте `angular.json`
+
 `projects.primeng-issue-template.architect.serve.options.ssl`-логическое значение, включает или выключает защищенное соединение
 `projects.primeng-issue-template.architect.serve.options.sslKey`-укажите расположение лежит ключа .key
 `projects.primeng-issue-template.architect.serve.options.sslCert`-укажите расположение лежит сертификата .crt
