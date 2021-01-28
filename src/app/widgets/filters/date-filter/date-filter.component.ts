@@ -20,7 +20,7 @@ export class DateFilterComponent implements OnInit {
     private index: number=0
     private menuItem:any=[{label:''},
         {label:''},{label:''}]
-    private isCloseDate: boolean = false
+    public isCloseDate: boolean = false
     @ViewChild(PeriodDateFilterComponent) childPeriodDateFilter: PeriodDateFilterComponent
     menuChange: number = 1
 

@@ -49,7 +49,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "dev": "lite-server --baseDir=\"dist/browser\"",
+    "dev": "lite-server --baseDir=\"dist/browser\"  ",
     "e2e": "ng e2e",
     "build:server:prod": "ng run primeng-issue-template:server && webpack --config webpack.server.config.js --progress --colors",
     "build:browser:prod": "ng build --prod",

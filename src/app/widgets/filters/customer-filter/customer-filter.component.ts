@@ -16,7 +16,7 @@ export class CustomerFilterComponent implements OnInit {
 
     // @Output() onSuggest: EventEmitter<any> = new EventEmitter();
     private orderRequest: OrderRequest
-    private customers: any[] = []
+    public customers: any[] = []
     filtered: any[];
     selected: User;
 

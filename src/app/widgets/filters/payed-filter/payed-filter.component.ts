@@ -9,10 +9,10 @@ import {FilterService} from "../filter.service";
 })
 export class PayedFilterComponent implements OnInit {
 
-    private payed = {name: '', code: ''}
+    public payed = {name: '', code: ''}
     // @Output() onSuggest: EventEmitter<any> = new EventEmitter();
     private orderRequest: OrderRequest
-    private states: any[] = [
+    public states: any[] = [
         {name: 'все', code: null},
         {name: 'оплаченые', code: true},
         {name: 'неоплаченые', code: false}

@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
 
 
     constructor(private primengConfig: PrimeNGConfig,
-                private apiService:ApiDataServiceService,
+                public apiService:ApiDataServiceService,
                 protected translateService: TranslateService) {
         this.translateService.instant('ua')
     }
