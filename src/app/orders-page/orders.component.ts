@@ -29,7 +29,7 @@ export class OrdersComponent implements OnInit {
     temp: any;
     twoDownloadLoad: boolean = false
     private user: User;
-    private enableLoading:boolean=true
+    private enableLoading: boolean = true
 
     private intervalUpdate: any
     secUpdate: number = 0
@@ -149,14 +149,14 @@ export class OrdersComponent implements OnInit {
 
 
     async twoDownload() {
-        this.secUpdate=0
+        this.secUpdate = 0
         let request = this.filterService.getOrderRequest()
         request.sizeResponse = this.data.sizeTwoPartData
         request.rowStartIndex = this.apiService.startIndex
         this.filterService.setOrderRequest(request)
         this.data = await this.apiService.post<TableOrderResponse>(
             'getCroppedOrders', this.filterService.getOrderRequest(), false
-        ,true);
+            , true);
         let tableBody = []
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
@@ -185,33 +185,31 @@ export class OrdersComponent implements OnInit {
     }
 
     async updateData() {
-        this.secUpdate=0
+        this.secUpdate = 0
         this.apiService.startIndex = 0;
         let request = this.filterService.getOrderRequest()
         request.sizeResponse = 50
         request.rowStartIndex = 0
         this.filterService.setOrderRequest(request)
-        this.apiService.applySubLoading=true
+        this.apiService.applySubLoading = true
         this.data = await this.apiService.post<TableOrderResponse>(
             'getCroppedOrders', this.filterService.getOrderRequest(), false
-        ,this.enableLoading);
-        this.enableLoading=true
+            , this.enableLoading);
+        this.enableLoading = true
         this.apiService.startIndex += this.apiService.sizeDataResponse
         this.apiService.sizeNextRequest = this.data.sizeTwoPartData
         // this.tableDataService.mainData = []
-
         let tabData = []
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
             row.rowData.map(cell => {
                 if (cell.cellData.indexOf('thWOrders.orderClosed') !== -1) {
                     tableRow[cell.cellName] = cell.cellData.substr(22, 3)
-                } else if (cell.cellName === 'Код' || cell.cellName === 'Долг' || cell.cellName === 'Всего'
-                    || cell.cellName === 'З/ч' || cell.cellName === 'Раб.') {
-                    tableRow[cell.cellName] = Number(cell.cellData)
                 } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
                     let data = new Date(cell.cellData)
                     tableRow[cell.cellName] = moment(data.getTime()).utc().format("YYYY-MM-DD");
+                } else if (cell.cellData.match(/^([0-9]+.[0-9]+)|([0-9]+,[0-9]+)$/) !== null) {
+                    tableRow[cell.cellName] = Number(cell.cellData)
                 } else {
                     tableRow[cell.cellName] = cell.cellData
                 }
@@ -266,7 +264,7 @@ export class OrdersComponent implements OnInit {
         this.intervalUpdate = setInterval(() => {
             this.secUpdate++
             if (this.secUpdate === 10) {
-                this.enableLoading=false
+                this.enableLoading = false
                 this.apiService.applySubLoading = false
                 this.updateData()
             }
