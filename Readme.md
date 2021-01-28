@@ -14,7 +14,7 @@
 `ng serve --ssl --port 8080 --host localhost`- Создает ваше приложение, и включает сертификат. Также указываем свой порт и хост.
 
 ### где менять api для связи с backend
-ts файл нахотить по расположению `src/app/Service/api-data-service.service.ts`. В этом файде надо поменять значение `mainURL` на свою ссылку в backend
+ts файл  расположен `src/app/Service/api-data-service.service.ts`. В этом файде надо поменять значение `mainURL` на свою ссылку в backend
 
 ### настройка https
 в корневой папке проекта откройте `angular.json`
