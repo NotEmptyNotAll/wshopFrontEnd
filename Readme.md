@@ -22,7 +22,7 @@ ts файл  расположен `src/app/Service/api-data-service.service.ts`.
 ### настройка https
 в корневой папке проекта откройте `angular.json`
 
-`projects.primeng-issue-template.architect.serve.options.ssl`-логическое значение, включает или выключает защищенное соединение
+`projects.primeng-issue-template.architect.serve.options.ssl`-логическое значение, включает или выключает защищенное соединение. Если мы здесь включили ssl соединение, то запускать можно без `--ssl`
 
 `projects.primeng-issue-template.architect.serve.options.sslKey`-укажите расположение ключа .key
 
