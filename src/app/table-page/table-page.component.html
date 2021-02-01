@@ -368,7 +368,7 @@
                                 class=" p-button-success"
                                 (click)="contextAction(rowData['ID работы'],rowData['статус'])"
                                 style="min-width: 8rem"
-                                label="начать" icon="pi pi-play"></button>
+                                label="{{'page.start' | translate}}" icon="pi pi-play"></button>
                     </td>
                     <td
                             *ngIf="contextMenuActionDisable && masterWindowsSelectDisable"
@@ -378,7 +378,7 @@
                                 class=" p-button-danger"
                                 (click)="contextActionEnd(rowData['ID работы'])"
                                 style="min-width: 8rem"
-                                label="завершить"></button>
+                                label="{{'page.complete' | translate}}"></button>
                     </td>
                     <!--                    <td [style]="{borderColor:'#f4f4f4' , fontSize:'14px',zIndex:'2'}" *ngIf="buttonActionDisable">-->
 

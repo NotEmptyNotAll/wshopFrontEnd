@@ -32,7 +32,7 @@
     "days": "дні",
     "openCropped": "відкр.",
     "closeCropped": "закр.",
-    "workOnExecution": "робота над виконанням",
+    "workOnExecution": "роботи на виконанні",
     "months": "місяці",
     "all": "всі",
     "completed": "виконані",
@@ -51,6 +51,7 @@
     "lastYear": "минулий рік",
     "pause": "пауза",
     "paid": "оплачені",
-    "unpaid": "неоплачені"
+    "unpaid": "неоплачені",
+    "complete": "завершити"
   }
 }
