@@ -33,6 +33,24 @@
     "openCropped": "відкр.",
     "closeCropped": "закр.",
     "workOnExecution": "робота над виконанням",
-    "months": "місяці"
+    "months": "місяці",
+    "all": "всі",
+    "completed": "виконані",
+    "unclosed": "незакриті",
+    "closed": "закриті",
+    "today": "сьогодні",
+    "yesterday": "вчора",
+    "lastSevenDays": "останні 7 днів",
+    "thisWeek": "поточний тиждень",
+    "currentMonth": "поточний місяць",
+    "currentQuarter": "поточний квартал",
+    "thisYear": "поточний рік",
+    "lastWeek": "минулий тиждень",
+    "lastMonth": "минулий місяць",
+    "lastQuarter": "минулий квартал",
+    "lastYear": "минулий рік",
+    "pause": "пауза",
+    "paid": "оплачені",
+    "unpaid": "неоплачені"
   }
 }

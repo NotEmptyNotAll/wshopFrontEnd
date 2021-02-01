@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {OrderRequest} from "../order.request";
 import {ServStateFilterService} from "../state-filter/serv-state-filter.service";
 import {FilterService} from "../filter.service";
+import {LangChangeEvent, TranslateService} from "@ngx-translate/core";
 
 @Component({
     selector: 'app-work-status-filter',
@@ -29,13 +30,33 @@ export class WorkStatusFilterComponent implements OnInit {
 
     constructor(
         public stateService: ServStateFilterService,
+        private translate: TranslateService,
         public filterService: FilterService) {
     }
 
     ngOnInit(): void {
+        this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+            this.translate.get('page.all').subscribe((res: string) => {
+                this.states[0].name = res
+            });
+            this.translate.get('page.completed').subscribe((res: string) => {
+                this.states[1].name = res
+            });
+
+            this.translate.get('page.unclosed').subscribe((res: string) => {
+                this.states[2].name = res
+            });
+
+            this.translate.get('page.closed').subscribe((res: string) => {
+                this.states[3].name = res
+            });
+        })
     }
 
     clear() {
+        this.translate.get('page.all').subscribe((res: string) => {
+            this.state = {name:res, code: null}
+        });
         this.state = {name: 'все', code: null}
         this.changeState()
         this.onClear.emit()

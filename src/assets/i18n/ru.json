@@ -33,6 +33,24 @@
     "openCropped": "откр.",
     "closeCropped": "закр.",
     "workOnExecution": "работы на выполнении",
-    "months": "месяцы"
+    "months": "месяцы",
+    "all": "все",
+    "completed": "выполненные",
+    "unclosed": "незакрытые",
+    "closed": "закрытые",
+    "today": "сегодня",
+    "yesterday": "вчера",
+    "lastSevenDays": "последние 7 дней",
+    "thisWeek": "текущая неделя",
+    "currentMonth": "текущий месяц",
+    "currentQuarter": "текущий квартал",
+    "thisYear": "текущий год",
+    "lastWeek": "прошедшая неделя",
+    "lastMonth": "прошлый месяц",
+    "lastQuarter": "прошлый квартал",
+    "lastYear": "прошлый год",
+    "pause": "пауза",
+    "paid": "оплаченые",
+    "unpaid": "неоплаченые"
   }
 }

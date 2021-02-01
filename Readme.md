@@ -19,6 +19,9 @@
 ### где менять api для связи с backend
 ts файл  расположен `src/app/Service/api-data-service.service.ts`. В этом файде надо поменять значение `mainURL` на свою ссылку в backend
 
+### Изменение локали
+Изменить дефолтную локаль можна в файле `src/app/Service/api-data-service.service.ts`  значение параметра `defaultLang`
+
 ### настройка https
 в корневой папке проекта откройте `angular.json`
 
@@ -27,3 +30,9 @@ ts файл  расположен `src/app/Service/api-data-service.service.ts`.
 `projects.primeng-issue-template.architect.serve.options.sslKey`-укажите расположение ключа .key
 
 `projects.primeng-issue-template.architect.serve.options.sslCert`-укажите расположение сертификата .crt
+
+### пошаговый запуск
+
+1. `npm install -g @angular/cli`
+2. `npm install`
+3. `npm serve`

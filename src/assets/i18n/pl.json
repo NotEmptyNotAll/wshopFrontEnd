@@ -33,7 +33,25 @@
     "closeCropped": "zamkn.",
     "workOnExecution": "trwa",
     "work": "praca",
-    "months": "miesięcy"
+    "months": "miesięcy",
+    "all": "wszystko",
+    "completed": "gotowe",
+    "unclosed": "niezamknięte",
+    "closed": "zamknięte",
+    "today": "dzisiaj",
+    "yesterday": "wczoraj",
+    "lastSevenDays": "ostatnie 7 dni",
+    "thisWeek": "bieżący tydzień",
+    "currentMonth": "bieżący miesiąc",
+    "currentQuarter": "bieżący kwartał",
+    "thisYear": "bieżący rok",
+    "lastWeek": "ostatni tydzień",
+    "lastMonth": "ostatni miesiąc",
+    "lastQuarter": "ostatni kwartał",
+    "lastYear": "ostatni rok",
+    "pause": "pauza",
+    "paid": "tylko już zapłacone",
+    "unpaid": "tylko niezapłacone"
 
   }
 }

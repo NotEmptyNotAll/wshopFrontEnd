@@ -76,6 +76,12 @@ export class MenuBarComponent implements OnInit {
 
     }
 
+
+    defaultLang() {
+        this.switchLanguage(this.apiService.defaultLang)
+    }
+
+
     setSize() {
 
     }
@@ -359,6 +365,8 @@ export class MenuBarComponent implements OnInit {
                 ]
             }
         ];
+        this.defaultLang()
+
     }
 
     private setDefaultTranslation(): void {
