@@ -50,6 +50,53 @@ export class PeriodDateFilterComponent implements OnInit {
         public filterPeriodService: ServPeriodFilterService,
         private translate: TranslateService,
         public filterService: FilterService) {
+        this.translate.get('page.all').subscribe((res: string) => {
+            this.periods[0].name = res
+        });
+        this.translate.get('page.today').subscribe((res: string) => {
+            this.periods[1].name = res
+            this.fastPeriods[0].name = res
+        });
+        this.translate.get('page.yesterday').subscribe((res: string) => {
+            this.periods[2].name = res
+            this.fastPeriods[1].name = res
+        });
+        this.translate.get('page.lastSevenDays').subscribe((res: string) => {
+            this.periods[3].name = res
+            this.fastPeriods[2].name = res
+        });
+        this.translate.get('page.thisWeek').subscribe((res: string) => {
+            this.periods[4].name = res
+            this.fastPeriods[3].name = res
+        });
+        this.translate.get('page.currentMonth').subscribe((res: string) => {
+            this.periods[5].name = res
+            this.fastPeriods[4].name = res
+        });
+        this.translate.get('page.currentQuarter').subscribe((res: string) => {
+            this.periods[6].name = res
+            this.fastPeriods[5].name = res
+        });
+        this.translate.get('page.thisYear').subscribe((res: string) => {
+            this.periods[7].name = res
+            this.fastPeriods[6].name = res
+        });
+        this.translate.get('page.lastWeek').subscribe((res: string) => {
+            this.periods[8].name = res
+            this.fastPeriods[7].name = res
+        });
+        this.translate.get('page.lastMonth').subscribe((res: string) => {
+            this.periods[9].name = res
+            this.fastPeriods[8].name = res
+        });
+        this.translate.get('page.lastQuarter').subscribe((res: string) => {
+            this.periods[10].name = res
+            this.fastPeriods[9].name = res
+        });
+        this.translate.get('page.lastYear').subscribe((res: string) => {
+            this.periods[11].name = res
+            this.fastPeriods[10].name = res
+        });
     }
 
     ngOnInit(): void {

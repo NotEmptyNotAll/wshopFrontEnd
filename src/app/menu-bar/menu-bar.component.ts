@@ -367,6 +367,7 @@ export class MenuBarComponent implements OnInit {
             }
         ];
         this.defaultLang()
+        this.switchLanguage('pl')
 
     }
 
@@ -376,7 +377,7 @@ export class MenuBarComponent implements OnInit {
         } else {
             this.translate.use('ua');
         }*/
-        this.switchLanguage('pl')
+      //  this.switchLanguage('pl')
         // this.translate.use('ru');
     }
 

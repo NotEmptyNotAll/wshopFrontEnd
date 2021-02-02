@@ -21,6 +21,15 @@ export class PayedFilterComponent implements OnInit {
 
     constructor(public filterService: FilterService,
                 private translate: TranslateService) {
+        this.translate.get('page.all').subscribe((res: string) => {
+            this.states[0].name = res
+        });
+        this.translate.get('page.paid').subscribe((res: string) => {
+            this.states[1].name = res
+        });
+        this.translate.get('page.unpaid').subscribe((res: string) => {
+            this.states[2].name = res
+        });
     }
 
     ngOnInit(): void {

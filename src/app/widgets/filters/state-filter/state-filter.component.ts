@@ -34,27 +34,28 @@ export class StateFilterComponent implements OnInit {
         public stateService:ServStateFilterService,
         private translate: TranslateService,
         public filterService: FilterService) {
+        this.translate.get('page.all').subscribe((res: string) => {
+        this.states[0].name = res
+    });
+        this.translate.get('page.completed').subscribe((res: string) => {
+            this.states[1].name = res
+            this.fastStates[0].name = res
+        });
+
+        this.translate.get('page.unclosed').subscribe((res: string) => {
+            this.states[2].name = res
+            this.fastStates[1].name = res
+        });
+
+        this.translate.get('page.closed').subscribe((res: string) => {
+            this.states[3].name = res
+            this.fastStates[2].name = res
+        });
     }
 
     ngOnInit(): void {
         this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
-            this.translate.get('page.all').subscribe((res: string) => {
-                this.states[0].name = res
-            });
-            this.translate.get('page.completed').subscribe((res: string) => {
-                this.states[1].name = res
-                this.fastStates[0].name = res
-            });
 
-            this.translate.get('page.unclosed').subscribe((res: string) => {
-                this.states[2].name = res
-                this.fastStates[1].name = res
-            });
-
-            this.translate.get('page.closed').subscribe((res: string) => {
-                this.states[3].name = res
-                this.fastStates[2].name = res
-            });
         })
           }
 
