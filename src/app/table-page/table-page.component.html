@@ -343,7 +343,10 @@
                     <td
                             *ngFor="let col of columns"
                             class="ui-resizable-column" pResizableColumn
-                            [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
+                            [style]="{borderColor:'#f4f4f4' , fontSize:'12px',
+                              textAlign:((col.field==='Долг' || col.field==='Раб.' || col.field==='З/ч' || col.field==='Всего')?'right':'left')}"
+
+                    >
                         <span class="p-column-title">{{col.header}}</span>
                         <span *ngIf="contextMenuActionDisable">
                             {{rowData[col.field]}}
@@ -353,8 +356,8 @@
                         <i class="pi pi-check"></i>
                         </span>
                         <span *ngIf="rowData[col.field]==='no' || rowData[col.field]==='0'"></span>
-                        <span *ngIf="col.field==='Долг' || col.field==='Раб.' || col.field==='З/ч' || col.field==='Всего'"
-                              style="padding-left: 50%"> </span>
+<!--                        <span *ngIf="col.field==='Долг' || col.field==='Раб.' || col.field==='З/ч' || col.field==='Всего'"-->
+<!--                              style="padding-left: 50%"> </span>-->
                         <span *ngIf="!(rowData[col.field]==='yes' || rowData[col.field]==='1') && !(rowData[col.field]==='no' || rowData[col.field]==='0')">
                                             {{rowData[col.field]}}
                     </span>

@@ -236,6 +236,7 @@ export class MenuBarComponent implements OnInit {
     }
 
     ngOnInit() {
+
         this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
             this.translate.get('page.listOrders').subscribe((res: string) => {
                 this.appNavigate.optionsAdmin[0].name = res
@@ -269,7 +270,7 @@ export class MenuBarComponent implements OnInit {
                         command: (event: Event) => {
                             this.switchLanguage('ru')
                             this.apiService.setLang('ru')
-                            this.changeLangPost()
+                            // this.changeLangPost()
                         }
                     }, {
                         icon: 'pi pi-fw pi-chevron-right',
@@ -278,7 +279,7 @@ export class MenuBarComponent implements OnInit {
                         command: (event: Event) => {
                             this.switchLanguage('ua')
                             this.apiService.setLang('ua')
-                            this.changeLangPost()
+                            // this.changeLangPost()
 
                         }
                     }, {
@@ -288,7 +289,7 @@ export class MenuBarComponent implements OnInit {
                         command: (event: Event) => {
                             this.switchLanguage('pl')
                             this.apiService.setLang('pl')
-                            this.changeLangPost()
+                            // this.changeLangPost()
                         }
                     }, {
                         icon: 'pi pi-fw pi-chevron-right',
@@ -297,7 +298,7 @@ export class MenuBarComponent implements OnInit {
                         command: (event: Event) => {
                             this.switchLanguage('en')
                             this.apiService.setLang('en')
-                            this.changeLangPost()
+                            // this.changeLangPost()
                         }
                     }
                 ]
@@ -331,7 +332,7 @@ export class MenuBarComponent implements OnInit {
                         command: (event: Event) => {
                             this.switchLanguage('ru')
                             this.apiService.setLang('ru')
-                            this.changeLangPost()
+                            // this.changeLangPost()
                         }
                     }, {
                         icon: 'pi pi-fw pi-chevron-right',
@@ -340,7 +341,7 @@ export class MenuBarComponent implements OnInit {
                         command: (event: Event) => {
                             this.switchLanguage('ua')
                             this.apiService.setLang('ua')
-                            this.changeLangPost()
+                            // this.changeLangPost()
 
                         }
                     }, {
@@ -350,7 +351,7 @@ export class MenuBarComponent implements OnInit {
                         command: (event: Event) => {
                             this.switchLanguage('pl')
                             this.apiService.setLang('pl')
-                            this.changeLangPost()
+                            // this.changeLangPost()
                         }
                     }, {
                         icon: 'pi pi-fw pi-chevron-right',
@@ -359,7 +360,7 @@ export class MenuBarComponent implements OnInit {
                         command: (event: Event) => {
                             this.switchLanguage('en')
                             this.apiService.setLang('en')
-                            this.changeLangPost()
+                            // this.changeLangPost()
                         }
                     }
                 ]
@@ -375,11 +376,13 @@ export class MenuBarComponent implements OnInit {
         } else {
             this.translate.use('ua');
         }*/
-        this.translate.use('ru');
+        this.switchLanguage('pl')
+        // this.translate.use('ru');
     }
 
     public switchLanguage(lang: string): void {
-        this.translate.use(lang);
+        this.filterService.orderRequest.lang=lang
+            this.translate.use(lang);
         this.items[1].label = lang
         this.itemsNoLogin[0].label = lang
 

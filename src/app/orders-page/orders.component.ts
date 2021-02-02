@@ -205,15 +205,28 @@ export class OrdersComponent implements OnInit {
             row.rowData.map(cell => {
                 if (cell.cellData.indexOf('thWOrders.orderClosed') !== -1) {
                     tableRow[cell.cellName] = cell.cellData.substr(22, 3)
+                } else if (cell.cellName === 'Код' || cell.cellName === 'Долг' || cell.cellName === 'Всего'
+                    || cell.cellName === 'З/ч' || cell.cellName === 'Раб.') {
+                    tableRow[cell.cellName] = Number(cell.cellData)
                 } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
                     let data = new Date(cell.cellData)
                     tableRow[cell.cellName] = moment(data.getTime()).utc().format("YYYY-MM-DD");
-                } else if (cell.cellData.match(/^([0-9]+.[0-9]+)|([0-9]+,[0-9]+)$/) !== null) {
-                    tableRow[cell.cellName] = Number(cell.cellData)
                 } else {
                     tableRow[cell.cellName] = cell.cellData
                 }
             })
+            // row.rowData.map(cell => {
+            //     if (cell.cellData.indexOf('thWOrders.orderClosed') !== -1) {
+            //         tableRow[cell.cellName] = cell.cellData.substr(22, 3)
+            //     } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
+            //         let data = new Date(cell.cellData)
+            //         tableRow[cell.cellName] = moment(data.getTime()).utc().format("YYYY-MM-DD");
+            //     } else if (cell.cellData.match(/^([0-9]+.[0-9]+)|([0-9]+,[0-9]+)$/) !== null) {
+            //         tableRow[cell.cellName] = Number(cell.cellData)
+            //     } else {
+            //         tableRow[cell.cellName] = cell.cellData
+            //     }
+            // })
             tabData.push(tableRow)
             // this.tableDataService.mainData.push(tableRow)
         })

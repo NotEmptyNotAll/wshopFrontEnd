@@ -16,7 +16,7 @@ export class FilterService {
         customerId: null,
         employeeId: null,
         customerName: null,
-        lang: null,
+        lang: 'pl',
         state: null,
         status: null,
         sizeResponse: null,

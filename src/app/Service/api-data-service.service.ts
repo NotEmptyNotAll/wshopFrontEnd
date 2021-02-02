@@ -12,8 +12,8 @@ import {MessageService} from "primeng/api";
 })
 export class ApiDataServiceService {
 
-    public defaultLang='ru' // можете изменить на pl, ua, en
-    mainURL: string = 'http://10.102.200.11:5055/'
+    public defaultLang='pl' // можете изменить на pl, ua, en
+    mainURL: string = 'http://10.102.200.11:5057/'
     testUrl: string = 'https://wshop.24x7tools.com:5052/'
     private axiosClient: AxiosInstance;
     public sizeNextRequest:number=0
