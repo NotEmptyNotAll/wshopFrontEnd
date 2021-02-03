@@ -40,9 +40,11 @@
     "closed": "closed",
     "today": "today",
     "yesterday": "yesterday",
+    "workFixJob": "fixed prices",
     "lastSevenDays": "last seven days",
     "thisWeek": "this week",
     "currentMonth": "current month",
+    "confirmFilterMsg": "the standard filters will be cleaned. Proceed?",
     "currentQuarter": "current quarter",
     "thisYear": "this year",
     "lastWeek": "last week",
@@ -52,6 +54,8 @@
     "pause": "pause",
     "paid": "paid",
     "unpaid": "unpaid",
+    "yes": "yes",
+    "not": "not",
     "complete": "complete"
   }
 }

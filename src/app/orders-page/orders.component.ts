@@ -12,6 +12,8 @@ import * as moment from "moment";
 import {FilterService} from "../widgets/filters/filter.service";
 import {ServStateFilterService} from "../widgets/filters/state-filter/serv-state-filter.service";
 import {ServPeriodFilterService} from "../widgets/filters/period-date-filter/serv-period-filter.service";
+import {TableData} from "../table-page/tableData";
+import {CellType} from "../table-page/CellType";
 
 @Component({
     selector: 'app-orders',
@@ -24,6 +26,7 @@ export class OrdersComponent implements OnInit {
     listener1;
     listener2;
     listener3;
+    tableData:TableData[]
     sec: number
     secIncr: number = 1
     temp: any;
@@ -92,6 +95,7 @@ export class OrdersComponent implements OnInit {
     }
 
     async getOrd() {
+        this.enableLoading = true
         this.data = this.orderService.getOrderResponse()
         // this.data = await this.apiService.get<Order[]>('getCroppedOrders')
         // this.data = this.orderService.getOrderResponse()
@@ -102,8 +106,9 @@ export class OrdersComponent implements OnInit {
                 this.mainColumn.push(
                     {
                         field: elem.nameColumn,
+                        type: elem.cellType,
                         header: elem.nameColumn,
-                        width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
+                        width: elem.width <  100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
                     }
                 )
             })
@@ -113,14 +118,19 @@ export class OrdersComponent implements OnInit {
             this.data.ordersTableBody.map(row => {
                 let tableRow: any = {}
                 row.rowData.map(cell => {
-                    if (cell.cellData.indexOf('thWOrders.orderClosed') !== -1) {
-                        tableRow[cell.cellName] = cell.cellData.substr(22, 3)
-                    } else if (cell.cellName === 'Код' || cell.cellName === 'Долг' || cell.cellName === 'Всего'
-                        || cell.cellName === 'З/ч' || cell.cellName === 'Раб.') {
+
+                    if (cell.cellType === CellType.LOGIC) {
+                        if( cell.cellData==='thWOrders.TableCaption.SmsStatus.value'){
+                            tableRow[cell.cellName] = ' '
+
+                        }else {
+                            tableRow[cell.cellName] = cell.cellData.substr(22, 3)
+                        }
+                    } else    if (cell.cellType === CellType.NUMBER) {
                         tableRow[cell.cellName] = Number(cell.cellData)
-                    } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
+                    } else if (cell.cellType === CellType.DATE && !isNaN(new Date(cell.cellData).getDate())) {
                         let data = new Date(cell.cellData)
-                        tableRow[cell.cellName] = moment(data.getTime()).utc().format("YYYY-MM-DD");
+                        tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth() + '.' + data.getFullYear();
                     } else {
                         tableRow[cell.cellName] = cell.cellData
                     }
@@ -139,6 +149,9 @@ export class OrdersComponent implements OnInit {
                     }
                 }
             )
+            console.log('//////////////////')
+            console.log(tableBody)
+            this.tableData=tableBody
             this.tableService.setMainData(tableBody)
             this.tableService.setTablePatternRow(tableRowPattern)
         } else {
@@ -149,6 +162,7 @@ export class OrdersComponent implements OnInit {
 
 
     async twoDownload() {
+        this.enableLoading = true
         this.secUpdate = 0
         let request = this.filterService.getOrderRequest()
         request.sizeResponse = this.data.sizeTwoPartData
@@ -161,14 +175,17 @@ export class OrdersComponent implements OnInit {
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
             row.rowData.map(cell => {
-                if (cell.cellData.indexOf('thWOrders.orderClosed') !== -1) {
-                    tableRow[cell.cellName] = cell.cellData.substr(22, 3)
-                } else if (cell.cellName === 'Код' || cell.cellName === 'Долг' || cell.cellName === 'Всего'
-                    || cell.cellName === 'З/ч' || cell.cellName === 'Раб.') {
+                if (cell.cellType === CellType.LOGIC) {
+                    if( cell.cellData==='thWOrders.TableCaption.SmsStatus.value'){
+                        tableRow[cell.cellName] = ' '
+
+                    }else {
+                        tableRow[cell.cellName] = cell.cellData.substr(22, 3)
+                    }                } else    if (cell.cellType === CellType.NUMBER) {
                     tableRow[cell.cellName] = Number(cell.cellData)
-                } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
+                } else if (cell.cellType === CellType.DATE && !isNaN(new Date(cell.cellData).getDate())) {
                     let data = new Date(cell.cellData)
-                    tableRow[cell.cellName] = moment(data.getTime()).utc().format("YYYY-MM-DD");
+                    tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth() + '.' + data.getFullYear();
                 } else {
                     tableRow[cell.cellName] = cell.cellData
                 }
@@ -185,6 +202,7 @@ export class OrdersComponent implements OnInit {
     }
 
     async updateData() {
+        this.enableLoading = true
         this.secUpdate = 0
         this.apiService.startIndex = 0;
         let request = this.filterService.getOrderRequest()
@@ -203,14 +221,18 @@ export class OrdersComponent implements OnInit {
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
             row.rowData.map(cell => {
-                if (cell.cellData.indexOf('thWOrders.orderClosed') !== -1) {
-                    tableRow[cell.cellName] = cell.cellData.substr(22, 3)
-                } else if (cell.cellName === 'Код' || cell.cellName === 'Долг' || cell.cellName === 'Всего'
-                    || cell.cellName === 'З/ч' || cell.cellName === 'Раб.') {
+                if (cell.cellType === CellType.LOGIC) {
+                    if( cell.cellData==='thWOrders.TableCaption.SmsStatus.value'){
+                        tableRow[cell.cellName] = ' '
+
+                    }else {
+                        tableRow[cell.cellName] = cell.cellData.substr(22, 3)
+                    }
+                } else    if (cell.cellType === CellType.NUMBER) {
                     tableRow[cell.cellName] = Number(cell.cellData)
-                } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
+                } else if (cell.cellType === CellType.DATE && !isNaN(new Date(cell.cellData).getDate())) {
                     let data = new Date(cell.cellData)
-                    tableRow[cell.cellName] = moment(data.getTime()).utc().format("YYYY-MM-DD");
+                    tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth() + '.' + data.getFullYear();
                 } else {
                     tableRow[cell.cellName] = cell.cellData
                 }
@@ -242,6 +264,7 @@ export class OrdersComponent implements OnInit {
             //     Array.from({length: this.data.sizeTwoPartData}))
             this.twoDownload()
         }
+        this.tableData=tabData
         this.tableDataService.setMainData(tabData)
         this.apiService.isLoadingData = false
 
@@ -274,14 +297,14 @@ export class OrdersComponent implements OnInit {
 
 
     updateInfoOnSite() {
-        this.intervalUpdate = setInterval(() => {
-            this.secUpdate++
-            if (this.secUpdate === 10) {
-                this.enableLoading = false
-                this.apiService.applySubLoading = false
-                this.updateData()
-            }
-        }, 1000);
+        // this.intervalUpdate = setInterval(() => {
+        //     this.secUpdate++
+        //     if (this.secUpdate === 10) {
+        //         this.enableLoading = false
+        //         this.apiService.applySubLoading = false
+        //         this.updateData()
+        //     }
+        // }, 1000);
     }
 
     ngOnDestroy() {

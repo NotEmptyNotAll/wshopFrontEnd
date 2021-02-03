@@ -5,6 +5,7 @@ import {User} from "../../../Service/User";
 import {FilterService} from "../filter.service";
 import {ApiDataServiceService} from "../../../Service/api-data-service.service";
 import {SimpleData} from "../SimpleData";
+import {LangChangeEvent, TranslateService} from "@ngx-translate/core";
 
 @Component({
     selector: 'app-detail-filter',
@@ -23,11 +24,21 @@ export class DetailFilterComponent implements OnInit {
     private details: any[] = []
     filtered: any[];
     selected: SimpleData;
-    fixDataString:String='работа с фикс. цен.'
+    fixJobTitle: string
+    fixDataString: String = 'работа с фикс. цен.'
 
     constructor(public filterService: FilterService,
+                private translate: TranslateService,
                 public apiService: ApiDataServiceService,
     ) {
+        this.translate.get('page.workFixJob').subscribe((res: string) => {
+            this.fixJobTitle = res
+        });
+        this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+            this.translate.get('page.workFixJob').subscribe((res: string) => {
+                this.fixJobTitle = res
+            });
+        })
     }
 
     ngOnInit(): void {
@@ -53,9 +64,9 @@ export class DetailFilterComponent implements OnInit {
     async getCustomer(name) {
         this.apiService.applySubLoading = false
         let data = await this.apiService.post<SimpleData[]>('getListDetails'
-            , {name: name, sizeResponse: 50}, false,false)
-        if (this.fixDataString.indexOf(name.toLowerCase())!==-1) {
-            data.unshift({id: -1, name: 'работа с фикс. цен.'})
+            , {name: name, sizeResponse: 50}, false, false)
+        if (this.fixJobTitle.indexOf(name.toLowerCase()) !== -1) {
+            data.unshift({id: -1, name:  this.fixJobTitle})
         }
         this.details = data
     }
@@ -72,10 +83,10 @@ export class DetailFilterComponent implements OnInit {
 
 
     changeState() {
-        if(this.selected.id!==null){
-            this.filterService.fixDataSelect=false
-        }else {
-            this.filterService.fixDataSelect=true
+        if (this.selected.id !== null) {
+            this.filterService.fixDataSelect = false
+        } else {
+            this.filterService.fixDataSelect = true
         }
         let orderRequest = this.filterService.getOrderRequest()
         orderRequest.detailId = this.selected.id
@@ -84,10 +95,10 @@ export class DetailFilterComponent implements OnInit {
     }
 
     change() {
-        if(this.selected.id!==undefined){
-            this.filterService.workFilterEnable=false
-        }else {
-            this.filterService.workFilterEnable=true
+        if (this.selected.id !== undefined) {
+            this.filterService.workFilterEnable = false
+        } else {
+            this.filterService.workFilterEnable = true
 
         }
     }

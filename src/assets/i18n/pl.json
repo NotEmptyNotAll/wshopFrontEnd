@@ -52,7 +52,10 @@
     "pause": "pauza",
     "paid": "tylko już zapłacone",
     "unpaid": "tylko niezapłacone",
-    "complete": "zakończyć"
-
+    "workFixJob": "Stałe ceny",
+    "confirmFilterMsg": "standardowe filtry zostaną wyczyszczone. Kontynuować?",
+    "complete": "zakończyć",
+    "yes": "tak",
+    "not": "nie"
   }
 }

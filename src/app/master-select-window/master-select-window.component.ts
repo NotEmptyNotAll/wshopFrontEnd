@@ -9,6 +9,8 @@ import {OrderRequest} from "../widgets/filters/order.request";
 import {MenuItem} from "primeng/api";
 import * as moment from "moment";
 import {ApiDataServiceService} from "../Service/api-data-service.service";
+import {CellType} from "../table-page/CellType";
+import {TableData} from "../table-page/tableData";
 
 @Component({
     selector: 'app-master-select-window',
@@ -24,6 +26,8 @@ export class MasterSelectWindowComponent implements OnInit {
     sec: number
     secIncr: number = 1
     temp: any;
+    statusName:string=""
+    tableData:TableData[]
     secUpdate: number = 0
     buttItem: MenuItem[];
     private intervalUpdate: any
@@ -119,6 +123,7 @@ export class MasterSelectWindowComponent implements OnInit {
                 this.mainColumn.push(
                     {
                         field: elem.nameColumn,
+                        type: elem.cellType,
                         header: elem.nameColumn,
                         width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
                     }
@@ -130,9 +135,14 @@ export class MasterSelectWindowComponent implements OnInit {
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
             row.rowData.map(cell => {
-                if (cell.cellName === 'номер заказа' || cell.cellName === 'ID работы' || cell.cellName === 'кол-во') {
+                if (cell.cellType === CellType.STATUS) {
+                    this.statusName= cell.cellName
+                    tableRow[cell.cellName] = cell.cellData
+                } else if (cell.cellType === CellType.LOGIC) {
+                    tableRow[cell.cellName] = cell.cellData.substr(22, 3)
+                } else    if (cell.cellType === CellType.NUMBER) {
                     tableRow[cell.cellName] = Number(cell.cellData)
-                } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
+                } else if (cell.cellType === CellType.DATE && !isNaN(new Date(cell.cellData).getDate())) {
                     let data = new Date(cell.cellData)
                     tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth() + '.' + data.getFullYear();
                 } else {
@@ -156,6 +166,7 @@ export class MasterSelectWindowComponent implements OnInit {
                 }
             )
         }
+        this.tableData=tableBody
         this.tableService.setMainData(tableBody)
         this.tableService.setTablePatternRow(tableRowPattern)
         this.tableDataService.setStartData(this.data)
@@ -176,6 +187,7 @@ export class MasterSelectWindowComponent implements OnInit {
                 mainColumn.push(
                     {
                         field: elem.nameColumn,
+                        type: elem.cellType,
                         header: elem.nameColumn,
                         width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
                     }
@@ -187,11 +199,16 @@ export class MasterSelectWindowComponent implements OnInit {
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
             row.rowData.map(cell => {
-                if (cell.cellName === 'номер заказа' || cell.cellName === 'ID работы' || cell.cellName === 'кол-во') {
+                if (cell.cellType === CellType.STATUS) {
+                    this.statusName= cell.cellName
+                    tableRow[cell.cellName] = cell.cellData
+                } else if (cell.cellType === CellType.LOGIC) {
+                    tableRow[cell.cellName] = cell.cellData.substr(22, 3)
+                } else    if (cell.cellType === CellType.NUMBER) {
                     tableRow[cell.cellName] = Number(cell.cellData)
-                } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
+                } else if (cell.cellType === CellType.DATE && !isNaN(new Date(cell.cellData).getDate())) {
                     let data = new Date(cell.cellData)
-                    tableRow[cell.cellName] = moment(data.getTime()).utc().format("DD.MM.YY");
+                    tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth() + '.' + data.getFullYear();
                 } else {
                     tableRow[cell.cellName] = cell.cellData
                 }
@@ -213,7 +230,7 @@ export class MasterSelectWindowComponent implements OnInit {
             )
         }
 
-
+        this.tableData=tableBody
         this.tableDataService.setMainData(tableBody)
         this.tableDataService.setTablePatternRow(tableRowPattern)
 

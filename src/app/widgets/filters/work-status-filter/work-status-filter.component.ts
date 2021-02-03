@@ -46,6 +46,9 @@ export class WorkStatusFilterComponent implements OnInit {
         this.translate.get('page.closed').subscribe((res: string) => {
             this.states[3].name = res
         });
+        this.translate.get('page.pause').subscribe((res: string) => {
+            this.states[4].name = res
+        });
     }
 
     ngOnInit(): void {
@@ -63,6 +66,9 @@ export class WorkStatusFilterComponent implements OnInit {
 
             this.translate.get('page.closed').subscribe((res: string) => {
                 this.states[3].name = res
+            });
+            this.translate.get('page.pause').subscribe((res: string) => {
+                this.states[4].name = res
             });
         })
     }

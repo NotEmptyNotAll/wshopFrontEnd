@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import * as moment from "moment";
 import {OrderRequest} from "../order.request";
 import {FilterService} from "../filter.service";
+import {LangChangeEvent, TranslateService} from "@ngx-translate/core";
 
 @Injectable({
     providedIn: 'root'
@@ -13,9 +14,11 @@ export class ServPeriodFilterService {
     public disableFastFiled = false
     private orderRequest: OrderRequest
 
-    defaultFastFilter() {
-        this.periodFastFilterData =    {name: 'последние 7 дней', code: 11}
-    }
+   public defaultFastFilter() {
+        this.translate.get('page.lastSevenDays').subscribe((res: string) => {
+            this.periodFastFilterData.name = res
+            this.periodFastFilterData.code = 11
+        });    }
 
     public onStndFilter() {
         this.disableFastFiled = true
@@ -41,7 +44,19 @@ export class ServPeriodFilterService {
         this.changePeriod()
     }
 
-    constructor(public filterService: FilterService) {
+    constructor(public filterService: FilterService,
+                private translate: TranslateService) {
+        this.translate.get('page.lastSevenDays').subscribe((res: string) => {
+            this.periodFastFilterData.name = res
+            this.periodFastFilterData.code = 11
+        });
+        this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+            this.translate.get('page.lastSevenDays').subscribe((res: string) => {
+                this.periodFastFilterData.name = res
+                this.periodFastFilterData.code = 11
+            });
+        })
+
     }
 
     changePeriod() {

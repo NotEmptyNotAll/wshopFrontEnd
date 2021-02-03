@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {FilterService} from "../filter.service";
 import * as moment from "moment";
 import {OrderRequest} from "../order.request";
+import {LangChangeEvent, TranslateService} from "@ngx-translate/core";
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +16,14 @@ export class ServStateFilterService {
     private orderRequest: OrderRequest
 
     defaultFastFilter() {
-        this.stateFastFilterData = {name: 'незакрытые', code: 'UNCLOSED'}
+        this.translate.get('page.lastSevenDays').subscribe((res: string) => {
+            this.stateFastFilterData.name = res
+            this.stateFastFilterData.code = 'UNCLOSED'
+            this.stateStndTemp.name = res
+            this.stateStndTemp.code = 'UNCLOSED'
+            this.stateFilterData.name = res
+            this.stateFilterData.code = 'UNCLOSED'
+        });
     }
 
     public onStndFilter() {
@@ -38,7 +46,26 @@ export class ServStateFilterService {
 
     }
 
-    constructor(public filterService: FilterService) {
+    constructor(public filterService: FilterService,
+                private translate: TranslateService) {
+        this.translate.get('page.lastSevenDays').subscribe((res: string) => {
+            this.stateFastFilterData.name = res
+            this.stateFastFilterData.code = 'UNCLOSED'
+            this.stateStndTemp.name = res
+            this.stateStndTemp.code = 'UNCLOSED'
+            this.stateFilterData.name = res
+            this.stateFilterData.code = 'UNCLOSED'
+        });
+        this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+            this.translate.get('page.lastSevenDays').subscribe((res: string) => {
+                this.stateFastFilterData.name = res
+                this.stateFastFilterData.code = 'UNCLOSED'
+                this.stateStndTemp.name = res
+                this.stateStndTemp.code = 'UNCLOSED'
+                this.stateFilterData.name = res
+                this.stateFilterData.code = 'UNCLOSED'
+            });
+        })
     }
 
     changeState() {

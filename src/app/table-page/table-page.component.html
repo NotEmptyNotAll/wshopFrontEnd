@@ -85,12 +85,12 @@
         <p-footer class="footer-dialog">
             <button
                     pRipple type="button"
-                    (click)="cancelFilter()"  pButton
+                    (click)="cancelFilter()" pButton
                     class="p-button-danger"
                     [label]="'page.clear' | translate" icon="pi pi-times" label="delete"></button>
             <button
                     pRipple type="button"
-                    (click)="updateData()"  pButton
+                    (click)="updateData()" pButton
                     icon="pi pi-check"
                     [label]="'page.confirm' | translate"></button>
         </p-footer>
@@ -109,7 +109,7 @@
     <div [style]="{height: '88vh',background: '#f4f4f4',width: '100%'}">
         <p-table
                 styleClass="p-datatable-responsive-demo" [(contextMenuSelection)]="contextSelectItem"
-                [columns]="_selectedColumns" [value]="tableDataService.mainData" [scrollable]="true"
+                [columns]="_selectedColumns" [value]="mainData" [scrollable]="true"
                 [loading]="apiService.isLoadingData"
                 columnResizeMode="expand"
                 [rows]="100" scrollHeight="flex"
@@ -129,7 +129,7 @@
                         <div *ngIf="screenWidth>800" class="p-mb-6 p-mr-6" style="width: 20%">
                         </div>
                         <div *ngIf="!hideButtonBar && screenWidth<800" style="width: 20%"
-                             class="filter-button-min-size-resolution" >
+                             class="filter-button-min-size-resolution">
                             <button
                                     *ngIf="standardFilterDisable"
                                     pButton type="button"
@@ -330,13 +330,15 @@
                             class="icon"
                             [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
                         <span class=" pi pi-bars"
+                              style="position:relative;left: -7px"
                               pReorderableRowHandle></span>
                     </td>
                     <td
                             class="icon"
-                            [style]="{borderColor:'#f4f4f4' , fontSize:'14px'}"
+                            [style]="{textAlign:'left',orderColor:'#f4f4f4' , fontSize:'14px'}"
                             *ngIf="!contextMenuActionDisable">
-                                            <span style="cursor: pointer !important;" *ngIf="rowData.Comment!==''"
+                                            <span style="cursor: pointer !important;position:relative;left: -7px"
+                                                  *ngIf="rowData.Comment!==''"
                                                   class="pi pi-info-circle" pReorderableRowHandle
                                                   (click)="confirm($event,rowData)"></span>
                     </td>
@@ -344,7 +346,7 @@
                             *ngFor="let col of columns"
                             class="ui-resizable-column" pResizableColumn
                             [style]="{borderColor:'#f4f4f4' , fontSize:'12px',
-                              textAlign:((col.field==='Долг' || col.field==='Раб.' || col.field==='З/ч' || col.field==='Всего')?'right':'left')}"
+                              textAlign:(col.type==='SUMS'?'right':'left')}"
 
                     >
                         <span class="p-column-title">{{col.header}}</span>
@@ -356,8 +358,8 @@
                         <i class="pi pi-check"></i>
                         </span>
                         <span *ngIf="rowData[col.field]==='no' || rowData[col.field]==='0'"></span>
-<!--                        <span *ngIf="col.field==='Долг' || col.field==='Раб.' || col.field==='З/ч' || col.field==='Всего'"-->
-<!--                              style="padding-left: 50%"> </span>-->
+                            <!--                        <span *ngIf="col.field==='Долг' || col.field==='Раб.' || col.field==='З/ч' || col.field==='Всего'"-->
+                            <!--                              style="padding-left: 50%"> </span>-->
                         <span *ngIf="!(rowData[col.field]==='yes' || rowData[col.field]==='1') && !(rowData[col.field]==='no' || rowData[col.field]==='0')">
                                             {{rowData[col.field]}}
                     </span>
@@ -367,9 +369,9 @@
                         [style]="{borderColor:'#f4f4f4' , fontSize:'12px'}">
                         <button
                                 pRipple pButton type="button"
-                                [disabled]="rowData['статус']==='выполняется'"
+                                [disabled]="rowData[statusName]==='выполняется'"
                                 class=" p-button-success"
-                                (click)="contextAction(rowData['ID работы'],rowData['статус'])"
+                                (click)="contextAction(rowData['ID работы'],rowData[statusName])"
                                 style="min-width: 8rem"
                                 label="{{'page.start' | translate}}" icon="pi pi-play"></button>
                     </td>

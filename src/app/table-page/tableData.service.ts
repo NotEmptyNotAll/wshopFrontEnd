@@ -13,9 +13,11 @@ export class TableDataService {
     search: string = ''
     mainData: any[]
     startData: any[]
+  public  mainColumn: any[]
     addColumnText: string = ''
     showUpdatePage = false
     patternTableRow: any = {}
+
     constructor() {
 
     }
@@ -23,6 +25,14 @@ export class TableDataService {
 
     public getMainData() {
         return this.mainData
+    }
+
+  public  setMainColumn(column: any) {
+        this.mainColumn = column
+    }
+
+    public getMainColumn() {
+        return this.mainColumn
     }
 
     setTablePatternRow(mock: any) {

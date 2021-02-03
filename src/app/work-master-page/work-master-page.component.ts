@@ -10,6 +10,7 @@ import {FilterService} from "../widgets/filters/filter.service";
 import {Router} from "@angular/router";
 import * as moment from "moment";
 import {AppNavigateService} from "../Service/app-navigate.service";
+import {CellType} from "../table-page/CellType";
 
 @Component({
     selector: 'app-work-master-page',
@@ -28,7 +29,7 @@ export class WorkMasterPageComponent implements OnInit {
     temp: any;
     buttItem: MenuItem[];
     private user: User;
-   private enableLoading:boolean=true
+    private enableLoading: boolean = true
     private orderRequest: OrderRequest
 
     constructor(public tableService: TableDataService,
@@ -86,7 +87,7 @@ export class WorkMasterPageComponent implements OnInit {
             this.filterService.setOrderRequest(this.orderRequest)
             let ordersResponse = await this.apiService.post<TableOrderResponse>(
                 'getListOFWork', this.filterService.getOrderRequest(),
-                true,true
+                true, true
             );
 
 
@@ -120,63 +121,64 @@ export class WorkMasterPageComponent implements OnInit {
         //     this.data.ordersTableBody !== null && this.data.ordersTableBody.length === 0) {
         //     this.appNavigate.toSelectWork();
         // } else {
-            this.mainColumn = []
-            this.data.columnTables.map(elem => {
-                if (elem.nameColumn !== 'ID работы' &&
-                    elem.nameColumn !== 'статус' &&
-                    elem.nameColumn !== 'исполнители' &&
-                    elem.nameColumn !== 'выполн.до' &&
-                    elem.nameColumn !== 'автомобиль' &&
-                    elem.nameColumn !== 'деталь') {
-                    this.mainColumn.push(
-                        {
-                            field: elem.nameColumn,
-                            header: elem.nameColumn,
-                            width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
-                        }
-                    )
-                }
-            })
-            let tableBody = []
-            this.data.ordersTableBody.map(row => {
-                let tableRow: any = {}
-                row.rowData.map(cell => {
-                    if (cell.cellName === 'номер заказа' || cell.cellName === 'ID работы' || cell.cellName === 'кол-во') {
-                        tableRow[cell.cellName] = Number(cell.cellData)
-                    } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
-                        let data = new Date(cell.cellData)
-                        tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth() + '.' + data.getFullYear();
-                    } else {
-                        tableRow[cell.cellName] = cell.cellData
-                    }
-                })
-                tableBody.push(tableRow)
-            })
-
-            let tableRowPattern: any = {}
-
-            if (this.data.ordersTableBody.length !== 0) {
-                this.data.ordersTableBody[0].rowData.map(
-                    cell => {
-                        if (cell.cellName === 'Close') {
-                            tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3)
-
-                        } else {
-                            tableRowPattern[cell.cellName] = cell.cellData;
-                        }
+        this.mainColumn = []
+        this.data.columnTables.map(elem => {
+            if (elem.nameColumn !== 'ID работы' &&
+                elem.nameColumn !== 'статус' &&
+                elem.nameColumn !== 'исполнители' &&
+                elem.nameColumn !== 'выполн.до' &&
+                elem.nameColumn !== 'автомобиль' &&
+                elem.nameColumn !== 'деталь') {
+                this.mainColumn.push(
+                    {
+                        field: elem.nameColumn,
+                        header: elem.nameColumn,
+                        type: elem.cellType,
+                        width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
                     }
                 )
             }
-            this.tableService.setMainData(tableBody)
-            this.tableService.setTablePatternRow(tableRowPattern)
-            this.tableDataService.setStartData(this.data)
+        })
+        let tableBody = []
+        this.data.ordersTableBody.map(row => {
+            let tableRow: any = {}
+            row.rowData.map(cell => {
+                if (cell.cellType === CellType.NUMBER) {
+                    tableRow[cell.cellName] = Number(cell.cellData)
+                } else if (cell.cellType === CellType.DATE && !isNaN(new Date(cell.cellData).getDate())) {
+                    let data = new Date(cell.cellData)
+                    tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth() + '.' + data.getFullYear();
+                } else {
+                    tableRow[cell.cellName] = cell.cellData
+                }
+            })
+            tableBody.push(tableRow)
+        })
+
+        let tableRowPattern: any = {}
+
+        if (this.data.ordersTableBody.length !== 0) {
+            this.data.ordersTableBody[0].rowData.map(
+                cell => {
+                    if (cell.cellName === 'Close') {
+                        tableRowPattern[cell.cellName] = cell.cellData.substr(22, 3)
+
+                    } else {
+                        tableRowPattern[cell.cellName] = cell.cellData;
+                    }
+                }
+            )
+        }
+        this.tableService.setMainData(tableBody)
+        this.tableService.setTablePatternRow(tableRowPattern)
+        this.tableDataService.setStartData(this.data)
         // }
     }
 
     async onUpdate() {
         this.data = await this.apiService.post<TableOrderResponse>(
             'getListOFWork', this.filterService.getOrderRequest(), false
-       ,this.enableLoading );
+            , this.enableLoading);
 
         let mainColumn = [];
         this.data.columnTables.map(elem => {
@@ -184,6 +186,7 @@ export class WorkMasterPageComponent implements OnInit {
                 {
                     field: elem.nameColumn,
                     header: elem.nameColumn,
+                    type: elem.cellType,
                     width: elem.width < 100 ? elem.width + elem.nameColumn.length * 8 : elem.width + elem.nameColumn.length * 5
                 }
             )
@@ -194,11 +197,11 @@ export class WorkMasterPageComponent implements OnInit {
         this.data.ordersTableBody.map(row => {
             let tableRow: any = {}
             row.rowData.map(cell => {
-                if (cell.cellName === 'номер заказа' || cell.cellName === 'ID работы' || cell.cellName === 'кол-во') {
+                if (cell.cellType === CellType.NUMBER) {
                     tableRow[cell.cellName] = Number(cell.cellData)
-                } else if ((cell.cellName.toLowerCase().indexOf('до') !== -1 || cell.cellName.toLowerCase().indexOf('дата') !== -1 || cell.cellName === '---') && !isNaN(new Date(cell.cellData).getDate())) {
+                } else if (cell.cellType === CellType.DATE && !isNaN(new Date(cell.cellData).getDate())) {
                     let data = new Date(cell.cellData)
-                    tableRow[cell.cellName] = moment(data.getTime()).utc().format("DD.MM.YY");
+                    tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth() + '.' + data.getFullYear();
                 } else {
                     tableRow[cell.cellName] = cell.cellData
                 }

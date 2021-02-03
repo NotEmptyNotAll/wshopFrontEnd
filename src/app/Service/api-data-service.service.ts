@@ -22,7 +22,7 @@ export class ApiDataServiceService {
     private ordersResp: Order[];
     private users: User[];
     private userData: User;
-    private lang: string = 'ru'
+    private lang: string = 'pl'
     public startIndex: number = 0
     public sizeResponse: number = 0
     private errorNumber: number = 0

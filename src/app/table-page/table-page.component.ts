@@ -28,7 +28,9 @@ import {ServSubstringFilterService} from "../widgets/filters/substring-filter/se
 import {stringify} from "querystring";
 import {User} from "../Service/User";
 import {AppNavigateService} from "../Service/app-navigate.service";
-import { HostListener } from "@angular/core";
+import {HostListener} from "@angular/core";
+import {LangChangeEvent, TranslateService} from "@ngx-translate/core";
+
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
 
@@ -55,8 +57,10 @@ export class TablePageComponent implements OnInit {
     @Input() mainColumn: any[]
     @Input() stateFilterDisable: boolean = false
     @Input() hideButtonBar: boolean = false
+    @Input() statusName: string = ""
     @Input() contextMenuActionDisable: boolean = false
     @Input() masterWindowsSelectDisable: boolean = false
+    @Input() mainData: TableData[]
     @Input() standardFilterDisable: boolean = false
     @Input() title: string
     @Input() dynamicColumns: string = ''
@@ -69,6 +73,9 @@ export class TablePageComponent implements OnInit {
     selectRow: any = {}
     inputErr = false
     displayMinSizeDialog = false
+    msgConfirm: string
+    yesString: string
+    notString: string
     data: TableOrderResponse
     columns: any[];
     loading: boolean = false;
@@ -80,8 +87,8 @@ export class TablePageComponent implements OnInit {
         {label: 'View', icon: 'pi pi-fw pi-search'},
         {label: 'Delete', icon: 'pi pi-fw pi-times'}
     ];
-    screenHeight:number=1920
-    screenWidth:number=1080
+    screenHeight: number = 1920
+    screenWidth: number = 1080
     display: boolean = false;
 
     confirmOnFilter(event) {
@@ -89,10 +96,10 @@ export class TablePageComponent implements OnInit {
             this.confirmationService.confirm({
                 target: event.target,
                 // message: 'стандартнi фiльтри будуть очищені. Продовжити?',
-                message: 'стандартные фильтры будут очищены. Продолжить?',
+                message: this.msgConfirm,
                 icon: 'pi pi-exclamation-triangle',
-                acceptLabel: 'да',
-                rejectLabel: 'нет',
+                acceptLabel: this.yesString,
+                rejectLabel: this.notString,
                 accept: () => {
                     this.cancelFilter();
                     this.serviceStateFiler.onFastFilter()
@@ -186,15 +193,35 @@ export class TablePageComponent implements OnInit {
                 public filterService: FilterService,
                 private router: Router,
                 private appNavigate: AppNavigateService,
+                private translate: TranslateService,
                 public filterPeriodService: ServPeriodFilterService,
                 public apiService: ApiDataServiceService,
                 public serviceSubstring: ServSubstringFilterService,
                 public serviceStateFiler: ServStateFilterService,
                 private confirmationService: ConfirmationService,
                 private _router: Router) {
-
+        this.translate.get('page.confirmFilterMsg').subscribe((res: string) => {
+            this.msgConfirm = res
+        });
+        this.translate.get('page.yes').subscribe((res: string) => {
+            this.yesString = res
+        });
+        this.translate.get('page.not').subscribe((res: string) => {
+            this.notString = res
+        });
+        this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+            this.translate.get('page.confirmFilterMsg').subscribe((res: string) => {
+                this.msgConfirm = res
+            });
+            this.translate.get('page.yes').subscribe((res: string) => {
+                this.yesString = res
+            });
+            this.translate.get('page.not').subscribe((res: string) => {
+                this.notString = res
+            });
+        })
         this.selectRow = this.tableDataService.getTablePatternRow()
-
+        this.filterPeriodService.defaultFastFilter()
     }
 
 
@@ -289,7 +316,7 @@ export class TablePageComponent implements OnInit {
                 id: userId, data: status,
                 date: moment().utc().format("YYYY-MM-DD"),
                 user: this.apiService.getUserData()
-            }, false,true
+            }, false, true
         );
 
         if (data.status !== -1) {
@@ -310,10 +337,10 @@ export class TablePageComponent implements OnInit {
                 id: userId, data: '',
                 date: moment().utc().format("YYYY-MM-DD"),
                 user: this.apiService.getUserData()
-            }, false,true
+            }, false, true
         );
 
-        this.tableDataService.setMainData(this.tableDataService.mainData.filter((elem)=>elem['ID работы']!==userId))
+        this.tableDataService.setMainData(this.tableDataService.mainData.filter((elem) => elem['ID работы'] !== userId))
         if (this.tableDataService.mainData.length === 0) {
             this.appNavigate.toSelectWork();
         }
@@ -401,7 +428,7 @@ export class TablePageComponent implements OnInit {
     }
 
     showDialogMinSize() {
-        this.displayMinSizeDialog=true
+        this.displayMinSizeDialog = true
     }
 }
 
