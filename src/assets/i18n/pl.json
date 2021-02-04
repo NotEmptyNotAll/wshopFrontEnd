@@ -56,6 +56,10 @@
     "confirmFilterMsg": "standardowe filtry zostaną wyczyszczone. Kontynuować?",
     "complete": "zakończyć",
     "yes": "tak",
+    "statusNoComp": "nie wykonano",
+    "statusComp": "gotowe",
+    "statusPerformed": "wykonane",
+
     "not": "nie"
   }
 }

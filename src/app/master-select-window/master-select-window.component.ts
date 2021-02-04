@@ -11,6 +11,7 @@ import * as moment from "moment";
 import {ApiDataServiceService} from "../Service/api-data-service.service";
 import {CellType} from "../table-page/CellType";
 import {TableData} from "../table-page/tableData";
+import {LangChangeEvent, TranslateService} from "@ngx-translate/core";
 
 @Component({
     selector: 'app-master-select-window',
@@ -26,22 +27,63 @@ export class MasterSelectWindowComponent implements OnInit {
     sec: number
     secIncr: number = 1
     temp: any;
-    statusName:string=""
-    tableData:TableData[]
+    statusName: string = ""
+    tableData: TableData[]
     secUpdate: number = 0
+    statusNoComp:string
+    statusComp:string
+    statusP:string
+    statusPerformed :string
     buttItem: MenuItem[];
     private intervalUpdate: any
     private user: User;
     private orderRequest: OrderRequest
-    private enableLoading:boolean=true
+    private enableLoading: boolean = true
 
     constructor(public tableService: TableDataService,
                 public orderService: OrderService,
                 public renderer2: Renderer2,
                 public tableDataService: TableDataService,
+                private translate: TranslateService,
                 public apiService: ApiDataServiceService,
                 public filterService: FilterService,
                 private router: Router) {
+
+        this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+            this.translate.get('page.statusNoComp').subscribe((res: string) => {
+                this.statusNoComp = res
+
+            });
+            this.translate.get('page.statusComp').subscribe((res: string) => {
+                this.statusComp = res
+
+            });
+            this.translate.get('page.pause').subscribe((res: string) => {
+                this.statusP = res
+
+            });
+            this.translate.get('page.statusPerformed').subscribe((res: string) => {
+                this.statusPerformed = res
+
+            });
+        })
+
+        this.translate.get('page.statusNoComp').subscribe((res: string) => {
+            this.statusNoComp = res
+
+        });
+        this.translate.get('page.statusComp').subscribe((res: string) => {
+            this.statusComp = res
+
+        });
+        this.translate.get('page.pause').subscribe((res: string) => {
+            this.statusP = res
+
+        });
+        this.translate.get('page.statusPerformed').subscribe((res: string) => {
+            this.statusPerformed = res
+
+        });
 
         this.listener1 = this.renderer2.listen('window', 'scroll', (e) => {
             this.sec = 0
@@ -89,7 +131,7 @@ export class MasterSelectWindowComponent implements OnInit {
         this.filterService.setOrderRequest(this.orderRequest)
         let ordersResponse = await this.apiService.post<TableOrderResponse>(
             'getListOFWork', this.filterService.getOrderRequest(),
-            true,true
+            true, true
         );
         if (ordersResponse.status !== undefined &&
             ordersResponse.status !== -1) {
@@ -136,15 +178,15 @@ export class MasterSelectWindowComponent implements OnInit {
             let tableRow: any = {}
             row.rowData.map(cell => {
                 if (cell.cellType === CellType.STATUS) {
-                    this.statusName= cell.cellName
+                    this.statusName = cell.cellName
                     tableRow[cell.cellName] = cell.cellData
                 } else if (cell.cellType === CellType.LOGIC) {
                     tableRow[cell.cellName] = cell.cellData.substr(22, 3)
-                } else    if (cell.cellType === CellType.NUMBER) {
+                } else if (cell.cellType === CellType.NUMBER) {
                     tableRow[cell.cellName] = Number(cell.cellData)
                 } else if (cell.cellType === CellType.DATE && !isNaN(new Date(cell.cellData).getDate())) {
                     let data = new Date(cell.cellData)
-                    tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth()+1 + '.' + data.getFullYear();
+                    tableRow[cell.cellName] = data.getDate() + '.' + (Number(data.getMonth())+1)+ '.' + data.getFullYear();
                 } else {
                     tableRow[cell.cellName] = cell.cellData
                 }
@@ -166,7 +208,7 @@ export class MasterSelectWindowComponent implements OnInit {
                 }
             )
         }
-        this.tableData=tableBody
+        this.tableData = tableBody
         this.tableService.setMainData(tableBody)
         this.tableService.setTablePatternRow(tableRowPattern)
         this.tableDataService.setStartData(this.data)
@@ -177,8 +219,8 @@ export class MasterSelectWindowComponent implements OnInit {
         this.secUpdate = 0
         this.data = await this.apiService.post<TableOrderResponse>(
             'getListOFWork', this.filterService.getOrderRequest(), false
-       ,this.enableLoading );
-        this.enableLoading=true
+            , this.enableLoading);
+        this.enableLoading = true
 
         let mainColumn = [];
         this.data.columnTables.map(elem => {
@@ -200,15 +242,15 @@ export class MasterSelectWindowComponent implements OnInit {
             let tableRow: any = {}
             row.rowData.map(cell => {
                 if (cell.cellType === CellType.STATUS) {
-                    this.statusName= cell.cellName
-                    tableRow[cell.cellName] = cell.cellData
+                    this.statusName = cell.cellName
+                    tableRow[cell.cellName] = this.convertByStatus(cell.cellData)
                 } else if (cell.cellType === CellType.LOGIC) {
                     tableRow[cell.cellName] = cell.cellData.substr(22, 3)
-                } else    if (cell.cellType === CellType.NUMBER) {
+                } else if (cell.cellType === CellType.NUMBER) {
                     tableRow[cell.cellName] = Number(cell.cellData)
                 } else if (cell.cellType === CellType.DATE && !isNaN(new Date(cell.cellData).getDate())) {
                     let data = new Date(cell.cellData)
-                    tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth()+1 + '.' + data.getFullYear();
+                    tableRow[cell.cellName] = data.getDate() + '.' + (Number(data.getMonth())+1)+ '.' + data.getFullYear();
                 } else {
                     tableRow[cell.cellName] = cell.cellData
                 }
@@ -230,7 +272,7 @@ export class MasterSelectWindowComponent implements OnInit {
             )
         }
 
-        this.tableData=tableBody
+        this.tableData = tableBody
         this.tableDataService.setMainData(tableBody)
         this.tableDataService.setTablePatternRow(tableRowPattern)
 
@@ -244,7 +286,7 @@ export class MasterSelectWindowComponent implements OnInit {
             if (this.secUpdate === 7) {
 
                 this.apiService.applySubLoading = false
-                this.enableLoading=false
+                this.enableLoading = false
                 this.onUpdate()
             }
         }, 1000);
@@ -254,5 +296,23 @@ export class MasterSelectWindowComponent implements OnInit {
         clearInterval(this.intervalUpdate);
     }
 
+    convertByStatus(str: string) {
+        let result = "";
+        switch (str) {
+            case 'не выполнена':
+                result = this.statusNoComp;
+                break;
+            case 'выполнена':
+                result = this.statusComp;
+                break;
+            case 'выполняется':
+                result = this.statusPerformed;
+                break;
+            case 'пауза':
+                result = this.statusP;
+                break;
+        }
+        return result;
+    }
 
 }

@@ -56,6 +56,10 @@
     "unpaid": "unpaid",
     "yes": "yes",
     "not": "not",
+    "statusNoComp": "not executed",
+    "statusComp": "done",
+    "statusPerformed": "in progress",
+
     "complete": "complete"
   }
 }

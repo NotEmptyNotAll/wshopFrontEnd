@@ -55,6 +55,10 @@
     "paid": "оплачені",
     "unpaid": "неоплачені",
     "complete": "завершити",
+    "statusNoComp": "не виконано",
+    "statusComp": "виконано",
+    "statusPerformed": "виконується",
+
     "yes": "так",
     "not": "ні"
   }

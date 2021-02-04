@@ -55,6 +55,9 @@
     "unpaid": "неоплаченые",
     "confirmFilterMsg": "стандартные фильтры будут очищены. Продолжить?",
     "complete": "завершить",
+    "statusNoComp": "не выполнена",
+    "statusComp": "выполнена",
+    "statusPerformed": "выполняется",
     "yes": "да",
     "not": "нет"
   }
