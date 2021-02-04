@@ -144,7 +144,7 @@ export class MasterSelectWindowComponent implements OnInit {
                     tableRow[cell.cellName] = Number(cell.cellData)
                 } else if (cell.cellType === CellType.DATE && !isNaN(new Date(cell.cellData).getDate())) {
                     let data = new Date(cell.cellData)
-                    tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth() + '.' + data.getFullYear();
+                    tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth()+1 + '.' + data.getFullYear();
                 } else {
                     tableRow[cell.cellName] = cell.cellData
                 }
@@ -208,7 +208,7 @@ export class MasterSelectWindowComponent implements OnInit {
                     tableRow[cell.cellName] = Number(cell.cellData)
                 } else if (cell.cellType === CellType.DATE && !isNaN(new Date(cell.cellData).getDate())) {
                     let data = new Date(cell.cellData)
-                    tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth() + '.' + data.getFullYear();
+                    tableRow[cell.cellName] = data.getDate() + '.' + data.getMonth()+1 + '.' + data.getFullYear();
                 } else {
                     tableRow[cell.cellName] = cell.cellData
                 }
