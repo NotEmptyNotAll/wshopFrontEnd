@@ -2,6 +2,7 @@
 <div  *ngIf="!minSizeResolution"  class="p-fluid  p-grid p-form grid" style="width: 300px">
     <div class="p-field p-col-36 p-md-12">
         <p-dropdown (onChange)="changePeriod()"
+                    dataKey="code"
                     placeholder="{{'page.period' | translate}}"
                     [options]="periods" [(ngModel)]="period"
                     optionLabel="name"  >
@@ -12,6 +13,7 @@
 <p-dropdown  *ngIf="minSizeResolution"  (onChange)="changePeriod()"
              placeholder="{{'page.period' | translate}}"
              [style]="{width: '100%'}"
-            [options]="periods" [(ngModel)]="period"
+             dataKey="code"
+             [options]="periods" [(ngModel)]="period"
             optionLabel="name"  >
 </p-dropdown>

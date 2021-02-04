@@ -20,6 +20,7 @@
         <p-dropdown (onChange)="changePeriod()"
                     [disabled]="filterPeriodService.disableFastFiled"
                     placeholder="{{'page.period' | translate}}"
+                    dataKey="code"
                     [options]="fastPeriods" [(ngModel)]="filterPeriodService.periodFastFilterData"
                     optionLabel="name">
         </p-dropdown>
@@ -32,8 +33,9 @@
 
             <p-dropdown (onChange)="changePeriod()"
                         class="standard-filter-dropdown"
-                        inputId="{{'page.period' | translate}}"
+                        inputId="dropdown"
                         [options]="periods" [(ngModel)]="period"
+                        dataKey="code"
                         optionLabel="name">
             </p-dropdown>
     <label for="dropdown">{{'page.period' | translate}}</label>

@@ -3,6 +3,7 @@
         <p-dropdown *ngIf="onlyField"
                     (onChange)="changeState()"  style="width: 300px" [showClear]="true"
                     [options]="states"
+                    dataKey="code"
                     placeholder="{{'page.status' | translate}}"
                     [(ngModel)]="state" optionLabel="name"></p-dropdown>
     </div>
@@ -12,6 +13,7 @@
             class="min-size-input"
             (onChange)="changeState()"   [showClear]="true"
             [options]="states"
+            dataKey="code"
             [style]="{width: '100%'}"
             placeholder="{{'page.status' | translate}}"
             [(ngModel)]="state" optionLabel="name"></p-dropdown>

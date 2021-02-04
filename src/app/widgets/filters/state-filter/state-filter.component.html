@@ -11,6 +11,7 @@
                 *ngIf="onlyField"
                 [disabled]="stateService.disableFastFiled"
                 (onChange)="changeState()" style="width: 300px"
+                dataKey="code"
                 [options]="fastStates"
                 placeholder="{{'page.status' | translate}}"
                 [(ngModel)]="stateService.stateFastFilterData" optionLabel="name">
@@ -47,6 +48,8 @@
                    class="standard-filter-dropdown"
                    [disabled]="disabled"
                    (onChange)="changeState()"
+                   dataKey="code"
+
                    [options]="states"
                    [(ngModel)]="stateService.stateFilterData" optionLabel="name"></p-dropdown>
 

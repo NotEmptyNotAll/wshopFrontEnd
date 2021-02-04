@@ -23,7 +23,8 @@
      <p-dropdown   inputId="autocomplete" [autoDisplayFirst]="false"
                    class="standard-filter-dropdown"
                         (onChange)="changeState()"  [showClear]="true"
-                                  [options]="states" [(ngModel)]="payed" optionLabel="name"></p-dropdown>
+                   dataKey="code"
+                   [options]="states" [(ngModel)]="payed" optionLabel="name"></p-dropdown>
 
     <label for="autocomplete">{{'page.payment' | translate}}</label>
         </span>

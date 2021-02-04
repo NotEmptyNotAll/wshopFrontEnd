@@ -14,7 +14,7 @@ export class PeriodDateFilterComponent implements OnInit {
     @Output() onSuggest: EventEmitter<any> = new EventEmitter();
     @Output() onClear: EventEmitter<any> = new EventEmitter();
     @Input() onlyField: boolean = false
-    private period = {name: '', code: -1}
+    private period =        {name: '', code: 11}
     private orderRequest: OrderRequest
     private isCloseDate: boolean = false
     private periods: any[] = [
@@ -57,14 +57,17 @@ export class PeriodDateFilterComponent implements OnInit {
             this.periods[1].name = res
             this.fastPeriods[0].name = res
         });
-        this.translate.get('page.yesterday').subscribe((res: string) => {
+        this.translate.get('page.lastSevenDays').subscribe((res: string) => {
             this.periods[2].name = res
+            this.period.name=res
+            this.period.code=11
             this.fastPeriods[1].name = res
         });
-        this.translate.get('page.lastSevenDays').subscribe((res: string) => {
+        this.translate.get('page.yesterday').subscribe((res: string) => {
             this.periods[3].name = res
             this.fastPeriods[2].name = res
         });
+
         this.translate.get('page.thisWeek').subscribe((res: string) => {
             this.periods[4].name = res
             this.fastPeriods[3].name = res
